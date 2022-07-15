@@ -74,8 +74,7 @@ def main():
     No_angles = ric_list[2]
     No_dihes = ric_list[3]
 
-    print(No_bonds, No_angles, No_dihes)
-     # Reading in Topology in RIC from log file
+    # Reading in Topology in RIC from log file
     bond_list, angle_list, dihe_list = pgau.read_Top(text_qm_log, ric_list)
     hess_qm = pgau.read_Hess(text_qm_fchk, ric_list)
     hess_mm = pgau.read_Hess(text_mm_fchk, ric_list)

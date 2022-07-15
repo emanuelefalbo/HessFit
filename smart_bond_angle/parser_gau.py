@@ -172,9 +172,12 @@ def read_NamesTypes(all_lines, N_atoms):
     for s in range(len(all_lines)):                          # Get no of Atoms
         if 'Symbolic Z-matrix' in all_lines[s]:
             start = s
-            for e in range(start+2, start + N_atoms+1):
+            for e in range(start+2, start + N_atoms+2):
                 ele_list.append(all_lines[e][:1].split() )
                 type_list.append(all_lines[e][2:5].split() )
+
+    ele_list = flat_list(ele_list)
+    type_list = flat_list(type_list)
 
     return ele_list, type_list
     
