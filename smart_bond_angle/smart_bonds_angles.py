@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import parser_gau as pgau
-import set_bonds as bond
+import set_module as smod
 import sys
 import argparse
 import os
@@ -94,8 +94,17 @@ def main():
     # print("")
     # [print(i,j) for i,j in enumerate(k_angles)]
 
-    bond.set_bonds(qm_XYZ, ele_list, type_list, bond_list, k_bonds)
+    mdout = 'mean'
+    bond_type_list, bond_arr, k_bond_arr = smod.set_bonds(qm_XYZ, ele_list, type_list, \
+                   bond_list, k_bonds, mdout)
+    # print(bond_type_list)
 
+    for k in range(len(bond_type_list)):
+            msg = (
+                  f'HrmStr1 {bond_type_list[k]}  {k_bond_arr[k]:.3f} ' 
+                  f' {bond_arr[k]:.3f} '
+                  )
+            print(msg)
 
 
 
