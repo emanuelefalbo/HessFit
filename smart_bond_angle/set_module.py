@@ -20,7 +20,7 @@ def avg_dups(genes, values):
 def set_bonds(coords, ele_list, type_list,
               bond_list, k_bonds, mdout):
     """
-    Order Bond Force Constant
+    Order Bond Force Constants
     """
 
     bond_length_list = []
@@ -52,35 +52,48 @@ def set_bonds(coords, ele_list, type_list,
     elif mdout == 'all':
         return bond_type_list, bond_length_list, k_bonds
         
-
-
-
 def set_angles(coords, ele_list, type_list,
-              bond_list, k_bonds):
+              angle_list, k_angles, mdout):
     """
-    Order Bond Force Constant
+    Order Angles Force Constants
     """
 
-    # # print(len(type_list))
-    # bond_lenght_list = []
-    # bond_type_list = []
-    # for k in bond_list:
-    #     i = k[0] -1 
-    #     j = k[1] -1
-    #     diff_AB = coords[i,:] - coords[j,:]
-    #     r_AB = np.linalg.norm(diff_AB)
-    #     bond_lenght_list.append(r_AB)
-    #     bond_type_list.append(type_list[i] + ' ' + type_list[j]) 
-    
-    # bond_type_list = flat_list(bond_type_list)
-    # print(bond_type_list)
+    angle_length_list = []
+    angle_type_list = []
+    for p in angle_list:
+        i = p[0] - 1 
+        j = p[1] - 1
+        k = p[2] - 1
+        diff_AB = coords[i,:] - coords[j,:]
+        diff_BC = coords[j,:] - coords[k,:]
+        r_AB = np.linalg.norm(diff_AB)
+        r_BC = np.linalg.norm(diff_BC)
         
-    # for k in range(len(bond_list)):
-    #     msg = (
-    #           f'HrmStr1 {bond_type_list[k]}  {k_bonds[k]:.3f} ' 
-    #           f' {bond_lenght_list[k]:.3f} '
-    #           )
-    #     print(msg)
-
-
+        u_AB = diff_AB / r_AB
+        u_BC = diff_BC / r_BC
+        cos_theta = np.dot(u_AB, u_BC)
+        theta = np.arccos(cos_theta)
+        theta = 180 - theta * 180 / np.pi
+        angle_length_list.append(theta)
+        angle_type_list.append(type_list[i] + ' ' + type_list[j] +  \
+                               ' ' + type_list[k]) 
     
+    angle_type_list = flat_list(angle_type_list)
+
+    # # Average over values if duplicates found,
+    # # return all of'em
+    if mdout == 'mean':
+        tmp_arr = np.array(angle_length_list)
+        angle_length_2d = np.reshape(tmp_arr, ((tmp_arr.shape[0], 1)) )
+        folded, out_1 = avg_dups(angle_type_list, angle_length_2d)
+        angle_length_mean = np.reshape(out_1, (out_1.shape[0]))
+
+        k_angles_2d = np.reshape(k_angles, ((k_angles.shape[0], 1)) )
+        _, out_2 = avg_dups(angle_type_list, k_angles_2d)
+        k_bonds_mean = np.reshape(out_2, (out_2.shape[0]))
+
+        return list(folded), angle_length_mean, k_bonds_mean
+    elif mdout == 'all':
+        return angle_type_list, angle_length_list, k_angles
+        
+        

@@ -5,6 +5,6 @@
         "fchk_mm_file": "mm_all.fchk",
         "fchk_nb_file": "nb_ric.fchk"
          },
-    "mode": "mean",
+    "mode": "all",
     "opt": "ric"
 }

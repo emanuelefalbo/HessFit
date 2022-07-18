@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 
-from email import header
 import parser_gau as pgau
 import set_module as smod
-import sys
 import argparse
 import os
 import json
@@ -87,15 +85,21 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
         fout.write(f'\n')
         fout.write(master_func)
         fout.write(f'! SMARTFIELD FF\n')
+        fout.write(f'!Bonds\n')
         for k in range(len(bond_tp_ls)):
             msg = (
                   f'HrmStr1 {bond_tp_ls[k]}  {k_bond_ls[k]:.3f} ' 
                   f' {bond_ln_ls[k]:.3f}\n'
                   )
             fout.write(msg)
+        fout.write(f'!Angles\n')
+        for k in range(len(angle_tp_ls)):
+            msg = (
+                  f'HrmBnd1 {angle_tp_ls[k]}  {k_angle_ls[k]:.3f} ' 
+                  f' {angle_ln_ls[k]:.3f}\n'
+                  )
+            fout.write(msg)
         fout.write(f'\n')
-
-
     
 
 def get_DiagMatrix(AM):
@@ -143,26 +147,19 @@ def main():
     if json_opts['mode'] == 'mean':
         bond_type_list, bond_arr, k_bond_arr = smod.set_bonds(qm_XYZ, ele_list, type_list, \
                       bond_list, k_bonds, 'mean')
+        angle_type_list, angle_arr, k_angle_arr = smod.set_angles(qm_XYZ, ele_list, type_list, \
+                      angle_list, k_angles, 'mean')              
     else:
         bond_type_list, bond_arr, k_bond_arr = smod.set_bonds(qm_XYZ, ele_list, type_list, \
                       bond_list, k_bonds, 'all')
+        angle_type_list, angle_arr, k_angle_arr = smod.set_angles(qm_XYZ, ele_list, type_list, \
+                      angle_list, k_angles, 'all')              
 
-
+    # Print all into Gaussian Input
     print_GauInp(ele_list, type_list, qm_XYZ, \
                  bond_type_list, k_bond_arr, bond_arr, \
-                 *range(3)   )
+                 angle_type_list, k_angle_arr, angle_arr )
    
-
-    # bond_text =[]
-    # for k in range(len(bond_type_list)):
-    #         msg = (
-    #               f'HrmStr1 {bond_type_list[k]}  {k_bond_arr[k]:.3f} ' 
-    #               f' {bond_arr[k]:.3f} '
-    #               )
-    #         bond_text.append(str(msg))
-            # print(msg)
-        
-
 
 
 if __name__ == "__main__":
