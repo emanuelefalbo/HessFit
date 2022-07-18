@@ -36,10 +36,9 @@ def set_bonds(coords, ele_list, type_list,
     
     bond_type_list = flat_list(bond_type_list)
 
-    if mdout == 'all':
-        return bond_type_list, bond_length_list
-        
-    elif mdout == 'mean':
+    # Average over values if duplicates found,
+    # return all of'em
+    if mdout == 'mean':
         tmp_arr = np.array(bond_length_list)
         bond_length_2d = np.reshape(tmp_arr, ((tmp_arr.shape[0], 1)) )
         folded, out_1 = avg_dups(bond_type_list, bond_length_2d)
@@ -50,6 +49,9 @@ def set_bonds(coords, ele_list, type_list,
         k_bonds_mean = np.reshape(out_2, (out_2.shape[0]))
 
         return list(folded), bond_length_mean, k_bonds_mean
+    elif mdout == 'all':
+        return bond_type_list, bond_length_list, k_bonds
+        
 
 
 

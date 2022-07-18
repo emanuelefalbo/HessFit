@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from email import header
 import parser_gau as pgau
 import set_module as smod
 import sys
@@ -27,8 +28,8 @@ def print_init():
 def commandline_parser():
     parser = argparse.ArgumentParser(prog='smart_bonds_angles.py', formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument('optfile', nargs='?', help='option file in json')
-    parser.add_argument('-m', '--mode', choices=['seminario', 'ric'],
-                        default='ric', help='method to compute harmonic factors')
+    # parser.add_argument('-m', '--mode', choices=['seminario', 'ric'],
+                        # default='ric', help='method to compute harmonic factors')
     return parser
 
 
@@ -44,6 +45,58 @@ def read_optfile(fname):
         if not os.path.exists(data['files'][i]):
             raise FileNotFoundError(f'Missing {i} file')
     return data
+
+def print_GauInp(ele_ls, tp_ls, coord, \
+                 bond_tp_ls, k_bond_ls, bond_ln_ls,
+                 angle_tp_ls, k_angle_ls, angle_ln_ls):
+    """
+    Write a gaussian input file:
+    ele_ls: element list 
+    tp_ls: atom type list
+    coord: coordinates XYZ
+    bond_tp_ls:  bond type list
+    bond_ln_ls:  bond length list 
+    k_bond_ls:  bond constant list
+    angle_tp_ls: angle type list 
+    k_angle_ls: angle constant list 
+    angle_ln_ls : deg angle list
+
+    """
+    header_gjf ="""%mem=4GB
+%nprocshared=1
+%chk=smartfield4gau.chk
+#p Amber=(SoftFirst,Print) nosymm geom=nocrowd opt
+ 
+Title
+
+0 1
+"""
+
+    master_func = """
+! Master function
+NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
+
+"""
+    fname = 'smartfield4gau.gjf'
+    with open(fname, 'w') as fout:
+        fout.write(header_gjf)
+        for m, p, l in zip(ele_ls, tp_ls, coord):
+                    #  s1 = '  '.join(str(x) for x in p)
+                     s2 = '  '.join((f'{x:.6f}') for x in l)
+                     fout.write(f'{m}-{p}  {s2} \n')
+        fout.write(f'\n')
+        fout.write(master_func)
+        fout.write(f'! SMARTFIELD FF\n')
+        for k in range(len(bond_tp_ls)):
+            msg = (
+                  f'HrmStr1 {bond_tp_ls[k]}  {k_bond_ls[k]:.3f} ' 
+                  f' {bond_ln_ls[k]:.3f}\n'
+                  )
+            fout.write(msg)
+        fout.write(f'\n')
+
+
+    
 
 def get_DiagMatrix(AM):
     for i in range(len(AM)):
@@ -66,8 +119,8 @@ def main():
     text_qm_fchk = pgau.store_any_file(f_qm_fchk)
     text_mm_fchk = pgau.store_any_file(f_mm_fchk)
     text_nb_fchk = pgau.store_any_file(f_nb_fchk)
-    # Open texts contents : XYZ, Grad, Hess, Topology & etc
-    N_atoms, qm_XYZ = pgau.read_XYZ(text_qm_fchk)                 # Reading in QM CC XYZ
+    # Opening texts contents : XYZ, Grad, Hess, Topology & etc
+    N_atoms, qm_XYZ = pgau.read_XYZ(text_qm_fchk)                 
     ele_list, type_list = pgau.read_NamesTypes(text_qm_log, N_atoms)
     ric_list, force_1D = pgau.read_RicDim_Grad(text_qm_fchk)
     No_bonds = ric_list[1]
@@ -83,28 +136,32 @@ def main():
     diag_QM = np.diagonal(hess_qm)          # Take diagonla items of H_QM
     MM_diag = get_DiagMatrix(hess_mm)       # Make sure H_MM is diagonal
     
-    # Solve Linear System for Bond and Angles only 
-    # H_MM * K = H_QM ; ignoring Torsion 
-    coeffs = np.linalg.solve(MM_diag, diag_QM)
-    k_bonds = coeffs[0 : No_bonds]
+    coeffs = np.linalg.solve(MM_diag, diag_QM)              # Solve Linear System for Bond and Angles only 
+    k_bonds = coeffs[0 : No_bonds]                          # H_MM * K = H_QM ; ignoring Torsion 
     k_angles = coeffs[No_bonds : No_bonds + No_angles ]
-    # print(coeffs)
-    # print("")
-    # [print(i,j) for i,j in enumerate(k_bonds)]
-    # print("")
-    # [print(i,j) for i,j in enumerate(k_angles)]
 
-    mdout = 'mean'
-    bond_type_list, bond_arr, k_bond_arr = smod.set_bonds(qm_XYZ, ele_list, type_list, \
-                   bond_list, k_bonds, mdout)
-    # print(bond_type_list)
+    if json_opts['mode'] == 'mean':
+        bond_type_list, bond_arr, k_bond_arr = smod.set_bonds(qm_XYZ, ele_list, type_list, \
+                      bond_list, k_bonds, 'mean')
+    else:
+        bond_type_list, bond_arr, k_bond_arr = smod.set_bonds(qm_XYZ, ele_list, type_list, \
+                      bond_list, k_bonds, 'all')
 
-    for k in range(len(bond_type_list)):
-            msg = (
-                  f'HrmStr1 {bond_type_list[k]}  {k_bond_arr[k]:.3f} ' 
-                  f' {bond_arr[k]:.3f} '
-                  )
-            print(msg)
+
+    print_GauInp(ele_list, type_list, qm_XYZ, \
+                 bond_type_list, k_bond_arr, bond_arr, \
+                 *range(3)   )
+   
+
+    # bond_text =[]
+    # for k in range(len(bond_type_list)):
+    #         msg = (
+    #               f'HrmStr1 {bond_type_list[k]}  {k_bond_arr[k]:.3f} ' 
+    #               f' {bond_arr[k]:.3f} '
+    #               )
+    #         bond_text.append(str(msg))
+            # print(msg)
+        
 
 
 
