@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import parser_gau as pgau
-import set_module as smod
+import force_constant_mod as fc
 import argparse
 import os
 import json
@@ -145,14 +145,14 @@ def main():
     k_angles = coeffs[No_bonds : No_bonds + No_angles ]
 
     if json_opts['mode'] == 'mean':
-        bond_type_list, bond_arr, k_bond_arr = smod.set_bonds(qm_XYZ, ele_list, type_list, \
+        bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, ele_list, type_list, \
                       bond_list, k_bonds, 'mean')
-        angle_type_list, angle_arr, k_angle_arr = smod.set_angles(qm_XYZ, ele_list, type_list, \
+        angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, ele_list, type_list, \
                       angle_list, k_angles, 'mean')              
     else:
-        bond_type_list, bond_arr, k_bond_arr = smod.set_bonds(qm_XYZ, ele_list, type_list, \
+        bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, ele_list, type_list, \
                       bond_list, k_bonds, 'all')
-        angle_type_list, angle_arr, k_angle_arr = smod.set_angles(qm_XYZ, ele_list, type_list, \
+        angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, ele_list, type_list, \
                       angle_list, k_angles, 'all')              
 
     # Print all into Gaussian Input
