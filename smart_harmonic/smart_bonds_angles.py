@@ -127,22 +127,26 @@ def main():
     N_atoms, qm_XYZ = pgau.read_XYZ(text_qm_fchk)                 
     ele_list, type_list = pgau.read_NamesTypes(text_qm_log, N_atoms)
     ric_list, force_1D = pgau.read_RicDim_Grad(text_qm_fchk)
+    No_ric = ric_list[0]
     No_bonds = ric_list[1]
     No_angles = ric_list[2]
     No_dihes = ric_list[3]
 
     # Reading in Topology in RIC from log file
-    bond_list, angle_list, dihe_list = pgau.read_Top(text_qm_log, ric_list)
+    bond_list, angle_list, tors_list = pgau.read_Top(text_qm_log, ric_list)
     hess_qm = pgau.read_Hess(text_qm_fchk, ric_list)
     hess_mm = pgau.read_Hess(text_mm_fchk, ric_list)
     hess_nb = pgau.read_Hess(text_nb_fchk, ric_list)
-
-    diag_QM = np.diagonal(hess_qm)          # Take diagonla items of H_QM
+    hess_eff = hess_qm - hess_nb
+    diag_QM = np.diagonal(hess_eff)          # Take diagonla items of H_QM
     MM_diag = get_DiagMatrix(hess_mm)       # Make sure H_MM is diagonal
     
-    coeffs = np.linalg.solve(MM_diag, diag_QM)              # Solve Linear System for Bond and Angles only 
-    k_bonds = coeffs[0 : No_bonds]                          # H_MM * K = H_QM ; ignoring Torsion 
+    coeffs = np.linalg.solve(MM_diag, diag_QM)      # Solve Linear System for Bond and Angles only 
+                                                    # H_MM * K = H_QM ; ignoring Torsion 
+    k_bonds = coeffs[0 : No_bonds]                          
     k_angles = coeffs[No_bonds : No_bonds + No_angles ]
+    diag_tors = diag_QM[No_ric - No_dihes : No_ric] * 627.509391  # Torsional Gradient; kcal/mol rad
+    # [print(i) for i in diag_tors]
 
     if json_opts['mode'] == 'mean':
         bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, ele_list, type_list, \
@@ -159,6 +163,9 @@ def main():
     print_GauInp(ele_list, type_list, qm_XYZ, \
                  bond_type_list, k_bond_arr, bond_arr, \
                  angle_type_list, k_angle_arr, angle_arr )
+
+    fc.set_tors(qm_XYZ, ele_list, type_list, \
+                tors_list, diag_tors, force_1D, 'mean')
    
 
 
