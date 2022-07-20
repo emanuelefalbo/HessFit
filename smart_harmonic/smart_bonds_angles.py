@@ -44,9 +44,24 @@ def read_optfile(fname):
             raise FileNotFoundError(f'Missing {i} file')
     return data
 
-def print_GauInp(ele_ls, tp_ls, coord, \
-                 bond_tp_ls, k_bond_ls, bond_ln_ls,
-                 angle_tp_ls, k_angle_ls, angle_ln_ls):
+# def print_GauInp(ele_ls, tp_ls, coord, \
+#                  bond_tp_ls, k_bond_ls, bond_ln_ls,
+#                  angle_tp_ls, k_angle_ls, angle_ln_ls):
+def print_GauInp(*arg):
+    ele_ls = arg[0]
+    tp_ls= arg[1]
+    coord = arg[2]
+    bond_tp_ls = arg[3]
+    k_bond_ls = arg[4]
+    bond_ln_ls = arg[5]
+    angle_tp_ls = arg[6]
+    k_angle_ls = arg[7]
+    angle_ln_ls = arg[8]
+    tors_tp_ls = arg[9]
+    v1 = arg[10]
+    v2 = arg[11]
+    v3 = arg[12]
+    hybrid_list = arg[13]
     """
     Write a gaussian input file:
     ele_ls: element list 
@@ -97,6 +112,14 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
             msg = (
                   f'HrmBnd1 {angle_tp_ls[k]}  {k_angle_ls[k]:.3f} ' 
                   f' {angle_ln_ls[k]:.3f}\n'
+                  )
+            fout.write(msg)
+        fout.write(f'! Torsions\n')
+        for k in range(len(tors_tp_ls)):
+            msg = (
+                  f'AmbTrs {tors_tp_ls[k]} 0 0 0 0 '
+                  f' {v1[k]:.2f} {v2[k]:.2f} {v3[k]:.2f} 0. ' 
+                  f' {hybrid_list[k]}\n'
                   )
             fout.write(msg)
         fout.write(f'\n')
@@ -153,27 +176,28 @@ def main():
                       bond_list, k_bonds, 'mean')
         angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, type_list, \
                       angle_list, k_angles, 'mean')
-        tors_type_list, v1, v2, v3, tors_arr = fc.set_torsion(qm_XYZ, type_list, \
+        tors_type_list, v1, v2, v3, tors_arr, periodic_list = fc.set_torsion(qm_XYZ, type_list, \
                       tors_list, diag_tors, force_1D, 'mean')               
     else:
         bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, type_list, \
                       bond_list, k_bonds, 'all')
         angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, type_list, \
                       angle_list, k_angles, 'all') 
-        tors_type_list, v1, v2, v3, tors_arr = fc.set_torsion(qm_XYZ, type_list, \
+        tors_type_list, v1, v2, v3, tors_arr, periodic_list = fc.set_torsion(qm_XYZ, type_list, \
                       tors_list, diag_tors, force_1D, 'all')    
 
     # Print all into Gaussian Input
     print_GauInp(ele_list, type_list, qm_XYZ, \
                  bond_type_list, k_bond_arr, bond_arr, \
-                 angle_type_list, k_angle_arr, angle_arr )
+                 angle_type_list, k_angle_arr, angle_arr, \
+                 tors_type_list, v1, v2, v3, periodic_list)
 
      
-    for m, i in enumerate(tors_type_list):
-        msg = (f'{m} {tors_type_list[m]}  {v1[m]}' 
-              f' {v2[m]:.2f} {v3[m]:.2f}   {tors_arr[m]:.1f}' 
-        )
-        print(msg)
+    # for m, i in enumerate(tors_type_list):
+    #     msg = (f'{m} {tors_type_list[m]}  {v1[m]}' 
+    #           f' {v2[m]:.2f} {v3[m]:.2f}   {tors_arr[m]:.1f}' 
+    #     )
+    #     print(msg)
 
 if __name__ == "__main__":
     main()

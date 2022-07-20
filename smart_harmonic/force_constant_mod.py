@@ -208,9 +208,14 @@ def set_torsion(coords, type_list, tors_list, \
     # # return all of'em
     if mdout == 'mean':
         tors_length_2d = flatList_to_2Darray(tors_length_list)
-        folded, out_1 = avg_dups(tors_type_list, tors_length_2d)
+        folded, out_0 = avg_dups(tors_type_list, tors_length_2d)
         tors_type_unique = list(folded)
-        tors_length_mean = np.reshape(out_1, (out_1.shape[0]))
+        tors_length_mean = np.reshape(out_0, (out_0.shape[0]))
+
+        hybrid_2d = flatList_to_2Darray(hybrid_list)
+        _, out_1 = avg_dups(tors_type_list, hybrid_2d)
+        tors_type_unique = list(folded)
+        hybrid_mean = np.reshape(out_1, (out_1.shape[0]))
 
         v1_eq_2d = flatList_to_2Darray(v1_eq)
         print(v1_eq_2d.shape[0])
@@ -226,10 +231,10 @@ def set_torsion(coords, type_list, tors_list, \
         v3_eq_mean = np.reshape(out_3, (out_3.shape[0]))
 
         return tors_type_unique, v1_eq_mean, \
-               v2_eq_mean, v3_eq_mean,  tors_length_mean
+               v2_eq_mean, v3_eq_mean,  tors_length_mean, hybrid_mean
     elif mdout == 'all':
         return tors_type_list, v1_eq, \
-               v2_eq, v3_eq, tors_length_list
+               v2_eq, v3_eq, tors_length_list, hybrid_list
         
 
 
