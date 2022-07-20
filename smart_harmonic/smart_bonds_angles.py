@@ -149,25 +149,31 @@ def main():
     # [print(i) for i in diag_tors]
 
     if json_opts['mode'] == 'mean':
-        bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, ele_list, type_list, \
+        bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, type_list, \
                       bond_list, k_bonds, 'mean')
-        angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, ele_list, type_list, \
-                      angle_list, k_angles, 'mean')              
+        angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, type_list, \
+                      angle_list, k_angles, 'mean')
+        tors_type_list, v1, v2, v3, tors_arr = fc.set_torsion(qm_XYZ, type_list, \
+                      tors_list, diag_tors, force_1D, 'mean')               
     else:
-        bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, ele_list, type_list, \
+        bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, type_list, \
                       bond_list, k_bonds, 'all')
-        angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, ele_list, type_list, \
-                      angle_list, k_angles, 'all')              
+        angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, type_list, \
+                      angle_list, k_angles, 'all') 
+        tors_type_list, v1, v2, v3, tors_arr = fc.set_torsion(qm_XYZ, type_list, \
+                      tors_list, diag_tors, force_1D, 'all')    
 
     # Print all into Gaussian Input
     print_GauInp(ele_list, type_list, qm_XYZ, \
                  bond_type_list, k_bond_arr, bond_arr, \
                  angle_type_list, k_angle_arr, angle_arr )
 
-    fc.set_tors(qm_XYZ, ele_list, type_list, \
-                tors_list, diag_tors, force_1D, 'mean')
-   
-
+     
+    for m, i in enumerate(tors_type_list):
+        msg = (f'{m} {tors_type_list[m]}  {v1[m]}' 
+              f' {v2[m]:.2f} {v3[m]:.2f}   {tors_arr[m]:.1f}' 
+        )
+        print(msg)
 
 if __name__ == "__main__":
     main()
