@@ -17,7 +17,7 @@ def print_init():
    Date:         July 2022
    Language:     Python 3.v later
    Description:  The program returns force constants for
-                 bonds and angles.
+                 bonded and non-bonded values
    Mail:         falbo.emanuele@gmail.com 
  =======================================================
      
