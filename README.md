@@ -19,7 +19,7 @@ it can be simply used as:
 ```
 smart_bonds_angles.py option_file.json**
 ```
-This part of program works along with a json file, like the following:
+This part of program works along with a json file like the following:
 
 ```json
 {
@@ -35,6 +35,11 @@ This part of program works along with a json file, like the following:
 }
 ```
 
+|   |   |   |   |   |
+|---|---|---|---|---|
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
 
 
 
