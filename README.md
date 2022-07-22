@@ -35,11 +35,12 @@ This part of program works along with a json file like the following:
 }
 ```
 
-|   |   |   |   |   |
-|---|---|---|---|---|
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
+```
+ "log_qm_file":  Gaussian output log file of QM (opt+Freq) calculation
+ "fchk_qm_file": Gaussian format check-point file of QM (opt+freq) calculation
+ "fchk_mm_file": Gaussian format check-point file of artificial MM (freq) calculation
+ "fchk_nb_file": Gaussian format check-point file of artificial MM (freq) calculation
+```
 
 
 
