@@ -51,7 +51,7 @@ This part of program works along with a json file like the following:
 
 
 
-**2. smart_harmonic**
+**2. smart_dihedral**
 
 
 
