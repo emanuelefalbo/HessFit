@@ -7,11 +7,16 @@ As alternative, least square fit of quantum-mechanically PES can be carried out 
 # Usage 
 
 It currently works with the Gaussian outputs, and a json file containing the necessary files, and type of results.
-A numpy python library is required to properly use the program.
-It can be installed by the following command:
+A numpy python library is required to properly use the program alongside other module.
+Numpy can be installed by the following command:
 ```
 pip install numpy
 ```
+while for the modules it is sufficient to add their directory to the **PYTHONPATH** into you .bashrc (bash) file:
+```
+export PYTHONPATH="${PYTHONPATH}:/path/to/modules
+```
+
 **1. smart_harmonic**
 
 Provided that all modules and main program of **PySmartField** are in your path,
