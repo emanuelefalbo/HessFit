@@ -17,7 +17,7 @@ while for the modules it is sufficient to add their directory to the **PYTHONPAT
 export PYTHONPATH="${PYTHONPATH}:/path/to/modules
 export PATH=$PATH:/path/to/PySmartField/smart_harmonic
 ```
-The latter line add the main program **smart_bond_angle.py to your path (see setenv for .tcsh).
+The latter line adds the main program **smart_bond_angle.py to your path (see setenv for .tcsh).
 
 **1. smart_harmonic**
 
