@@ -62,6 +62,7 @@ def print_GauInp(*arg):
     v2 = arg[11]
     v3 = arg[12]
     hybrid_list = arg[13]
+    chg = arg[14]
     """
     Write a gaussian input file:
     ele_ls: element list 
@@ -93,10 +94,10 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
     fname = 'smartfield4gau.gjf'
     with open(fname, 'w') as fout:
         fout.write(header_gjf)
-        for m, p, l in zip(ele_ls, tp_ls, coord):
+        for m, p, l, q in zip(ele_ls, tp_ls, coord, chg):
                     #  s1 = '  '.join(str(x) for x in p)
                      s2 = '  '.join((f'{x:.6f}') for x in l)
-                     fout.write(f'{m}-{p}  {s2} \n')
+                     fout.write(f'{m}-{p}-{q}  {s2} \n')
         fout.write(f'\n')
         fout.write(master_func)
         fout.write(f'! SMARTFIELD FF\n')
@@ -156,6 +157,7 @@ def main():
     No_dihes = ric_list[3]
 
     # Reading in Topology in RIC from log file
+    chg = pgau.read_CM5(text_qm_log, N_atoms)
     bond_list, angle_list, tors_list = pgau.read_Top(text_qm_log, ric_list)
     hess_qm = pgau.read_Hess(text_qm_fchk, ric_list)
     hess_mm = pgau.read_Hess(text_mm_fchk, ric_list)
@@ -190,7 +192,7 @@ def main():
     print_GauInp(ele_list, type_list, qm_XYZ, \
                  bond_type_list, k_bond_arr, bond_arr, \
                  angle_type_list, k_angle_arr, angle_arr, \
-                 tors_type_list, v1, v2, v3, periodic_list)
+                 tors_type_list, v1, v2, v3, periodic_list, chg)
 
      
     # for m, i in enumerate(tors_type_list):

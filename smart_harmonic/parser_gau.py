@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from cgitb import text
 import numpy as np
 
 def range2(start, end):
@@ -219,6 +220,26 @@ def read_Top(all_lines, ric_list):
     dihe_list = [list(map(int, x)) for x in dihe_list]
 
     return bond_list, angle_list, dihe_list
+
+
+def read_CM5(all_lines, N_atoms):
+         """ 
+         Reading CM5 charges from log file 
+         """
+         match = 'Hirshfeld charges, spin densities, dipoles, and CM5 charges using'
+         text = []
+         for s in range(len(all_lines)):                            # Get CC Coordinates
+             if match in all_lines[s]:                              # Reads the Input orientation information
+                 start = s
+                 for e in range2(start + 2, start + N_atoms+1):
+                     text.append(all_lines[e].split())
+                 break   
+         
+         chg = [ x[7] for x in text ]
+    
+         return chg
+
+
     
 
    
