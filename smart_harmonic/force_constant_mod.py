@@ -218,7 +218,6 @@ def set_torsion(coords, type_list, tors_list, \
         hybrid_mean = np.reshape(out_1, (out_1.shape[0]))
 
         v1_eq_2d = flatList_to_2Darray(v1_eq)
-        print(v1_eq_2d.shape[0])
         _, out_1 = avg_dups(tors_type_list, v1_eq_2d)
         v1_eq_mean = np.reshape(out_1, (out_1.shape[0]))
 
