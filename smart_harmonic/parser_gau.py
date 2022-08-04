@@ -236,8 +236,20 @@ def read_CM5(all_lines, N_atoms):
                  break   
          
          chg = [ x[7] for x in text ]
+
+         # Add '+' to positive charge
+         chg_mod = []
+         for x in chg:
+             if x[0] != '-':
+                tmp = '+' + x
+             else:
+                tmp = x
+             chg_mod.append(tmp)
+
+
+
     
-         return chg
+         return chg_mod
 
 
     
