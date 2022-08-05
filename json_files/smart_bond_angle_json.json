@@ -1,0 +1,11 @@
+{
+    "files": {
+        "log_qm_file":  "but_qm.log",
+        "fchk_qm_file": "but_qm.fchk",
+        "fchk_mm_file": "mm_all.fchk",
+        "fchk_nb_file": "nb_ric.fchk",
+        "nonbon": "nonbonded.txt"
+         },
+    "mode": "all",
+    "opt": "ric"
+}
