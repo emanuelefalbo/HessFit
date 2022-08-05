@@ -107,8 +107,8 @@ def main():
     parser = build_parser()
     args = parser.parse_args()
 
-    file_log = args.file
-    ftype = args.ftype
+    file_log = args.f
+    ftype = args.t
     size_step, ang, energy_au = read_log(file_log, ftype)
     file_out = file_log[:-4] + '_scan.dat'
     with open(file_out, 'w') as f:
