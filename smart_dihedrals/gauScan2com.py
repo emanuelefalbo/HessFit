@@ -8,7 +8,7 @@ import os
 
 def print_mm(elements, xyz, Natm, atom_names, force):
 
-    header = """%mem=10GB
+    header = """%mem=1GB
 %nprocshared=1
 %chk={CHK}
 #p Amber=(SoftFirst,Print) geom=nocrowd nosymm 
@@ -128,7 +128,7 @@ if __name__ == "__main__":
    logfile = str(data["files"]["log_file"]) 
    ele, xyz, Natm = read_log(logfile)
    ffs = read_txt_info(data["files"]["force_file"])          #  Reading in force field
-   names = read_txt_info(data["files"]["atom2type"])    #  Reading in atom types
+   names = read_txt_info(data["files"]["atom2type"])         #  Reading in atom types
    print_mm(ele, xyz, Natm, names, ffs)
 
 
