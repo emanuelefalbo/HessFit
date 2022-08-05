@@ -246,9 +246,6 @@ def read_CM5(all_lines, N_atoms):
                 tmp = x
              chg_mod.append(tmp)
 
-
-
-    
          return chg_mod
 
 

@@ -2,9 +2,6 @@
 
 
 import argparse
-from ast import arg
-import string
-import sys
 import numpy as np
 
 # def read_gjf(file_gjf):
@@ -32,10 +29,10 @@ def build_parser():
     """
     parser = argparse.ArgumentParser()
     txt = 'The type of file to be opened: qm or mm'
-    parser.add_argument('-ftype', type=str, default='qm',
+    parser.add_argument('-t', type=str, default='qm',
                          help=txt)
     txt = "Scan log file"
-    parser.add_argument('-file', type=str, help=txt)
+    parser.add_argument('-f', type=str, help=txt)
     return parser
 
 
