@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-from cgitb import text
 import numpy as np
 
 def range2(start, end):
@@ -247,6 +246,34 @@ def read_CM5(all_lines, N_atoms):
              chg_mod.append(tmp)
 
          return chg_mod
+
+def read_AmberParm(path, type_list):
+    fname = path + 'g09/amber.prm'
+    with open(fname, 'r') as f:
+       all_lines = []
+       for line in f:
+           all_lines.append(line.strip()) 
+
+    Amber_list = []
+    for s in range(len(all_lines)):                          #  Get CC Coordinates
+        if 'VDW' in all_lines[s]:                              #Reads the Input orientation information
+            # start = s
+            # for e in range(start + 1, len(all_lines)):
+            Amber_list.append(all_lines[s].split() )
+
+    VDW_list = []
+    for i in type_list:
+        for j in Amber_list:
+            if i == j[1]:
+                VDW_list.append(j)
+
+    VDW_new = []
+    for i in VDW_list:
+        if i not in VDW_new:
+            VDW_new.append(i)
+        
+    return VDW_new
+
 
 
     
