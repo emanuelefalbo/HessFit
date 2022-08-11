@@ -26,7 +26,7 @@ The latter line adds the main program **smart_bond_angle.py to your path (see se
 Provided that all modules and main program of **PySmartField** are in your path,
 it can be simply used as:
 ```
-smart_bonds_angles.py option_file.json**
+smart_bonds_angles.py option_file.json
 ```
 This part of program works along with a json file like the following:
 
