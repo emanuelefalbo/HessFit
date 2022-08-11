@@ -40,7 +40,7 @@ def print_GauHarm(*arg):
     header_gjf ="""%mem=1GB
 %nprocshared=1
 %chk=GauHarm.chk
-#p Amber=(SoftFirst,Print) nosymm  Freq=intmodes
+#p Amber=(SoftOnly,Print) nosymm  Freq=intmodes
  
 Title
 
@@ -93,7 +93,7 @@ def print_GauNonBon(*arg):
     header_gjf ="""%mem=1GB
 %nprocshared=1
 %chk=GauNonBon.chk
-#p Amber=(SoftFirst,Print) nosymm Freq=intmodes
+#p Amber=(SoftOnly,Print) nosymm Freq=intmodes
  
 Title
 
