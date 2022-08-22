@@ -16,10 +16,35 @@ while for the modules it is sufficient to add their directory to the **PYTHONPAT
 ```
 export PYTHONPATH="${PYTHONPATH}:/path/to/modules
 export PATH=$PATH:/path/to/PySmartField/smart_harmonic
+export PATH=$PATH:/path/to/PySmartField/smart_harmonic
+export PATH=$PATH:/path/to/PySmartField/build_4Smart
 ```
+with path/to/PySmartField being the full path to where it is located. 
 The latter line adds the main program **smart_bond_angle.py to your path (see setenv for .tcsh).
 
 # Usage 
+
+The program in **smart_harmonic** needs some mandatory input files that can be esily created 
+with program *build_4Smart.py** which is located in the directory with same name.
+By calling it from command line as:
+```
+build_4Smart.py -f1 file.log -f2 file.fchk -m mean -path $g09root
+```
+it returns two files **GauHarm.gjf** and **GauHarm.gjf**, which are the 
+necessary input files for **smart_harmonic**. Info about the positional argument are given as:
+```
+usage: build_4Smart.py [-h] [-f1 LOG_FILE] [-f2 FCHK_FILE] [-m {all,mea
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -f1 LOG_FILE, --log_file LOG_FILE
+                        Gaussian QM log file 
+  -f2 FCHK_FILE, --fchk_file FCHK_FILE
+                        Gaussain QM fchk file
+  -m {all,mean}, --mode {all,mean}
+                        averaging across same types
+  -path PATH            path/to/amber.prm in Gaussain root directory
+```
 
 **1. smart_harmonic**
 
