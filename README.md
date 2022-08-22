@@ -1,7 +1,7 @@
 # PySmartField
 
 SmartField returns the entire force field for any molecule.
-In the repository "smart_harmonic", there is the **smart_bond_angles.py** program which returns the harmonic intra-molecular force field, i.e, stretching, bending, and dihedral force constants. As such, these latter might result too stiff for specific applications. 
+In the repository "smart_harmonic", there is the **smart_bond_angles.py** program which returns calculated harmonic intra-molecular force field, i.e, stretching, bending, and dihedral force constants, and external inter-molecular parmateres, i.e, Van der Waals and atomi charges. As such, these latter might result too stiff for specific applications. 
 As alternative, least square fit of quantum-mechanically PES can be carried out with **smart_dihedral**.  
 
 # Install 
