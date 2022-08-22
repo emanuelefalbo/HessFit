@@ -14,15 +14,19 @@ pip install numpy
 ```
 while for the modules it is sufficient to add their directory to the **PYTHONPATH** into you .bashrc (bash) file:
 ```
-export PYTHONPATH="${PYTHONPATH}:/path/to/modules
-export PATH=$PATH:/path/to/PySmartField/smart_harmonic
+export PYTHONPATH="${PYTHONPATH}:/path/to/PySmartField/smart_harmonic"
+export PYTHONPATH="${PYTHONPATH}:/path/to/PySmartField/smart_dihedrals"
+export PYTHONPATH="${PYTHONPATH}:/path/to/PySmartField/build_4Smart"
 export PATH=$PATH:/path/to/PySmartField/smart_harmonic
 export PATH=$PATH:/path/to/PySmartField/build_4Smart
 ```
 with path/to/PySmartField being the full path to where it is located. 
-The latter line adds the main program **smart_bond_angle.py to your path (see setenv for .tcsh).
+The last two lines add the programs to your bash path (see setenv for .tcsh).
 
 # Usage 
+
+
+**1.0 build_4Smart**
 
 The program in **smart_harmonic** needs some mandatory input files that can be esily created 
 with program *build_4Smart.py** which is located in the directory with same name.
@@ -46,7 +50,7 @@ optional arguments:
   -path PATH            path/to/amber.prm in Gaussain root directory
 ```
 
-**1. smart_harmonic**
+**1.1 smart_harmonic**
 
 Provided that all modules and main program of **PySmartField** are in your path,
 it can be simply used as:
@@ -78,7 +82,7 @@ This part of program works along with a json file like the following:
 
 
 
-**2. smart_dihedral**
+**1.2. smart_dihedral**
 
 
 
