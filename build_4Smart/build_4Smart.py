@@ -15,7 +15,7 @@ def dir_path(string):
 
 
 def commandline_parser():
-    parser = argparse.ArgumentParser(prog='build_mm.py', formatter_class=argparse.RawTextHelpFormatter)
+    parser = argparse.ArgumentParser(prog='build_4Smart.py', formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument('-f1','--log_file', help='Gaussian QM log file ')
     parser.add_argument('-f2','--fchk_file', help='Gaussain QM fchk file')
     parser.add_argument('-m', '--mode', choices=['all', 'mean'],
