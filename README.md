@@ -31,7 +31,7 @@ By calling it from command line as:
 build_4Smart.py -f1 file.log -f2 file.fchk -m mean -path $g09root
 ```
 it returns two files **GauHarm.gjf** and **GauHarm.gjf**, which are the 
-necessary input files for **smart_harmonic**. Info about the positional argument are given as:
+necessary input files for **smart_harmonic**. Info about the positional argument can be obtained as follows:
 ```
 usage: build_4Smart.py [-h] [-f1 LOG_FILE] [-f2 FCHK_FILE] [-m {all,mea
 
