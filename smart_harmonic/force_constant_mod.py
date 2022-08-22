@@ -177,8 +177,11 @@ def set_torsion(coords, type_list, tors_list, \
                 if del_1 < eps or del_2 < eps:
                      n, d = 2.0, 1.0
                      v2 = abs( -2 * (d * k_tors[m])/(n*n* np.cos(n*phi_deg)) )
-                     if v2 > 30 or 0 < v2 < 9.0:
-                        v2_eq[m] = 14.5
+                    #  if v2 > 30 or 0 < v2 < 9.0:
+                     if v2 > 30:
+                        v2_eq[m] = np.exp(-30./v2)*v2       # Reduce to a full C=C
+                     elif 0 < v2 < 9.0:
+                          v2_eq[m] = np.exp(-v2/14.5)*14.5  # Increase to a partial C=C
                      else:
                         v2_eq[m] = v2
                     #  print(f' {phi_deg:.2f}  {v1:.2f} {hybrid_list[m]}')
