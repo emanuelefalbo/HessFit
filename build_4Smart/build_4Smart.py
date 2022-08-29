@@ -78,7 +78,6 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
         fout.write(f'\n')
 
 
-
 def print_GauNonBon(*arg):
     ele_ls = arg[0]
     tp_ls= arg[1]
@@ -108,9 +107,9 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
     with open(fname, 'w') as fout:
         fout.write(header_gjf)
         for m, p, l, q in zip(ele_ls, tp_ls, coord, chg):
-                    #  s1 = '  '.join(str(x) for x in p)
-                     s2 = '  '.join((f'{x:.6f}') for x in l)
-                     fout.write(f'{m}-{p}-{q}  {s2}\n')
+                #   s1 = '  '.join(str(x) for x in p)
+                s2 = '  '.join((f'{x:.6f}') for x in l)
+                fout.write(f'{m}-{p}-{q}  {s2}\n')
         # fout.write(f'\n')
         fout.write(master_func)
         fout.write(f'! SMARTFIELD FF\n')
@@ -179,7 +178,6 @@ def main():
 
     VDW_list = pgau.read_AmberParm(opts.path, type_list)
     
-
     print_GauNonBon(ele_list, type_list, qm_XYZ, \
                  bond_type_list, bond_arr, \
                  angle_type_list, angle_arr, \

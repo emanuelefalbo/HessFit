@@ -226,15 +226,26 @@ def read_CM5(all_lines, N_atoms):
          Reading CM5 charges from log file 
          """
          match = 'Hirshfeld charges, spin densities, dipoles, and CM5 charges using'
+         match_2 = 'Mulliken charges:'
          text = []
-         for s in range(len(all_lines)):                            # Get CC Coordinates
-             if match in all_lines[s]:                              # Reads the Input orientation information
-                 start = s
-                 for e in range2(start + 2, start + N_atoms+1):
-                     text.append(all_lines[e].split())
-                 break   
-         
-         chg = [ x[7] for x in text ]
+         if match in all_lines:
+             print("ok")
+             for s in range(len(all_lines)):                            
+                 if match in all_lines[s]:                              
+                     start = s
+                     for e in range2(start + 2, start + N_atoms+1):
+                         text.append(all_lines[e].split())
+                     break
+             chg = [ x[7] for x in text ]
+         else:                                                       # If CM5 not found, using Mulliken
+             for s in range(len(all_lines)):                            
+                 if match_2 in all_lines[s]:                            
+                     start = s
+                     for e in range2(start + 2, start + N_atoms+1):
+                         text.append(all_lines[e].split())
+                     break
+             
+             chg = [ x[2] for x in text ]
 
          # Add '+' to positive charge
          chg_mod = []
