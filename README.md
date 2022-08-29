@@ -64,8 +64,8 @@ This part of program works along with a json file like the following:
     "files": {
         "log_qm_file":  "but_qm.log",
         "fchk_qm_file": "but_qm.fchk",
-        "fchk_mm_file": "mm_all.fchk",
-        "fchk_nb_file": "nb_ric.fchk",
+        "fchk_mm_file": "GauHarm.fchk",
+        "fchk_nb_file": "GauNonBon.fchk",
         "nonbon": "nonbonded.txt"
          },
     "mode": "all",
