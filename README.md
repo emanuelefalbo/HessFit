@@ -14,10 +14,11 @@ pip install numpy
 ```
 while for the modules it is sufficient to add their directory to the **PYTHONPATH** into you .bashrc (bash) file:
 ```
-export PYTHONPATH="${PYTHONPATH}:/path/to/PySmartField/smart_harmonic"
-export PYTHONPATH="${PYTHONPATH}:/path/to/PySmartField/smart_dihedrals"
+export PYTHONPATH="${PYTHONPATH}:/path/to/PySmartField/src"
+export PYTHONPATH="${PYTHONPATH}:/path/to/PySmartField/utils"
 export PYTHONPATH="${PYTHONPATH}:/path/to/PySmartField/build_4Smart"
-export PATH=$PATH:/path/to/PySmartField/smart_harmonic
+export PATH=$PATH:/path/to/PySmartField/src
+export PATH=$PATH:/path/to/PySmartField/utils
 export PATH=$PATH:/path/to/PySmartField/build_4Smart
 ```
 with path/to/PySmartField being the full path to where it is located. 
@@ -28,14 +29,14 @@ The last two lines add the programs to your bash path (see setenv for .tcsh).
 
 **1.0 build_4Smart**
 
-The program in **smart_harmonic** needs some mandatory input files that can be esily created 
+The program in **SmartField_harmonic.py** needs some mandatory input files that can be esily created 
 with program *build_4Smart.py** which is located in the directory with same name.
 By calling it from command line as:
 ```
 build_4Smart.py -f1 file.log -f2 file.fchk -m mean -path $g09root
 ```
 it returns two files **GauHarm.gjf** and **GauHarm.gjf**, which are the 
-necessary input files for **smart_harmonic**. Info about the positional argument can be obtained as follows:
+necessary input files for **SmartField_harmonic.py**. Info about the positional argument can be obtained as follows:
 ```
 usage: build_4Smart.py [-h] [-f1 LOG_FILE] [-f2 FCHK_FILE] [-m {all,mea
 
@@ -50,12 +51,12 @@ optional arguments:
   -path PATH            path/to/amber.prm in Gaussain root directory
 ```
 
-**1.1 smart_harmonic**
+**1.1 Harmonic FF**
 
 Provided that all modules and main program of **PySmartField** are in your path,
 it can be simply used as:
 ```
-smart_bonds_angles.py option_file.json
+SmartField_harmonic.py.py option_file.json
 ```
 This part of program works along with a json file like the following:
 
@@ -82,7 +83,7 @@ This part of program works along with a json file like the following:
 
 
 
-**1.2. smart_dihedral**
+**1.2. Dihedral Parameters**
 
 
 
