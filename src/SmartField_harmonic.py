@@ -75,7 +75,7 @@ def print_GauInp(*arg):
     """
     header_gjf ="""%mem=1GB
 %nprocshared=1
-%chk=smartfield4gau.chk
+%chk=SmartField4gau.chk
 #p Amber=(SoftFirst,Print) nosymm geom=nocrowd opt Freq
  
 Title
@@ -87,7 +87,7 @@ Title
 ! Master function
 NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
 """
-    fname = 'smartfield4gau.gjf'
+    fname = 'SmartField4gau.gjf'
     with open(fname, 'w') as fout:
         fout.write(header_gjf)
         for m, p, l, q in zip(ele_ls, tp_ls, coord, chg):
@@ -116,7 +116,7 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
             msg = (
                   f'AmbTrs {tors_tp_ls[k]} 0 0 0 0 '
                   f' {v1[k]:.2f} {v2[k]:.2f} {v3[k]:.2f} 0. ' 
-                  f' {hybrid_list[k]}\n'
+                  f' {float(hybrid_list[k])}\n'
                   )
             fout.write(msg)
         fout.write(f'\n')
@@ -148,7 +148,7 @@ def print_AmbFrcmod(*arg):
 
     """
     tp_ls_unique = set(tp_ls)
-    fname = 'smartfield_frcmod.txt'
+    fname = 'SmartField_frcmod.txt'
     with open(fname, 'w') as fout:
         fout.write('MASS\n')
         for m in tp_ls_unique:
@@ -216,7 +216,7 @@ def main():
     hess_nb = pgau.read_Hess(text_nb_fchk, ric_list)
     hess_eff = hess_qm - hess_nb
     diag_QM = np.diagonal(hess_eff)          # Take diagonla items of H_QM
-    MM_diag = get_DiagMatrix(hess_mm)       # Make sure H_MM is diagonal
+    MM_diag = get_DiagMatrix(hess_mm)        # Make sure H_MM is diagonal
     
     coeffs = np.linalg.solve(MM_diag, diag_QM)      # Solve Linear System for Bond and Angles only 
                                                     # H_MM * K = H_QM ; ignoring Torsion 
