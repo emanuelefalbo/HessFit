@@ -51,7 +51,6 @@ def read_XYZ(all_lines):
                 cc_xyz_list.append(all_lines[e].split() )
     
     cc_xyz_flat = flat_list(cc_xyz_list)
-    cc_xyz_1D = np.array(cc_xyz_flat, float)
 
     # Take out Garbage Strings
     if len(cc_xyz_flat) != No_cc:
@@ -178,6 +177,11 @@ def read_NamesTypes(all_lines, N_atoms):
 
     ele_list = flat_list(ele_list)
     type_list = flat_list(type_list)
+
+    # Build Type List if not found
+    if len(type_list) == 0:
+        for i in range(len(ele_list)):
+            type_list.append(''.join(f'{ele_list[i]}{i}'))
 
     return ele_list, type_list
     
