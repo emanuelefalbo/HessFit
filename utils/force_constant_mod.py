@@ -33,13 +33,15 @@ def avg_dups(genes, values):
 
 
 def set_bonds(coords, hess, type_list,
-              bond_list, k_bonds, mdout):
+              bond_list, k_bonds, mdin, mdout):
     """
     Order Bond Force Constants
     """
     k_bonds_Sem = np.empty((len(bond_list)))
     bond_length_list = []
     bond_type_list = []
+    print(mdin)
+    print(k_bonds)
     for m, k in enumerate(bond_list):
         i = k[0] -1 
         j = k[1] -1
@@ -47,10 +49,9 @@ def set_bonds(coords, hess, type_list,
         r_AB = np.linalg.norm(diff_AB)
         bond_length_list.append(r_AB)
         bond_type_list.append(type_list[i] + ' ' + type_list[j]) 
-        if True:
-            k_bonds_Sem[m] = sem_mod.get_ModSem_FcBonds(i, j, diff_AB, r_AB, hess)
-    
-    print(k_bonds_Sem)
+        if mdin == 'modsem':            # Triggers on ModSeminario 
+            k_bonds[m] = sem_mod.get_ModSem_FcBonds(i, j, diff_AB, r_AB, hess)
+
     bond_type_list = flat_list(bond_type_list)
 
     # Average over values if duplicates found,
@@ -65,13 +66,12 @@ def set_bonds(coords, hess, type_list,
         k_bonds_2d = np.reshape(k_bonds, ((k_bonds.shape[0], 1)) )
         _, out_2 = avg_dups(bond_type_list, k_bonds_2d)
         k_bonds_mean = np.reshape(out_2, (out_2.shape[0]))
-
         return bond_type_unique, bond_length_mean, k_bonds_mean
     elif mdout == 'all':
         return bond_type_list, bond_length_list, k_bonds
         
 def set_angles(coords, type_list,
-              angle_list, k_angles, mdout):
+              angle_list, k_angles, mdin, mdout):
     """
     Order Angles Force Constants
     """
@@ -94,6 +94,8 @@ def set_angles(coords, type_list,
         angle_length_list.append(theta)
         angle_type_list.append(type_list[i] + ' ' + type_list[j] +  \
                                ' ' + type_list[k]) 
+        if mdin == 'modsem':            # Triggers on ModSeminario 
+        #    k_angles[m] = sem_mod.get_ModSem_FcAngless(i, j, diff_AB, r_AB, hess)
     
     angle_type_list = flat_list(angle_type_list)
 

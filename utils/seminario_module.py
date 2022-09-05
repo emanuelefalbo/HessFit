@@ -28,6 +28,20 @@ def get_ModSem_FcBonds(i, j, diff_AB, r_AB, hess):
     kk = (k_AB + k_BA)/2.0
 
     return kk
+
+def get_ModSem_FcAngles(i, j, diff_AB, r_AB, hess):
+
+    k_bond = 0
+    sub_hess = hess[(i * 3):((i + 1)*3),(j * 3):((j + 1)*3)]
+    WR, VR = np.linalg.eig(sub_hess)
+    k_AB = get_force_constant(i, j, diff_AB, r_AB, WR, VR)
+    sub_hess = hess[(j * 3):((j + 1)*3),(i * 3):((i + 1)*3)]
+    WR, VR = np.linalg.eig(sub_hess)
+    k_BA = get_force_constant(j, i, diff_AB, r_AB, WR, VR)
+    kk = (k_AB + k_BA)/2.0
+
+    return kk
+    
     
 
 
