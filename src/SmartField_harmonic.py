@@ -238,9 +238,9 @@ def main():
 
     mdin = json_opts['opt']
     if json_opts['mode'] == 'mean':
-        # bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, hess_eff, type_list, \
-        #               bond_list, k_bonds, mdin, 'mean')
-        angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, type_list, \
+        bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, hess_eff, type_list, \
+                      bond_list, k_bonds, mdin, 'mean')
+        angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, hess_eff, type_list, \
                       angle_list, k_angles, mdin, 'mean')
         # tors_type_list, v1, v2, v3, tors_arr, periodic_list = fc.set_torsion(qm_XYZ, type_list, \
         #               tors_list, diag_tors, force_1D, 'mean')               

@@ -37,7 +37,6 @@ def set_bonds(coords, hess, type_list,
     """
     Order Bond Force Constants
     """
-    k_bonds_Sem = np.empty((len(bond_list)))
     bond_length_list = []
     bond_type_list = []
     print(mdin)
@@ -70,14 +69,14 @@ def set_bonds(coords, hess, type_list,
     elif mdout == 'all':
         return bond_type_list, bond_length_list, k_bonds
         
-def set_angles(coords, type_list,
+def set_angles(coords, hess, type_list,
               angle_list, k_angles, mdin, mdout):
     """
     Order Angles Force Constants
     """
     angle_length_list = []
     angle_type_list = []
-    for p in angle_list:
+    for m, p in enumerate(angle_list):
         i = p[0] - 1 
         j = p[1] - 1
         k = p[2] - 1
@@ -85,7 +84,6 @@ def set_angles(coords, type_list,
         diff_BC = coords[j,:] - coords[k,:]
         r_AB = np.linalg.norm(diff_AB)
         r_BC = np.linalg.norm(diff_BC)
-        
         u_AB = diff_AB / r_AB
         u_BC = diff_BC / r_BC
         cos_theta = np.dot(u_AB, u_BC)
@@ -95,8 +93,9 @@ def set_angles(coords, type_list,
         angle_type_list.append(type_list[i] + ' ' + type_list[j] +  \
                                ' ' + type_list[k]) 
         if mdin == 'modsem':            # Triggers on ModSeminario 
-        #    k_angles[m] = sem_mod.get_ModSem_FcAngless(i, j, diff_AB, r_AB, hess)
-    
+           k_angles[m] = sem_mod.get_ModSem_FcAngles(i, j, k, r_AB, r_BC, \
+                                                     u_AB, u_BC, hess)
+
     angle_type_list = flat_list(angle_type_list)
 
     # # Average over values if duplicates found,

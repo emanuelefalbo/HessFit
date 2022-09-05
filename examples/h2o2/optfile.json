@@ -6,5 +6,5 @@
         "fchk_nb_file": "h2o2_nb.fchk"
          },
     "mode": "mean",
-    "opt": "ric"
+    "opt": "modsem"
 }
