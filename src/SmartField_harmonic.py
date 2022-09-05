@@ -26,8 +26,8 @@ def print_init():
 def commandline_parser():
     parser = argparse.ArgumentParser(prog='smart_bonds_angles.py', formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument('optfile', nargs='?', help='option file in json')
-    # parser.add_argument('-m', '--mode', choices=['seminario', 'ric'],
-                        # default='ric', help='method to compute harmonic factors')
+    parser.add_argument('-m', '--mode', choices=['modsem', 'ric'],
+                        default='ric', help='method to compute harmonic factors')
     return parser
 
 
@@ -190,6 +190,7 @@ def main():
     parser = commandline_parser()
     opts = parser.parse_args()
     json_opts = read_optfile(opts.optfile)
+    print(json_opts['opt'])
     f_qm_log = json_opts['files']['log_qm_file']
     f_qm_fchk = json_opts['files']['fchk_qm_file']
     f_mm_fchk = json_opts['files']['fchk_mm_file']
@@ -208,14 +209,20 @@ def main():
     No_angles = ric_list[2]
     No_dihes = ric_list[3]
 
+    if json_opts['opt'] == 'modsem':
+       # Reading XYZ Hessians
+       hessXYZ_qm = pgau.read_HessXYZ(text_qm_fchk, N_atoms)
+       # hessXYZ_nb = pgau.read_HessXYZ(text_nb_fchk, ric_list)
+
     # Reading in Topology in RIC from log file
     chg = pgau.read_CM5(text_qm_log, N_atoms)
     bond_list, angle_list, tors_list = pgau.read_Top(text_qm_log, ric_list)
-    hess_qm = pgau.read_Hess(text_qm_fchk, ric_list)
-    hess_mm = pgau.read_Hess(text_mm_fchk, ric_list)
-    hess_nb = pgau.read_Hess(text_nb_fchk, ric_list)
+    # Reading RIC Hessains 
+    hess_qm = pgau.read_HessRIC(text_qm_fchk, ric_list)
+    hess_mm = pgau.read_HessRIC(text_mm_fchk, ric_list)
+    hess_nb = pgau.read_HessRIC(text_nb_fchk, ric_list)
     hess_eff = hess_qm - hess_nb
-    diag_QM = np.diagonal(hess_eff)          # Take diagonla items of H_QM
+    diag_QM = np.diagonal(hess_eff)          # Take diagonal items of H_QM
     MM_diag = get_DiagMatrix(hess_mm)        # Make sure H_MM is diagonal
     
     coeffs = np.linalg.solve(MM_diag, diag_QM)      # Solve Linear System for Bond and Angles only 
@@ -225,31 +232,33 @@ def main():
     diag_tors = diag_QM[No_ric - No_dihes : No_ric] * 627.509391  # Torsional Gradient; kcal/mol rad
     # [print(i) for i in diag_tors]
 
+   
     if json_opts['mode'] == 'mean':
-        bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, type_list, \
+        bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, hessXYZ_qm, type_list, \
                       bond_list, k_bonds, 'mean')
-        angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, type_list, \
-                      angle_list, k_angles, 'mean')
-        tors_type_list, v1, v2, v3, tors_arr, periodic_list = fc.set_torsion(qm_XYZ, type_list, \
-                      tors_list, diag_tors, force_1D, 'mean')               
+        # angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, type_list, \
+        #               angle_list, k_angles, 'mean')
+        # tors_type_list, v1, v2, v3, tors_arr, periodic_list = fc.set_torsion(qm_XYZ, type_list, \
+        #               tors_list, diag_tors, force_1D, 'mean')               
     elif json_opts['mode'] == 'all':
-        bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, type_list, \
+        bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, hessXYZ_qm, type_list, \
                       bond_list, k_bonds, 'all')
-        angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, type_list, \
-                      angle_list, k_angles, 'all') 
-        tors_type_list, v1, v2, v3, tors_arr, periodic_list = fc.set_torsion(qm_XYZ, type_list, \
-                      tors_list, diag_tors, force_1D, 'all')    
+        # angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, type_list, \
+        #               angle_list, k_angles, 'all') 
+        # tors_type_list, v1, v2, v3, tors_arr, periodic_list = fc.set_torsion(qm_XYZ, type_list, \
+        #               tors_list, diag_tors, force_1D, 'all')    
+
 
     # Print all into Gaussian Input
-    print_GauInp(ele_list, type_list, qm_XYZ, \
-                 bond_type_list, k_bond_arr, bond_arr, \
-                 angle_type_list, k_angle_arr, angle_arr, \
-                 tors_type_list, v1, v2, v3, periodic_list, chg)
+    # print_GauInp(ele_list, type_list, qm_XYZ, \
+    #              bond_type_list, k_bond_arr, bond_arr, \
+    #              angle_type_list, k_angle_arr, angle_arr, \
+    #              tors_type_list, v1, v2, v3, periodic_list, chg)
 
-    print_AmbFrcmod(type_list, \
-                 bond_type_list, k_bond_arr, bond_arr, \
-                 angle_type_list, k_angle_arr, angle_arr, \
-                 tors_type_list, v1, v2, v3, periodic_list)
+    # print_AmbFrcmod(type_list, \
+    #              bond_type_list, k_bond_arr, bond_arr, \
+    #              angle_type_list, k_angle_arr, angle_arr, \
+    #              tors_type_list, v1, v2, v3, periodic_list)
 
      
     # for m, i in enumerate(tors_type_list):

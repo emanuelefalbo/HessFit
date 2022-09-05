@@ -2,6 +2,7 @@
 
 import numpy as np
 from parser_gau import flat_list
+import seminario_module as sem_mod
 
 def solve_2Dsys(n1, n2, x, grad, k_tors):
     AM = np.array([[n1 * 0.5* np.sin(n1*x), -n2 *0.5* np.sin(n2*x) ],
@@ -31,22 +32,25 @@ def avg_dups(genes, values):
     return folded, output
 
 
-def set_bonds(coords, type_list,
+def set_bonds(coords, hess, type_list,
               bond_list, k_bonds, mdout):
     """
     Order Bond Force Constants
     """
+    k_bonds_Sem = np.empty((len(bond_list)))
     bond_length_list = []
     bond_type_list = []
-    for k in bond_list:
+    for m, k in enumerate(bond_list):
         i = k[0] -1 
         j = k[1] -1
         diff_AB = coords[i,:] - coords[j,:]
         r_AB = np.linalg.norm(diff_AB)
         bond_length_list.append(r_AB)
         bond_type_list.append(type_list[i] + ' ' + type_list[j]) 
+        if True:
+            k_bonds_Sem[m] = sem_mod.get_ModSem_FcBonds(i, j, diff_AB, r_AB, hess)
     
-    
+    print(k_bonds_Sem)
     bond_type_list = flat_list(bond_type_list)
 
     # Average over values if duplicates found,

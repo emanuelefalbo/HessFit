@@ -111,7 +111,7 @@ def fill_lower_diag(a):
     out[mask] = a
     return out
 
-def read_Hess(all_lines, ric_list):
+def read_HessRIC(all_lines, ric_list):
     """ 
     Reading Internal Hessian from fchk file:
     all_lines : text file
@@ -138,7 +138,7 @@ def read_Hess(all_lines, ric_list):
     else:
         hess_1D = np.array(hess_flat,float)
 
-    hess_1D_mod = np.append(hess_1D, [0])
+    # hess_1D_mod = np.append(hess_1D, [0])
     # print(hess_1D_mod)
 
     # print(len(hess_1D))
@@ -146,7 +146,6 @@ def read_Hess(all_lines, ric_list):
     # print(ric_len)
     hess_arr = np.zeros((ric_len, ric_len))
     # print(hess_arr.shape, hess_arr.size)
-    mylist = []
     for i in range(ric_len+1):
         # i_low = int( 0.5 * i * (i - 1) + -1 )           # Adding n(n+1)/2 elements in up/low triangular matrix
         i_low = int( 0.5 * i * (i - 1)  )           # Adding n(n+1)/2 elements in up/low triangular matrix
@@ -157,9 +156,54 @@ def read_Hess(all_lines, ric_list):
         hess_arr[0:i,i-1] =  hess_1D[i_low: i_up]
 
     return hess_arr
-    # np.set_printoptions(precision=3)
-    # for i in hess_arr:
-    #     print(f'{i}')
+
+def read_HessXYZ(all_lines, N_atom):
+    """ 
+    Reading XYZ Hessian from fchk file:
+    all_lines : text file
+    """
+
+    hess_list = []
+    for s in range(len(all_lines)):                          # Get no of Atoms
+        if 'Cartesian Force Constants' in all_lines[s]:
+            N_hess = int(all_lines[s][-10:])
+            nlines = int(N_hess/5.0) + 1
+            start = s
+            for e in range2(start + 1, start + nlines):
+                hess_list.append(all_lines[e].split() )
+    
+    hess_flat = flat_list(hess_list)
+
+    # Take out Garbage Strings
+    if len(hess_flat) != N_hess:
+        diff = abs(len(hess_flat)-N_hess)
+        # print('diff = ', diff)
+        hess_flat_mod = hess_flat[:-diff]
+        hess_1D = np.array(hess_flat_mod, float)
+    else:
+        hess_1D = np.array(hess_flat,float)
+
+    hess_1D = hess_1D * ((627.509391)/(0.529117*0.529117))   # From Hartree/bohr to kcal/mol / angstrom
+    # hess_1D_mod = np.append(hess_1D, [0])
+    # print(hess_1D_mod)
+
+    # print(len(hess_1D))
+    len_hess = 3*N_atom
+    print(len_hess, N_atom)
+    hess_XYZ = np.zeros((len_hess, len_hess))
+    # print(hess_arr.shape, hess_arr.size)
+    for i in range(len_hess + 1):
+        # i_low = int( 0.5 * i * (i - 1) + -1 )        # Adding n(n+1)/2 elements in up/low triangular matrix
+        i_low = int( 0.5 * i * (i - 1)  )              # Adding n(n+1)/2 elements in up/low triangular matrix
+        # i_up = int( 0.5 * i *  (i + 1) + 1 )
+        i_up = int( 0.5 * i *  (i + 1)   )
+        # print(i, i_low, i_up, hess_1D[i_low:i_up])
+        hess_XYZ[i-1,0:i] =  hess_1D[i_low: i_up]
+        hess_XYZ[0:i,i-1] =  hess_1D[i_low: i_up]
+
+    print(hess_XYZ.shape)
+
+    return hess_XYZ
 
 
 def read_NamesTypes(all_lines, N_atoms):
