@@ -160,15 +160,15 @@ def main():
 
 
     if opts.mode == 'mean':
-        bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, type_list, \
-                      bond_list, k_bonds, 'mean')
-        angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, type_list, \
-                      angle_list, k_angles, 'mean')
+        bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, None, type_list, \
+                      bond_list, k_bonds, 'ric', 'mean')
+        angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, None, type_list, \
+                      angle_list, k_angles, 'ric', 'mean')
     elif opts.mode == 'all':
-        bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, type_list, \
-                      bond_list, k_bonds, 'all')
-        angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, type_list, \
-                      angle_list, k_angles, 'all') 
+        bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, None, type_list, \
+                      bond_list, k_bonds, 'ric', 'all')
+        angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, None, type_list, \
+                      angle_list, k_angles, 'ric', 'all') 
     
     # Print all into Gaussian Input
     print_GauHarm(ele_list, type_list, qm_XYZ, \

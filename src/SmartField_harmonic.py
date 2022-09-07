@@ -237,39 +237,33 @@ def main():
         # [print(i) for i in diag_tors]
 
     mdin = json_opts['opt']
+    print(mdin)
     if json_opts['mode'] == 'mean':
         bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, hess_eff, type_list, \
                       bond_list, k_bonds, mdin, 'mean')
         angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, hess_eff, type_list, \
                       angle_list, k_angles, mdin, 'mean')
-        # tors_type_list, v1, v2, v3, tors_arr, periodic_list = fc.set_torsion(qm_XYZ, type_list, \
-        #               tors_list, diag_tors, force_1D, 'mean')               
-    # elif json_opts['mode'] == 'all':
-    #     bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, hess_eff, type_list, \
-    #                   bond_list, k_bonds, mdin, 'all')
-        # angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, type_list, \
-        #               angle_list, k_angles, 'all') 
-        # tors_type_list, v1, v2, v3, tors_arr, periodic_list = fc.set_torsion(qm_XYZ, type_list, \
-        #               tors_list, diag_tors, force_1D, 'all')    
+        tors_type_list, v1, v2, v3, tors_arr, periodic_list = fc.set_torsion(qm_XYZ, type_list, \
+                      tors_list, diag_tors, force_1D, 'mean')               
+    elif json_opts['mode'] == 'all':
+        bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, hess_eff, type_list, \
+                      bond_list, k_bonds, mdin, 'all')
+        angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, hess_eff, type_list, \
+                      angle_list, k_angles, mdin, 'all') 
+        tors_type_list, v1, v2, v3, tors_arr, periodic_list = fc.set_torsion(qm_XYZ, type_list, \
+                      tors_list, diag_tors, force_1D, 'all')    
 
 
     # Print all into Gaussian Input
-    # print_GauInp(ele_list, type_list, qm_XYZ, \
-    #              bond_type_list, k_bond_arr, bond_arr, \
-    #              angle_type_list, k_angle_arr, angle_arr, \
-    #              tors_type_list, v1, v2, v3, periodic_list, chg)
+    print_GauInp(ele_list, type_list, qm_XYZ, \
+                 bond_type_list, k_bond_arr, bond_arr, \
+                 angle_type_list, k_angle_arr, angle_arr, \
+                 tors_type_list, v1, v2, v3, periodic_list, chg)
 
-    # print_AmbFrcmod(type_list, \
-    #              bond_type_list, k_bond_arr, bond_arr, \
-    #              angle_type_list, k_angle_arr, angle_arr, \
-    #              tors_type_list, v1, v2, v3, periodic_list)
-
-     
-    # for m, i in enumerate(tors_type_list):
-    #     msg = (f'{m} {tors_type_list[m]}  {v1[m]}' 
-    #           f' {v2[m]:.2f} {v3[m]:.2f}   {tors_arr[m]:.1f}' 
-    #     )
-    #     print(msg)
+    print_AmbFrcmod(type_list, \
+                 bond_type_list, k_bond_arr, bond_arr, \
+                 angle_type_list, k_angle_arr, angle_arr, \
+                 tors_type_list, v1, v2, v3, periodic_list)
 
 
 if __name__ == "__main__":

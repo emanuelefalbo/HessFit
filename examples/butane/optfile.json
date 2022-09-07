@@ -6,6 +6,6 @@
         "fchk_nb_file": "GauNonBon.fchk",
         "nonbon": "nonbonded.txt"
          },
-    "mode": "mean",
+    "mode": "all",
     "opt": "ric"
 }

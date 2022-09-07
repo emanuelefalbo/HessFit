@@ -39,8 +39,6 @@ def set_bonds(coords, hess, type_list,
     """
     bond_length_list = []
     bond_type_list = []
-    print(mdin)
-    print(k_bonds)
     for m, k in enumerate(bond_list):
         i = k[0] -1 
         j = k[1] -1
@@ -161,8 +159,8 @@ def set_torsion(coords, type_list, tors_list, \
                 if del_1 < eps or del_2 < eps:
                      n, d = 3.0, 1.0
                      v3 = abs( -2* (d * k_tors[m])/(n*n* np.cos(n*phi_deg)) )
-                     if v3 > 5.0:          # If force constants too stiff
-                        v3_eq[m] = 1.4     # use AMBER X-C-C-X values
+                     if v3 > 5.0:                         # If force constants too stiff
+                        v3_eq[m] = np.exp(-1.4/v3)*1.4     # use AMBER X-C-C-X values
                      else:
                         v3_eq[m] = v3
                     #  print(f' {phi_deg:.2f}  {v3_eq[m]:.2f} {hybrid_list[m]}')

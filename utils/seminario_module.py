@@ -65,6 +65,8 @@ def get_ModSem_FcAngles(i, j, k, r_AB, r_BC, u_AB, u_BC, hess):
     WR_BC, VR_BC = np.linalg.eig(sub_hess_BC)
     k_angle = angle_force_constant(r_AB, r_BC, u_AB, u_BC, \
                                    WR_AB, VR_AB, WR_BC, VR_BC)
+    
+    return k_angle
 
     
     
