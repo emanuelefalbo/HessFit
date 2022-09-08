@@ -139,7 +139,6 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
 def main():
     parser = commandline_parser()
     opts = parser.parse_args()
-    print(opts)
     f_qm_log = opts.log_file
     f_qm_fchk = opts.fchk_file
     text_qm_log = pgau.store_any_file(f_qm_log)
