@@ -16,11 +16,14 @@ def dir_path(string):
 
 def commandline_parser():
     parser = argparse.ArgumentParser(prog='build_4Smart.py', formatter_class=argparse.RawTextHelpFormatter)
-    parser.add_argument('-f1','--log_file', help='Gaussian QM log file ')
-    parser.add_argument('-f2','--fchk_file', help='Gaussain QM fchk file')
+    requiredNamed = parser.add_argument_group('mandatory arguments')
+    requiredNamed.add_argument('-f1','--log_file', help='Gaussian QM log file ')
+    requiredNamed.add_argument('-f2','--fchk_file', help='Gaussain QM fchk file')
     parser.add_argument('-m', '--mode', choices=['all', 'mean'],
-                        default='mean', help='averaging across same types')
-    parser.add_argument('-path', help='path/to/amber.prm in Gaussain root directory', type=dir_path)
+                        default='mean', help='averaging across same types; default = mean')
+    txt = """path/to/amber.prm in Gaussain root directory
+default = current directory """
+    parser.add_argument('-path', nargs='?', help=txt, default=os.getcwd(), type=dir_path)
     
     return parser
 

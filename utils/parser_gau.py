@@ -273,11 +273,11 @@ def read_CM5(all_lines, N_atoms):
          """ 
          Reading CM5 charges from log file 
          """
-         match = 'Hirshfeld charges, spin densities, dipoles, and CM5 charges using'
+         match = 'Hirshfeld charges, spin densities, dipoles, and CM5 charges using IRadAn=      5:'
          match_2 = 'Mulliken charges:'
          text = []
+
          if match in all_lines:
-             print("ok")
              for s in range(len(all_lines)):                            
                  if match in all_lines[s]:                              
                      start = s
@@ -307,7 +307,7 @@ def read_CM5(all_lines, N_atoms):
          return chg_mod
 
 def read_AmberParm(path, type_list):
-    fname = path + 'g09/amber.prm'
+    fname = path + '/amber.prm'
     with open(fname, 'r') as f:
        all_lines = []
        for line in f:
