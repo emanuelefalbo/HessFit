@@ -307,7 +307,11 @@ def read_CM5(all_lines, N_atoms):
          return chg_mod
 
 def read_AmberParm(path, type_list):
+<<<<<<< HEAD
     fname = path + '/amber.prm'
+=======
+    fname = path + 'amber.prm'
+>>>>>>> 06355739ac765d033971b6aabdc1db50cca8b56a
     with open(fname, 'r') as f:
        all_lines = []
        for line in f:
