@@ -18,6 +18,7 @@ def build_parser():
     par = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
     txt = 'MM log files'
     par.add_argument('filelist', type=str, help=txt, nargs='+')
+    par.add_argument('-t', type=str, default='mm', help='type of log file', nargs='?')
     return par
 
 if __name__ == '__main__':
@@ -25,13 +26,18 @@ if __name__ == '__main__':
     OPTS = PAR.parse_args()
     file_list = OPTS.filelist
 
-    match = " Energy="
+    match_mm = " Energy="
+    match_qm = " SCF Done:"
     file_list.sort(key=natural_keys)
     for file in file_list:
         # print(file)
         with open(file, 'r') as fname:
              for line in fname:
-                 if line[:8] == match:
-                    print(line[11:28]) 
+                 if OPTS.t == 'mm':
+                    if line[:8] == match_mm:
+                       print(line[11:28]) 
+                 elif OPTS.t == 'qm':
+                     if line[:10] == match_qm:
+                       print(line[23:40])
 
 

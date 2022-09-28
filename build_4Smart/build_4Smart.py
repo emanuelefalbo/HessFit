@@ -172,6 +172,19 @@ def main():
                       bond_list, k_bonds, 'ric', 'all')
         angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, None, type_list, \
                       angle_list, k_angles, 'ric', 'all') 
+
+    def adhoc_list(t):
+        if type(t) == list or type(t) == tuple:
+            return [adhoc_list(i) for i in t]
+        return t
+
+    lol = list()    
+    [ lol.append(i.split()) for i in bond_type_list]
+    print(lol)
+    data = { (tuple(sorted(item))) for item in lol}
+    print(data)
+    bond_type_unique = adhoc_list(list(data))
+    # tot = pgau.flat_list(tmp)
     
     # Print all into Gaussian Input
     print_GauHarm(ele_list, type_list, qm_XYZ, \
