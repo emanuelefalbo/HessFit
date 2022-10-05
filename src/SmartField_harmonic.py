@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from cmath import phase
 import parser_gau as pgau
 import force_constant_mod as fc
 import argparse
@@ -58,8 +59,9 @@ def print_GauInp(*arg):
     v1 = arg[10]
     v2 = arg[11]
     v3 = arg[12]
-    hybrid_list = arg[13]
-    chg = arg[14]
+    phase = arg[13]
+    hybrid_list = arg[14]
+    chg = arg[15]
     """
     Write a gaussian input file:
     ele_ls: element list 
@@ -113,8 +115,9 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
             fout.write(msg)
         fout.write(f'! Torsions\n')
         for k in range(len(tors_tp_ls)):
+            s = '  '.join((f'{x}') for x in phase[k,:])
             msg = (
-                  f'AmbTrs {tors_tp_ls[k]} 0 0 0 0 '
+                  f'AmbTrs {tors_tp_ls[k]} {s} '
                   f' {v1[k]:.2f} {v2[k]:.2f} {v3[k]:.2f} 0. ' 
                   f' {float(hybrid_list[k])}\n'
                   )
@@ -134,7 +137,8 @@ def print_AmbFrcmod(*arg):
     v1 = arg[8]
     v2 = arg[9]
     v3 = arg[10]
-    hybrid_list = arg[11]
+    phase=arg[11]
+    hybrid_list = arg[12]
 
     """
     Write a AMBER-like frcmod file:
@@ -169,8 +173,9 @@ def print_AmbFrcmod(*arg):
             fout.write(msg)
         fout.write(f'DIHE\n')
         for k in range(len(tors_tp_ls)):
+            s = '  '.join((f'{x}') for x in phase[k,:])
             msg = (
-                  f'{tors_tp_ls[k]} 0 0 0 0 '
+                  f'{tors_tp_ls[k]} {s}'
                   f' {v1[k]:.2f} {v2[k]:.2f} {v3[k]:.2f} 0. ' 
                   f' {hybrid_list[k]}\n'
                   )
@@ -243,27 +248,27 @@ def main():
                       bond_list, k_bonds, mdin, 'mean')
         angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, hess_eff, type_list, \
                       angle_list, k_angles, mdin, 'mean')
-        tors_type_list, v1, v2, v3, tors_arr, periodic_list = fc.set_torsion(qm_XYZ, type_list, \
+        tors_type_list, v1, v2, v3, tors_arr, phase, periodic_list = fc.set_torsion(qm_XYZ, type_list, \
                       tors_list, diag_tors, force_1D, 'mean')               
     elif json_opts['mode'] == 'all':
         bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, hess_eff, type_list, \
                       bond_list, k_bonds, mdin, 'all')
         angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, hess_eff, type_list, \
                       angle_list, k_angles, mdin, 'all') 
-        tors_type_list, v1, v2, v3, tors_arr, periodic_list = fc.set_torsion(qm_XYZ, type_list, \
-                      tors_list, diag_tors, force_1D, 'all')    
+        tors_type_list, v1, v2, v3, tors_arr, phase, periodic_list = fc.set_torsion(qm_XYZ, type_list, \
+                      tors_list, diag_tors, force_1D, 'all')
 
 
     # Print all into Gaussian Input
     print_GauInp(ele_list, type_list, qm_XYZ, \
                  bond_type_list, k_bond_arr, bond_arr, \
                  angle_type_list, k_angle_arr, angle_arr, \
-                 tors_type_list, v1, v2, v3, periodic_list, chg)
+                 tors_type_list, v1, v2, v3, phase, periodic_list, chg)
 
     print_AmbFrcmod(type_list, \
                  bond_type_list, k_bond_arr, bond_arr, \
                  angle_type_list, k_angle_arr, angle_arr, \
-                 tors_type_list, v1, v2, v3, periodic_list)
+                 tors_type_list, v1, v2, v3, phase, periodic_list)
 
 
 if __name__ == "__main__":

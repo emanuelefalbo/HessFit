@@ -130,6 +130,7 @@ def set_torsion(coords, type_list, tors_list, \
     v3_eq = [0] * len(tors_list)
     tors_length_list = []
     tors_type_list = []
+    phase = np.zeros((len(tors_list),4))
     for m, p in enumerate(tors_list):
             i = p[0] - 1 
             j = p[1] - 1
@@ -177,6 +178,7 @@ def set_torsion(coords, type_list, tors_list, \
                 del_1 = abs(phi_deg - 0.)
                 del_2 = abs(phi_deg - 180.)
                 eps = 5.0
+                phase[m, 1] = 180
                 if del_1 < eps or del_2 < eps:
                      n, d = 2.0, 1.0
                      v2 = abs( -2 * (d * k_tors[m])/(n*n* np.cos(n*phi_deg)) )
@@ -236,10 +238,10 @@ def set_torsion(coords, type_list, tors_list, \
         v3_eq_mean = np.reshape(out_3, (out_3.shape[0]))
 
         return tors_type_unique, v1_eq_mean, \
-               v2_eq_mean, v3_eq_mean,  tors_length_mean, hybrid_mean
+               v2_eq_mean, v3_eq_mean,  tors_length_mean, phase, hybrid_mean
     elif mdout == 'all':
         return tors_type_list, v1_eq, \
-               v2_eq, v3_eq, tors_length_list, hybrid_list
+               v2_eq, v3_eq, tors_length_list, phase, hybrid_list
         
 
 
