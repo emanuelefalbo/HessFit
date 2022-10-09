@@ -138,6 +138,7 @@ def read_HessRIC(all_lines, ric_list):
     else:
         hess_1D = np.array(hess_flat,float)
 
+    
     # hess_1D_mod = np.append(hess_1D, [0])
     # print(hess_1D_mod)
 

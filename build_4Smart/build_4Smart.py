@@ -178,12 +178,12 @@ def main():
             return [adhoc_list(i) for i in t]
         return t
 
-    lol = list()    
-    [ lol.append(i.split()) for i in bond_type_list]
-    print(lol)
-    data = { (tuple(sorted(item))) for item in lol}
-    print(data)
-    bond_type_unique = adhoc_list(list(data))
+    # lol = list()    
+    # [ lol.append(i.split()) for i in bond_type_list]
+    # print(lol)
+    # data = { (tuple(sorted(item))) for item in lol}
+    # print(data)
+    # bond_type_unique = adhoc_list(list(data))
     # tot = pgau.flat_list(tmp)
     
     # Print all into Gaussian Input

@@ -233,7 +233,6 @@ def main():
         hess_eff = hessRIC_qm - hessRIC_nb
         diag_QM = np.diagonal(hess_eff)                 # Take diagonal items of H_QM
         MM_diag = get_DiagMatrix(hessRIC_mm)            # Make sure H_MM is diagonal
-        
         coeffs = np.linalg.solve(MM_diag, diag_QM)      # Solve Linear System for Bond and Angles only 
                                                         # H_MM * K = H_QM ; ignoring Torsion 
         k_bonds = coeffs[0 : No_bonds]                          
@@ -242,7 +241,7 @@ def main():
         # [print(i) for i in diag_tors]
 
     mdin = json_opts['opt']
-    print(mdin)
+    print(f'Option mode =  {mdin}' )
     if json_opts['mode'] == 'mean':
         bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, hess_eff, type_list, \
                       bond_list, k_bonds, mdin, 'mean')

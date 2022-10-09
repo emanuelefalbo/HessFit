@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from math import floor
 import numpy as np
 from parser_gau import flat_list
 import seminario_module as sem_mod
@@ -130,7 +131,7 @@ def set_torsion(coords, type_list, tors_list, \
     v3_eq = [0] * len(tors_list)
     tors_length_list = []
     tors_type_list = []
-    phase = np.zeros((len(tors_list),4))
+    phase = np.zeros((len(tors_list), 4))
     for m, p in enumerate(tors_list):
             i = p[0] - 1 
             j = p[1] - 1
@@ -144,6 +145,9 @@ def set_torsion(coords, type_list, tors_list, \
             u_ABC_n = np.linalg.norm(u_ABC)
             u_BCD_n = np.linalg.norm(u_BCD)
             cos_phi = np.dot(u_ABC, u_BCD) / ( u_ABC_n * u_BCD_n)
+            # Floor cos_phi if out of [-1,1] range
+            if cos_phi > 1.0 or cos_phi < -1.0:
+                cos_phi = float(floor(cos_phi))
             phi = np.arccos(cos_phi)
             phi_deg = phi * 180 / np.pi
             tors_length_list.append(phi_deg)
@@ -209,6 +213,7 @@ def set_torsion(coords, type_list, tors_list, \
                 # print(f' {phi_deg:.2f} {v2:.2f} {hybrid_list[m]}')
     
     tors_type_list = flat_list(tors_type_list)
+    phase = phase.astype(int)
     
     # for i in range(len(tors_list)):
     #     print(f'{hybrid_list[i]} {v1_eq[i]:.1f}  {v2_eq[i]:.1f}  {v3_eq[i]:.1f}')
