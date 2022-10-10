@@ -189,16 +189,16 @@ def set_torsion(coords, type_list, tors_list, \
                     #  if v2 > 30 or 0 < v2 < 9.0:
                      if v2 > 30:
                         v2_eq[m] = np.exp(-30./v2)*v2       # Reduce to a full C=C
-                     elif 0 < v2 < 9.0:
-                          v2_eq[m] = np.exp(-v2/30.)*14.5  # Scale for full C=C & 
+                     elif 0 < v2 < 14.5:
+                          v2_eq[m] = np.exp(-v2/30.)*30. - np.exp(-v2/14.5)*14.5   # Scale for full C=C & 
                      else:                                 # Increase to a partial C=C
                         v2_eq[m] = v2
-                    #  print(f' {phi_deg:.2f}  {v1:.2f} {hybrid_list[m]}')
+                    #  print(f'{phase[m, 1]}  {v2:.2f} {hybrid_list[m]}')
                 else:
                     v1, v2 = solve_2Dsys(1, 2, phi, grad[m], k_tors[m])
                     if v1 > 30 or v2 > 30:
                         v1_eq[m] = 0.0
-                        v2_eq[m] = 14.5
+                        v2_eq[m] = np.exp(-v2/30.)*30.
                     else:
                         v1_eq[m] = v1
                         v2_eq[m] = v2

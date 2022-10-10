@@ -192,6 +192,7 @@ def get_DiagMatrix(AM):
 
 
 def main():
+    print_init()
     parser = commandline_parser()
     opts = parser.parse_args()
     json_opts = read_optfile(opts.optfile)
@@ -241,7 +242,6 @@ def main():
         # [print(i) for i in diag_tors]
 
     mdin = json_opts['opt']
-    print(f'Option mode =  {mdin}' )
     if json_opts['mode'] == 'mean':
         bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, hess_eff, type_list, \
                       bond_list, k_bonds, mdin, 'mean')

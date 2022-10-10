@@ -190,7 +190,6 @@ def read_HessXYZ(all_lines, N_atom):
 
     # print(len(hess_1D))
     len_hess = 3*N_atom
-    print(len_hess, N_atom)
     hess_XYZ = np.zeros((len_hess, len_hess))
     # print(hess_arr.shape, hess_arr.size)
     for i in range(len_hess + 1):
@@ -201,8 +200,6 @@ def read_HessXYZ(all_lines, N_atom):
         # print(i, i_low, i_up, hess_1D[i_low:i_up])
         hess_XYZ[i-1,0:i] =  hess_1D[i_low: i_up]
         hess_XYZ[0:i,i-1] =  hess_1D[i_low: i_up]
-
-    print(hess_XYZ.shape)
 
     return hess_XYZ
 
