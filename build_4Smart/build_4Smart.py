@@ -136,6 +136,14 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
             fout.write(f'{s} \n')
         fout.write(f'\n')
 
+def reduce_bond_list(bond_list):
+    tmp = list()
+    [ tmp.append(i.split()) for i in bond_list]
+    data = { (tuple(sorted(item))) for item in tmp}
+    new = list(map(list, data))
+    reduced = list(' '.join(item) for item in new)
+    return reduced
+
 
 
 
@@ -173,29 +181,30 @@ def main():
         angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, None, type_list, \
                       angle_list, k_angles, 'ric', 'all') 
 
-    def adhoc_list(t):
-        if type(t) == list or type(t) == tuple:
-            return [adhoc_list(i) for i in t]
-        return t
 
-    # lol = list()    
-    # [ lol.append(i.split()) for i in bond_type_list]
-    # print(lol)
-    # data = { (tuple(sorted(item))) for item in lol}
-    # print(data)
-    # bond_type_unique = adhoc_list(list(data))
-    # tot = pgau.flat_list(tmp)
+    # Take out specular bond types
+    bond_reduced = reduce_bond_list(bond_type_list)
+
+    # tmp = list()
+    # [ tmp.append(i.split()) for i in angle_type_list]
+    # [print(i) for i in angle_type_list]
+    # print("")
+    # print(tmp)
+    # smaller_A = {frozenset(x) for x in tmp}
+    # data = [list(x) for x in smaller_A]
+    # [print(i) for i in data]
+
     
     # Print all into Gaussian Input
     print_GauHarm(ele_list, type_list, qm_XYZ, \
-                 bond_type_list, k_bond_arr, bond_arr, \
+                 bond_reduced, k_bond_arr, bond_arr, \
                  angle_type_list, k_angle_arr, angle_arr, \
                  chg)
 
     VDW_list = pgau.read_AmberParm(opts.path, type_list)
     
     print_GauNonBon(ele_list, type_list, qm_XYZ, \
-                 bond_type_list, bond_arr, \
+                 bond_reduced, bond_arr, \
                  angle_type_list, angle_arr, \
                  chg, VDW_list )
 

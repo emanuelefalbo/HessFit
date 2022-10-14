@@ -30,6 +30,6 @@ HrmStr1 CT HC  1.0  1.093
 !Angles
 HrmBnd1 CT CT CT  1.0  113.369
 HrmBnd1 CT CT HC  1.0  110.156
-!HrmBnd1 HC CT CT  1.0  110.156
+HrmBnd1 HC CT CT  1.0  110.156
 HrmBnd1 HC CT HC  1.0  107.190
 
