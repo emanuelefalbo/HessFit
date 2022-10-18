@@ -1,4 +1,4 @@
-# PySmartField
+# SmartField
 
 SmartField returns the entire force field for any molecule.
 In the directory "src", there is the **SmartField_harmonic.py** which returns calculated harmonic intra-molecular force field, i.e, stretching, bending, and dihedral force constants, and external inter-molecular parmateres, i.e, Van der Waals and atomi charges. As such, these latter might result too stiff for specific applications. 
