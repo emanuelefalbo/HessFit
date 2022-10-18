@@ -15,12 +15,12 @@ pip install numpy
 ```
 while for the modules it is sufficient to add their directory to the **PYTHONPATH** into you .bashrc (bash) file:
 ```
-export PYTHONPATH="${PYTHONPATH}:/path/to/PySmartField/src"
-export PYTHONPATH="${PYTHONPATH}:/path/to/PySmartField/utils"
-export PYTHONPATH="${PYTHONPATH}:/path/to/PySmartField/build_4Smart"
-export PATH=$PATH:/path/to/PySmartField/src
-export PATH=$PATH:/path/to/PySmartField/utils
-export PATH=$PATH:/path/to/PySmartField/build_4Smart
+export PYTHONPATH="${PYTHONPATH}:/path/to/SmartField/src"
+export PYTHONPATH="${PYTHONPATH}:/path/to/SmartField/utils"
+export PYTHONPATH="${PYTHONPATH}:/path/to/SmartField/build_4Smart"
+export PATH=$PATH:/path/to/SmartField/src
+export PATH=$PATH:/path/to/SmartField/utils
+export PATH=$PATH:/path/to/SmartField/build_4Smart
 ```
 with path/to/PySmartField being the full path to where it is located. 
 The last two lines add the programs to your bash path (see setenv for .tcsh).
