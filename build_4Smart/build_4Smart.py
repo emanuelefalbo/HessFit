@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import argparse
+from turtle import clear
+from unittest import result
 import parser_gau as pgau
 import force_constant_mod as fc
 import numpy as np
@@ -144,6 +146,17 @@ def reduce_bond_list(bond_list):
     reduced = list(' '.join(item) for item in new)
     return reduced
 
+def reduce_angle_list(angle_list):
+    splitted = [ i.split() for i in angle_list]
+    res = splitted.copy()
+    for i in range(len(splitted[:])-1):
+        for j in range(i+1,len(splitted[:])):
+            if (splitted[i] == splitted[j][::-1]) and (i !=j) :
+                res.pop(i)
+                break
+    reduced = list(' '.join(item) for item in res)
+    return reduced
+
 
 
 
@@ -182,23 +195,14 @@ def main():
                       angle_list, k_angles, 'ric', 'all') 
 
 
-    # Take out specular bond types
+    # Take out Mirror atom types of bonds & angles
     bond_reduced = reduce_bond_list(bond_type_list)
+    angle_reduced = reduce_angle_list(angle_type_list)
 
-    # tmp = list()
-    # [ tmp.append(i.split()) for i in angle_type_list]
-    # [print(i) for i in angle_type_list]
-    # print("")
-    # print(tmp)
-    # smaller_A = {frozenset(x) for x in tmp}
-    # data = [list(x) for x in smaller_A]
-    # [print(i) for i in data]
-
-    
     # Print all into Gaussian Input
     print_GauHarm(ele_list, type_list, qm_XYZ, \
                  bond_reduced, k_bond_arr, bond_arr, \
-                 angle_type_list, k_angle_arr, angle_arr, \
+                 angle_reduced, k_angle_arr, angle_arr, \
                  chg)
 
     VDW_list = pgau.read_AmberParm(opts.path, type_list)
