@@ -1,4 +1,4 @@
-# PySmartField
+# SmartField
 
 SmartField returns the entire force field for any molecule.
 In the directory "src", there is the **SmartField_harmonic.py** which returns calculated harmonic intra-molecular force field, i.e, stretching, bending, and dihedral force constants, and external inter-molecular parmateres, i.e, Van der Waals and atomi charges. As such, these latter might result too stiff for specific applications. 
@@ -15,12 +15,12 @@ pip install numpy
 ```
 while for the modules it is sufficient to add their directory to the **PYTHONPATH** into you .bashrc (bash) file:
 ```
-export PYTHONPATH="${PYTHONPATH}:/path/to/PySmartField/src"
-export PYTHONPATH="${PYTHONPATH}:/path/to/PySmartField/utils"
-export PYTHONPATH="${PYTHONPATH}:/path/to/PySmartField/build_4Smart"
-export PATH=$PATH:/path/to/PySmartField/src
-export PATH=$PATH:/path/to/PySmartField/utils
-export PATH=$PATH:/path/to/PySmartField/build_4Smart
+export PYTHONPATH="${PYTHONPATH}:/path/to/SmartField/src"
+export PYTHONPATH="${PYTHONPATH}:/path/to/SmartField/utils"
+export PYTHONPATH="${PYTHONPATH}:/path/to/SmartField/build_4Smart"
+export PATH=$PATH:/path/to/SmartField/src
+export PATH=$PATH:/path/to/SmartField/utils
+export PATH=$PATH:/path/to/SmartField/build_4Smart
 ```
 with path/to/PySmartField being the full path to where it is located. 
 The last two lines add the programs to your bash path (see setenv for .tcsh).
