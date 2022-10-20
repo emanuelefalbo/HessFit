@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-from cmath import phase
 import parser_gau as pgau
 import force_constant_mod as fc
+import average_across_types as aat
 import argparse
 import os
 import json
@@ -258,6 +258,17 @@ def main():
                       tors_list, diag_tors, force_1D, 'all')
 
 
+    # print(k_bond_arr)
+    # print(bond_type_list)
+    # print(angle_type_list)
+    # print(k_angle_arr)
+    # Take out Mirror atom types of bonds & angles
+    bond_reduced = aat.reduce_bond_list(bond_type_list)
+    angle_reduced, k_angles_unique = aat.reduce_angle_list(angle_type_list, k_angle_arr)
+    print(angle_reduced, k_angles_unique)
+    # print(bond_reduced)
+    # print(angle_reduced)
+    
     # Print all into Gaussian Input
     print_GauInp(ele_list, type_list, qm_XYZ, \
                  bond_type_list, k_bond_arr, bond_arr, \

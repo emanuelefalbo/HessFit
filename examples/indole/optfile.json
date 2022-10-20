@@ -1,0 +1,10 @@
+{
+    "files": {
+        "log_qm_file":  "ind_qm.log",
+        "fchk_qm_file": "ind_qm.fchk",
+        "fchk_mm_file": "h2o2_mm.fchk",
+        "fchk_nb_file": "h2o2_nb.fchk"
+         },
+    "mode": "mean",
+    "opt": "modsem"
+}
