@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 
 import argparse
-from turtle import clear
-from unittest import result
 import parser_gau as pgau
 import force_constant_mod as fc
 import numpy as np
@@ -198,6 +196,7 @@ def main():
     # Take out Mirror atom types of bonds & angles
     bond_reduced = reduce_bond_list(bond_type_list)
     angle_reduced = reduce_angle_list(angle_type_list)
+    print(angle_reduced)
 
     # Print all into Gaussian Input
     print_GauHarm(ele_list, type_list, qm_XYZ, \
@@ -209,7 +208,7 @@ def main():
     
     print_GauNonBon(ele_list, type_list, qm_XYZ, \
                  bond_reduced, bond_arr, \
-                 angle_type_list, angle_arr, \
+                 angle_reduced, angle_arr, \
                  chg, VDW_list )
 
 
