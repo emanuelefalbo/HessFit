@@ -3,6 +3,7 @@
 import parser_gau as pgau
 import force_constant_mod as fc
 import average_across_types as aat
+import printout_mod as pout
 import argparse
 import os
 import json
@@ -257,27 +258,21 @@ def main():
         tors_type_list, v1, v2, v3, tors_arr, phase, periodic_list = fc.set_torsion(qm_XYZ, type_list, \
                       tors_list, diag_tors, force_1D, 'all')
 
-
-    # print(k_bond_arr)
-    # print(bond_type_list)
-    # print(angle_type_list)
-    # print(k_angle_arr)
-    # Take out Mirror atom types of bonds & angles
-    bond_reduced = aat.reduce_bond_list(bond_type_list)
-    angle_reduced, k_angles_unique = aat.reduce_angle_list(angle_type_list, k_angle_arr)
-    print(angle_reduced, k_angles_unique)
-    # print(bond_reduced)
-    # print(angle_reduced)
+    # Take out mirrored atom types of bonds & angles
+    bonds_unique, k_bonds_unique = aat.make_list_unique(bond_type_list, k_bond_arr)
+    angles_unique, k_angles_unique = aat.make_list_unique(angle_type_list, k_angle_arr)
+    # Same for torsion...
+    # tors_unique, vall_unique = aat.make_list_unique(tors_type_list, vall_arr)
     
     # Print all into Gaussian Input
-    print_GauInp(ele_list, type_list, qm_XYZ, \
-                 bond_type_list, k_bond_arr, bond_arr, \
-                 angle_type_list, k_angle_arr, angle_arr, \
+    pout.print_GauInp(ele_list, type_list, qm_XYZ, \
+                 bonds_unique, k_bonds_unique, bond_arr, \
+                 angles_unique, k_angles_unique, angle_arr, \
                  tors_type_list, v1, v2, v3, phase, periodic_list, chg)
 
-    print_AmbFrcmod(type_list, \
-                 bond_type_list, k_bond_arr, bond_arr, \
-                 angle_type_list, k_angle_arr, angle_arr, \
+    pout.print_AmbFrcmod(type_list, \
+                 bonds_unique, k_bonds_unique, bond_arr, \
+                 angles_unique, k_angles_unique, angle_arr, \
                  tors_type_list, v1, v2, v3, phase, periodic_list)
 
 

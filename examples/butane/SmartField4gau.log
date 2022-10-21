@@ -1,0 +1,191 @@
+ Entering Gaussian System, Link 0=g09
+ Input=SmartField4gau.gjf
+ Output=SmartField4gau.log
+ Initial command:
+ /home/emanuele/chem_software/gaussian//gdv/l1.exe "/home/emanuele/chem_software/gaussian/scratch/Gau-20853.inp" -scrdir="/home/emanuele/chem_software/gaussian/scratch/"
+ Entering Link 1 = /home/emanuele/chem_software/gaussian//gdv/l1.exe PID=     20855.
+  
+ Copyright (c) 1988-2020, Gaussian, Inc.  All Rights Reserved.
+  
+ This is the private, development version of
+ the Gaussian(R) DV system of programs. It is based on
+ the Gaussian(R) 16 system (copyright 2016, Gaussian, Inc.),
+ the Gaussian(R) 09 system (copyright 2009, Gaussian, Inc.),
+ the Gaussian(R) 03 system (copyright 2003, Gaussian, Inc.),
+ the Gaussian(R) 98 system (copyright 1998, Gaussian, Inc.),
+ the Gaussian(R) 94 system (copyright 1995, Gaussian, Inc.),
+ the Gaussian 92(TM) system (copyright 1992, Gaussian, Inc.),
+ the Gaussian 90(TM) system (copyright 1990, Gaussian, Inc.),
+ the Gaussian 88(TM) system (copyright 1988, Gaussian, Inc.),
+ the Gaussian 86(TM) system (copyright 1986, Carnegie Mellon
+ University), and the Gaussian 82(TM) system (copyright 1983,
+ Carnegie Mellon University). Gaussian is a federally registered
+ trademark of Gaussian, Inc.
+  
+ This software contains proprietary and confidential information,
+ including trade secrets, belonging to Gaussian, Inc.
+  
+ This software is provided under written license and may be
+ used, copied, transmitted, or stored only in accord with that
+ written license.
+  
+ The following legend is applicable only to US Government
+ contracts under FAR:
+  
+                    RESTRICTED RIGHTS LEGEND
+  
+ Use, reproduction and disclosure by the US Government is
+ subject to restrictions as set forth in subparagraphs (a)
+ and (c) of the Commercial Computer Software - Restricted
+ Rights clause in FAR 52.227-19.
+  
+ Gaussian, Inc.
+ 340 Quinnipiac St., Bldg. 40, Wallingford CT 06492
+  
+  
+ ---------------------------------------------------------------
+ Warning -- This program may not be used in any manner that
+ competes with the business of Gaussian, Inc. or will provide
+ assistance to any competitor of Gaussian, Inc.  The licensee
+ of this program is prohibited from giving any competitor of
+ Gaussian, Inc. access to this program.  By using this program,
+ the user acknowledges that Gaussian, Inc. is engaged in the
+ business of creating and licensing software in the field of
+ computational chemistry and represents and warrants to the
+ licensee that it is not a competitor of Gaussian, Inc. and that
+ it will not use this program in any manner prohibited above.
+ ---------------------------------------------------------------
+  
+
+ Cite this work as:
+ Gaussian Development Version, Revision J.14,
+ M. J. Frisch, G. W. Trucks, H. B. Schlegel, G. E. Scuseria, 
+ M. A. Robb, J. R. Cheeseman, G. Scalmani, V. Barone, 
+ G. A. Petersson, H. Nakatsuji, X. Li, A. V. Marenich, M. Caricato, 
+ J. Bloino, B. G. Janesko, J. Zheng, R. Gomperts, B. Mennucci, 
+ H. P. Hratchian, J. V. Ortiz, A. F. Izmaylov, J. L. Sonnenberg, 
+ D. Williams-Young, F. Ding, F. Lipparini, F. Egidi, J. Goings, 
+ B. Peng, A. Petrone, T. Henderson, D. Ranasinghe, V. G. Zakrzewski, 
+ J. Gao, N. Rega, G. Zheng, W. Liang, M. Hada, M. Ehara, K. Toyota, 
+ R. Fukuda, J. Hasegawa, M. Ishida, T. Nakajima, Y. Honda, O. Kitao, 
+ H. Nakai, T. Vreven, K. Throssell, J. A. Montgomery, Jr., 
+ J. E. Peralta, F. Ogliaro, M. J. Bearpark, J. J. Heyd, 
+ E. N. Brothers, K. N. Kudin, V. N. Staroverov, T. A. Keith, 
+ R. Kobayashi, J. Normand, K. Raghavachari, A. P. Rendell, 
+ J. C. Burant, S. S. Iyengar, J. Tomasi, M. Cossi, J. M. Millam, 
+ M. Klene, C. Adamo, R. Cammi, J. W. Ochterski, R. L. Martin, 
+ K. Morokuma, O. Farkas, J. B. Foresman, and D. J. Fox, 
+ Gaussian, Inc., Wallingford CT, 2020.
+ 
+ ******************************************
+ Gaussian DV:  ES64L-GDVRevJ.14 29-Dec-2020
+                21-Oct-2022 
+ ******************************************
+ %mem=1GB
+ %nprocshared=1
+ Will use up to    1 processors via shared memory.
+ %chk=SmartField4gau.chk
+ -------------------------------------------------------
+ #p Amber=(SoftFirst,Print) nosymm geom=nocrowd opt Freq
+ -------------------------------------------------------
+ 1/6=10,10=10,18=4000020,19=15,37=210000000,38=1,56=2,64=203/1,3;
+ 2/9=110,12=1,15=1,40=1/2;
+ 3/5=30,11=9,25=1,30=1,41=10030000,43=2,71=1/1;
+ 4/20=11,22=1001,24=3,119=11/2;
+ 7/30=1,44=-1/16;
+ 1/6=10,10=10,18=4000020,19=15,64=203/3(2);
+ 2/9=110,12=1,15=1/2;
+ 99//99;
+ 2/9=110,12=1,15=1/2;
+ 3/5=30,11=9,25=1,30=1,41=10030000,43=2,71=1/1;
+ 4/16=2,20=11,22=1001,24=3,119=11/2;
+ 7/30=1,44=-1/16;
+ 1/6=10,10=10,18=4000020,19=15,64=203/3(-4);
+ 2/9=110,12=1,15=1/2;
+ 99/9=10/99;
+ Leave Link    1 at Fri Oct 21 15:38:28 2022, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/chem_software/gaussian//gdv/l101.exe)
+ -----
+ Title
+ -----
+ Symbolic Z-matrix:
+ Charge =  0 Multiplicity = 1
+ C-CT--0.267532        1.9569   -0.12039   0. 
+ H-HC-+0.083821        2.74201   0.63726   0. 
+ H-HC-+0.077363        2.10375  -0.74938  -0.88076 
+ H-HC-+0.077360        2.10375  -0.74938   0.88076 
+ C-CT--0.092257        0.56696   0.51292   0. 
+ H-HC-+0.060623        0.46175   1.1634   -0.87403 
+ H-HC-+0.060622        0.46175   1.1634    0.87403 
+ C-CT--0.092258       -0.56696  -0.51292   0. 
+ H-HC-+0.060627       -0.46175  -1.1634   -0.87403 
+ H-HC-+0.060618       -0.46175  -1.1634    0.87403 
+ C-CT--0.267532       -1.9569    0.12039   0. 
+ H-HC-+0.077330       -2.10375   0.74938  -0.88076 
+ H-HC-+0.083821       -2.74201  -0.63726   0. 
+ H-HC-+0.077394       -2.10375   0.74938   0.88076 
+ 
+ ITRead=  3  3  3  3  3  3  3  3  3  3  3  3  3  3
+ MicOpt=  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+ DXMax1 from symmetrization= 1.89D-06
+ NAtoms=     14 NQM=        0 NQMF=       0 NMMI=      0 NMMIF=      0
+                NMic=      14 NMicF=      0.
+                    Isotopes and Nuclear Properties:
+ (Nuclear quadrupole moments (NQMom) in fm**2, nuclear magnetic moments (NMagM)
+  in nuclear magnetons)
+
+  Atom         1           2           3           4           5           6           7           8           9          10
+ IAtWgt=          12           1           1           1          12           1           1          12           1           1
+ AtmWgt=  12.0000000   1.0078250   1.0078250   1.0078250  12.0000000   1.0078250   1.0078250  12.0000000   1.0078250   1.0078250
+ NucSpn=           0           1           1           1           0           1           1           0           1           1
+ AtZEff=  -0.0000000  -0.0000000  -0.0000000  -0.0000000  -0.0000000  -0.0000000  -0.0000000  -0.0000000  -0.0000000  -0.0000000
+ NQMom=    0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000
+ NMagM=    0.0000000   2.7928460   2.7928460   2.7928460   0.0000000   2.7928460   2.7928460   0.0000000   2.7928460   2.7928460
+ AtZNuc=   6.0000000   1.0000000   1.0000000   1.0000000   6.0000000   1.0000000   1.0000000   6.0000000   1.0000000   1.0000000
+
+  Atom        11          12          13          14
+ IAtWgt=          12           1           1           1
+ AtmWgt=  12.0000000   1.0078250   1.0078250   1.0078250
+ NucSpn=           0           1           1           1
+ AtZEff=  -0.0000000  -0.0000000  -0.0000000  -0.0000000
+ NQMom=    0.0000000   0.0000000   0.0000000   0.0000000
+ NMagM=    0.0000000   2.7928460   2.7928460   2.7928460
+ AtZNuc=   6.0000000   1.0000000   1.0000000   1.0000000
+ Generating MM parameters.
+ Read MM parameter file:
+ Include all MM classes
+ Multiple matching entries:    2    1    5    8
+ AmbTrs CT    CT    CT    HC      0   0   0   0  0.0000  0.0000  1.9600  0.0000  9.0
+ AmbTrs HC    CT    CT    CT      0   0   0   0  0.0000  0.0000  1.9600  0.0000  9.0
+ Multiple matching entries:    3    1    5    8
+ AmbTrs CT    CT    CT    HC      0   0   0   0  0.0000  0.0000  1.9600  0.0000  9.0
+ AmbTrs HC    CT    CT    CT      0   0   0   0  0.0000  0.0000  1.9600  0.0000  9.0
+ Multiple matching entries:    4    1    5    8
+ AmbTrs CT    CT    CT    HC      0   0   0   0  0.0000  0.0000  1.9600  0.0000  9.0
+ AmbTrs HC    CT    CT    CT      0   0   0   0  0.0000  0.0000  1.9600  0.0000  9.0
+ Multiple matching entries:    1    5    8    9
+ AmbTrs CT    CT    CT    HC      0   0   0   0  0.0000  0.0000  1.9600  0.0000  9.0
+ AmbTrs HC    CT    CT    CT      0   0   0   0  0.0000  0.0000  1.9600  0.0000  9.0
+ Multiple matching entries:    1    5    8   10
+ AmbTrs CT    CT    CT    HC      0   0   0   0  0.0000  0.0000  1.9600  0.0000  9.0
+ AmbTrs HC    CT    CT    CT      0   0   0   0  0.0000  0.0000  1.9600  0.0000  9.0
+ Multiple matching entries:    6    5    8   11
+ AmbTrs CT    CT    CT    HC      0   0   0   0  0.0000  0.0000  1.9600  0.0000  9.0
+ AmbTrs HC    CT    CT    CT      0   0   0   0  0.0000  0.0000  1.9600  0.0000  9.0
+ Multiple matching entries:    7    5    8   11
+ AmbTrs CT    CT    CT    HC      0   0   0   0  0.0000  0.0000  1.9600  0.0000  9.0
+ AmbTrs HC    CT    CT    CT      0   0   0   0  0.0000  0.0000  1.9600  0.0000  9.0
+ Multiple matching entries:    5    8   11   12
+ AmbTrs CT    CT    CT    HC      0   0   0   0  0.0000  0.0000  1.9600  0.0000  9.0
+ AmbTrs HC    CT    CT    CT      0   0   0   0  0.0000  0.0000  1.9600  0.0000  9.0
+ Multiple matching entries:    5    8   11   13
+ AmbTrs CT    CT    CT    HC      0   0   0   0  0.0000  0.0000  1.9600  0.0000  9.0
+ AmbTrs HC    CT    CT    CT      0   0   0   0  0.0000  0.0000  1.9600  0.0000  9.0
+ Multiple matching entries:    5    8   11   14
+ AmbTrs CT    CT    CT    HC      0   0   0   0  0.0000  0.0000  1.9600  0.0000  9.0
+ AmbTrs HC    CT    CT    CT      0   0   0   0  0.0000  0.0000  1.9600  0.0000  9.0
+ Inconsistent parameter file.
+ Error termination via Lnk1e in /home/emanuele/chem_software/gaussian//gdv/l101.exe at Fri Oct 21 15:38:28 2022.
+ Job cpu time:       0 days  0 hours  0 minutes  0.3 seconds.
+ Elapsed time:       0 days  0 hours  0 minutes  0.3 seconds.
+ File lengths (MBytes):  RWF=      6 Int=      0 D2E=      0 Chk=      1 Scr=      1

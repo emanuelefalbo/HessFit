@@ -28,26 +28,6 @@ default = current directory """
     
     return parser
 
-def reduce_bond_list(bond_list):
-    splitted = list()
-    [ splitted.append(i.split()) for i in bond_list]
-    data = { (tuple(sorted(item))) for item in splitted}
-    new = list(map(list, data))
-    reduced = list(' '.join(item) for item in new)
-    return reduced
-
-def reduce_angle_list(angle_list):
-    splitted = [ i.split() for i in angle_list]
-    res = splitted.copy()
-    for i in range(len(splitted[:])-1):
-        for j in range(i+1,len(splitted[:])):
-            if (splitted[i] == splitted[j][::-1]) and (i !=j) :
-                res.pop(i)
-                break
-            
-    reduced = list(' '.join(item) for item in res)
-    return reduced
-
 def main():
     parser = commandline_parser()
     opts = parser.parse_args()
@@ -82,10 +62,9 @@ def main():
         angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, None, type_list, \
                       angle_list, k_angles, 'ric', 'all') 
 
-
     # Take out Mirror atom types of bonds & angles
-    bond_reduced = reduce_bond_list(bond_type_list)
-    angle_reduced, k_angles_unique = aat.reduce_angle_list(angle_type_list, k_angle_arr)
+    bond_reduced, k_bonds_unique = aat.make_list_unique(bond_type_list, k_bond_arr)
+    angle_reduced, k_angles_unique = aat.make_list_unique(angle_type_list, k_angle_arr)
 
     # Print all into Gaussian Input
     pout.print_GauHarm(ele_list, type_list, qm_XYZ, \

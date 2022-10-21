@@ -18,8 +18,8 @@ def reduce_bond_list(bond_list):
     reduced = list(' '.join(item) for item in new)
     return reduced
 
-def reduce_angle_list(angle_list, k_angles):
-    splitted = [ i.split() for i in angle_list]
+def make_list_unique(var_list, k_values):
+    splitted = [ i.split() for i in var_list]
     indexes = [i for i in range(len(splitted))]
     # Get indexes to be removed
     id2del = list()
@@ -31,17 +31,20 @@ def reduce_angle_list(angle_list, k_angles):
                 break
 
     # pop indexes out
-    j = id2del[0]
-    res_bonds = splitted.copy()
-    for n in range(len(id2del)):
-        j = id2del[n] - n
-        res_bonds.pop(j)
-    reduced = list(' '.join(item) for item in res_bonds)
-
-    indexes = np.array(indexes)
-    k_angles_ave = get_one_hot(k_angles, indexes)
-
-    return reduced, k_angles_ave
+    if len(id2del) != 0:
+        j = id2del[0]
+        res_bonds = splitted.copy()
+        for n in range(len(id2del)):
+            j = id2del[n] - n
+            res_bonds.pop(j)
+        reduced = list(' '.join(item) for item in res_bonds)
+    
+        indexes = np.array(indexes)
+        k_values_ave = get_one_hot(k_values, indexes)
+        return reduced, k_values_ave
+    else:
+        # print("No duplicates have been found")
+        return var_list, k_values
 
 
 
