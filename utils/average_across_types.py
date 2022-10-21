@@ -20,15 +20,22 @@ def reduce_bond_list(bond_list):
 
 def reduce_angle_list(angle_list, k_angles):
     splitted = [ i.split() for i in angle_list]
-    res_bonds = splitted.copy()
     indexes = [i for i in range(len(splitted))]
+    # Get indexes to be removed
+    id2del = list()
     for i in range(len(splitted[:])-1):
         for j in range(i+1,len(splitted[:])):
             if (splitted[i] == splitted[j][::-1]) and (i !=j) :
-                print(i,j)
-                res_bonds.pop(i)
+                id2del.append(j)
                 indexes[j] = indexes[i]
                 break
+
+    # pop indexes out
+    j = id2del[0]
+    res_bonds = splitted.copy()
+    for n in range(len(id2del)):
+        j = id2del[n] - n
+        res_bonds.pop(j)
     reduced = list(' '.join(item) for item in res_bonds)
 
     indexes = np.array(indexes)

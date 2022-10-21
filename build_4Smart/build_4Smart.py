@@ -86,7 +86,6 @@ def main():
     # Take out Mirror atom types of bonds & angles
     bond_reduced = reduce_bond_list(bond_type_list)
     angle_reduced, k_angles_unique = aat.reduce_angle_list(angle_type_list, k_angle_arr)
-    print(angle_reduced, k_angles_unique)
 
     # Print all into Gaussian Input
     pout.print_GauHarm(ele_list, type_list, qm_XYZ, \
