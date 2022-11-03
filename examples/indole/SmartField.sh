@@ -2,7 +2,7 @@
 
 F1=ind_qm.log
 F2=ind_qm.fchk
-OPT=opt.json
+JSON=opt.json
 GPATH=$g09root/g09
 SM=Smart_harmonic.py
 BS=build_4Smart.py
@@ -25,9 +25,7 @@ do
    echo "Formatchecking $f file"
    $GPATH/formchk -3 $f "${f%.chk}.fchk"
 done
-#
-#$GPATH/g09 GauHarm.gjf
-#$GPATH/g09 GauHarm.gjf
+
 echo "Executing ${SM}"
-SmartField_harmonic.py $OPT 
+SmartField_harmonic.py $JSON 
 ${GPATH}/g09 SmartField4gau.gjf

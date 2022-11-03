@@ -2,8 +2,8 @@
  Input=SmartField4gau.gjf
  Output=SmartField4gau.log
  Initial command:
- /home/emanuele/chem_software/gaussian//gdv/l1.exe "/home/emanuele/chem_software/gaussian/scratch/Gau-7584.inp" -scrdir="/home/emanuele/chem_software/gaussian/scratch/"
- Entering Link 1 = /home/emanuele/chem_software/gaussian//gdv/l1.exe PID=      7586.
+ /home/emanuele/chem_software/gaussian//gdv/l1.exe "/home/emanuele/chem_software/gaussian/scratch/Gau-7526.inp" -scrdir="/home/emanuele/chem_software/gaussian/scratch/"
+ Entering Link 1 = /home/emanuele/chem_software/gaussian//gdv/l1.exe PID=      7528.
   
  Copyright (c) 1988-2020, Gaussian, Inc.  All Rights Reserved.
   
@@ -79,7 +79,7 @@
  
  ******************************************
  Gaussian DV:  ES64L-GDVRevJ.14 29-Dec-2020
-                22-Oct-2022 
+                 3-Nov-2022 
  ******************************************
  %mem=1GB
  %nprocshared=1
@@ -103,7 +103,7 @@
  1/6=10,10=10,18=4000020,19=15,64=203/3(-4);
  2/9=110,12=1,15=1/2;
  99/9=10/99;
- Leave Link    1 at Sat Oct 22 11:18:41 2022, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link    1 at Thu Nov  3 15:46:31 2022, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l101.exe)
  -----
  Title
@@ -228,7 +228,7 @@
  AmbTrs CA    CA    CA    HA      0 180   0   0  0.0000 15.5000  0.0000  0.0000  4.0
  AmbTrs HA    CA    CA    CA      0 180   0   0  0.0000 15.5000  0.0000  0.0000  4.0
  Inconsistent parameter file.
- Error termination via Lnk1e in /home/emanuele/chem_software/gaussian//gdv/l101.exe at Sat Oct 22 11:18:41 2022.
- Job cpu time:       0 days  0 hours  0 minutes  0.3 seconds.
+ Error termination via Lnk1e in /home/emanuele/chem_software/gaussian//gdv/l101.exe at Thu Nov  3 15:46:32 2022.
+ Job cpu time:       0 days  0 hours  0 minutes  0.2 seconds.
  Elapsed time:       0 days  0 hours  0 minutes  0.3 seconds.
  File lengths (MBytes):  RWF=      6 Int=      0 D2E=      0 Chk=      1 Scr=      1
