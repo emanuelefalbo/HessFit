@@ -1,11 +1,25 @@
 #!/usr/bin/env python3
 
-from cmath import phase
-import sys
+import argparse
 import numpy as np
 from numpy.linalg import inv
 from scipy import optimize
 import matplotlib.pyplot as plt
+
+
+def build_parser():
+    """
+    Build options for parser
+    """
+    parser = argparse.ArgumentParser()
+    txt = "Scan txt file to be opened"
+    parser.add_argument('file', type=str, help=txt)
+    txt = 'Plot the PES with matplotlib'
+    parser.add_argument('--plot', action="store_true", help=txt)
+    txt = 'Name of output png file'
+    parser.add_argument('--name', default='scan', help=txt)
+    return parser
+
 
 def load_data(fname):
     data = []
@@ -125,7 +139,9 @@ def rb2opls(coeffs):
     # return c_opls
 
 def main():
-    fname = sys.argv[1]
+    parser = build_parser()
+    args = parser.parse_args()
+    fname = args.file
     data = load_data(fname)
     xval = data[:,0]
     qm_rel = ( data[:,1] - min(data[:,1]) ) *6.275030E02  # Eh to kcal/mol
@@ -194,16 +210,22 @@ def main():
     # get_rmsd(yfit_non_linear, yval)
 
     # # PLOT DATA
-    plt.plot(xval, qm_rel, label='QM', marker='o', markersize=10, fillstyle='none', c='black', linestyle='dashed', dashes=(5, 10))
-    plt.plot(xval, mm_rel, label='MM', marker='o', markersize=10, fillstyle='none', c='orangered', linestyle='dashed', dashes=(5, 10))
-    plt.plot(xval, yfit_oplsa, label='LLSQ$_{OPLSA}$', marker='o',  markersize=10, c='blue')
-    plt.plot(xval, yfit_rybe, label='LLSQ$_{Ry-Be}$', marker='o',  markersize=10, c='green')
-    # plt.plot(xval, yfit_w_linear, label='WLLSQ', marker='v')
-    # plt.plot(xval, yfit_non_linear, label='NON-LLSQ', marker='v')
-    plt.xlabel('Angle (°)', fontsize=16)
-    plt.ylabel('$\Delta$E (kcal/mol)', fontsize=16)
-    plt.legend()
-    plt.show()
+    if args.plot:
+       fig = plt.subplots(1, figsize= (10,8), dpi=96 )
+       plt.plot(xval, qm_rel, label='QM', marker='o', markersize=8, fillstyle='none', c='black', linestyle='dashed', dashes=(5, 10))
+       plt.plot(xval, mm_rel, label='MM', marker='o', markersize=8, fillstyle='none', c='orangered', linestyle='dashed', dashes=(5, 10))
+       plt.plot(xval, yfit_oplsa, label='LLSQ$_{OPLSA}$', marker='o',  markersize=10, c='blue')
+       plt.plot(xval, yfit_rybe, label='LLSQ$_{Ry-Be}$', marker='o',  markersize=10, c='green')
+       # plt.plot(xval, yfit_w_linear, label='WLLSQ', marker='v')
+       # plt.plot(xval, yfit_non_linear, label='NON-LLSQ', marker='v')
+       plt.xlabel('Angle (°)', fontsize=18)
+       plt.ylabel('$\Delta$E (kcal/mol)', fontsize=18)
+       plt.xticks(fontsize=16)
+       plt.yticks(fontsize=16)
+       plt.legend(prop={'size':20})
+       plt.tight_layout()
+       plt.savefig(args.name +'.png')
+       plt.show()
 
 
 
