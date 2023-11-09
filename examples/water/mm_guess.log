@@ -1,0 +1,432 @@
+ Entering Gaussian System, Link 0=gdv
+ Input=mm_guess.com
+ Output=mm_guess.log
+ Initial command:
+ /home/emanuele/chemical_software//gdv/l1.exe "/home/emanuele/chemical_software/scratch/Gau-753572.inp" -scrdir="/home/emanuele/chemical_software/scratch/"
+ Entering Link 1 = /home/emanuele/chemical_software//gdv/l1.exe PID=    753574.
+  
+ Copyright (c) 1988-2020, Gaussian, Inc.  All Rights Reserved.
+  
+ This is the private, development version of
+ the Gaussian(R) DV system of programs. It is based on
+ the Gaussian(R) 16 system (copyright 2016, Gaussian, Inc.),
+ the Gaussian(R) 09 system (copyright 2009, Gaussian, Inc.),
+ the Gaussian(R) 03 system (copyright 2003, Gaussian, Inc.),
+ the Gaussian(R) 98 system (copyright 1998, Gaussian, Inc.),
+ the Gaussian(R) 94 system (copyright 1995, Gaussian, Inc.),
+ the Gaussian 92(TM) system (copyright 1992, Gaussian, Inc.),
+ the Gaussian 90(TM) system (copyright 1990, Gaussian, Inc.),
+ the Gaussian 88(TM) system (copyright 1988, Gaussian, Inc.),
+ the Gaussian 86(TM) system (copyright 1986, Carnegie Mellon
+ University), and the Gaussian 82(TM) system (copyright 1983,
+ Carnegie Mellon University). Gaussian is a federally registered
+ trademark of Gaussian, Inc.
+  
+ This software contains proprietary and confidential information,
+ including trade secrets, belonging to Gaussian, Inc.
+  
+ This software is provided under written license and may be
+ used, copied, transmitted, or stored only in accord with that
+ written license.
+  
+ The following legend is applicable only to US Government
+ contracts under FAR:
+  
+                    RESTRICTED RIGHTS LEGEND
+  
+ Use, reproduction and disclosure by the US Government is
+ subject to restrictions as set forth in subparagraphs (a)
+ and (c) of the Commercial Computer Software - Restricted
+ Rights clause in FAR 52.227-19.
+  
+ Gaussian, Inc.
+ 340 Quinnipiac St., Bldg. 40, Wallingford CT 06492
+  
+  
+ ---------------------------------------------------------------
+ Warning -- This program may not be used in any manner that
+ competes with the business of Gaussian, Inc. or will provide
+ assistance to any competitor of Gaussian, Inc.  The licensee
+ of this program is prohibited from giving any competitor of
+ Gaussian, Inc. access to this program.  By using this program,
+ the user acknowledges that Gaussian, Inc. is engaged in the
+ business of creating and licensing software in the field of
+ computational chemistry and represents and warrants to the
+ licensee that it is not a competitor of Gaussian, Inc. and that
+ it will not use this program in any manner prohibited above.
+ ---------------------------------------------------------------
+  
+
+ Cite this work as:
+ Gaussian Development Version, Revision J.14,
+ M. J. Frisch, G. W. Trucks, H. B. Schlegel, G. E. Scuseria, 
+ M. A. Robb, J. R. Cheeseman, G. Scalmani, V. Barone, 
+ G. A. Petersson, H. Nakatsuji, X. Li, A. V. Marenich, M. Caricato, 
+ J. Bloino, B. G. Janesko, J. Zheng, R. Gomperts, B. Mennucci, 
+ H. P. Hratchian, J. V. Ortiz, A. F. Izmaylov, J. L. Sonnenberg, 
+ D. Williams-Young, F. Ding, F. Lipparini, F. Egidi, J. Goings, 
+ B. Peng, A. Petrone, T. Henderson, D. Ranasinghe, V. G. Zakrzewski, 
+ J. Gao, N. Rega, G. Zheng, W. Liang, M. Hada, M. Ehara, K. Toyota, 
+ R. Fukuda, J. Hasegawa, M. Ishida, T. Nakajima, Y. Honda, O. Kitao, 
+ H. Nakai, T. Vreven, K. Throssell, J. A. Montgomery, Jr., 
+ J. E. Peralta, F. Ogliaro, M. J. Bearpark, J. J. Heyd, 
+ E. N. Brothers, K. N. Kudin, V. N. Staroverov, T. A. Keith, 
+ R. Kobayashi, J. Normand, K. Raghavachari, A. P. Rendell, 
+ J. C. Burant, S. S. Iyengar, J. Tomasi, M. Cossi, J. M. Millam, 
+ M. Klene, C. Adamo, R. Cammi, J. W. Ochterski, R. L. Martin, 
+ K. Morokuma, O. Farkas, J. B. Foresman, and D. J. Fox, 
+ Gaussian, Inc., Wallingford CT, 2020.
+ 
+ ******************************************
+ Gaussian DV:  ES64L-GDVRevJ.14 29-Dec-2020
+                 2-Feb-2022 
+ ******************************************
+ %nprocs=2
+ Will use up to    2 processors via shared memory.
+ %chk=mm_guess.chk
+ ---------------------------------------------------------
+ #P Amber=(print,SoftOnly) Geom=Connectivity Freq=intmodes
+ ---------------------------------------------------------
+ 1/10=4,18=20,30=1,37=210000000,38=1,56=2,57=2,64=303/1,3;
+ 2/9=110,12=2,40=1/2;
+ 3/5=30,11=9,25=1,30=1,41=10030000,43=2,71=2,140=1/1;
+ 4/20=11,22=2,24=3,119=11/2;
+ 7/8=21,25=1,44=-1/16;
+ 1/10=4,18=20,30=1,64=303/3;
+ 99//99;
+ Leave Link    1 at Wed Feb  2 12:13:55 2022, MaxMem=           0 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/chemical_software//gdv/l101.exe)
+ -------------------
+ Title Card Required
+ -------------------
+ Symbolic Z-matrix:
+ Charge =  0 Multiplicity = 1
+ O-OW--0.000           5.10901   2.31105   0. 
+ H-HW-+0.000           6.06901   2.31105   0. 
+ H-HW-+0.000           4.78856   3.21598   0. 
+ 
+ ITRead=  0  0  0
+ MicOpt= -1 -1 -1
+ DXMax1 from symmetrization= 1.13D-08
+ NAtoms=      3 NQM=        3 NQMF=       0 NMMI=      0 NMMIF=      0
+                NMic=       0 NMicF=      0.
+                    Isotopes and Nuclear Properties:
+ (Nuclear quadrupole moments (NQMom) in fm**2, nuclear magnetic moments (NMagM)
+  in nuclear magnetons)
+
+  Atom         1           2           3
+ IAtWgt=          16           1           1
+ AtmWgt=  15.9949146   1.0078250   1.0078250
+ NucSpn=           0           1           1
+ AtZEff=  -0.0000000  -0.0000000  -0.0000000
+ NQMom=    0.0000000   0.0000000   0.0000000
+ NMagM=    0.0000000   2.7928460   2.7928460
+ AtZNuc=   8.0000000   1.0000000   1.0000000
+ Generating MM parameters.
+ Read MM parameter file:
+ Include all MM classes
+
+ MM sanity checks:
+ All charges sum to:                0.00000000
+ Charges of atoms sum to:           0.00000000
+ MMInit generated parameter data with length LenPar=         451.
+ Leave Link  101 at Wed Feb  2 12:13:55 2022, MaxMem=   104857600 cpu:               0.2 elap:               0.1
+ (Enter /home/emanuele/chemical_software//gdv/l103.exe)
+
+ GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
+ Berny optimization.
+ Initialization pass.
+                           ----------------------------
+                           !    Initial Parameters    !
+                           ! (Angstroms and Degrees)  !
+ --------------------------                            --------------------------
+ ! Name  Definition              Value          Derivative Info.                !
+ --------------------------------------------------------------------------------
+ ! R1    R(1,2)                  0.96           calculate D2E/DX2 analytically  !
+ ! R2    R(1,3)                  0.96           calculate D2E/DX2 analytically  !
+ ! A1    A(2,1,3)              109.5            calculate D2E/DX2 analytically  !
+ --------------------------------------------------------------------------------
+ Trust Radius=3.00D-01 FncErr=1.00D-07 GrdErr=1.00D-07 EigMax=2.50D+02 EigMin=1.00D-04
+ Number of steps in this run=      2 maximum allowed number of steps=      2.
+ GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
+
+ Leave Link  103 at Wed Feb  2 12:13:55 2022, MaxMem=   104857600 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/chemical_software//gdv/l202.exe)
+                          Input orientation:                          
+ ---------------------------------------------------------------------
+ Center     Atomic      Atomic             Coordinates (Angstroms)
+ Number     Number       Type             X           Y           Z
+ ---------------------------------------------------------------------
+      1          8    20001021        5.109012    2.311046   -0.000000
+      2          1    20001030        6.069012    2.311046   -0.000000
+      3          1    20001030        4.788557    3.215982    0.000000
+ ---------------------------------------------------------------------
+                    Distance matrix (angstroms):
+                    1          2          3
+     1  O    0.000000
+     2  H    0.960000   0.000000
+     3  H    0.960000   1.567952   0.000000
+ Stoichiometry    H2O
+ Framework group  C2V[C2(O),SGV(H2)]
+ Deg. of freedom     2
+ Full point group                 C2V     NOp   4
+ Largest Abelian subgroup         C2V     NOp   4
+ Largest concise Abelian subgroup C2      NOp   2
+                         Standard orientation:                         
+ ---------------------------------------------------------------------
+ Center     Atomic      Atomic             Coordinates (Angstroms)
+ Number     Number       Type             X           Y           Z
+ ---------------------------------------------------------------------
+      1          8    20001021        0.000000   -0.000000    0.110812
+      2          1    20001030       -0.000000    0.783976   -0.443248
+      3          1    20001030       -0.000000   -0.783976   -0.443248
+ ---------------------------------------------------------------------
+ Rotational constants (GHZ):         919.6759688         407.9403309         282.5913776
+ Leave Link  202 at Wed Feb  2 12:13:55 2022, MaxMem=   104857600 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/chemical_software//gdv/l301.exe)
+ Standard basis: Dummy (5D, 7F)
+ There are     2 symmetry adapted cartesian basis functions of A1  symmetry.
+ There are     0 symmetry adapted cartesian basis functions of A2  symmetry.
+ There are     0 symmetry adapted cartesian basis functions of B1  symmetry.
+ There are     1 symmetry adapted cartesian basis functions of B2  symmetry.
+ There are     2 symmetry adapted basis functions of A1  symmetry.
+ There are     0 symmetry adapted basis functions of A2  symmetry.
+ There are     0 symmetry adapted basis functions of B1  symmetry.
+ There are     1 symmetry adapted basis functions of B2  symmetry.
+     3 basis functions,     3 primitive gaussians,     3 cartesian basis functions
+     2 alpha electrons        2 beta electrons
+       nuclear repulsion energy         2.5424008904 Hartrees.
+ IExCor=       0 DFT=F Ex=HF Corr=None N6=None ScaHFX=  1.000000
+ ScaDFX=  1.000000  1.000000  1.000000  1.000000  1.000000  0.000000
+ ScaDFX=  0.000000  0.000000  0.000000  0.000000  0.000000  0.000000
+ IRadAn=      5 IRanWt=     -1 IRanGd=            0 ICorTp=0 IEmpDi=  4
+ NAtoms=    3 NActive=    3 NUniq=    2 SFac= 2.25D+00 NAtFMM=   60 NAOKFM=F Big=F
+ Integral buffers will be    131072 words long.
+ Raffenetti 1 integral format.
+ Two-electron integral symmetry is turned on.
+ Leave Link  301 at Wed Feb  2 12:13:55 2022, MaxMem=   104857600 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/chemical_software//gdv/l402.exe)
+ AMBER calculation of energy, first and second derivatives.
+ ****************************
+ MOLECULAR MECHANICS FUNCTION
+ ****************************
+ Molecular mechanics terms:
+ HrmStr1 1-2  400.00 0.9607
+ HrmStr1 1-3  400.00 0.9607
+ HrmBnd1 2-1-3  40.00 104.90
+ Energy per function type:
+ Direct Coulomb + vdW (small)                           0.000000000
+ Direct Coulomb (large)                                 0.000000000
+ Direct vdW (large)                                     0.000000000
+ Non-direct Coulomb + vdW (small)                       0.000000000
+ Non-direct Coulomb (large)                             0.000000000
+ Non-direct vdW (large)                                 0.000000000
+ Harmonic stretch I                                     0.000000539
+ Harmonic bend I                                        0.000410826
+ Energy per function class:
+        Coulomb               0.000000000
+    Vanderwaals               0.000000000
+     Stretching               0.000000539
+        Bending               0.000410826
+ Energy=    4.113650608E-04 NIter=   0.
+ Dipole moment=       0.000000       0.000000       0.000000
+ Leave Link  402 at Wed Feb  2 12:13:55 2022, MaxMem=   104857600 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/chemical_software//gdv/l716.exe)
+ Dipole        = 0.00000000D+00 0.00000000D+00 0.00000000D+00
+ Full mass-weighted force constant matrix:
+ Low frequencies --- -370.2042  -85.6075   -0.0000    0.0000    0.0000  226.4657
+ Low frequencies --- 1477.3537 3126.6013 3184.0425
+ Diagonal vibrational polarizability:
+        0.0000000       0.0000000       0.0000000
+ Harmonic frequencies (cm**-1), IR intensities (KM/Mole), Raman scattering
+ activities (A**4/AMU), depolarization ratios for plane and unpolarized
+ incident light, reduced masses (AMU), force constants (mDyne/A),
+ and normal coordinates:
+                      1                      2                      3
+                     A1                     A1                     B2
+ Frequencies --   1477.3537              3126.6013              3183.9256
+ Red. masses --      1.0771                 1.0504                 1.0868
+ Frc consts  --      1.3851                 6.0500                 6.4910
+ IR Inten    --      0.0000                 0.0000                 0.0000
+  Atom  AN      X      Y      Z        X      Y      Z        X      Y      Z
+     1   8    -0.00  -0.00  -0.07     0.00  -0.00   0.05    -0.00  -0.07  -0.00
+     2   1     0.00   0.45   0.54    -0.00   0.57  -0.42     0.00   0.58  -0.41
+     3   1     0.00  -0.45   0.54    -0.00  -0.57  -0.42     0.00   0.58   0.41
+
+ -------------------
+ - Thermochemistry -
+ -------------------
+ Temperature   298.150 Kelvin.  Pressure      1.00000 Atm.
+ Atom     1 has atomic number  8 and mass  15.99491
+ Atom     2 has atomic number  1 and mass   1.00783
+ Atom     3 has atomic number  1 and mass   1.00783
+ Molecular mass:    18.01056 amu.
+ Principal axes and moments of inertia in atomic units:
+                                 1                 2                 3
+     Eigenvalues --            1.962366          4.424032          6.386399
+           X                   0.000000          0.000000          1.000000
+           Y                   1.000000         -0.000000         -0.000000
+           Z                   0.000000          1.000000         -0.000000
+ This molecule is an asymmetric top.
+ Rotational symmetry number  2.
+ Rotational temperatures (Kelvin)     44.13749    19.57805    13.56225
+ Rotational constants (GHZ):         919.67597   407.94033   282.59138
+ Zero-point vibrational energy      46581.9 (Joules/Mol)
+                                   11.13333 (Kcal/Mol)
+ Vibrational temperatures:   2125.58  4498.48  4580.96
+          (Kelvin)
+ 
+ Zero-point correction=                           0.017742 (Hartree/Particle)
+ Thermal correction to Energy=                    0.020580
+ Thermal correction to Enthalpy=                  0.021524
+ Thermal correction to Gibbs Free Energy=         0.000126
+ Sum of electronic and zero-point Energies=              0.018153
+ Sum of electronic and thermal Energies=                 0.020991
+ Sum of electronic and thermal Enthalpies=               0.021936
+ Sum of electronic and thermal Free Energies=            0.000537
+ 
+                     E (Thermal)             CV                S
+                      KCal/Mol        Cal/Mol-Kelvin    Cal/Mol-Kelvin
+ Total                   12.914              6.043             45.036
+ Electronic               0.000              0.000              0.000
+ Translational            0.889              2.981             34.608
+ Rotational               0.889              2.981             10.415
+ Vibrational             11.137              0.081              0.013
+                       Q            Log10(Q)             Ln(Q)
+ Total Bot       0.875074D+00         -0.057955         -0.133446
+ Total V=0       0.126717D+09          8.102836         18.657470
+ Vib (Bot)       0.691126D-08         -8.160443        -18.790114
+ Vib (V=0)       0.100080D+01          0.000348          0.000802
+ Electronic      0.100000D+01          0.000000          0.000000
+ Translational   0.300431D+07          6.477745         14.915559
+ Rotational      0.421447D+02          1.624743          3.741109
+                           ----------------------------
+                           ! Normal Mode     1        !
+ --------------------------                            --------------------------
+ ! Name  Definition              Value          Relative Weight (%)             !
+ --------------------------------------------------------------------------------
+ ! A1    A(2,1,3)                0.8362                 95.3                    !
+ --------------------------------------------------------------------------------
+                           ----------------------------
+                           ! Normal Mode     2        !
+ --------------------------                            --------------------------
+ ! Name  Definition              Value          Relative Weight (%)             !
+ --------------------------------------------------------------------------------
+ ! R1    R(1,2)                  0.7366                 47.8                    !
+ ! R2    R(1,3)                  0.7366                 47.8                    !
+ --------------------------------------------------------------------------------
+                           ----------------------------
+                           ! Normal Mode     3        !
+ --------------------------                            --------------------------
+ ! Name  Definition              Value          Relative Weight (%)             !
+ --------------------------------------------------------------------------------
+ ! R1    R(1,2)                  0.7645                 50.0                    !
+ ! R2    R(1,3)                 -0.7645                 50.0                    !
+ --------------------------------------------------------------------------------
+ Max01P=      3 Av01P=    2.67 Stan. Dev.=    0.58
+ Max05P=      2 Av05P=    1.67 Stan. Dev.=    0.58
+ Max10P=      2 Av10P=    1.67 Stan. Dev.=    0.58
+ MaxNDP=      2 AvNDP=    1.67 Stan. Dev.=    0.58
+ ***** Axes restored to original set *****
+ -------------------------------------------------------------------
+ Center     Atomic                   Forces (Hartrees/Bohr)
+ Number     Number              X              Y              Z
+ -------------------------------------------------------------------
+      1        8          -0.005610275   -0.007938355   -0.000000000
+      2        1           0.000438594    0.005641685    0.000000000
+      3        1           0.005171680    0.002296670   -0.000000000
+ -------------------------------------------------------------------
+ Cartesian Forces:  Max     0.007938355 RMS     0.004197018
+ Force constants in Cartesian coordinates: 
+                1             2             3             4             5 
+      1  0.429032D+00
+      2 -0.581796D-01  0.387827D+00
+      3  0.000000D+00  0.000000D+00 -0.928419D-02
+      4 -0.357003D+00 -0.310985D-02  0.000000D+00  0.357003D+00
+      5 -0.396252D-01 -0.514263D-01  0.000000D+00  0.310985D-02  0.384955D-01
+      6  0.000000D+00  0.000000D+00  0.464209D-02  0.000000D+00  0.000000D+00
+      7 -0.720288D-01  0.612894D-01  0.000000D+00  0.000000D+00  0.365154D-01
+      8  0.978048D-01 -0.336401D+00  0.000000D+00  0.000000D+00  0.129308D-01
+      9  0.000000D+00  0.000000D+00  0.464209D-02  0.000000D+00  0.000000D+00
+                6             7             8             9 
+      6 -0.134302D-02
+      7  0.000000D+00  0.720288D-01
+      8  0.000000D+00 -0.978048D-01  0.323470D+00
+      9 -0.329907D-02  0.000000D+00  0.000000D+00 -0.134302D-02
+ FormGI is forming the generalized inverse of G from B-inverse, IUseBI=4.
+ Force constants in internal coordinates: 
+                1             2             3 
+      1  0.357003D+00
+      2  0.000000D+00  0.357003D+00
+      3  0.000000D+00  0.000000D+00  0.127488D+00
+ Leave Link  716 at Wed Feb  2 12:13:56 2022, MaxMem=   104857600 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/chemical_software//gdv/l103.exe)
+
+ GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
+ Berny optimization.
+ Internal  Forces:  Max     0.010234790 RMS     0.005919900
+ Search for a local minimum.
+ Step number   1 out of a maximum of    2
+ All quantities printed in internal units (Hartrees-Bohrs-Radians)
+ Second derivative matrix not updated -- analytic derivatives used.
+ The second derivative matrix:
+                          R1        R2        A1
+           R1           0.35700
+           R2           0.00000   0.35700
+           A1          -0.00000  -0.00000   0.12749
+ ITU=  0
+     Eigenvalues ---    0.12749   0.35700   0.35700
+ Angle between quadratic step and forces=   2.23 degrees.
+ Linear search not attempted -- first point.
+ Iteration  1 RMS(Cart)=  0.04389404 RMS(Int)=  0.00119334
+ Iteration  2 RMS(Cart)=  0.00106202 RMS(Int)=  0.00000005
+ Iteration  3 RMS(Cart)=  0.00000004 RMS(Int)=  0.00000000
+ ITry= 1 IFail=0 DXMaxC= 4.59D-02 DCOld= 1.00D+10 DXMaxT= 3.00D-01 DXLimC= 3.00D+00 Rises=F
+ ClnCor:  largest displacement from symmetrization is 4.30D-18 for atom     3.
+ Variable       Old X    -DE/DX   Delta X   Delta X   Delta X     New X
+                                 (Linear)    (Quad)   (Total)
+    R1        1.81414   0.00044   0.00000   0.00123   0.00123   1.81537
+    R2        1.81414   0.00044   0.00000   0.00123   0.00123   1.81537
+    A1        1.91114  -0.01023   0.00000  -0.08028  -0.08028   1.83086
+         Item               Value     Threshold  Converged?
+ Maximum Force            0.010235     0.000450     NO 
+ RMS     Force            0.005920     0.000300     NO 
+ Maximum Displacement     0.045911     0.001800     NO 
+ RMS     Displacement     0.044409     0.001200     NO 
+ Predicted change in Energy=-4.113651D-04
+                           ----------------------------
+                           ! Non-Optimized Parameters !
+                           ! (Angstroms and Degrees)  !
+ --------------------------                            --------------------------
+ ! Name  Definition              Value          Derivative Info.                !
+ --------------------------------------------------------------------------------
+ ! R1    R(1,2)                  0.9607         -DE/DX =    0.0004              !
+ ! R2    R(1,3)                  0.9607         -DE/DX =    0.0004              !
+ ! A1    A(2,1,3)              104.9003         -DE/DX =   -0.0102              !
+ --------------------------------------------------------------------------------
+ GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
+
+ Leave Link  103 at Wed Feb  2 12:13:56 2022, MaxMem=   104857600 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/chemical_software//gdv/l9999.exe)
+ Unable to Open any file for archive entry.
+ 1\1\GINC-COOLER-MASTER-U2\Freq\AMBER\ZDO\H2O1\EMANUELE\02-Feb-2022\0\\
+ #P Amber=(print,SoftOnly) Geom=Connectivity Freq=intmodes\\Title Card 
+ Required\\0,1\O,5.1090116305,2.3110464796,0.\H,6.06901163,2.31104648,0
+ .\H,4.788557044,3.21598231,0.\\Version=ES64L-GDVRevJ.14\HF=0.0004114\R
+ MSD=0.000e+00\RMSF=4.197e-03\ZeroPoint=0.0177421\Thermal=0.0205801\ETo
+ t=0.0209914\HTot=0.0219356\Dipole=0.,0.,0.\PG=C02V [C2(O1),SGV(H2)]\NI
+ mag=0\\0.42903189,-0.05817960,0.38782694,0.,0.,-0.00928419,-0.35700308
+ ,-0.00310985,0.,0.35700308,-0.03962524,-0.05142633,0.,0.00310985,0.038
+ 49555,0.,0.,0.00464209,0.,0.,-0.00134302,-0.07202881,0.06128944,0.,0.,
+ 0.03651540,0.,0.07202881,0.09780484,-0.33640061,0.,0.,0.01293078,0.,-0
+ .09780484,0.32346983,0.,0.,0.00464209,0.,0.,-0.00329907,0.,0.,-0.00134
+ 302\\0.00561027,0.00793836,0.,-0.00043859,-0.00564168,0.,-0.00517168,-
+ 0.00229667,0.\\\@
+ The archive entry for this job was punched.
+
+
+ ABALONE: AN EXPRESSION OF DISBELIEF.
+ Job cpu time:       0 days  0 hours  0 minutes  0.5 seconds.
+ Elapsed time:       0 days  0 hours  0 minutes  0.3 seconds.
+ File lengths (MBytes):  RWF=      6 Int=      0 D2E=      0 Chk=      1 Scr=      1
+ Normal termination of Gaussian DV at Wed Feb  2 12:13:56 2022.

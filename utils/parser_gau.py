@@ -206,7 +206,7 @@ def read_HessXYZ(all_lines, N_atom):
 
 def read_NamesTypes(all_lines, N_atoms):
     """ 
-    Reading Aom Names from log file:
+    Reading Atom Names from log file:
     """
     ele_list = []
     type_list = []

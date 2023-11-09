@@ -143,7 +143,7 @@ def main():
     args = parser.parse_args()
     fname = args.file
     data = load_data(fname)
-    xval = data[:,0]
+    xval = data[:,0]  - 180.0
     qm_rel = ( data[:,1] - min(data[:,1]) ) *6.275030E02  # Eh to kcal/mol
     mm_rel = ( data[:,2] - min(data[:,2]) ) *6.275030E02
     yval =  ( qm_rel - mm_rel ) 

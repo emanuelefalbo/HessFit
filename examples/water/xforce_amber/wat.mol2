@@ -1,0 +1,17 @@
+@<TRIPOS>MOLECULE
+WAT
+ 3 2 0 0 0
+SMALL
+GASTEIGER
+
+@<TRIPOS>ATOM
+      1  O1         0.0000    0.0000    0.1140 OW     1  HOH     -0.7202
+      2  H1         0.0000    0.7910   -0.4570 HW       1  HOH      0.3601
+      3  H2         0.0000   -0.7910   -0.4570 HW       1  HOH      0.3601
+@<TRIPOS>BOND
+     1     2     1    1
+     2     3     1    1
+
+
+
+

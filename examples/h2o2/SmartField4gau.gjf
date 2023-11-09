@@ -19,7 +19,6 @@ HrmStr1 OW HW  582.673  0.963
 HrmStr1 OW OW  337.041  1.458
 !Angles
 HrmBnd1 HW OW OW  69.008  105.356
-HrmBnd1 OW OW HW  69.008  105.356
 ! Torsions
-AmbTrs HW OW OW HW 0 0 0 0  0.00 5.26 0.00 0.  1.0
+AmbTrs HW OW OW HW 0  0  0  0  0.00 5.26 0.00 0.  1.0
 

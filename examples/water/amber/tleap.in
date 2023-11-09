@@ -1,0 +1,18 @@
+source leaprc.protein.ff14SB #Source leaprc file for ff14SB protein force field
+source leaprc.gaff #Source leaprc file for gaff
+source leaprc.water.tip3p #Source leaprc file for TIP3P water model
+HOH = loadmol2 wat.mol2 #Load the mol2 file for the ligand
+check HOH
+#loadamberparams LIG.frcmod #Load the additional frcmod file for ligand
+WAT = loadpdb wat.pdb #Load PDB file for protein-ligand complex
+#mol = loadpdb sphere30.pdb #Load PDB file for protein-ligand complex
+#HOST = loadpdb LIG.pdb #Load PDB file for protein-ligand complex
+solvatebox WAT TIP3PBOX 12 #Solvate the complex with a cubic water box
+#solvatebox mol HOST 12 #Solvate the complex with a cubic of same molecule
+#solvateoct mol HOST 30 #Solvate the complex with octa of same molecule
+#set mol box {22,22,22} 
+#addions mol Cl- 0 #Add Cl- ions to neutralize the system
+#saveamberparm mol test.prmtop test.inpcrd #Save AMBER topology and coordinate files
+saveamberparm WAT wat.prmtop wat.inpcrd #Save AMBER topology and coordinate files
+#saveamberparm mol sphere30.prmtop sphere30.inpcrd #Save AMBER topology and coordinate files
+quit #Quit tleap program

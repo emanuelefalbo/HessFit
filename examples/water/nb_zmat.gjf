@@ -1,0 +1,28 @@
+%nprocs=2
+%chk=nb_zmat.chk
+#p opt=(calcall,tight,maxstep=7,maxcycles=100) freq amber=softfirst
+geom=connectivity
+
+Title Card Required
+
+0 1
+ O-OW           
+ H-HW               1            B1
+ H-HW               1            B2    2            A1
+
+   B1             0.96000000
+   B2             0.96000000
+   A1           109.49999976
+
+ 1 2 1.0 3 1.0
+ 2
+ 3
+
+NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 0.833
+!
+HrmStr1 OW HW  0.000   0.9606501175
+!
+HrmBnd1 HW O HW   0.000 104.9002751576
+
+
+

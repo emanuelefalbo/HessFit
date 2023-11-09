@@ -1,0 +1,10 @@
+parm ../wat.prmtop
+#parm ../LIG.prmtop
+trajin ../03_Prod.nc
+#trajin ../md_prod.nc
+rms first mass out nocut.rms time 0.1 
+rdf out rdf_oh.dat .1 15.0 @%HW @%OW
+rdf out rdf_oo.dat .1 15.0 @%OW @%OW
+rdf out rdf_hh.dat .1 15.0 @%HW @%HW
+diffusion :WAT  0.1  average
+

@@ -1,0 +1,10 @@
+{
+    "files": {
+        "log_qm_file":  "wat_qm.log",
+        "fchk_qm_file": "wat_qm.fchk",
+        "fchk_mm_file": "wat_mm_artificial.fchk",
+        "fchk_nb_file": "wat_nb.fchk"
+         },
+    "mode": "all",
+    "opt": "ric"
+}

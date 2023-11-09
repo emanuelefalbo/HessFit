@@ -3,11 +3,13 @@
 import parser_gau as pgau
 import force_constant_mod as fc
 import average_across_types as aat
-import printout_mod as pout
+# import printout_mod as pout
 import argparse
 import os
 import json
+import print_top as top
 import numpy as np
+# import scipy.optimize as optimize
 
 
 def print_init():
@@ -46,143 +48,6 @@ def read_optfile(fname):
             raise FileNotFoundError(f'Missing {i} file')
     return data
 
-def print_GauInp(*arg):
-    ele_ls = arg[0]
-    tp_ls= arg[1]
-    coord = arg[2]
-    bond_tp_ls = arg[3]
-    k_bond_ls = arg[4]
-    bond_ln_ls = arg[5]
-    angle_tp_ls = arg[6]
-    k_angle_ls = arg[7]
-    angle_ln_ls = arg[8]
-    tors_tp_ls = arg[9]
-    v1 = arg[10]
-    v2 = arg[11]
-    v3 = arg[12]
-    phase = arg[13]
-    hybrid_list = arg[14]
-    chg = arg[15]
-    """
-    Write a gaussian input file:
-    ele_ls: element list 
-    tp_ls: atom type list
-    coord: coordinates XYZ
-    bond_tp_ls:  bond type list
-    bond_ln_ls:  bond length list 
-    k_bond_ls:  bond constant list
-    angle_tp_ls: angle type list 
-    k_angle_ls: angle constant list 
-    angle_ln_ls : deg angle list
-
-    """
-    header_gjf ="""%mem=1GB
-%nprocshared=1
-%chk=SmartField4gau.chk
-#p Amber=(SoftFirst,Print) nosymm geom=nocrowd opt Freq
- 
-Title
-
-0 1
-"""
-
-    master_func = """
-! Master function
-NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
-"""
-    fname = 'SmartField4gau.gjf'
-    with open(fname, 'w') as fout:
-        fout.write(header_gjf)
-        for m, p, l, q in zip(ele_ls, tp_ls, coord, chg):
-                    #  s1 = '  '.join(str(x) for x in p)
-                     s2 = '  '.join((f'{x:.6f}') for x in l)
-                     fout.write(f'{m}-{p}-{q}  {s2}\n')
-        # fout.write(f'\n')
-        fout.write(master_func)
-        fout.write(f'! SMARTFIELD FF\n')
-        fout.write(f'!Bonds\n')
-        for k in range(len(bond_tp_ls)):
-            msg = (
-                  f'HrmStr1 {bond_tp_ls[k]}  {k_bond_ls[k]:.3f} ' 
-                  f' {bond_ln_ls[k]:.3f}\n'
-                  )
-            fout.write(msg)
-        fout.write(f'!Angles\n')
-        for k in range(len(angle_tp_ls)):
-            msg = (
-                  f'HrmBnd1 {angle_tp_ls[k]}  {k_angle_ls[k]:.3f} ' 
-                  f' {angle_ln_ls[k]:.3f}\n'
-                  )
-            fout.write(msg)
-        fout.write(f'! Torsions\n')
-        for k in range(len(tors_tp_ls)):
-            s = '  '.join((f'{x}') for x in phase[k,:])
-            msg = (
-                  f'AmbTrs {tors_tp_ls[k]} {s} '
-                  f' {v1[k]:.2f} {v2[k]:.2f} {v3[k]:.2f} 0. ' 
-                  f' {float(hybrid_list[k])}\n'
-                  )
-            fout.write(msg)
-        fout.write(f'\n')
-
-
-def print_AmbFrcmod(*arg):
-    tp_ls= arg[0]
-    bond_tp_ls = arg[1]
-    k_bond_ls = arg[2]
-    bond_ln_ls = arg[3]
-    angle_tp_ls = arg[4]
-    k_angle_ls = arg[5]
-    angle_ln_ls = arg[6]
-    tors_tp_ls = arg[7]
-    v1 = arg[8]
-    v2 = arg[9]
-    v3 = arg[10]
-    phase=arg[11]
-    hybrid_list = arg[12]
-
-    """
-    Write a AMBER-like frcmod file:
-    tp_ls: atom type list
-    bond_tp_ls:  bond type list
-    bond_ln_ls:  bond length list 
-    k_bond_ls:  bond constant list
-    angle_tp_ls: angle type list 
-    k_angle_ls: angle constant list 
-    angle_ln_ls : deg angle list
-
-    """
-    tp_ls_unique = set(tp_ls)
-    fname = 'SmartField_frcmod.txt'
-    with open(fname, 'w') as fout:
-        fout.write('MASS\n')
-        for m in tp_ls_unique:
-            fout.write(f'{m}\n')
-        fout.write(f'BOND\n')
-        for k in range(len(bond_tp_ls)):
-            msg = (
-                  f'{bond_tp_ls[k]} {k_bond_ls[k]:.3f} ' 
-                  f' {bond_ln_ls[k]:.3f}\n'
-                  )
-            fout.write(msg)
-        fout.write(f'ANGLE\n')
-        for k in range(len(angle_tp_ls)):
-            msg = (
-                  f'{angle_tp_ls[k]}  {k_angle_ls[k]:.3f} ' 
-                  f' {angle_ln_ls[k]:.3f}\n'
-                  )
-            fout.write(msg)
-        fout.write(f'DIHE\n')
-        for k in range(len(tors_tp_ls)):
-            s = '  '.join((f'{x}') for x in phase[k,:])
-            msg = (
-                  f'{tors_tp_ls[k]} {s}'
-                  f' {v1[k]:.2f} {v2[k]:.2f} {v3[k]:.2f} 0. ' 
-                  f' {hybrid_list[k]}\n'
-                  )
-            fout.write(msg)
-        fout.write(f'\n')
-    
 
 def get_DiagMatrix(AM):
     for i in range(len(AM)):
@@ -232,11 +97,16 @@ def main():
         hessRIC_qm = pgau.read_HessRIC(text_qm_fchk, ric_list)
         hessRIC_mm = pgau.read_HessRIC(text_mm_fchk, ric_list)
         hessRIC_nb = pgau.read_HessRIC(text_nb_fchk, ric_list)
+        print(hessRIC_qm)
+        print("")
+        print(hessRIC_mm)
         hess_eff = hessRIC_qm - hessRIC_nb
         diag_QM = np.diagonal(hess_eff)                 # Take diagonal items of H_QM
         MM_diag = get_DiagMatrix(hessRIC_mm)            # Make sure H_MM is diagonal
         coeffs = np.linalg.solve(MM_diag, diag_QM)      # Solve Linear System for Bond and Angles only 
                                                         # H_MM * K = H_QM ; ignoring Torsion 
+                                                     
+           
         k_bonds = coeffs[0 : No_bonds]                          
         k_angles = coeffs[No_bonds : No_bonds + No_angles ]
         diag_tors = diag_QM[No_ric - No_dihes : No_ric] * 627.509391  # Torsional Gradient; kcal/mol rad
@@ -265,12 +135,12 @@ def main():
     # tors_unique, vall_unique = aat.make_list_unique(tors_type_list, vall_arr)
     
     # Print all into Gaussian Input
-    pout.print_GauInp(ele_list, type_list, qm_XYZ, \
+    top.print_GauInp(ele_list, type_list, qm_XYZ, \
                  bonds_unique, k_bonds_unique, bond_arr, \
                  angles_unique, k_angles_unique, angle_arr, \
                  tors_type_list, v1, v2, v3, phase, periodic_list, chg)
 
-    pout.print_AmbFrcmod(type_list, \
+    top.print_AmbFrcmod(type_list, \
                  bonds_unique, k_bonds_unique, bond_arr, \
                  angles_unique, k_angles_unique, angle_arr, \
                  tors_type_list, v1, v2, v3, phase, periodic_list)

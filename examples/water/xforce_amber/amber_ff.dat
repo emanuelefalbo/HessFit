@@ -1,0 +1,17 @@
+Remark goes here
+MASS
+OW  16.000
+HW  1.0008
+
+BOND
+OW-HW        527.096537   0.9757420922
+
+ANGLE
+HW-OW-HW               44.58067 108.2871215797
+
+DIHE
+
+NONBON
+OW          1.7683  0.1520             TIP3P water model
+HW          0.0000  0.0000             TIP3P water model
+
