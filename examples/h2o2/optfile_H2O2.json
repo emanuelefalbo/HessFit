@@ -1,0 +1,10 @@
+{
+    "files": {
+        "log_qm_file":  "h2o2_qm.log",
+        "fchk_qm_file": "h2o2_qm.fchk",
+        "fchk_mm_file": "mmH2O2_2.fchk",
+        "fchk_nb_file": "mmH2O2_nb.fchk"
+         },
+    "mode": "mean",
+    "opt": "ric"
+}

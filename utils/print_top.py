@@ -29,6 +29,7 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
         write_bonds(file_out, bond_type_list, k_bond_list, bond_length_list)
         write_angles(file_out, angle_type_list, k_angle_list, angle_length_list)
         write_torsions(file_out, torsion_type_list, phase_list, v1_list, v2_list, v3_list, hybrid_list)
+        file_out.write('\n')
 
 
 def write_bonds(file, bond_type_list, k_bond_list, bond_length_list):
@@ -48,6 +49,7 @@ def write_torsions(file, torsion_type_list, phase_list, v1_list, v2_list, v3_lis
     for torsion_type, phase, v1, v2, v3, hybrid in zip(torsion_type_list, phase_list, v1_list, v2_list, v3_list, hybrid_list):
         formatted_phase = '  '.join(f'{x}' for x in phase)
         file.write(f'AmbTrs {torsion_type} {formatted_phase} {v1:.2f} {v2:.2f} {v3:.2f} 0. {float(hybrid)}\n')
+
 
 def print_AmbFrcmod(*args):
     type_list, bond_type_list, k_bond_list, bond_length_list, angle_type_list, k_angle_list, angle_length_list, torsion_type_list, v1_list, v2_list, v3_list, phase_list, hybrid_list = args
@@ -70,24 +72,24 @@ def print_AmbFrcmod(*args):
         for type_entry in type_list_unique:
             file_out.write(f'{type_entry}\n')
 
-        write_bonds(file_out, bond_type_list, k_bond_list, bond_length_list)
-        write_angles(file_out, angle_type_list, k_angle_list, angle_length_list)
-        write_torsions(file_out, torsion_type_list, phase_list, v1_list, v2_list, v3_list, hybrid_list)
+        write_bonds_amber(file_out, bond_type_list, k_bond_list, bond_length_list)
+        write_angles_amber(file_out, angle_type_list, k_angle_list, angle_length_list)
+        write_torsions_amber(file_out, torsion_type_list, phase_list, v1_list, v2_list, v3_list, hybrid_list)
 
 
-def write_bonds(file, bond_type_list, k_bond_list, bond_length_list):
+def write_bonds_amber(file, bond_type_list, k_bond_list, bond_length_list):
     file.write('BOND\n')
     for bond_type, k_bond, bond_length in zip(bond_type_list, k_bond_list, bond_length_list):
         file.write(f'{bond_type} {k_bond:.3f} {bond_length:.3f}\n')
 
 
-def write_angles(file, angle_type_list, k_angle_list, angle_length_list):
+def write_angles_amber(file, angle_type_list, k_angle_list, angle_length_list):
     file.write('ANGLE\n')
     for angle_type, k_angle, angle_length in zip(angle_type_list, k_angle_list, angle_length_list):
         file.write(f'{angle_type} {k_angle:.3f} {angle_length:.3f}\n')
 
 
-def write_torsions(file, torsion_type_list, phase_list, v1_list, v2_list, v3_list, hybrid_list):
+def write_torsions_amber(file, torsion_type_list, phase_list, v1_list, v2_list, v3_list, hybrid_list):
     file.write('DIHE\n')
     for torsion_type, phase, v1, v2, v3, hybrid in zip(torsion_type_list, phase_list, v1_list, v2_list, v3_list, hybrid_list):
         formatted_phase = '  '.join(f'{x}' for x in phase)

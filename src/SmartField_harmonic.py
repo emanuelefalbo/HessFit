@@ -16,12 +16,11 @@ def print_init():
      print("""
  ======================================================
    Program:      SmartField
-   Creator:      Emanuele Falbo
-                 Scuola Normale Superiore, Pisa
-   Date:         July 2022
+   Creator:      Emanuele Falbo, Napoli
+   Date:         October 2023
    Language:     Python 3.v later
    Description:  The program returns force constants for
-                 bonded and non-bonded values
+                 bonded values and non-bonded parameters
    Mail:         falbo.emanuele@gmail.com 
  =======================================================
      
@@ -91,54 +90,53 @@ def main():
         hess_eff = hessXYZ_qm - hessXYZ_nb 
         k_bonds = np.empty(len(bond_list))
         k_angles = np.empty(len(angle_list))
-        diag_tors = np.empty(len(tors_list))
+        k_tors = np.empty(len(tors_list))
+        diag_QM = np.diagonal(hessXYZ_qm)  
+        # coeffs = np.linalg.lstsq(hessXYZ_mm, diag_QM, rcond=-1)[0]
     else:
         # Reading RIC Hessains 
         hessRIC_qm = pgau.read_HessRIC(text_qm_fchk, ric_list)
         hessRIC_mm = pgau.read_HessRIC(text_mm_fchk, ric_list)
         hessRIC_nb = pgau.read_HessRIC(text_nb_fchk, ric_list)
-        print(hessRIC_qm)
-        print("")
-        print(hessRIC_mm)
         hess_eff = hessRIC_qm - hessRIC_nb
         diag_QM = np.diagonal(hess_eff)                 # Take diagonal items of H_QM
         MM_diag = get_DiagMatrix(hessRIC_mm)            # Make sure H_MM is diagonal
+        # print(f'{np.array2string(MM_diag, precision=2)}')
         coeffs = np.linalg.solve(MM_diag, diag_QM)      # Solve Linear System for Bond and Angles only 
+        # fit = np.linalg.solve(hessRIC_mm, diag_QM) #*  627.509391   # Solve Linear System for Bond and Angles only 
                                                         # H_MM * K = H_QM ; ignoring Torsion 
-                                                     
            
-        k_bonds = coeffs[0 : No_bonds]                          
-        k_angles = coeffs[No_bonds : No_bonds + No_angles ]
-        diag_tors = diag_QM[No_ric - No_dihes : No_ric] * 627.509391  # Torsional Gradient; kcal/mol rad
-        # [print(i) for i in diag_tors]
-
+        k_bonds = coeffs[0 : No_bonds]  #  * ((627.509391)/(0.529117*0.529117))                       
+        k_angles = coeffs[No_bonds : No_bonds + No_angles ] #* (627.509391)
+        k_tors = coeffs[No_ric - No_dihes : No_ric] #* 627.509391  # Torsional Gradient; kcal/mol rad
+    
+    print(k_tors)
+    
     mdin = json_opts['opt']
-    if json_opts['mode'] == 'mean':
-        bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, hess_eff, type_list, \
-                      bond_list, k_bonds, mdin, 'mean')
-        angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, hess_eff, type_list, \
-                      angle_list, k_angles, mdin, 'mean')
-        tors_type_list, v1, v2, v3, tors_arr, phase, periodic_list = fc.set_torsion(qm_XYZ, type_list, \
-                      tors_list, diag_tors, force_1D, 'mean')               
-    elif json_opts['mode'] == 'all':
-        bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, hess_eff, type_list, \
-                      bond_list, k_bonds, mdin, 'all')
-        angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, hess_eff, type_list, \
-                      angle_list, k_angles, mdin, 'all') 
-        tors_type_list, v1, v2, v3, tors_arr, phase, periodic_list = fc.set_torsion(qm_XYZ, type_list, \
-                      tors_list, diag_tors, force_1D, 'all')
-
+    mode = json_opts['mode']
+    
+    bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, hess_eff, type_list, bond_list, k_bonds, mdin, mode)
+    angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, hess_eff, type_list, angle_list, k_angles, mdin, mode)
+    tors_type_list, v1, v2, v3, tors_arr, phase, periodic_list = fc.set_torsion(qm_XYZ, type_list, tors_list, k_tors, force_1D, mode)
+    
+    
     # Take out mirrored atom types of bonds & angles
     bonds_unique, k_bonds_unique = aat.make_list_unique(bond_type_list, k_bond_arr)
     angles_unique, k_angles_unique = aat.make_list_unique(angle_type_list, k_angle_arr)
     # Same for torsion...
-    # tors_unique, vall_unique = aat.make_list_unique(tors_type_list, vall_arr)
+    tors_unique, val_unique = aat.make_list_unique(tors_type_list, v1)
+    # print(val_unique)
+    # [print(i) for i in zip(tors_type_list)]
+    # print("")
+    # [print(j) for j in zip(tors_unique)]
+    
+    
     
     # Print all into Gaussian Input
     top.print_GauInp(ele_list, type_list, qm_XYZ, \
                  bonds_unique, k_bonds_unique, bond_arr, \
                  angles_unique, k_angles_unique, angle_arr, \
-                 tors_type_list, v1, v2, v3, phase, periodic_list, chg)
+                 tors_unique, v1, v2, v3, phase, periodic_list, chg)
 
     top.print_AmbFrcmod(type_list, \
                  bonds_unique, k_bonds_unique, bond_arr, \

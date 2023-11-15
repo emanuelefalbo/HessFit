@@ -30,7 +30,7 @@ def make_list_unique(var_list, k_values):
                 indexes[j] = indexes[i]
                 break
 
-    # pop indexes out
+    # pop indexes out; change res_bonds name 
     if len(id2del) != 0:
         j = id2del[0]
         res_bonds = splitted.copy()

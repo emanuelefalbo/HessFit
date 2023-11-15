@@ -123,9 +123,6 @@ def set_torsion(coords, type_list, tors_list, \
     """
     center_list = [ x[1:3] for x in tors_list]
     hybrid_list = [ center_list.count(x) for x in center_list]
-    # v1_eq = np.zeros( len(tors_list) ) 
-    # v2_eq = np.zeros( len(tors_list) ) 
-    # v3_eq = np.zeros( len(tors_list) ) 
     v1_eq = [0] * len(tors_list)
     v2_eq = [0] * len(tors_list)
     v3_eq = [0] * len(tors_list)
@@ -163,7 +160,8 @@ def set_torsion(coords, type_list, tors_list, \
                 eps = 5.0
                 if del_1 < eps or del_2 < eps:
                      n, d = 3.0, 1.0
-                     v3 = abs( -2* (d * k_tors[m])/(n*n* np.cos(n*phi_deg)) )
+                     v3 = abs( -2* (d * np.abs(k_tors[m]))/(n*n* np.cos(n*phi_deg)) )
+                     print(k_tors[m], v3, n)
                      if v3 > 5.0:                         # If force constants too stiff
                         v3_eq[m] = np.exp(-1.4/v3)*1.4     # use AMBER X-C-C-X values
                      else:
@@ -185,10 +183,13 @@ def set_torsion(coords, type_list, tors_list, \
                 phase[m, 1] = 180
                 if del_1 < eps or del_2 < eps:
                      n, d = 2.0, 1.0
-                     v2 = abs( -2 * (d * k_tors[m])/(n*n* np.cos(n*phi_deg)) )
+                     v2 = abs( -2 * (d * np.abs(k_tors[m]))/(n*n* np.cos(n*phi_deg)) )
+                    #  print(k_tors[m], v2, n)
                     #  if v2 > 30 or 0 < v2 < 9.0:
                      if v2 > 30:
                         v2_eq[m] = np.exp(-30./v2)*v2       # Reduce to a full C=C
+                        # print(v2_eq[m])
+                        # print("")
                      elif 0 < v2 < 14.5:
                           v2_eq[m] = np.exp(-v2/30.)*30. - np.exp(-v2/14.5)*14.5   # Scale for full C=C & 
                      else:                                 # Increase to a partial C=C

@@ -1,0 +1,31 @@
+%nprocs=1
+%chk=h2o2_xyz.chk
+!#p amber=(print,softfirst) freq=intmodes geom=connectivity
+#p amber=(hardfirst,print) freq=intmodes geom=connectivity
+
+Title Card Required
+
+0 1
+ O-ow                  5.10894347    2.31093989    0.00000000
+ H-hw                  4.78885247    3.21600439    0.00000000
+ O-ow                  6.42894347    2.31107261    0.00000000
+ H-hw                  6.74885246    3.21620146    0.00000000
+
+ 1 2 1.0 3 1.0
+ 2
+ 3 4 1.0
+ 4
+
+! Amber FF master function
+NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
+!
+!HrmStr1 OW HW  1.000   0.9606501175      
+!HrmStr1 OW OW  1.000   0.9606501175      
+!!                                                     
+!HrmBnd1 OW OW HW   1.000 105.00
+!!
+!AmbTrs HW OW OW HW 0 0 0 0  0.0  1.0  0.0  0.0  1.0
+!!
+!VDW HW  0.000  0.000
+!VDW OW 1.7683  0.1520
+

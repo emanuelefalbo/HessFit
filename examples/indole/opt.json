@@ -6,5 +6,5 @@
         "fchk_nb_file": "GauNonBon.fchk"
          },
     "mode": "mean",
-    "opt": "modsem"
+    "opt": "ric"
 }
