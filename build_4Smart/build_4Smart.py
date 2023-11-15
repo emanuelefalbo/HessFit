@@ -5,8 +5,7 @@ import parser_gau as pgau
 import force_constant_mod as fc
 import numpy as np
 import average_across_types as aat
-# import print_top as pout
-# import pathlib
+import readin_opts as rdin
 import os
 
 def print_GauHarm(*args):
@@ -107,31 +106,17 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
             fout.write(f'{s}\n')
 
         fout.write('\n')
-
-def dir_path(string):
-    if os.path.isdir(string):
-        return string
-    else:
-        raise NotADirectoryError(string)
-
-def commandline_parser():
-    parser = argparse.ArgumentParser(prog='build_4Smart.py', formatter_class=argparse.RawTextHelpFormatter)
-    requiredNamed = parser.add_argument_group('mandatory arguments')
-    requiredNamed.add_argument('-f1','--log_file', help='Gaussian QM log file ')
-    requiredNamed.add_argument('-f2','--fchk_file', help='Gaussain QM fchk file')
-    parser.add_argument('-m', '--mode', choices=['all', 'mean'],
-                        default='mean', help='averaging across same types; default = mean')
-    txt = """path/to/amber.prm in Gaussain root directory
-default = current directory """
-    parser.add_argument('-path', nargs='?', help=txt, default=os.getcwd(), type=dir_path)
-    
-    return parser
+        
 
 def main():
-    parser = commandline_parser()
+    parser = rdin.commandline_parser2()
     opts = parser.parse_args()
-    f_qm_log = opts.log_file
-    f_qm_fchk = opts.fchk_file
+    json_opts = rdin.read_optfile(opts.optfile)
+    # opts = parser.parse_args()
+    f_qm_log = json_opts['files']['log_qm_file']
+    f_qm_fchk = json_opts['files']['fchk_qm_file']
+    # f_qm_log = opts.log_file
+    # f_qm_fchk = opts.fchk_file
     text_qm_log = pgau.store_any_file(f_qm_log)
     text_qm_fchk = pgau.store_any_file(f_qm_fchk)
     

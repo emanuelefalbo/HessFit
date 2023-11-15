@@ -3,26 +3,18 @@
 import subprocess
 import os
 import argparse
-
-def parse_args():
-    parser = argparse.ArgumentParser(description="Execute Gaussian and SmartField scripts.")
-    parser.add_argument("--f1", help="Path to F1 file ")
-    parser.add_argument("--f2", help="Path to F2 file ")
-    parser.add_argument("--json", default="opt.json", help="Path to JSON file ")
-    return parser.parse_args()
+import readin_opts as rdin
 
 def main():
-    args = parse_args()
-
-    F1 = args.f1
-    F2 = args.f2
-    JSON = args.json
+    parser = rdin.commandline_parser3()
+    opts = parser.parse_args()
 
     GPATH = os.environ.get("g09root") + "/g09"
     SM = "Smart_harmonic.py"
     BS = "build_4Smart.py"
+    JSON = opts.optfile
 
-    subprocess.run([BS, "-f1", F1, "-f2", F2, "-path", GPATH], check=True)
+    subprocess.run([BS, JSON, "-path", GPATH], check=True)
 
     for f in ["GauHarm.gjf", "GauNonBon.gjf"]:
         print(f"Executing Gaussian on {f}")

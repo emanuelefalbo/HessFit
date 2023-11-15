@@ -6,7 +6,7 @@ import average_across_types as aat
 # import printout_mod as pout
 import argparse
 import os
-import json
+import readin_opts as rdin
 import print_top as top
 import numpy as np
 # import scipy.optimize as optimize
@@ -26,28 +26,6 @@ def print_init():
      
     """)
 
-def commandline_parser():
-    parser = argparse.ArgumentParser(prog='smart_bonds_angles.py', formatter_class=argparse.RawTextHelpFormatter)
-    parser.add_argument('optfile', nargs='?', help='option file in json')
-    parser.add_argument('-m', '--mode', choices=['modsem', 'ric'],
-                        default='ric', help='method to compute harmonic factors')
-    return parser
-
-
-def read_optfile(fname):
-    """
-    Read the option file. expected in json style
-    """
-    if not os.path.exists(str(fname)):
-        raise FileNotFoundError('Missing JSON file')
-    with open(fname, 'r')  as fopen:
-        data = json.load(fopen)
-    for i in ["log_qm_file", "fchk_qm_file", "fchk_mm_file", "fchk_nb_file"]:
-        if not os.path.exists(data['files'][i]):
-            raise FileNotFoundError(f'Missing {i} file')
-    return data
-
-
 def get_DiagMatrix(AM):
     for i in range(len(AM)):
         for j in range(len(AM)):
@@ -58,9 +36,9 @@ def get_DiagMatrix(AM):
 
 def main():
     print_init()
-    parser = commandline_parser()
+    parser = rdin.commandline_parser1()
     opts = parser.parse_args()
-    json_opts = read_optfile(opts.optfile)
+    json_opts = rdin.read_optfile(opts.optfile)
     f_qm_log = json_opts['files']['log_qm_file']
     f_qm_fchk = json_opts['files']['fchk_qm_file']
     f_mm_fchk = json_opts['files']['fchk_mm_file']
@@ -130,8 +108,7 @@ def main():
     # print("")
     # [print(j) for j in zip(tors_unique)]
     
-    
-    
+
     # Print all into Gaussian Input
     top.print_GauInp(ele_list, type_list, qm_XYZ, \
                  bonds_unique, k_bonds_unique, bond_arr, \

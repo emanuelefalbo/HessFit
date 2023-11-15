@@ -1,9 +1,9 @@
- Entering Gaussian System, Link 0=g09
+ Entering Gaussian System, Link 0=/home/emanuele/chem_software/gaussian//g09/g09
  Input=GauHarm.gjf
  Output=GauHarm.log
  Initial command:
- /home/emanuele/chem_software/gaussian//gdv/l1.exe "/home/emanuele/chem_software/gaussian/scratch/Gau-7642.inp" -scrdir="/home/emanuele/chem_software/gaussian/scratch/"
- Entering Link 1 = /home/emanuele/chem_software/gaussian//gdv/l1.exe PID=      7644.
+ /home/emanuele/chem_software/gaussian//gdv/l1.exe "/home/emanuele/chem_software/gaussian/scratch/Gau-9510.inp" -scrdir="/home/emanuele/chem_software/gaussian/scratch/"
+ Entering Link 1 = /home/emanuele/chem_software/gaussian//gdv/l1.exe PID=      9512.
   
  Copyright (c) 1988-2020, Gaussian, Inc.  All Rights Reserved.
   
@@ -95,7 +95,7 @@
  7/8=21,25=1,30=1,44=-1/16;
  1/10=4,18=20,30=1,64=303/3;
  99//99;
- Leave Link    1 at Wed Nov 15 11:11:49 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link    1 at Wed Nov 15 11:52:47 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l101.exe)
  -----
  Title
@@ -157,7 +157,7 @@
  AmbTrs CA    CA    NA    HA      0 180   0   0  0.0000  1.0000  0.0000  0.0000  4.0
  AmbTrs HA    NA    CA    CA      0 180   0   0  0.0000  1.0000  0.0000  0.0000  4.0
  Inconsistent parameter file.
- Error termination via Lnk1e in /home/emanuele/chem_software/gaussian//gdv/l101.exe at Wed Nov 15 11:11:50 2023.
+ Error termination via Lnk1e in /home/emanuele/chem_software/gaussian//gdv/l101.exe at Wed Nov 15 11:52:48 2023.
  Job cpu time:       0 days  0 hours  0 minutes  0.3 seconds.
  Elapsed time:       0 days  0 hours  0 minutes  0.3 seconds.
  File lengths (MBytes):  RWF=      6 Int=      0 D2E=      0 Chk=      1 Scr=      1
