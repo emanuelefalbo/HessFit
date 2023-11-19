@@ -10,21 +10,10 @@ import readin_opts as rdin
 import print_top as top
 import numpy as np
 # import scipy.optimize as optimize
+from scipy.sparse import rand
+from scipy.optimize import lsq_linear
 
 
-def print_init():
-     print("""
- ======================================================
-   Program:      SmartField
-   Creator:      Emanuele Falbo, Napoli
-   Date:         October 2023
-   Language:     Python 3.v later
-   Description:  The program returns force constants for
-                 bonded values and non-bonded parameters
-   Mail:         falbo.emanuele@gmail.com 
- =======================================================
-     
-    """)
 
 def get_DiagMatrix(AM):
     for i in range(len(AM)):
@@ -34,8 +23,38 @@ def get_DiagMatrix(AM):
     return AM
 
 
+def solve_lsq(A, b):
+    rng = np.random.default_rng()
+    b = rng.standard_normal(A.shape[0])
+    lb = rng.standard_normal(b.shape[0])
+    ub = lb + 1
+    res = lsq_linear(A, b, bounds=(lb, ub), lsmr_tol='auto', verbose=1)
+    print(res)
+
+
+def fit_hessian(qm_hessian, md_hessian):
+    # Extract 3x3 submatrices
+    N_atoms = np.int(qm_hessian.shape[0]/3)
+    subs_mm, subs_qm = [], []
+    for i in range(N_atoms-1):
+        for j in range(i+1, N_atoms):
+            sub_mm = md_hessian[3*i:3*(i+1), 3*j:3*(j+1)]
+            sub_qm = qm_hessian[3*i:3*(i+1), 3*j:3*(j+1)]
+            # print(f'{np.array2string(submatrix, precision=2, suppress_small=True)}')
+            subs_mm.append(sub_mm)
+            subs_qm.append(sub_qm)
+            
+    # Display extracted submatrices
+    for idx, (qm, mm) in enumerate(zip(subs_qm, subs_mm), start=0):
+        print(f"Submatrix {idx}:")
+        # print(submatrix)
+        print(np.array2string(mm, precision=2, suppress_small=True))
+        # print(np.linalg.lstsq(mm.flatten(), qm.flatten(), rcond=-1)[0])
+        fit = lsq_linear(qm.reshape(-1,1), mm.flatten()).x
+        print(fit)
+
+
 def main():
-    print_init()
     parser = rdin.commandline_parser1()
     opts = parser.parse_args()
     json_opts = rdin.read_optfile(opts.optfile)
@@ -65,34 +84,27 @@ def main():
         # Reading XYZ Hessians
         hessXYZ_qm = pgau.read_HessXYZ(text_qm_fchk, N_atoms)
         hessXYZ_nb = pgau.read_HessXYZ(text_nb_fchk, N_atoms)
+        # hessXYZ_mm = pgau.read_HessXYZ(text_mm_fchk, N_atoms)
         hess_eff = hessXYZ_qm - hessXYZ_nb 
         k_bonds = np.empty(len(bond_list))
         k_angles = np.empty(len(angle_list))
         k_tors = np.empty(len(tors_list))
         diag_QM = np.diagonal(hessXYZ_qm)  
-        # coeffs = np.linalg.lstsq(hessXYZ_mm, diag_QM, rcond=-1)[0]
     else:
-        # Reading RIC Hessains 
+        # Reading RIC Hessians 
         hessRIC_qm = pgau.read_HessRIC(text_qm_fchk, ric_list)
         hessRIC_mm = pgau.read_HessRIC(text_mm_fchk, ric_list)
         hessRIC_nb = pgau.read_HessRIC(text_nb_fchk, ric_list)
         hess_eff = hessRIC_qm - hessRIC_nb
         diag_QM = np.diagonal(hess_eff)                 # Take diagonal items of H_QM
         MM_diag = get_DiagMatrix(hessRIC_mm)            # Make sure H_MM is diagonal
-        # print(f'{np.array2string(MM_diag, precision=2)}')
-        coeffs = np.linalg.solve(MM_diag, diag_QM)      # Solve Linear System for Bond and Angles only 
-        # fit = np.linalg.solve(hessRIC_mm, diag_QM) #*  627.509391   # Solve Linear System for Bond and Angles only 
-                                                        # H_MM * K = H_QM ; ignoring Torsion 
-           
+        coeffs = np.linalg.solve(MM_diag, diag_QM)      # Solve Linear System for Bond and Angles only H_MM*K = H_QM ; ignoring Torsion 
         k_bonds = coeffs[0 : No_bonds]  #  * ((627.509391)/(0.529117*0.529117))                       
         k_angles = coeffs[No_bonds : No_bonds + No_angles ] #* (627.509391)
         k_tors = coeffs[No_ric - No_dihes : No_ric] #* 627.509391  # Torsional Gradient; kcal/mol rad
     
-    print(k_tors)
-    
     mdin = json_opts['opt']
     mode = json_opts['mode']
-    
     bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, hess_eff, type_list, bond_list, k_bonds, mdin, mode)
     angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, hess_eff, type_list, angle_list, k_angles, mdin, mode)
     tors_type_list, v1, v2, v3, tors_arr, phase, periodic_list = fc.set_torsion(qm_XYZ, type_list, tors_list, k_tors, force_1D, mode)
@@ -107,7 +119,6 @@ def main():
     # [print(i) for i in zip(tors_type_list)]
     # print("")
     # [print(j) for j in zip(tors_unique)]
-    
 
     # Print all into Gaussian Input
     top.print_GauInp(ele_list, type_list, qm_XYZ, \

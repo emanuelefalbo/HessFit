@@ -160,8 +160,8 @@ def set_torsion(coords, type_list, tors_list, \
                 eps = 5.0
                 if del_1 < eps or del_2 < eps:
                      n, d = 3.0, 1.0
-                     v3 = abs( -2* (d * np.abs(k_tors[m]))/(n*n* np.cos(n*phi_deg)) )
-                     print(k_tors[m], v3, n)
+                     v3 = abs( - (d * np.abs(k_tors[m]))/(n*n* np.cos(n*phi_deg)) )
+                    #  print(k_tors[m], v3, n)
                      if v3 > 5.0:                         # If force constants too stiff
                         v3_eq[m] = np.exp(-1.4/v3)*1.4     # use AMBER X-C-C-X values
                      else:
@@ -176,14 +176,14 @@ def set_torsion(coords, type_list, tors_list, \
                         v2_eq[m] = v2
                         v3_eq[m] = v3
                     # print(f' {phi_deg:.2f} {v2_eq[m]:.2f} {v3_eq[m]:.2f} {hybrid_list[m]}')
-            elif hybrid_list[m] == 4:          # sp2-sp2 bonds
+            elif hybrid_list[m] == 4 or hybrid_list[m] == 2:          # sp2-sp2 bonds
                 del_1 = abs(phi_deg - 0.)
                 del_2 = abs(phi_deg - 180.)
                 eps = 5.0
                 phase[m, 1] = 180
                 if del_1 < eps or del_2 < eps:
                      n, d = 2.0, 1.0
-                     v2 = abs( -2 * (d * np.abs(k_tors[m]))/(n*n* np.cos(n*phi_deg)) )
+                     v2 = abs( (d * np.abs(k_tors[m]))/(n*n* np.cos(n*phi_deg)) )
                     #  print(k_tors[m], v2, n)
                     #  if v2 > 30 or 0 < v2 < 9.0:
                      if v2 > 30:

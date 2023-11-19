@@ -31,6 +31,10 @@ HrmStr1 CT HC  0.0 1.093
 HrmBnd1 CT CT CT  0.0 1.000
 HrmBnd1 CT CT HC  0.0 1.000
 HrmBnd1 HC CT HC  0.0 1.000
+!Torsions
+AmbTrs CT CT CT CT 0 0 0 0  0. 0. 0. 0. 9.0
+AmbTrs CT CT CT HC 0 0 0 0  0. 0. 0. 0. 9.0
+AmbTrs HC CT CT HC 0 0 0 0  0. 0. 0. 0. 9.0
 !VDW
 VDW CT 1.9080 0.1094
 VDW HC 1.4870 0.0157
