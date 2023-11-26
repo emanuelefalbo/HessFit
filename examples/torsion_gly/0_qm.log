@@ -1,0 +1,301 @@
+ Entering Gaussian System, Link 0=g09
+ Input=0_qm.gjf
+ Output=0_qm.log
+ Initial command:
+ /home/emanuele/chem_software/gaussian//gdv/l1.exe "/home/emanuele/chem_software/gaussian/scratch/Gau-9168.inp" -scrdir="/home/emanuele/chem_software/gaussian/scratch/"
+ Entering Link 1 = /home/emanuele/chem_software/gaussian//gdv/l1.exe PID=      9170.
+  
+ Copyright (c) 1988-2020, Gaussian, Inc.  All Rights Reserved.
+  
+ This is the private, development version of
+ the Gaussian(R) DV system of programs. It is based on
+ the Gaussian(R) 16 system (copyright 2016, Gaussian, Inc.),
+ the Gaussian(R) 09 system (copyright 2009, Gaussian, Inc.),
+ the Gaussian(R) 03 system (copyright 2003, Gaussian, Inc.),
+ the Gaussian(R) 98 system (copyright 1998, Gaussian, Inc.),
+ the Gaussian(R) 94 system (copyright 1995, Gaussian, Inc.),
+ the Gaussian 92(TM) system (copyright 1992, Gaussian, Inc.),
+ the Gaussian 90(TM) system (copyright 1990, Gaussian, Inc.),
+ the Gaussian 88(TM) system (copyright 1988, Gaussian, Inc.),
+ the Gaussian 86(TM) system (copyright 1986, Carnegie Mellon
+ University), and the Gaussian 82(TM) system (copyright 1983,
+ Carnegie Mellon University). Gaussian is a federally registered
+ trademark of Gaussian, Inc.
+  
+ This software contains proprietary and confidential information,
+ including trade secrets, belonging to Gaussian, Inc.
+  
+ This software is provided under written license and may be
+ used, copied, transmitted, or stored only in accord with that
+ written license.
+  
+ The following legend is applicable only to US Government
+ contracts under FAR:
+  
+                    RESTRICTED RIGHTS LEGEND
+  
+ Use, reproduction and disclosure by the US Government is
+ subject to restrictions as set forth in subparagraphs (a)
+ and (c) of the Commercial Computer Software - Restricted
+ Rights clause in FAR 52.227-19.
+  
+ Gaussian, Inc.
+ 340 Quinnipiac St., Bldg. 40, Wallingford CT 06492
+  
+  
+ ---------------------------------------------------------------
+ Warning -- This program may not be used in any manner that
+ competes with the business of Gaussian, Inc. or will provide
+ assistance to any competitor of Gaussian, Inc.  The licensee
+ of this program is prohibited from giving any competitor of
+ Gaussian, Inc. access to this program.  By using this program,
+ the user acknowledges that Gaussian, Inc. is engaged in the
+ business of creating and licensing software in the field of
+ computational chemistry and represents and warrants to the
+ licensee that it is not a competitor of Gaussian, Inc. and that
+ it will not use this program in any manner prohibited above.
+ ---------------------------------------------------------------
+  
+
+ Cite this work as:
+ Gaussian Development Version, Revision J.14,
+ M. J. Frisch, G. W. Trucks, H. B. Schlegel, G. E. Scuseria, 
+ M. A. Robb, J. R. Cheeseman, G. Scalmani, V. Barone, 
+ G. A. Petersson, H. Nakatsuji, X. Li, A. V. Marenich, M. Caricato, 
+ J. Bloino, B. G. Janesko, J. Zheng, R. Gomperts, B. Mennucci, 
+ H. P. Hratchian, J. V. Ortiz, A. F. Izmaylov, J. L. Sonnenberg, 
+ D. Williams-Young, F. Ding, F. Lipparini, F. Egidi, J. Goings, 
+ B. Peng, A. Petrone, T. Henderson, D. Ranasinghe, V. G. Zakrzewski, 
+ J. Gao, N. Rega, G. Zheng, W. Liang, M. Hada, M. Ehara, K. Toyota, 
+ R. Fukuda, J. Hasegawa, M. Ishida, T. Nakajima, Y. Honda, O. Kitao, 
+ H. Nakai, T. Vreven, K. Throssell, J. A. Montgomery, Jr., 
+ J. E. Peralta, F. Ogliaro, M. J. Bearpark, J. J. Heyd, 
+ E. N. Brothers, K. N. Kudin, V. N. Staroverov, T. A. Keith, 
+ R. Kobayashi, J. Normand, K. Raghavachari, A. P. Rendell, 
+ J. C. Burant, S. S. Iyengar, J. Tomasi, M. Cossi, J. M. Millam, 
+ M. Klene, C. Adamo, R. Cammi, J. W. Ochterski, R. L. Martin, 
+ K. Morokuma, O. Farkas, J. B. Foresman, and D. J. Fox, 
+ Gaussian, Inc., Wallingford CT, 2020.
+ 
+ ******************************************
+ Gaussian DV:  ES64L-GDVRevJ.14 29-Dec-2020
+                22-Nov-2023 
+ ******************************************
+ %mem=1GB
+ %nprocshared=1
+ Will use up to    1 processors via shared memory.
+ %chk=0_qm.chk
+ ----------------------------------------------------------------------
+ #p nosymm geom=nocrowd opt=(modredundant,maxcycle=100) nosymm B3LYP/de
+ f2TZVP
+ ----------------------------------------------------------------------
+ 1/6=100,18=120,19=15,26=3,37=210000000,38=1/1,3;
+ 2/9=110,12=1,15=-1,40=1/2;
+ 3/5=44,7=101,11=2,25=1,30=1,71=1,74=-5/1,2,3;
+ 4//1;
+ 5/5=2,38=5/2;
+ 6/7=2,8=2,9=2,10=2,28=1/1;
+ 7/30=1/1,2,3,16;
+ 1/6=100,18=20,19=15,26=3/3(2);
+ 2/9=110,12=1/2;
+ 99//99;
+ 2/9=110,12=1/2;
+ 3/5=44,7=101,11=2,25=1,30=1,71=1,74=-5/1,2,3;
+ 4/5=5,16=3,69=1/1;
+ 5/5=2,38=5/2;
+ 7/30=1/1,2,3,16;
+ 1/6=100,18=20,19=15,26=3/3(-5);
+ 2/9=110,12=1/2;
+ 6/7=2,8=2,9=2,10=2,19=2,28=1/1;
+ 99/9=1/99;
+ Leave Link    1 at Wed Nov 22 11:55:55 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/chem_software/gaussian//gdv/l101.exe)
+ -----
+ Title
+ -----
+ Symbolic Z-matrix:
+ Charge =  0 Multiplicity = 1
+ C                    -0.53685   0.10417   0.01464 
+ O                    -1.63632  -0.67637  -0.06827 
+ C                     0.72601  -0.7177    0.10528 
+ H                     0.71699  -1.15712   1.11445 
+ H                     0.64338  -1.5538   -0.59228 
+ N                     1.88901   0.09773  -0.1951 
+ H                     1.74816   1.04081   0.14593 
+ H                     2.72354  -0.27843   0.23189 
+ O                    -0.58681   1.30563   0.04628 
+ H                    -2.40509  -0.08851  -0.07785 
+ 
+ The following ModRedundant input section has been read:
+ D       9       1       2      10 S  10 36.000                                
+ 
+ ITRead=  0  0  0  0  0  0  0  0  0  0
+ MicOpt= -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+ NAtoms=     10 NQM=       10 NQMF=       0 NMMI=      0 NMMIF=      0
+                NMic=       0 NMicF=      0.
+                    Isotopes and Nuclear Properties:
+ (Nuclear quadrupole moments (NQMom) in fm**2, nuclear magnetic moments (NMagM)
+  in nuclear magnetons)
+
+  Atom         1           2           3           4           5           6           7           8           9          10
+ IAtWgt=          12          16          12           1           1          14           1           1          16           1
+ AtmWgt=  12.0000000  15.9949146  12.0000000   1.0078250   1.0078250  14.0030740   1.0078250   1.0078250  15.9949146   1.0078250
+ NucSpn=           0           0           0           1           1           2           1           1           0           1
+ AtZEff=  -0.0000000  -0.0000000  -0.0000000  -0.0000000  -0.0000000  -0.0000000  -0.0000000  -0.0000000  -0.0000000  -0.0000000
+ NQMom=    0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   2.0440000   0.0000000   0.0000000   0.0000000   0.0000000
+ NMagM=    0.0000000   0.0000000   0.0000000   2.7928460   2.7928460   0.4037610   2.7928460   2.7928460   0.0000000   2.7928460
+ AtZNuc=   6.0000000   8.0000000   6.0000000   1.0000000   1.0000000   7.0000000   1.0000000   1.0000000   8.0000000   1.0000000
+ Leave Link  101 at Wed Nov 22 11:55:55 2023, MaxMem=   134217728 cpu:               0.2 elap:               0.3
+ (Enter /home/emanuele/chem_software/gaussian//gdv/l103.exe)
+
+ GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
+ Berny optimization.
+ Initialization pass.
+                           ----------------------------
+                           !    Initial Parameters    !
+                           ! (Angstroms and Degrees)  !
+ --------------------------                            --------------------------
+ ! Name  Definition              Value          Derivative Info.                !
+ --------------------------------------------------------------------------------
+ ! R1    R(1,2)                  1.3509         estimate D2E/DX2                !
+ ! R2    R(1,3)                  1.5095         estimate D2E/DX2                !
+ ! R3    R(1,9)                  1.2029         estimate D2E/DX2                !
+ ! R4    R(2,10)                 0.9678         estimate D2E/DX2                !
+ ! R5    R(3,4)                  1.1007         estimate D2E/DX2                !
+ ! R6    R(3,5)                  1.092          estimate D2E/DX2                !
+ ! R7    R(3,6)                  1.4518         estimate D2E/DX2                !
+ ! R8    R(6,7)                  1.0127         estimate D2E/DX2                !
+ ! R9    R(6,8)                  1.0101         estimate D2E/DX2                !
+ ! A1    A(2,1,3)              111.7154         estimate D2E/DX2                !
+ ! A2    A(2,1,9)              123.0182         estimate D2E/DX2                !
+ ! A3    A(3,1,9)              125.2388         estimate D2E/DX2                !
+ ! A4    A(1,2,10)             107.2257         estimate D2E/DX2                !
+ ! A5    A(1,3,4)              105.4003         estimate D2E/DX2                !
+ ! A6    A(1,3,5)              108.3736         estimate D2E/DX2                !
+ ! A7    A(1,3,6)              110.6071         estimate D2E/DX2                !
+ ! A8    A(4,3,5)              106.2232         estimate D2E/DX2                !
+ ! A9    A(4,3,6)              114.8648         estimate D2E/DX2                !
+ ! A10   A(5,3,6)              111.0079         estimate D2E/DX2                !
+ ! A11   A(3,6,7)              109.9968         estimate D2E/DX2                !
+ ! A12   A(3,6,8)              111.4207         estimate D2E/DX2                !
+ ! A13   A(7,6,8)              108.6253         estimate D2E/DX2                !
+ ! D1    D(3,1,2,10)           177.195          estimate D2E/DX2                !
+ ! D2    D(9,1,2,10)            -0.9857         Scan                            !
+ ! D3    D(2,1,3,4)            -71.8288         estimate D2E/DX2                !
+ ! D4    D(2,1,3,5)             41.552          estimate D2E/DX2                !
+ ! D5    D(2,1,3,6)            163.4539         estimate D2E/DX2                !
+ ! D6    D(9,1,3,4)            106.3034         estimate D2E/DX2                !
+ ! D7    D(9,1,3,5)           -140.3158         estimate D2E/DX2                !
+ ! D8    D(9,1,3,6)            -18.4139         estimate D2E/DX2                !
+ ! D9    D(1,3,6,7)             34.6533         estimate D2E/DX2                !
+ ! D10   D(1,3,6,8)            155.1742         estimate D2E/DX2                !
+ ! D11   D(4,3,6,7)            -84.4877         estimate D2E/DX2                !
+ ! D12   D(4,3,6,8)             36.0331         estimate D2E/DX2                !
+ ! D13   D(5,3,6,7)            154.9936         estimate D2E/DX2                !
+ ! D14   D(5,3,6,8)            -84.4855         estimate D2E/DX2                !
+ --------------------------------------------------------------------------------
+ Trust Radius=3.00D-01 FncErr=1.00D-07 GrdErr=1.00D-06 EigMax=2.50D+02 EigMin=1.00D-04
+ Number of optimizations in scan=  11
+ Number of steps in this run=    100 maximum allowed number of steps=    100.
+ GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
+
+ Leave Link  103 at Wed Nov 22 11:55:55 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/chem_software/gaussian//gdv/l202.exe)
+                          Input orientation:                          
+ ---------------------------------------------------------------------
+ Center     Atomic      Atomic             Coordinates (Angstroms)
+ Number     Number       Type             X           Y           Z
+ ---------------------------------------------------------------------
+      1          6           0       -0.536850    0.104174    0.014636
+      2          8           0       -1.636322   -0.676373   -0.068268
+      3          6           0        0.726013   -0.717700    0.105280
+      4          1           0        0.716994   -1.157121    1.114447
+      5          1           0        0.643380   -1.553795   -0.592281
+      6          7           0        1.889013    0.097733   -0.195097
+      7          1           0        1.748159    1.040807    0.145925
+      8          1           0        2.723536   -0.278432    0.231888
+      9          8           0       -0.586810    1.305633    0.046275
+     10          1           0       -2.405088   -0.088514   -0.077854
+ ---------------------------------------------------------------------
+                    Distance matrix (angstroms):
+                    1          2          3          4          5
+     1  C    0.000000
+     2  O    1.350913   0.000000
+     3  C    1.509475   2.369062   0.000000
+     4  H    2.091070   2.677318   1.100723   0.000000
+     5  H    2.123712   2.498299   1.092005   1.753764   0.000000
+     6  N    2.434921   3.611553   1.451801   2.159443   2.106395
+     7  H    2.473011   3.801223   2.034400   2.613852   2.915038
+     8  H    3.289940   4.388258   2.049167   2.361613   2.575433
+     9  O    1.202913   2.245650   2.412646   2.984301   3.177648
+    10  H    1.880424   0.967818   3.198938   3.508689   3.421234
+                    6          7          8          9         10
+     6  N    0.000000
+     7  H    1.012682   0.000000
+     8  H    1.010072   1.642906   0.000000
+     9  O    2.765318   2.352051   3.674521   0.000000
+    10  H    4.299737   4.309861   5.141478   2.294600   0.000000
+ Stoichiometry    C2H5NO2
+ Framework group  C1[X(C2H5NO2)]
+ Deg. of freedom    24
+ Full point group                 C1      NOp   1
+ Largest Abelian subgroup         C1      NOp   1
+ Largest concise Abelian subgroup C1      NOp   1
+                         Standard orientation:                         
+ ---------------------------------------------------------------------
+ Center     Atomic      Atomic             Coordinates (Angstroms)
+ Number     Number       Type             X           Y           Z
+ ---------------------------------------------------------------------
+      1          6           0       -0.536850    0.104174    0.014636
+      2          8           0       -1.636322   -0.676373   -0.068268
+      3          6           0        0.726013   -0.717700    0.105280
+      4          1           0        0.716994   -1.157121    1.114447
+      5          1           0        0.643380   -1.553795   -0.592281
+      6          7           0        1.889013    0.097733   -0.195097
+      7          1           0        1.748159    1.040807    0.145925
+      8          1           0        2.723536   -0.278432    0.231888
+      9          8           0       -0.586810    1.305633    0.046275
+     10          1           0       -2.405088   -0.088514   -0.077854
+ ---------------------------------------------------------------------
+ Rotational constants (GHZ):          10.4489861           3.9571341           2.9518000
+ Leave Link  202 at Wed Nov 22 11:55:55 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/chem_software/gaussian//gdv/l301.exe)
+ Standard basis: def2TZVP (5D, 7F)
+ Ernie: Thresh=  0.10000D-02 Tol=  0.10000D-05 Strict=F.
+ There are   210 symmetry adapted cartesian basis functions of A   symmetry.
+ There are   185 symmetry adapted basis functions of A   symmetry.
+   185 basis functions,   295 primitive gaussians,   210 cartesian basis functions
+    20 alpha electrons       20 beta electrons
+       nuclear repulsion energy       179.9791115102 Hartrees.
+ IExCor=    4002 DFT=T Ex+Corr=B3LYP ScaHFX=  0.200000
+ ScaDFX=  0.800000  0.720000  1.000000  0.810000  1.000000  0.000000
+ ScaDFX=  0.000000  0.000000  0.000000  0.000000  0.000000  0.000000
+ IRadAn=      5 IRanWt=     -1 IRanGd=            0 ICorTp=0 IEmpDi=  4
+ NAtoms=   10 NActive=   10 NUniq=   10 SFac= 1.00D+00 NAtFMM=   60 NAOKFM=F Big=F
+ Integral buffers will be    131072 words long.
+ Raffenetti 2 integral format.
+ Two-electron integral symmetry is turned on.
+ Leave Link  301 at Wed Nov 22 11:55:55 2023, MaxMem=   134217728 cpu:               0.1 elap:               0.1
+ (Enter /home/emanuele/chem_software/gaussian//gdv/l302.exe)
+ NPDir=0 NMtPBC=     1 NCelOv=     1 NCel=       1 NClECP=     1 NCelD=      1
+         NCelK=      1 NCelE2=     1 NClLst=     1 CellRange=     0.0.
+ One-electron integrals computed using PRISM.
+ One-electron integral symmetry used in STVInt
+   1 Symmetry operations used in ECPInt.
+ ECPInt:  NShTT=    2850 NPrTT=    8640 LenC2=    2822 LenP2D=    7179.
+ LDataN:  DoStor=T MaxTD1= 6 Len=  172
+ NBasis=   185 RedAO= T EigKep=  3.46D-04  NBF=   185
+ NBsUse=   185 1.00D-06 EigRej= -1.00D+00 NBFU=   185
+ Precomputing XC quadrature grid using
+ IXCGrd= 4 IRadAn=           5 IRanWt=          -1 IRanGd=           0 AccXCQ= 0.00D+00.
+ Generated NRdTot=       0 NPtTot=      221300 NUsed=           0 NTot=          64
+ NSgBfM=   209   209   209   209   209 MxSgAt=    10 MxSgA2=    10 SizInc=   0.000
+ NMBTot=     2045 MaxBatPerAtom=       84 MaxMicBPerAtom=      215.
+ Leave Link  302 at Wed Nov 22 11:55:56 2023, MaxMem=   134217728 cpu:               0.3 elap:               0.5
+ (Enter /home/emanuele/chem_software/gaussian//gdv/l303.exe)
+ DipDrv:  MaxL=1.
+ Leave Link  303 at Wed Nov 22 11:55:56 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.1
+ (Enter /home/emanuele/chem_software/gaussian//gdv/l401.exe)
+ ExpMin= 9.52D-02 ExpMax= 2.70D+04 ExpMxC= 9.22D+02 IAcc=3 IRadAn=         5 AccDes= 0.00D+00
+ Harris functional with IExCor= 4002 and IRadAn=       5 diagonalized for initial guess.
+ HarFok:  IExCor=    4002 AccDes= 0.00D+00 IRadAn=         5 IDoV= 1 UseB2=F ITyADJ=14 ICtDFT=  3500011

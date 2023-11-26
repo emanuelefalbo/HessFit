@@ -1,0 +1,358 @@
+ Entering Gaussian System, Link 0=g09
+ Input=tmp.gjf
+ Output=tmp.log
+ Initial command:
+ /home/emanuele/chem_software/gaussian//gdv/l1.exe "/home/emanuele/chem_software/gaussian/scratch/Gau-8936.inp" -scrdir="/home/emanuele/chem_software/gaussian/scratch/"
+ Entering Link 1 = /home/emanuele/chem_software/gaussian//gdv/l1.exe PID=      8938.
+  
+ Copyright (c) 1988-2020, Gaussian, Inc.  All Rights Reserved.
+  
+ This is the private, development version of
+ the Gaussian(R) DV system of programs. It is based on
+ the Gaussian(R) 16 system (copyright 2016, Gaussian, Inc.),
+ the Gaussian(R) 09 system (copyright 2009, Gaussian, Inc.),
+ the Gaussian(R) 03 system (copyright 2003, Gaussian, Inc.),
+ the Gaussian(R) 98 system (copyright 1998, Gaussian, Inc.),
+ the Gaussian(R) 94 system (copyright 1995, Gaussian, Inc.),
+ the Gaussian 92(TM) system (copyright 1992, Gaussian, Inc.),
+ the Gaussian 90(TM) system (copyright 1990, Gaussian, Inc.),
+ the Gaussian 88(TM) system (copyright 1988, Gaussian, Inc.),
+ the Gaussian 86(TM) system (copyright 1986, Carnegie Mellon
+ University), and the Gaussian 82(TM) system (copyright 1983,
+ Carnegie Mellon University). Gaussian is a federally registered
+ trademark of Gaussian, Inc.
+  
+ This software contains proprietary and confidential information,
+ including trade secrets, belonging to Gaussian, Inc.
+  
+ This software is provided under written license and may be
+ used, copied, transmitted, or stored only in accord with that
+ written license.
+  
+ The following legend is applicable only to US Government
+ contracts under FAR:
+  
+                    RESTRICTED RIGHTS LEGEND
+  
+ Use, reproduction and disclosure by the US Government is
+ subject to restrictions as set forth in subparagraphs (a)
+ and (c) of the Commercial Computer Software - Restricted
+ Rights clause in FAR 52.227-19.
+  
+ Gaussian, Inc.
+ 340 Quinnipiac St., Bldg. 40, Wallingford CT 06492
+  
+  
+ ---------------------------------------------------------------
+ Warning -- This program may not be used in any manner that
+ competes with the business of Gaussian, Inc. or will provide
+ assistance to any competitor of Gaussian, Inc.  The licensee
+ of this program is prohibited from giving any competitor of
+ Gaussian, Inc. access to this program.  By using this program,
+ the user acknowledges that Gaussian, Inc. is engaged in the
+ business of creating and licensing software in the field of
+ computational chemistry and represents and warrants to the
+ licensee that it is not a competitor of Gaussian, Inc. and that
+ it will not use this program in any manner prohibited above.
+ ---------------------------------------------------------------
+  
+
+ Cite this work as:
+ Gaussian Development Version, Revision J.14,
+ M. J. Frisch, G. W. Trucks, H. B. Schlegel, G. E. Scuseria, 
+ M. A. Robb, J. R. Cheeseman, G. Scalmani, V. Barone, 
+ G. A. Petersson, H. Nakatsuji, X. Li, A. V. Marenich, M. Caricato, 
+ J. Bloino, B. G. Janesko, J. Zheng, R. Gomperts, B. Mennucci, 
+ H. P. Hratchian, J. V. Ortiz, A. F. Izmaylov, J. L. Sonnenberg, 
+ D. Williams-Young, F. Ding, F. Lipparini, F. Egidi, J. Goings, 
+ B. Peng, A. Petrone, T. Henderson, D. Ranasinghe, V. G. Zakrzewski, 
+ J. Gao, N. Rega, G. Zheng, W. Liang, M. Hada, M. Ehara, K. Toyota, 
+ R. Fukuda, J. Hasegawa, M. Ishida, T. Nakajima, Y. Honda, O. Kitao, 
+ H. Nakai, T. Vreven, K. Throssell, J. A. Montgomery, Jr., 
+ J. E. Peralta, F. Ogliaro, M. J. Bearpark, J. J. Heyd, 
+ E. N. Brothers, K. N. Kudin, V. N. Staroverov, T. A. Keith, 
+ R. Kobayashi, J. Normand, K. Raghavachari, A. P. Rendell, 
+ J. C. Burant, S. S. Iyengar, J. Tomasi, M. Cossi, J. M. Millam, 
+ M. Klene, C. Adamo, R. Cammi, J. W. Ochterski, R. L. Martin, 
+ K. Morokuma, O. Farkas, J. B. Foresman, and D. J. Fox, 
+ Gaussian, Inc., Wallingford CT, 2020.
+ 
+ ******************************************
+ Gaussian DV:  ES64L-GDVRevJ.14 29-Dec-2020
+                22-Nov-2023 
+ ******************************************
+ %mem=1GB
+ %nprocshared=1
+ Will use up to    1 processors via shared memory.
+ %chk=tmp.chk
+ -------------------------------------------------
+ #p opt=AddRed Amber=Softfirst nosymm geom=nocrowd
+ -------------------------------------------------
+ 1/6=10,10=10,18=4000120,19=15,37=210000000,38=1,56=2,64=203/1,3;
+ 2/9=110,12=1,15=1,40=1/2;
+ 3/5=30,11=9,25=1,30=1,41=10030000,43=2,71=1/1;
+ 4/20=11,22=1001,24=3/2;
+ 7/30=1,44=-1/16;
+ 1/6=10,10=10,18=4000020,19=15,64=203/3(2);
+ 2/9=110,12=1,15=1/2;
+ 99//99;
+ 2/9=110,12=1,15=1/2;
+ 3/5=30,11=9,25=1,30=1,41=10030000,43=2,71=1/1;
+ 4/16=2,20=11,22=1001,24=3/2;
+ 7/30=1,44=-1/16;
+ 1/6=10,10=10,18=4000020,19=15,64=203/3(-4);
+ 2/9=110,12=1,15=1/2;
+ 99/9=10/99;
+ Leave Link    1 at Wed Nov 22 17:09:28 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/chem_software/gaussian//gdv/l101.exe)
+ ----------------------------------------------------------------------
+ H2O2 rotational potential 0. to 180., HF/6-31G(d) level redundant inte
+ rnals
+ ----------------------------------------------------------------------
+ Symbolic Z-matrix:
+ Charge =  0 Multiplicity = 1
+ H1-HW
+ O2-OW                1    r2
+ O3-OW                2    r3       1    a3
+ H4-HW                3    r2       2    a3       1    d4       0
+       Variables:
+  r2                    1.                       
+  r3                    1.3                      
+  a3                  110.                       
+  d4                    0.                       
+ 
+ ITRead=  3  3  3  3
+ MicOpt=  0  0  0  0
+ NAtoms=      4 NQM=        0 NQMF=       0 NMMI=      0 NMMIF=      0
+                NMic=       4 NMicF=      0.
+                    Isotopes and Nuclear Properties:
+ (Nuclear quadrupole moments (NQMom) in fm**2, nuclear magnetic moments (NMagM)
+  in nuclear magnetons)
+
+  Atom         1           2           3           4
+ IAtWgt=           1          16          16           1
+ AtmWgt=   1.0078250  15.9949146  15.9949146   1.0078250
+ NucSpn=           1           0           0           1
+ AtZEff=  -0.0000000  -0.0000000  -0.0000000  -0.0000000
+ NQMom=    0.0000000   0.0000000   0.0000000   0.0000000
+ NMagM=    2.7928460   0.0000000   0.0000000   2.7928460
+ AtZNuc=   1.0000000   8.0000000   8.0000000   1.0000000
+ Generating MM parameters.
+ Read MM parameter file:
+ Include all MM classes
+
+ MM sanity checks:
+ All charges sum to:                0.00000000
+ Charges of atoms sum to:           0.00000000
+ MMInit generated parameter data with length LenPar=         645.
+ Leave Link  101 at Wed Nov 22 17:09:28 2023, MaxMem=   134217728 cpu:               0.2 elap:               0.2
+ (Enter /home/emanuele/chem_software/gaussian//gdv/l103.exe)
+
+ GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
+ Berny optimization.
+ Initialization pass.
+ No Z-matrix variables, so optimization will use Cartesian coordinates.
+ Trust Radius=1.00D-01 FncErr=1.00D-07 GrdErr=1.00D-07 EigMax=2.50D+02 EigMin=1.00D-04
+ Number of steps in this run=      2 maximum allowed number of steps=      2.
+ GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
+
+ Leave Link  103 at Wed Nov 22 17:09:28 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/chem_software/gaussian//gdv/l202.exe)
+                          Input orientation:                          
+ ---------------------------------------------------------------------
+ Center     Atomic      Atomic             Coordinates (Angstroms)
+ Number     Number       Type             X           Y           Z
+ ---------------------------------------------------------------------
+      1          1    20001030        0.000000    0.000000    0.000000
+      2          8    20001021        0.000000    0.000000    1.000000
+      3          8    20001021        1.221600    0.000000    1.444626
+      4          1    20001030        1.864388    0.000000    0.678582
+ ---------------------------------------------------------------------
+                    Distance matrix (angstroms):
+                    1          2          3          4
+     1  H    0.000000
+     2  O    1.000000   0.000000
+     3  O    1.891891   1.300000   0.000000
+     4  H    1.984040   1.891891   1.000000   0.000000
+ Symmetry turned off by external request.
+ Stoichiometry    H2O2
+ Framework group  C2V[SGV(H2O2)]
+ Deg. of freedom     3
+ Full point group                 C2V     NOp   4
+ Rotational constants (GHZ):         301.8334771          32.6065445          29.4275387
+ Leave Link  202 at Wed Nov 22 17:09:28 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/chem_software/gaussian//gdv/l301.exe)
+ Standard basis: Dummy (5D, 7F)
+     4 basis functions,     4 primitive gaussians,     4 cartesian basis functions
+     3 alpha electrons        3 beta electrons
+       nuclear repulsion energy         5.1304956016 Hartrees.
+ IExCor=       0 DFT=F Ex=HF Corr=None N6=None ScaHFX=  1.000000
+ ScaDFX=  1.000000  1.000000  1.000000  1.000000  1.000000  0.000000
+ ScaDFX=  0.000000  0.000000  0.000000  0.000000  0.000000  0.000000
+ IRadAn=      5 IRanWt=     -1 IRanGd=            0 ICorTp=0 IEmpDi=  4
+ NAtoms=    4 NActive=    4 NUniq=    4 SFac= 1.00D+00 NAtFMM=   60 NAOKFM=F Big=F
+ Integral buffers will be    131072 words long.
+ Raffenetti 1 integral format.
+ Two-electron integral symmetry is turned off.
+ Leave Link  301 at Wed Nov 22 17:09:28 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/chem_software/gaussian//gdv/l402.exe)
+ AMBER calculation of energy and first derivatives.
+ NRF= 0 NRA=   0 NVA=   4 HaveQM=F NVQ=       0
+ Convergence limit is  0.750E-04 MaxStp= 10000 StMxLn= 3.00D-04 StpMin= 1.00D-06.
+ Convergence criteria             0.00011250 0.00007500 0.00045000 0.00030000
+  Step  NS  ND Rises OKQ   Scale  Max. Force  RMS Force Max. Disp.  RMS Disp.     Energy   Flag
+     1   0   0   F    T  1.00D+00 0.11499793 0.04952333 0.11499793 0.04952333    0.0173957 ----
+     2   0   0   F    F  1.01D-01 0.11499793 0.04952333 0.01166390 0.00502300    0.0014811 ----
+     3   0   0   F    T  4.03D+00 0.02370082 0.01308312 0.10157820 0.05454634    0.0013473 ----
+     4   0   0   T    F  3.24D-01 0.02370082 0.01308312 0.03286939 0.01765049    0.0060168 ----
+     5   0   0   F    T  1.20D+02 0.00030832 0.00014615 0.03653310 0.01765049    0.0000018 ----
+     6   0   0   T    F  3.99D-02 0.00030832 0.00014615 0.00145605 0.00070347    0.0003568 ----
+     7   0   0   F    T  1.62D+00 0.00041815 0.00023070 0.00161938 0.00070347    0.0000012 ----
+     8   0   0   F    F  9.22D-01 0.00041815 0.00023070 0.00149232 0.00064828    0.0000004 ----
+     9   0   0   F    T  7.42D+00 0.00023091 0.00012725 0.00276037 0.00135175    0.0000002 ----
+    10   0   0   T    F  2.15D-01 0.00023091 0.00012725 0.00059401 0.00029089    0.0000021 ---+
+    11   0   0   F    T  4.32D+01 0.00001490 0.00000672 0.00065391 0.00029089    0.0000000 ++-+
+    12   0   0   T    T  1.00D+00 0.00055993 0.00027822 0.00055993 0.00027822    0.0000005 ---+
+    13   0   0   T    F  5.00D-01 0.00055993 0.00027822 0.00027997 0.00013911    0.0000005 --++
+    14   0   0   T    F  5.00D-01 0.00055993 0.00027822 0.00013998 0.00006955    0.0000001 --++
+    15   0   0   T    F  5.00D-01 0.00055993 0.00027822 0.00006999 0.00003478    0.0000000 --++
+    16   0   0   T    F  5.00D-01 0.00055993 0.00027822 0.00003500 0.00001739    0.0000000 --++
+    17   0   0   T    F  5.00D-01 0.00055993 0.00027822 0.00001750 0.00000869    0.0000000 --++
+    18   0   0   T    F  5.00D-01 0.00055993 0.00027822 0.00000875 0.00000435    0.0000000 --++
+    19   0   0   T    F  5.00D-01 0.00055993 0.00027822 0.00000437 0.00000217    0.0000000 --++
+    20   0   0   T    F  5.00D-01 0.00055993 0.00027822 0.00000219 0.00000109    0.0000000 --++
+    21   0   0   T    F  5.00D-01 0.00055993 0.00027822 0.00000109 0.00000054    0.0000000 --++
+    22   0   0   T    F  5.00D-01 0.00055993 0.00027822 0.00000055 0.00000027    0.0000000 --++
+    23   0   0   T    T  1.00D+00 0.00001542 0.00000699 0.00000254 0.00000143    0.0000000 ++++
+    24   0   0   F    T  1.00D+00 0.00001431 0.00000679 0.00001426 0.00000678    0.0000000 ====
+ Energy per function type:
+ Direct Coulomb + vdW (small)                           0.000000000
+ Direct Coulomb (large)                                 0.000000000
+ Direct vdW (large)                                     9.949628272
+ Non-direct Coulomb + vdW (small)                       0.000000000
+ Non-direct Coulomb (large)                             0.000000000
+ Non-direct vdW (large)                                -9.949628272
+ Energy per function class:
+        Coulomb               0.000000000
+    Vanderwaals              -0.000000000
+     Stretching               0.000000000
+        Bending               0.000000000
+ Energy=    3.532461479E-10 NIter=   0.
+ Dipole moment=       0.000000       0.000000       0.000000
+ Leave Link  402 at Wed Nov 22 17:09:28 2023, MaxMem=   134217728 cpu:               0.1 elap:               0.1
+ (Enter /home/emanuele/chem_software/gaussian//gdv/l716.exe)
+ Dipole        = 0.00000000D+00 0.00000000D+00 0.00000000D+00
+ -------------------------------------------------------------------
+ Center     Atomic                   Forces (Hartrees/Bohr)
+ Number     Number              X              Y              Z
+ -------------------------------------------------------------------
+      1        1           0.000001771   -0.000000000   -0.000007681
+      2        8           0.000008956   -0.000000000    0.000011586
+      3        8          -0.000014308   -0.000000000    0.000003118
+      4        1           0.000003581   -0.000000000   -0.000007023
+ -------------------------------------------------------------------
+ Cartesian Forces:  Max     0.000014308 RMS     0.000006789
+ Z-matrix is all fixed cartesians, so copy forces.
+ Leave Link  716 at Wed Nov 22 17:09:28 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/chem_software/gaussian//gdv/l103.exe)
+
+ GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
+ Berny optimization.
+ Search for a local minimum.
+ Step number   1 out of a maximum of    2
+ All quantities printed in internal units (Hartrees-Bohrs-Radians)
+ RMS Force = .67894D-05 SwitMx=.10000D-02 MixMth= 2
+ Mixed Optimization -- En-DIIS/RFO-DIIS
+ Second derivative matrix not updated -- unit matrix used.
+ ITU=  0
+ RFO step:  Lambda= 0.00000000D+00 EMin= 1.00000000D+00
+ Linear search not attempted -- first point.
+ Variable       Old X    -DE/DX   Delta X   Delta X   Delta X     New X
+                                 (Linear)    (Quad)   (Total)
+    X1        0.01060   0.00000   0.00000   0.00000   0.00000   0.01060
+    Y1        0.00000  -0.00000   0.00000   0.00000   0.00000   0.00000
+    Z1        0.01500  -0.00001   0.00000  -0.00001  -0.00001   0.01499
+    X2       -0.13672   0.00001   0.00000   0.00001   0.00001  -0.13671
+    Y2        0.00000  -0.00000   0.00000   0.00000   0.00000   0.00000
+    Z2        1.82882   0.00001   0.00000   0.00001   0.00001   1.82883
+    X3        2.45237  -0.00001   0.00000  -0.00001  -0.00001   2.45236
+    Y3        0.00000  -0.00000   0.00000   0.00000   0.00000   0.00000
+    Z3        2.77117   0.00000   0.00000   0.00000   0.00000   2.77118
+    X4        3.50542   0.00000   0.00000   0.00000   0.00000   3.50542
+    Y4        0.00000  -0.00000   0.00000   0.00000   0.00000   0.00000
+    Z4        1.28701  -0.00001   0.00000  -0.00001  -0.00001   1.28701
+         Item               Value     Threshold  Converged?
+ Maximum Force            0.000014     0.000450     YES
+ RMS     Force            0.000007     0.000300     YES
+ Maximum Displacement     0.000014     0.001800     YES
+ RMS     Displacement     0.000007     0.001200     YES
+ Predicted change in Energy=-2.765757D-10
+ Optimization completed.
+    -- Stationary point found.
+ Largest change from initial coordinates is atom    3       0.010 Angstoms.
+ GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
+
+ Leave Link  103 at Wed Nov 22 17:09:28 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/chem_software/gaussian//gdv/l202.exe)
+                          Input orientation:                          
+ ---------------------------------------------------------------------
+ Center     Atomic      Atomic             Coordinates (Angstroms)
+ Number     Number       Type             X           Y           Z
+ ---------------------------------------------------------------------
+      1          1    20001030        0.005609    0.000000    0.007939
+      2          8    20001021       -0.072350    0.000000    0.967770
+      3          8    20001021        1.297741    0.000000    1.466442
+      4          1    20001030        1.854988    0.000000    0.681058
+ ---------------------------------------------------------------------
+                    Distance matrix (angstroms):
+                    1          2          3          4
+     1  H    0.000000
+     2  O    0.962992   0.000000
+     3  O    1.948547   1.458020   0.000000
+     4  H    1.968068   1.948547   0.962992   0.000000
+ Symmetry turned off by external request.
+ Stoichiometry    H2O2
+ Framework group  C2V[SGV(H2O2)]
+ Deg. of freedom     3
+ Full point group                 C2V     NOp   4
+ Rotational constants (GHZ):         309.0810653          26.6648892          24.5471680
+ Leave Link  202 at Wed Nov 22 17:09:28 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/chem_software/gaussian//gdv/l9999.exe)
+ B after Tr=    -0.002786    0.000000    0.007653
+         Rot=    1.000000   -0.000000    0.000000   -0.000000 Ang=   0.00 deg.
+ New structure in terms of initial Z-matrix:
+ H
+ O,1,r2
+ O,2,r3,1,a3
+ H,3,r2,2,a3,1,d4,0
+      Variables:
+ r2=0.96299206
+ r3=1.45802008
+ a3=105.35654199
+ d4=0.
+ Unable to Open any file for archive entry.
+ 1\1\GINC-EMANUELE-XPS-13-9343\FOpt\AMBER\ZDO\H2O2\EMANUELE\22-Nov-2023
+ \0\\#p opt=AddRed Amber=Softfirst nosymm geom=nocrowd\\H2O2 rotational
+  potential 0. to 180., HF/6-31G(d) level redundant internals\\0,1\H,0.
+ 005609069,0.,0.0079385151\O,-0.072349899,0.,0.9677698094\O,1.297740812
+ 3,0.,1.4664420465\H,1.8549884414,0.,0.6810575585\\Version=ES64L-GDVRev
+ J.14\HF=0.\RMSD=0.000e+00\RMSF=6.789e-06\Dipole=0.,0.,0.\PG=C02V [SGV(
+ H2O2)]\\@
+ The archive entry for this job was punched.
+
+
+ BUT 'GLORY' DOESN'T MEAN 'A NICE KNOCK DOWN ARGUMENT', ALICE OBJECTED.
+ WHEN I USE A WORD, HUMPTY DUMPTY SAID, IN A RATHER SCORNFUL TONE,
+ IT MEANS JUST WHAT I CHOOSE IT TO MEAN....
+ NEITHER MORE NOR LESS....
+ THE QUESTION IS, SAID ALICE,
+ WHETHER YOU CAN MAKE WORDS MEAN SO MANY DIFFERENT THINGS...
+ THE QUESTION IS, SAID HUMPTY DUMPTY,
+ WHICH IS TO BE MASTER....
+ THAT IS ALL.....
+
+ ALICE THROUGH THE LOOKING GLASS
+ Job cpu time:       0 days  0 hours  0 minutes  0.5 seconds.
+ Elapsed time:       0 days  0 hours  0 minutes  0.5 seconds.
+ File lengths (MBytes):  RWF=      6 Int=      0 D2E=      0 Chk=      1 Scr=      1
+ Normal termination of Gaussian DV at Wed Nov 22 17:09:28 2023.

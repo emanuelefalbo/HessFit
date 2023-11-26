@@ -1,0 +1,8 @@
+{
+    "files": {
+        "log_qm_file":  "gly_qm_2.log",
+        "fchk_qm_file": "gly_qm_2.fchk"
+         },
+    "mode": "mean",
+    "opt": "ric"
+}

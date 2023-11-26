@@ -67,9 +67,20 @@ def change_mm_COM(filename, angle):
         print(" ", file=f2)
 
     
-def change_qm_COM(filename, tors_angle):
-    s = " ".join(map(str, tors_angle))
+def change_qm_COM(ele, coords, filename, tors_angle):
+    header = """%mem=1GB
+%nprocshared=1
+%chk={}.chk
+#p Amber=(SoftFirst,Print) nosymm geom=nocrowd opt=modredundant  nosymm B3LYP/def2TZVP
 
+Title
+
+0 1
+"""
+
+    s = " ".join(map(str, tors_angle))
+    data = [ " ".join(i,j) for i, j in zip(ele,coords)]
+    print(data)
     with open(filename,"r") as f:
         d = f.read()
     f.close()

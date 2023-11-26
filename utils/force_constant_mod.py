@@ -188,8 +188,8 @@ def set_torsion(coords, type_list, tors_list, \
                     #  if v2 > 30 or 0 < v2 < 9.0:
                      if v2 > 30:
                         v2_eq[m] = np.exp(-30./v2)*v2       # Reduce to a full C=C
-                        # print(v2_eq[m])
-                        # print("")
+                        print(v2_eq[m])
+                        print("")
                      elif 0 < v2 < 14.5:
                           v2_eq[m] = np.exp(-v2/30.)*30. - np.exp(-v2/14.5)*14.5   # Scale for full C=C & 
                      else:                                 # Increase to a partial C=C

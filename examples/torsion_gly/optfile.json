@@ -1,0 +1,10 @@
+{
+    "files": {
+        "log_qm_file":  "gly_qm_2.log",
+        "fchk_qm_file": "gly_qm_2.fchk",
+        "fchk_mm_file": "mm_new.fchk",
+        "fchk_nb_file": "nb_2.fchk"
+         },
+    "mode": "mean",
+    "opt": "ric"
+}

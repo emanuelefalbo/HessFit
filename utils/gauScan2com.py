@@ -1,30 +1,34 @@
 #!/usr/bin/env python3 
 
 import sys
-import numpy as np
+# import numpy as np
 import json
 import os
+# import readin_opts as rdin
 
 
-def print_mm(elements, xyz, Natm, atom_names, force):
+def print_mm(fname, elements, xyz, Natm, atom_types, force):
 
     header = """%mem=1GB
 %nprocshared=1
 %chk={CHK}
-#p Amber=(SoftFirst,Print) geom=nocrowd nosymm 
+#p Amber=(SoftFirst,Print) geom=nocrowd nosymm opt=(maxcycle=300)
    
 Title
   
 0 1
 """
+    file_mm_list =[]
     for i in range(0, len(xyz), Natm):
             j = i + Natm
-            fout = str(i) + '.gjf' 
+            f = os.path.splitext(fname)[0][:-2]
+            fout = f + 'mm_' + str(i) + '.gjf'
+            file_mm_list.append(str(fout))
             with open(fout, 'w') as fopen:
                  fopen.write(header.format(CHK=fout[:-3]+'chk'))
                 #  fopen.write(f' {Natm}\n')
                 #  fopen.write('\n')
-                 for m, p, l in zip(elements[i:j], atom_names, xyz[i:j]):
+                 for m, p, l in zip(elements[i:j], atom_types, xyz[i:j]):
                      s1 = '  '.join(str(x) for x in p)
                      s2 = '  '.join(str(x) for x in l)
                      fopen.write(f'{m}-{s1}      {s2} \n')
@@ -33,6 +37,7 @@ Title
                     l = ' '.join(x)
                     fopen.write(f'{l}\n')
                  fopen.write(f'\n')
+    return file_mm_list
 
 
 
@@ -119,17 +124,20 @@ def read_log(logfile):
         xyz_angs.append(words[3:])
 
     return elements, xyz_angs, Natm
+
+def main():
+    fname = sys.argv[1]
+    data = read_optfile(fname)
+    logfile = str(data["files"]["log_file"]) 
+    ele, xyz, Natm = read_log(logfile)
+    ffs = read_txt_info(data["files"]["force_file"])          #  Reading in force field
+    atom_types = read_txt_info(data["files"]["atom2type"])         #  Reading in atom types
+    print_mm(fname, ele, xyz, Natm, atom_types, ffs)
     
 
 if __name__ == "__main__":
+    main()
   
-   fname = sys.argv[1]
-   data = read_optfile(fname)
-   logfile = str(data["files"]["log_file"]) 
-   ele, xyz, Natm = read_log(logfile)
-   ffs = read_txt_info(data["files"]["force_file"])          #  Reading in force field
-   names = read_txt_info(data["files"]["atom2type"])         #  Reading in atom types
-   print_mm(ele, xyz, Natm, names, ffs)
 
 
 

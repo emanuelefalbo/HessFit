@@ -77,7 +77,7 @@ def main():
     No_dihes = ric_list[3]
 
     # Reading in Topology in RIC from log file
-    chg = pgau.read_CM5(text_qm_log, N_atoms)
+    charge = pgau.read_CM5(text_qm_log, N_atoms)
     bond_list, angle_list, tors_list = pgau.read_Top(text_qm_log, ric_list)
 
     if json_opts['opt'] == 'modsem':
@@ -124,13 +124,16 @@ def main():
     top.print_GauInp(ele_list, type_list, qm_XYZ, \
                  bonds_unique, k_bonds_unique, bond_arr, \
                  angles_unique, k_angles_unique, angle_arr, \
-                 tors_unique, v1, v2, v3, phase, periodic_list, chg)
+                 tors_unique, v1, v2, v3, phase, periodic_list, charge)
 
     top.print_AmbFrcmod(type_list, \
                  bonds_unique, k_bonds_unique, bond_arr, \
                  angles_unique, k_angles_unique, angle_arr, \
                  tors_type_list, v1, v2, v3, phase, periodic_list)
-
+    
+   # Make dihedral directory for subsquent torsion fitting
+    fname = 'SmartField4gau.gjf'
+    top.print_ff_strings(fname, type_list, charge)
 
 if __name__ == "__main__":
     main()
