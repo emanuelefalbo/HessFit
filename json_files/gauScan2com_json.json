@@ -1,8 +1,0 @@
-{
-    "format": "com",
-    "files": {
-        "atom2type": "atom_list.txt",
-        "force_file": "force_file.txt",
-        "log_file": "../delta.log"
-    }
-}

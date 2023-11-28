@@ -2,7 +2,6 @@
 
 import subprocess
 import os
-import argparse
 import readin_opts as rdin
 
 
@@ -11,7 +10,6 @@ def print_init():
  ======================================================
    Program:      SmartField
    Creator:      Emanuele Falbo, Napoli
-   Date:         October 2023
    Language:     Python 3.v later
    Description:  The program returns force constants for
                  bonded values and non-bonded parameters

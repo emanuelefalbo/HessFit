@@ -1,10 +1,8 @@
 #!/usr/bin/env python3 
 
 import sys
-# import numpy as np
 import json
 import os
-# import readin_opts as rdin
 
 
 def print_mm(fname, elements, xyz, Natm, atom_types, force):

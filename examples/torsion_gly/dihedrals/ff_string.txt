@@ -21,10 +21,10 @@ HrmBnd1 OH C CT  67.917 111.715
 HrmBnd1 OH C O2  91.404 123.018
 !Torsions
 AmbTrs C CT N3 H 0  180  0  0 0.00 25.63 0.00 0. 6.0
-AmbTrs CT C OH HO 0  180  0  0 0.00 14.5 0.00 0. 2.0
+AmbTrs CT C OH HO 0  180  0  0 0.00 9691.61 0.00 0. 2.0
 AmbTrs HC CT N3 H 0  0  0  0 0.00 16.93 0.00 0. 6.0
 AmbTrs O2 C CT HC 0  0  0  0 0.00 14.50 0.00 0. 6.0
 AmbTrs O2 C CT N3 0  0  0  0 0.00 14.50 0.00 0. 6.0
-AmbTrs O2 C OH HO 0  0  0  0 0.00 14.5 0.00 0. 2.0
+AmbTrs O2 C OH HO 0  0  0  0 0.00 18335.01 0.00 0. 2.0
 AmbTrs OH C CT HC 0  0  0  0 0.00 14.50 0.00 0. 6.0
 AmbTrs OH C CT N3 0  0  0  0 0.00 14.50 0.00 0. 6.0

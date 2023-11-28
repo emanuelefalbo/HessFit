@@ -1,0 +1,10 @@
+{
+    "files": {
+        "atom2type": "type_charge.txt",
+        "force_file": "ff_string.txt",
+        "file_xyz": "../gly_opt.xyz",
+        "topol": "../bond_angle_list.txt"
+    },
+    "method": "PM6",
+    "nprocs": "4"
+    }

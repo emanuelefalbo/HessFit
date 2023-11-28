@@ -5,7 +5,7 @@ import os
 import argparse
 
 def commandline_parser1():
-    parser = argparse.ArgumentParser(prog='smart_bonds_angles.py', formatter_class=argparse.RawTextHelpFormatter)
+    parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument('optfile', nargs='?', help='option file in json')
     parser.add_argument('-m', '--mode', choices=['modsem', 'ric'],
                         default='ric', help='method to compute harmonic factors')
@@ -18,8 +18,8 @@ def dir_path(string):
         raise NotADirectoryError(string)
 
 def commandline_parser2():
-    parser = argparse.ArgumentParser(prog='build_4Smart.py', formatter_class=argparse.RawTextHelpFormatter)
-    requiredNamed = parser.add_argument_group('mandatory arguments')
+    parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
+    # requiredNamed = parser.add_argument_group('mandatory arguments')
     parser.add_argument('optfile', nargs='?', help='option file in json')
     # requiredNamed.add_argument('-f1','--log_file', help='Gaussian QM log file ')
     # requiredNamed.add_argument('-f2','--fchk_file', help='Gaussain QM fchk file')
@@ -32,7 +32,7 @@ default = current directory """
 
 
 def commandline_parser3():
-    parser = argparse.ArgumentParser(prog='smart_bonds_angles.py', formatter_class=argparse.RawTextHelpFormatter)
+    parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument('optfile', nargs='?', help='option file in json')
     return parser
 
@@ -45,6 +45,33 @@ def read_optfile(fname):
     with open(fname, 'r')  as fopen:
         data = json.load(fopen)
     for i in ["log_qm_file", "fchk_qm_file", "fchk_mm_file", "fchk_nb_file"]:
+        if not os.path.exists(data['files'][i]):
+            raise FileNotFoundError(f'Missing {i} file')
+    return data
+
+def read_optfile_2(fname):
+    """
+    Read the option file. expected in json style
+    """
+    if not os.path.exists(str(fname)):
+        raise FileNotFoundError('Missing JSON file')
+    with open(fname, 'r')  as fopen:
+        data = json.load(fopen)
+        print(data)
+    for i in ["atom2type", "force_file", "file_xyz", "topol"]:
+        if not os.path.exists(data['files'][i]):
+            raise FileNotFoundError(f'Missing {i} file')
+    return data
+
+def read_optfile_3(fname):
+    """
+    Read the option file. expected in json style
+    """
+    if not os.path.exists(str(fname)):
+        raise FileNotFoundError('Missing JSON file')
+    with open(fname, 'r')  as fopen:
+        data = json.load(fopen)
+    for i in ["log_qm_file", "fchk_qm_file"]:
         if not os.path.exists(data['files'][i]):
             raise FileNotFoundError(f'Missing {i} file')
     return data

@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import argparse
 import parser_gau as pgau
 import force_constant_mod as fc
 import numpy as np
@@ -111,12 +110,10 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
 def main():
     parser = rdin.commandline_parser2()
     opts = parser.parse_args()
-    json_opts = rdin.read_optfile(opts.optfile)
+    json_opts = rdin.read_optfile_3(opts.optfile)
     # opts = parser.parse_args()
     f_qm_log = json_opts['files']['log_qm_file']
     f_qm_fchk = json_opts['files']['fchk_qm_file']
-    # f_qm_log = opts.log_file
-    # f_qm_fchk = opts.fchk_file
     text_qm_log = pgau.store_any_file(f_qm_log)
     text_qm_fchk = pgau.store_any_file(f_qm_fchk)
     

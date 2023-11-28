@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 
-import sys
 import subprocess
-import numpy as np
 import os
 import glob
 import gauScan2com as scan2mm
-
+import readin_opts as rdin
 # import gcutil as gc
 # from openbabel import openbabel as ob
 
@@ -24,12 +22,12 @@ def printout_start():
     """)
 
 #    B3LYP/6-31G* EmpiricalDispersion=GD3  
-def print2QM(data, filename, tors_angle, nprocs):
+def print2QM(filename, data, tors_angle, nprocs, qm_method):
     header = """%mem=1GB
 %nprocshared={}
 %chk={}.chk
 #p nosymm geom=nocrowd opt=(modredundant,maxcycle=100) 
-  PM6
+  {}
 
 Title
 
@@ -37,7 +35,7 @@ Title
 """
     s = " ".join(map(str, tors_angle))
     with open(filename,"w") as f:
-        f.write(header.format(nprocs, filename[:-4]))
+        f.write(header.format(nprocs, filename[:-4], qm_method))
         for i in data:
             f.write(f"{i[0]}  {' '.join(map(str, i[1:]))}\n")
         f.write('\n')    
@@ -193,13 +191,19 @@ def read_topology(filename):
      
 def main():
     printout_start()
-    file_xyz = sys.argv[1]
-    file_top = sys.argv[2]
-    nprocs = sys.argv[3]
-    # ele, coords = read_XYZ(file_xyz)
+    parser = rdin.commandline_parser3()
+    opts = parser.parse_args()
+    json_opts = rdin.read_optfile_2(opts.optfile)
+    file_xyz = json_opts['files']['file_xyz']
+    file_top = json_opts['files']['topol']
+    file_atype = json_opts['files']['atom2type']
+    file_ff_str = json_opts['files']['force_file']
+    nprocs = json_opts['nprocs']
+    qm_method = json_opts['method']
+    
     data = read_XYZ(file_xyz)
     ele = [ i[0] for i in data ]
-    cords = np.array([ i[1:4] for i in data ], dtype=float)
+    # cords = np.array([ i[1:4] for i in data ], dtype=float)
     tors_list = read_topology(file_top)
 
     # Building torsional list by element type
@@ -239,16 +243,16 @@ def main():
 
     # Writing QM Scan files for each torsional:
     for id, x in enumerate(tors_mean_list):
-        fqm = str(id) + '_zmat_qm.gjf'
+        fqm = str(id) + '_qm.gjf'
         # fmm = str(id) + '_zmat_mm.gjf'
-        print2QM(data, fqm, x, nprocs)
+        print2QM(fqm, data, x, nprocs, qm_method)
         
     # Reading in ff_string and type_charge files
-    atom_types = scan2mm.read_txt_info('type_charge.txt')
-    ffs = scan2mm.read_txt_info('ff_string.txt')
+    atom_types = scan2mm.read_txt_info(file_atype)
+    ffs = scan2mm.read_txt_info(file_ff_str)
     
     GPATH = os.environ.get("g09root") + "/g09"
-    file_pattern = '*_zmat_qm.gjf*'
+    file_pattern = '*_qm.gjf*'
     file_qm_list = glob.glob(file_pattern)      # the order doesn't matter
     # Calling Gaussian to perfrom Scan on each QM dihedral
     for id, f in enumerate(file_qm_list[:2]):
@@ -265,7 +269,7 @@ def main():
                 print(f"Error executing Gaussian Scan on {f}. Details: {stderr.decode()}")
             else:
                 print(f"Gaussian Scan executed successfully on {f}")
-        # Creating MM input geometries for each QM file 
+        # # Creating MM input geometries for each QM file 
         ele, coords, Natoms = scan2mm.read_log(log_file)
         file_mm_list = scan2mm.print_mm(f, ele, coords, Natoms, atom_types, ffs)
          # Calling Gaussian to perform Optimization on each QM input for full scan 
