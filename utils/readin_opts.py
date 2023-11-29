@@ -57,7 +57,6 @@ def read_optfile_2(fname):
         raise FileNotFoundError('Missing JSON file')
     with open(fname, 'r')  as fopen:
         data = json.load(fopen)
-        print(data)
     for i in ["atom2type", "force_file", "file_xyz", "topol"]:
         if not os.path.exists(data['files'][i]):
             raise FileNotFoundError(f'Missing {i} file')

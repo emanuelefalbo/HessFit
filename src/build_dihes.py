@@ -3,8 +3,10 @@
 import subprocess
 import os
 import glob
+import numpy as np
 import gauScan2com as scan2mm
 import readin_opts as rdin
+
 # import gcutil as gc
 # from openbabel import openbabel as ob
 
@@ -103,47 +105,6 @@ def read_topology(filename):
         # tors_list = np.array([ i[] for i in tors_list ], dtype=float)
         return tors_list   
         
-# def read_dihe_strings(filename):
-#     with open(filename, 'r') as file:
-#          lines = file.readlines()
-#     found_variables = False
-#     dx_strings = []
-    
-#     for line in lines:
-#         if 'Variables:' in line:
-#             found_variables = True
-#         elif found_variables and line.strip().startswith('d'):
-#             # Extract the number after 'd' and check if it's in the range 4 to 10
-#             dx_number = line.strip()[1:]
-#             dx_strings.append(dx_number)
-#     dx_values = [item.split('=')[0].strip() for item in dx_strings]
-    
-#     return dx_values
-
-# def find_files_matching_pattern(N):
-#     file_pattern = "_zmat_mm.gjf"
-#     file_list = []
-
-#     for x in range(N + 1):
-#         filename = f"{x}{file_pattern}"
-#         if os.path.isfile(filename):
-#             file_list.append(filename)
-
-#     return file_list
-
-
-# def header_zmat(file_name):
-#     new_header = '''%mem=1GB
-# %nprocshared=1
-# %chk={}.chk
-# #p opt=z-matrix Amber=Softfirst nosymm geom=connectivity\n'''
-#     with open(file_name, 'r') as file:
-#         lines = file.readlines()
-#     lines = lines[2:]
-#     lines.insert(0, new_header.format(file_name[:-4]))
-#     with open(file_name, 'w') as file:
-#         file.writelines(lines)
-
     
 # def change_mm_COM(filename, angle):
 #     with open(filename, 'r') as f:
@@ -188,6 +149,43 @@ def read_topology(filename):
 #         for i in text_new:
 #             print(*i, file=f2)
 #         print(" ", file=f2)
+
+def substitute_strings(indices, strings):
+    res = []
+    for idx_list in indices:
+        substituted = [strings[idx - 1] for idx in idx_list]
+        res.append(' '.join(substituted))
+    return res
+
+def replace_nth_tors(file_mm, tors_type):
+    content =[]
+    with open(file_mm, 'r') as f:
+        content = [line.split() for line in f]
+            
+    # Find the index of the '!Torsions' entry
+    torsions_index = next((index for index, sublist in enumerate(content) if '!Torsions' in sublist), -1)
+    content_tors = content[torsions_index + 1:] if torsions_index != -1 else []
+    
+    # content_list = content.split('\n')
+     # split_content = [item.split() for item in content_tors]
+    # Split each item of the list into a sublist based on space delimiter
+    for line_idx, line in enumerate(content_tors):
+        if line[1:5] == tors_type:
+           arr_tmp = np.asarray(content_tors[line_idx][9:13])
+           arr_float = arr_tmp.astype(float)
+           # Replace elements different from 0.0 with 1.0
+           arr_float[arr_float != 0.0] = 0.0
+        #    print(line[1:5], tors_type, arr_float, content[line_idx][9:13])
+           str_type = arr_float.astype(str)
+           content_tors[line_idx][9:13] = list(str_type)
+           break
+    
+    # Write content back to the file
+    with open(file_mm, 'w') as f:
+        for line in content:
+            f.write(' '.join(line) + '\n')
+    
+
      
 def main():
     printout_start()
@@ -240,25 +238,36 @@ def main():
     print(" ---------------------------------------------\n")
     [ print(" {}- {}- {}- {} ".format(i,j, k, l)) for i,j,k,l in tors_mean_list ]
     print("")
-
+    
+    # Reading in ff_string and type_charge files
+    atype_chg = scan2mm.read_txt_info(file_atype)
+    ffs = scan2mm.read_txt_info(file_ff_str)
+    atypes = [item[0].split('-')[0] for item in atype_chg]
+    
+    # Replacing indices with string atype
+    tors_tmp = substitute_strings(tors_mean_list, atypes)
+    tors_type_list = {idx:x.split(' ') for idx, x in enumerate(tors_tmp)}
+    print(" Atomic Type per indices in Torsional Angles:")
+    print(" ---------------------------------------------\n")
+    [ print(" {}- {}- {}- {} ".format(i,j, k, l)) for i,j,k,l in tors_type_list.values() ]
+    print("")
+    
     # Writing QM Scan files for each torsional:
     for id, x in enumerate(tors_mean_list):
         fqm = str(id) + '_qm.gjf'
         # fmm = str(id) + '_zmat_mm.gjf'
         print2QM(fqm, data, x, nprocs, qm_method)
-        
-    # Reading in ff_string and type_charge files
-    atom_types = scan2mm.read_txt_info(file_atype)
-    ffs = scan2mm.read_txt_info(file_ff_str)
     
     GPATH = os.environ.get("g09root") + "/g09"
     file_pattern = '*_qm.gjf*'
-    file_qm_list = glob.glob(file_pattern)      # the order doesn't matter
+    file_qm_list = sorted(glob.glob(file_pattern))      # the order matters
+    
     # Calling Gaussian to perfrom Scan on each QM dihedral
-    for id, f in enumerate(file_qm_list[:2]):
+    for id, f in enumerate(file_qm_list):
         print(f"Executing Gaussian Scan on {f}")
         file_base = os.path.splitext(f)[0]
         log_file = file_base + '.log'  
+        
     # Check if the log files exist 
         if os.path.exists(log_file):
             print(f"Log file {log_file} already exists.\n")
@@ -269,17 +278,24 @@ def main():
                 print(f"Error executing Gaussian Scan on {f}. Details: {stderr.decode()}")
             else:
                 print(f"Gaussian Scan executed successfully on {f}")
-        # # Creating MM input geometries for each QM file 
+                
+        #  Creating MM input geometries for each QM file 
         ele, coords, Natoms = scan2mm.read_log(log_file)
-        file_mm_list = scan2mm.print_mm(f, ele, coords, Natoms, atom_types, ffs)
-         # Calling Gaussian to perform Optimization on each QM input for full scan 
-        for jd, fj in enumerate(file_mm_list):
-            process = subprocess.Popen([f"{GPATH}/g09", fj], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        file_mm_list = scan2mm.print_mm(f, ele, coords, Natoms, atype_chg, ffs)
+        
+        # Silcening n-th dihedral by replacing with 0.0 barrier terms
+        replace_item = tors_type_list[id]
+        for idf, file in enumerate(file_mm_list):
+            replace_nth_tors(file, replace_item)
+        
+        # Calling Gaussian to perform Optimization on each QM input for full scan 
+        # for jd, fj in enumerate(file_mm_list):
+            process = subprocess.Popen([f"{GPATH}/g09", file], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             stdout, stderr = process.communicate()  # Wait for the process to finish
             if process.returncode != 0:
-                print(f"Error executing MM Gaussian Optimization on {fj}. Details: {stderr.decode()}")
+                print(f"Error executing MM Gaussian Optimization on {file}. Details: {stderr.decode()}")
             else:
-                print(f"Gaussian Optimization executed successfully on {fj}")
+                print(f"Gaussian Optimization executed successfully on {file}")
     
     
         # conv = ob.OBConversion()
