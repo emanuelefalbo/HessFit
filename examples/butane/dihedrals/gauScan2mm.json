@@ -1,0 +1,10 @@
+{
+    "files": {
+        "atom2type": "type_charge.txt",
+        "force_file": "ff_string.txt",
+        "file_xyz": "but_qm.xyz",
+        "topol": "topol.txt"
+    },
+    "method": "PM6",
+    "nprocs": "4"
+    }

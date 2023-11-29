@@ -110,7 +110,7 @@ def main():
     file_log = args.f
     ftype = args.t
     size_step, ang, energy_au = read_log(file_log, ftype)
-    file_out = file_log[:-4] + '_scan.dat'
+    file_out = file_log[:-4] + '_scan.csv'
     with open(file_out, 'w') as f:
         for i,x in enumerate(energy_au):
             print("{:,.8e}  {:,.8e}".format(ang, energy_au[i]), file=f)

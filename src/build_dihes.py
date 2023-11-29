@@ -16,9 +16,9 @@ def printout_start():
     Author : Emanuele Falbo
     E-Mail : falbo.emanuele@gmail.com
     =============================================================
-    SmartField_Torsion : a small program to fragment molecules 
+    SmartField_Torsion : a program to fragment molecules 
                          on the basis of their dihedral angles
-                         and prepare inputs for subsequent QM and 
+                         prepare and compute inputs for subsequent QM and 
                          MM rigid torsional scans
     =============================================================
     """)
@@ -44,28 +44,6 @@ Title
         f.write('D ' + str(s) + ' S 10 36.0\n')
         f.write('\n')    
         
-    
-# def print2MM(data, filename, tors_angle):
-#     header = """%mem=1GB
-# %nprocshared=1
-# %chk={}.chk
-# #p nosymm geom=nocrowd opt=(z-matrix,maxcycle=300) Amber=softfirst
-
-# Title
-
-# 0 1
-# """
-#     s = " ".join(map(str, tors_angle))
-#     with open(filename,"w") as f:
-#         f.write(header.format(filename[:-4]))
-#         for i in data:
-#             f.write(f"{i[0]}  {' '.join(map(str, i[1:]))}\n")
-#         f.write('\n')    
-#         f.write('D ' + str(s) + ' S 10 36.0\n')
-#         f.write('\n')   
-        
-# Define a function to extract variables and their values
-        
 
 def read_XYZ(filename):
     with open(filename, 'r') as f:
@@ -85,70 +63,25 @@ def read_topology(filename):
         bond_list = [] 
         angle_list = []
         tors_list = []
-        temp = []
         N_bonds = int(f.readline().split()[0])        
         for i in range(0, N_bonds):
-            bond_list.append(f.readline().strip().split(','))
+            bond_list.append(f.readline().strip().split())
         
-        bond_list = [ list(map(int,x)) for x in bond_list ]
+        b_list = [ list(map(int,x)) for x in bond_list ]
 
         N_angles = int(f.readline().split()[0])       
         for i in range(0, N_angles):
-            f.readline()
-            # angle_list.append(f.readline().split())   
-
-        N_tors = int(f.readline().split()[0])        
+            angle_list.append(f.readline().split())  
+        a_list = [ list(map(int,x)) for x in angle_list ] 
+        
+        N_tors = int(f.readline().split()[0]) 
         for i in range(0, N_tors):
-            tors_list.append(f.readline().strip().split(','))
+            tors_list.append(f.readline().strip().split())
         
-        tors_list = [ list(map(int,x)) for x in tors_list ]
+        t_list = [ list(map(int,x)) for x in tors_list ]
         # tors_list = np.array([ i[] for i in tors_list ], dtype=float)
-        return tors_list   
-        
+        return t_list   
     
-# def change_mm_COM(filename, angle):
-#     with open(filename, 'r') as f:
-#         text = []
-#         for line in f:
-#             text.append(line.split())
-
-#     # Break it in parts
-#     first_bit = []
-#     second_bit = []
-#     third_bit = []
-#     for i in text:
-#         first_bit.append(i)
-#         if len(i) == 2:
-#             break
-#     for i in text[8:]:
-#         second_bit.append(i)
-#         if i[0] == 'Variables:':
-#             break
-
-#     print(second_bit[angle[-1]-1][1])
-#     second_bit[angle[-1]-1][1] = angle[2]  # Replace Bond
-#     second_bit[angle[-1]-1][3] = angle[1]  #  .... Angle
-#     second_bit[angle[-1]-1][5] = angle[0]  #  .. Dihedral
-#     # r1 = second_bit[angle[-1]-1][2]        # Bond Paramters
-#     # r2 = second_bit[angle[-1]-1][4]        # Angle ....
-#     r3 = second_bit[angle[-1]-1][6]        #  Dihedral ...
-
-#     for i in text[len(second_bit)+8:]:
-#         third_bit.append(i)
-
-#     third_bit = [x for x in third_bit if x]   # Take out empty spaces in list
-
-#     for i, x in enumerate(third_bit):
-#         if x[0] == r3:
-#             third_bit[i][1] = '0.000 S 15 24.0 '
-
-
-#     fout = filename[:-4] + '_mod.gjf'
-#     text_new = first_bit + second_bit + third_bit
-#     with open(fout, 'w') as f2:
-#         for i in text_new:
-#             print(*i, file=f2)
-#         print(" ", file=f2)
 
 def substitute_strings(indices, strings):
     res = []
@@ -298,27 +231,10 @@ def main():
                 print(f"Gaussian Optimization executed successfully on {file}")
     
     
-        # conv = ob.OBConversion()
-        # conv.SetInAndOutFormats("xyz", "gzmat")
-        # mol = ob.OBMol()
-        # conv.ReadFile(mol, file_xyz)
-        # # conv.WriteFile(mol, fqm)
-        # conv.WriteFile(mol, fmm)
-        # Add the header for Scan
-        # header_zmat(fmm)
-        # header_zmat(fqm)
-    # # Replace N with the maximum value you want to search for (e.g., 10)
-    # N = len(tors_mean_list)
-    # files_mm = find_files_matching_pattern(N)
-    # dx_strings = read_dihe_strings(files_mm[0])
-    # print(dx_strings, files_mm)
-    
     # Conver to ZMAT by gcutils
     # xyzarr, atomnames = gc.readxyz(xyzfilename)
     # distmat = gc.distance_matrix(xyzarr)
     # gc.write_zmat(xyzarr, distmat, atomnames, rvar=False, avar=False, dvar=True)
-
-
     
 
 if __name__ == '__main__':

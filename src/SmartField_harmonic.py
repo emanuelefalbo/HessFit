@@ -14,7 +14,6 @@ from scipy.sparse import rand
 from scipy.optimize import lsq_linear
 
 
-
 def get_DiagMatrix(AM):
     for i in range(len(AM)):
         for j in range(len(AM)):
@@ -62,11 +61,13 @@ def main():
     f_qm_fchk = json_opts['files']['fchk_qm_file']
     f_mm_fchk = json_opts['files']['fchk_mm_file']
     f_nb_fchk = json_opts['files']['fchk_nb_file']
+    
     # Store all fiels in texts
     text_qm_log = pgau.store_any_file(f_qm_log)
     text_qm_fchk = pgau.store_any_file(f_qm_fchk)
     text_mm_fchk = pgau.store_any_file(f_mm_fchk)
     text_nb_fchk = pgau.store_any_file(f_nb_fchk)
+    
     # Opening texts contents : XYZ, Grad, Hess, Topology & etc
     N_atoms, qm_XYZ = pgau.read_XYZ(text_qm_fchk)                 
     ele_list, type_list = pgau.read_NamesTypes(text_qm_log, N_atoms)
@@ -115,10 +116,6 @@ def main():
     angles_unique, k_angles_unique = aat.make_list_unique(angle_type_list, k_angle_arr)
     # Same for torsion...
     tors_unique, val_unique = aat.make_list_unique(tors_type_list, v1)
-    # print(val_unique)
-    # [print(i) for i in zip(tors_type_list)]
-    # print("")
-    # [print(j) for j in zip(tors_unique)]
 
     # Print all into Gaussian Input
     top.print_GauInp(ele_list, type_list, qm_XYZ, \

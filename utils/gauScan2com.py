@@ -6,11 +6,11 @@ import os
 
 
 def print_mm(fname, elements, xyz, Natm, atom_types, force):
-
+# opt=(maxcycle=300)
     header = """%mem=1GB
 %nprocshared=1
 %chk={CHK}
-#p Amber=(SoftFirst,Print) geom=nocrowd nosymm opt=(maxcycle=300)
+#p Amber=(SoftFirst,Print) geom=nocrowd nosymm
    
 Title
   
