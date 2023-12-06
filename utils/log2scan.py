@@ -3,6 +3,7 @@
 
 import argparse
 import numpy as np
+import pandas as pd
 
 # def read_gjf(file_gjf):
 #     match = "Variables"
@@ -33,6 +34,7 @@ def build_parser():
                          help=txt)
     txt = "Scan log file"
     parser.add_argument('-f', type=str, help=txt)
+    parser.add_argument('-o', type=str, help='output file', default='output.csv')
     return parser
 
 
@@ -84,7 +86,6 @@ def read_log(file_log, ftype):
                    step_ang = float(i[4])
             # print(angle, step_ang)
 
-
         # Get Energies
         for line in f:
             if line[:44] == match_1:
@@ -109,13 +110,18 @@ def main():
 
     file_log = args.f
     ftype = args.t
+    fout = args.o
     size_step, ang, energy_au = read_log(file_log, ftype)
     file_out = file_log[:-4] + '_scan.csv'
-    with open(file_out, 'w') as f:
-        for i,x in enumerate(energy_au):
-            print("{:,.8e}  {:,.8e}".format(ang, energy_au[i]), file=f)
-            ang = ang + size_step
-    f.close()
+    phi = [ang]
+    for i in range(len(energy_au)-1):
+        ang = ang + size_step
+        phi.append(ang)
+    
+    energy = list(energy_au)
+    df = pd.DataFrame([phi, energy]).T
+    # df = pd.DataFrame([phi, energy_au], columns=['Angle', 'Energy'])
+    df.to_csv(fout)
 
 
 if __name__ == '__main__':

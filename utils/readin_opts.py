@@ -7,8 +7,8 @@ import argparse
 def commandline_parser1():
     parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument('optfile', nargs='?', help='option file in json')
-    parser.add_argument('-m', '--mode', choices=['modsem', 'ric'],
-                        default='ric', help='method to compute harmonic factors')
+    # parser.add_argument('-m', '--mode', choices=['modsem', 'ric'],
+                        # default='ric', help='method to compute harmonic factors')
     return parser
 
 def dir_path(string):
@@ -44,7 +44,7 @@ def read_optfile(fname):
         raise FileNotFoundError('Missing JSON file')
     with open(fname, 'r')  as fopen:
         data = json.load(fopen)
-    for i in ["log_qm_file", "fchk_qm_file", "fchk_mm_file", "fchk_nb_file"]:
+    for i in ["log_qm_file", "fchk_qm_file", "atype_file", "fchk_mm_file", "fchk_nb_file"]:
         if not os.path.exists(data['files'][i]):
             raise FileNotFoundError(f'Missing {i} file')
     return data

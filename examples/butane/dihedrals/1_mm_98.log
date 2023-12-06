@@ -2,8 +2,8 @@
  Input=1_mm_98.gjf
  Output=1_mm_98.log
  Initial command:
- /home/emanuele/chem_software/gaussian//gdv/l1.exe "/home/emanuele/chem_software/gaussian/scratch/Gau-17641.inp" -scrdir="/home/emanuele/chem_software/gaussian/scratch/"
- Entering Link 1 = /home/emanuele/chem_software/gaussian//gdv/l1.exe PID=     17643.
+ /home/emanuele/chem_software/gaussian//gdv/l1.exe "/home/emanuele/chem_software/gaussian/scratch/Gau-5797.inp" -scrdir="/home/emanuele/chem_software/gaussian/scratch/"
+ Entering Link 1 = /home/emanuele/chem_software/gaussian//gdv/l1.exe PID=      5799.
   
  Copyright (c) 1988-2020, Gaussian, Inc.  All Rights Reserved.
   
@@ -79,7 +79,7 @@
  
  ******************************************
  Gaussian DV:  ES64L-GDVRevJ.14 29-Dec-2020
-                29-Nov-2023 
+                30-Nov-2023 
  ******************************************
  %mem=1GB
  %nprocshared=1
@@ -93,7 +93,7 @@
  3/5=30,11=9,25=1,30=1,41=10030000,43=2/1;
  4/20=11,24=3,119=11/2;
  99/5=1,9=1/99;
- Leave Link    1 at Wed Nov 29 16:44:44 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link    1 at Thu Nov 30 10:56:56 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l101.exe)
  -----
  Title
@@ -166,7 +166,7 @@
  XXXZ=            -23.8219 YYYX=            -38.5822 YYYZ=             24.5408 ZZZX=            -22.9577
  ZZZY=             20.4823 XXYY=             30.0182 XXZZ=             19.9719 YYZZ=             18.9623
  XXYZ=              9.1306 YYXZ=            -10.2847 ZZXY=            -13.6174
- Leave Link  101 at Wed Nov 29 16:44:44 2023, MaxMem=   134217728 cpu:               0.2 elap:               0.2
+ Leave Link  101 at Thu Nov 30 10:56:56 2023, MaxMem=   134217728 cpu:               0.2 elap:               0.2
  (Enter /home/emanuele/chem_software/gaussian//gdv/l202.exe)
                           Input orientation:                          
  ---------------------------------------------------------------------
@@ -225,7 +225,7 @@
  Deg. of freedom    36
  Full point group                 C1      NOp   1
  Rotational constants (GHZ):          16.4599289           3.9996927           3.8854648
- Leave Link  202 at Wed Nov 29 16:44:44 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  202 at Thu Nov 30 10:56:56 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l301.exe)
  Standard basis: Dummy (5D, 7F)
     14 basis functions,    14 primitive gaussians,    14 cartesian basis functions
@@ -239,7 +239,7 @@
  Integral buffers will be    131072 words long.
  Raffenetti 1 integral format.
  Two-electron integral symmetry is turned off.
- Leave Link  301 at Wed Nov 29 16:44:44 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  301 at Thu Nov 30 10:56:57 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l402.exe)
  AMBER calculation of energy.
  ****************************
@@ -302,25 +302,25 @@
  HrmBnd1 13-11-14  33.87 110.16
  AmbTrs  2- 1- 5- 6   0   0   0   0  0.0000  0.0000  2.1600  0.0000  9.0
  AmbTrs  2- 1- 5- 7   0   0   0   0  0.0000  0.0000  2.1600  0.0000  9.0
- AmbTrs  8- 5- 1- 2   0   0   0   0  0.0000  0.0000  0.0000  0.0000  9.0
+ AmbTrs  8- 5- 1- 2   0   0   0   0  0.0000  0.0000  2.1600  0.0000  9.0
  AmbTrs  3- 1- 5- 6   0   0   0   0  0.0000  0.0000  2.1600  0.0000  9.0
  AmbTrs  3- 1- 5- 7   0   0   0   0  0.0000  0.0000  2.1600  0.0000  9.0
- AmbTrs  8- 5- 1- 3   0   0   0   0  0.0000  0.0000  0.0000  0.0000  9.0
+ AmbTrs  8- 5- 1- 3   0   0   0   0  0.0000  0.0000  2.1600  0.0000  9.0
  AmbTrs  4- 1- 5- 6   0   0   0   0  0.0000  0.0000  2.1600  0.0000  9.0
  AmbTrs  4- 1- 5- 7   0   0   0   0  0.0000  0.0000  2.1600  0.0000  9.0
- AmbTrs  8- 5- 1- 4   0   0   0   0  0.0000  0.0000  0.0000  0.0000  9.0
- AmbTrs  1- 5- 8- 9   0   0   0   0  0.0000  0.0000  0.0000  0.0000  9.0
- AmbTrs  1- 5- 8-10   0   0   0   0  0.0000  0.0000  0.0000  0.0000  9.0
+ AmbTrs  8- 5- 1- 4   0   0   0   0  0.0000  0.0000  2.1600  0.0000  9.0
+ AmbTrs  1- 5- 8- 9   0   0   0   0  0.0000  0.0000  2.1600  0.0000  9.0
+ AmbTrs  1- 5- 8-10   0   0   0   0  0.0000  0.0000  2.1600  0.0000  9.0
  AmbTrs  1- 5- 8-11   0   0   0   0  0.0000  0.0000  2.3000  0.0000  9.0
  AmbTrs  6- 5- 8- 9   0   0   0   0  0.0000  0.0000  2.1600  0.0000  9.0
  AmbTrs  6- 5- 8-10   0   0   0   0  0.0000  0.0000  2.1600  0.0000  9.0
- AmbTrs 11- 8- 5- 6   0   0   0   0  0.0000  0.0000  0.0000  0.0000  9.0
+ AmbTrs 11- 8- 5- 6   0   0   0   0  0.0000  0.0000  2.1600  0.0000  9.0
  AmbTrs  7- 5- 8- 9   0   0   0   0  0.0000  0.0000  2.1600  0.0000  9.0
  AmbTrs  7- 5- 8-10   0   0   0   0  0.0000  0.0000  2.1600  0.0000  9.0
- AmbTrs 11- 8- 5- 7   0   0   0   0  0.0000  0.0000  0.0000  0.0000  9.0
- AmbTrs  5- 8-11-12   0   0   0   0  0.0000  0.0000  0.0000  0.0000  9.0
- AmbTrs  5- 8-11-13   0   0   0   0  0.0000  0.0000  0.0000  0.0000  9.0
- AmbTrs  5- 8-11-14   0   0   0   0  0.0000  0.0000  0.0000  0.0000  9.0
+ AmbTrs 11- 8- 5- 7   0   0   0   0  0.0000  0.0000  2.1600  0.0000  9.0
+ AmbTrs  5- 8-11-12   0   0   0   0  0.0000  0.0000  2.1600  0.0000  9.0
+ AmbTrs  5- 8-11-13   0   0   0   0  0.0000  0.0000  2.1600  0.0000  9.0
+ AmbTrs  5- 8-11-14   0   0   0   0  0.0000  0.0000  2.1600  0.0000  9.0
  AmbTrs  9- 8-11-12   0   0   0   0  0.0000  0.0000  2.1600  0.0000  9.0
  AmbTrs  9- 8-11-13   0   0   0   0  0.0000  0.0000  2.1600  0.0000  9.0
  AmbTrs  9- 8-11-14   0   0   0   0  0.0000  0.0000  2.1600  0.0000  9.0
@@ -400,19 +400,19 @@
  Non-direct vdW (large)                              -512.723792024
  Harmonic stretch I                                     0.000684244
  Harmonic bend I                                        0.018328764
- Amber torsion                                          0.001113292
+ Amber torsion                                          0.002762078
  Energy per function class:
         Coulomb               0.003951535
     Vanderwaals               0.002114302
      Stretching               0.000684244
         Bending               0.018328764
-        Torsion               0.001113292
- Energy=    2.619213690E-02 NIter=   0.
+        Torsion               0.002762078
+ Energy=    2.784092281E-02 NIter=   0.
  Dipole moment=      -0.088378      -0.031251       0.054139
- Leave Link  402 at Wed Nov 29 16:44:44 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  402 at Thu Nov 30 10:56:57 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l9999.exe)
  Unable to Open any file for archive entry.
- 1\1\GINC-EMANUELE-XPS-13-9343\SP\AMBER\ZDO\C4H10\EMANUELE\29-Nov-2023\
+ 1\1\GINC-EMANUELE-XPS-13-9343\SP\AMBER\ZDO\C4H10\EMANUELE\30-Nov-2023\
  0\\#p Amber=(SoftFirst,Print) geom=nocrowd nosymm\\Title\\0,1\C,0,-1.4
  90093,0.250576,0.784804\H,0,-1.710202,-0.608411,0.141395\H,0,-1.133708
  ,-0.140855,1.746745\H,0,-0.65669,0.80259,0.327372\C,0,-2.722725,1.1420
@@ -420,14 +420,15 @@
  19321\C,0,-2.477683,2.24826,1.998501\H,0,-3.43226,2.483563,2.509723\H,
  0,-1.78789,1.861117,2.775029\C,0,-2.343092,3.622535,1.336741\H,0,-3.19
  4245,3.84,0.678099\H,0,-2.29486,4.42027,2.086118\H,0,-1.431725,3.68642
- 2,0.725301\\Version=ES64L-GDVRevJ.14\HF=0.0261921\RMSD=0.000e+00\Dipol
+ 2,0.725301\\Version=ES64L-GDVRevJ.14\HF=0.0278409\RMSD=0.000e+00\Dipol
  e=-0.0883778,-0.0312511,0.0541394\PG=C01 [X(C4H10)]\\@
  The archive entry for this job was punched.
 
 
- BLESSED ARE THOSE WHO NOUGHT EXPECT,
- FOR THEY SHALL NOT BE DISAPPOINTED..  WALCOT - ODE TO PITT
+ EVERYTHING'S GOT A MORAL, IF ONLY YOU CAN FIND IT.
+
+                                    -- LEWIS CARROL, ALICE IN WONDERLAND
  Job cpu time:       0 days  0 hours  0 minutes  0.4 seconds.
  Elapsed time:       0 days  0 hours  0 minutes  0.4 seconds.
  File lengths (MBytes):  RWF=      6 Int=      0 D2E=      0 Chk=      1 Scr=      1
- Normal termination of Gaussian DV at Wed Nov 29 16:44:44 2023.
+ Normal termination of Gaussian DV at Thu Nov 30 10:56:57 2023.

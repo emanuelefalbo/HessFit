@@ -12,7 +12,7 @@ def build_parser():
     Build options for parser
     """
     parser = argparse.ArgumentParser()
-    txt = "Scan txt file to be opened"
+    txt = "file containg phi angle, QM, and MM energies in 1st, 2nd, and 3rd columns"
     parser.add_argument('file', type=str, help=txt)
     txt = 'Plot the PES with matplotlib'
     parser.add_argument('--plot', action="store_true", help=txt)
@@ -112,7 +112,9 @@ def non_linear_f(x, a1, a2, a3, a4, p1, p2, p3, p4):
     return y
 
 def solve_LLSQ(A_matrix, yval):
-    coeffs = np.dot(np.linalg.inv(np.dot(A_matrix.T, A_matrix)), np.dot(A_matrix.T, yval))
+    # coeffs = np.dot(np.linalg.inv(np.dot(A_matrix.T, A_matrix)), np.dot(A_matrix.T, yval))
+    coeffs = np.linalg.lstsq(A_matrix, yval)[0]
+    print(coeffs)
     # cov_matrix = np.diag(residual(coeffs, xval, yval)**2)
     print('', 60*'=')
     print(' Torsional Coefficients after LLSQ (kcal/mol): ')
@@ -143,7 +145,7 @@ def main():
     args = parser.parse_args()
     fname = args.file
     data = load_data(fname)
-    xval = data[:,0]  - 180.0
+    xval = data[:,0] # - 180.0
     qm_rel = ( data[:,1] - min(data[:,1]) ) *6.275030E02  # Eh to kcal/mol
     mm_rel = ( data[:,2] - min(data[:,2]) ) *6.275030E02
     yval =  ( qm_rel - mm_rel ) 

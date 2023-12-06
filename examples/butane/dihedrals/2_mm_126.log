@@ -2,8 +2,8 @@
  Input=2_mm_126.gjf
  Output=2_mm_126.log
  Initial command:
- /home/emanuele/chem_software/gaussian//gdv/l1.exe "/home/emanuele/chem_software/gaussian/scratch/Gau-17674.inp" -scrdir="/home/emanuele/chem_software/gaussian/scratch/"
- Entering Link 1 = /home/emanuele/chem_software/gaussian//gdv/l1.exe PID=     17676.
+ /home/emanuele/chem_software/gaussian//gdv/l1.exe "/home/emanuele/chem_software/gaussian/scratch/Gau-5833.inp" -scrdir="/home/emanuele/chem_software/gaussian/scratch/"
+ Entering Link 1 = /home/emanuele/chem_software/gaussian//gdv/l1.exe PID=      5835.
   
  Copyright (c) 1988-2020, Gaussian, Inc.  All Rights Reserved.
   
@@ -79,7 +79,7 @@
  
  ******************************************
  Gaussian DV:  ES64L-GDVRevJ.14 29-Dec-2020
-                29-Nov-2023 
+                30-Nov-2023 
  ******************************************
  %mem=1GB
  %nprocshared=1
@@ -93,7 +93,7 @@
  3/5=30,11=9,25=1,30=1,41=10030000,43=2/1;
  4/20=11,24=3,119=11/2;
  99/5=1,9=1/99;
- Leave Link    1 at Wed Nov 29 16:44:48 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link    1 at Thu Nov 30 10:57:01 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l101.exe)
  -----
  Title
@@ -166,7 +166,7 @@
  XXXZ=            -13.2806 YYYX=            -35.4853 YYYZ=             22.6531 ZZZX=            -20.0991
  ZZZY=             18.5912 XXYY=             24.0554 XXZZ=             13.4960 YYZZ=             18.9899
  XXYZ=              2.6447 YYXZ=             -6.2399 ZZXY=             -9.2639
- Leave Link  101 at Wed Nov 29 16:44:49 2023, MaxMem=   134217728 cpu:               0.2 elap:               0.2
+ Leave Link  101 at Thu Nov 30 10:57:01 2023, MaxMem=   134217728 cpu:               0.2 elap:               0.2
  (Enter /home/emanuele/chem_software/gaussian//gdv/l202.exe)
                           Input orientation:                          
  ---------------------------------------------------------------------
@@ -225,7 +225,7 @@
  Deg. of freedom    36
  Full point group                 C1      NOp   1
  Rotational constants (GHZ):          22.8576627           3.6164220           3.3998154
- Leave Link  202 at Wed Nov 29 16:44:49 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  202 at Thu Nov 30 10:57:01 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l301.exe)
  Standard basis: Dummy (5D, 7F)
     14 basis functions,    14 primitive gaussians,    14 cartesian basis functions
@@ -239,7 +239,7 @@
  Integral buffers will be    131072 words long.
  Raffenetti 1 integral format.
  Two-electron integral symmetry is turned off.
- Leave Link  301 at Wed Nov 29 16:44:49 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  301 at Thu Nov 30 10:57:01 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l402.exe)
  AMBER calculation of energy.
  ****************************
@@ -409,10 +409,10 @@
         Torsion               0.001391457
  Energy=    2.695219769E-02 NIter=   0.
  Dipole moment=      -0.006490      -0.056947       0.032714
- Leave Link  402 at Wed Nov 29 16:44:49 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  402 at Thu Nov 30 10:57:01 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l9999.exe)
  Unable to Open any file for archive entry.
- 1\1\GINC-EMANUELE-XPS-13-9343\SP\AMBER\ZDO\C4H10\EMANUELE\29-Nov-2023\
+ 1\1\GINC-EMANUELE-XPS-13-9343\SP\AMBER\ZDO\C4H10\EMANUELE\30-Nov-2023\
  0\\#p Amber=(SoftFirst,Print) geom=nocrowd nosymm\\Title\\0,1\C,0,-1.6
  94582,0.002139,0.993375\H,0,-1.969806,-0.792713,0.291076\H,0,-1.892653
  ,-0.371842,2.005798\H,0,-0.612026,0.156893,0.90447\C,0,-2.471094,1.288
@@ -425,10 +425,12 @@
  The archive entry for this job was punched.
 
 
- READER, WHETHER YOU BE DILETTANTE OR PROFESSOR ... SHOW YOURSELF TO BE
- MORE HUMAN THAN CRITICAL, AND THEN YOUR PLEASURE WILL INCREASE.
-                                           -- DOMENICO SCARLATTI (1738)
+ BETTER TO HUNT IN FIELDS, FOR HEALTH UNBOUGHT
+ THAN FEE THE DOCTOR FOR A NAUSEOUS DRAUGHT.
+ THE WISE, FOR CURE, ON EXERCISE DEPEND;
+ GOD NEVER MADE HIS WORK FOR MAN TO MEND.
+     -- JOHN DRYDEN (1631-1700)
  Job cpu time:       0 days  0 hours  0 minutes  0.4 seconds.
  Elapsed time:       0 days  0 hours  0 minutes  0.4 seconds.
  File lengths (MBytes):  RWF=      6 Int=      0 D2E=      0 Chk=      1 Scr=      1
- Normal termination of Gaussian DV at Wed Nov 29 16:44:49 2023.
+ Normal termination of Gaussian DV at Thu Nov 30 10:57:01 2023.

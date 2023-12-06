@@ -1,0 +1,20 @@
+; but_qm_GMX.top created by acpype (v: 2022.6.6) on Tue Dec  5 14:54:46 2023
+
+[ defaults ]
+; nbfunc        comb-rule       gen-pairs       fudgeLJ fudgeQQ
+1               2               yes             0.5     0.8333333333
+
+; Include but_qm_GMX.itp topology
+#include "but_qm_GMX.itp"
+
+; Ligand position restraints
+#ifdef POSRES_LIG
+#include "posre_but_qm.itp"
+#endif
+
+[ system ]
+ but_qm
+
+[ molecules ]
+; Compound        nmols
+ but_qm           1     

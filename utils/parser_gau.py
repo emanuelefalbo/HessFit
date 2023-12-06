@@ -204,28 +204,25 @@ def read_HessXYZ(all_lines, N_atom):
     return hess_XYZ
 
 
-def read_NamesTypes(all_lines, N_atoms):
+def read_NamesTypes(all_lines):
     """ 
     Reading Atom Names from log file:
     """
     ele_list = []
-    type_list = []
-    for s in range(len(all_lines)):                          # Get no of Atoms
-        if 'Symbolic Z-matrix' in all_lines[s]:
-            start = s
-            for e in range(start+2, start + N_atoms+2):
-                ele_list.append(all_lines[e][:1].split() )
-                type_list.append(all_lines[e][2:5].split() )
+    atype_list = []
+    for item in all_lines:
+            ele_list.append(item[0])
+            atype_list.append(item[2:])
+        
+    # Check if atype_lsit is not null
+    if all_lines is not None and len(all_lines) > 0:
+        for i in range(len(ele_list)):
+            atype_list[i] = ''.join(f'{ele_list[i]}{i}')
 
     ele_list = flat_list(ele_list)
-    type_list = flat_list(type_list)
+    atype_list = flat_list(atype_list)
 
-    # Build Type List if not found
-    if len(type_list) == 0:
-        for i in range(len(ele_list)):
-            type_list.append(''.join(f'{ele_list[i]}{i}'))
-
-    return ele_list, type_list
+    return ele_list, atype_list
     
 
 def read_Top(all_lines, ric_list):

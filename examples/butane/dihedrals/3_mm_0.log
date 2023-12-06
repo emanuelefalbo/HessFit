@@ -2,8 +2,8 @@
  Input=3_mm_0.gjf
  Output=3_mm_0.log
  Initial command:
- /home/emanuele/chem_software/gaussian//gdv/l1.exe "/home/emanuele/chem_software/gaussian/scratch/Gau-17680.inp" -scrdir="/home/emanuele/chem_software/gaussian/scratch/"
- Entering Link 1 = /home/emanuele/chem_software/gaussian//gdv/l1.exe PID=     17682.
+ /home/emanuele/chem_software/gaussian//gdv/l1.exe "/home/emanuele/chem_software/gaussian/scratch/Gau-5839.inp" -scrdir="/home/emanuele/chem_software/gaussian/scratch/"
+ Entering Link 1 = /home/emanuele/chem_software/gaussian//gdv/l1.exe PID=      5841.
   
  Copyright (c) 1988-2020, Gaussian, Inc.  All Rights Reserved.
   
@@ -79,7 +79,7 @@
  
  ******************************************
  Gaussian DV:  ES64L-GDVRevJ.14 29-Dec-2020
-                29-Nov-2023 
+                30-Nov-2023 
  ******************************************
  %mem=1GB
  %nprocshared=1
@@ -93,7 +93,7 @@
  3/5=30,11=9,25=1,30=1,41=10030000,43=2/1;
  4/20=11,24=3,119=11/2;
  99/5=1,9=1/99;
- Leave Link    1 at Wed Nov 29 16:44:49 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link    1 at Thu Nov 30 10:57:02 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l101.exe)
  -----
  Title
@@ -167,7 +167,7 @@
  XXXZ=            -10.7398 YYYX=            -31.9985 YYYZ=             28.5319 ZZZX=            -18.2775
  ZZZY=             21.5284 XXYY=             22.4248 XXZZ=             13.4086 YYZZ=             17.8466
  XXYZ=              4.2958 YYXZ=             -6.2757 ZZXY=             -6.9772
- Leave Link  101 at Wed Nov 29 16:44:50 2023, MaxMem=   134217728 cpu:               0.2 elap:               0.2
+ Leave Link  101 at Thu Nov 30 10:57:02 2023, MaxMem=   134217728 cpu:               0.2 elap:               0.2
  (Enter /home/emanuele/chem_software/gaussian//gdv/l202.exe)
                           Input orientation:                          
  ---------------------------------------------------------------------
@@ -226,7 +226,7 @@
  Deg. of freedom    19
  Full point group                 C2      NOp   2
  Rotational constants (GHZ):          20.3755950           3.7746887           3.6079461
- Leave Link  202 at Wed Nov 29 16:44:50 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  202 at Thu Nov 30 10:57:02 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l301.exe)
  Standard basis: Dummy (5D, 7F)
     14 basis functions,    14 primitive gaussians,    14 cartesian basis functions
@@ -240,7 +240,7 @@
  Integral buffers will be    131072 words long.
  Raffenetti 1 integral format.
  Two-electron integral symmetry is turned off.
- Leave Link  301 at Wed Nov 29 16:44:50 2023, MaxMem=   134217728 cpu:               0.1 elap:               0.0
+ Leave Link  301 at Thu Nov 30 10:57:02 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l402.exe)
  AMBER calculation of energy.
  ****************************
@@ -410,10 +410,10 @@
         Torsion               0.000878271
  Energy=    2.594575692E-02 NIter=   0.
  Dipole moment=       0.045635       0.016128      -0.027890
- Leave Link  402 at Wed Nov 29 16:44:50 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  402 at Thu Nov 30 10:57:02 2023, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l9999.exe)
  Unable to Open any file for archive entry.
- 1\1\GINC-EMANUELE-XPS-13-9343\SP\AMBER\ZDO\C4H10\EMANUELE\29-Nov-2023\
+ 1\1\GINC-EMANUELE-XPS-13-9343\SP\AMBER\ZDO\C4H10\EMANUELE\30-Nov-2023\
  0\\#p Amber=(SoftFirst,Print) geom=nocrowd nosymm\\Title\\0,1\C,0,-2.3
  6779,0.443318,-0.031804\H,0,-1.921018,-0.555018,-0.103014\H,0,-1.86064
  ,1.082048,-0.768135\H,0,-3.418391,0.353972,-0.340322\C,0,-2.241958,1.0
@@ -426,10 +426,8 @@
  The archive entry for this job was punched.
 
 
- IF OTHER PEOPLE ARE GOING TO TALK, CONVERSATION IS SIMPLY IMPOSSIBLE.
-
-                                               -- WHISTLER'S PRINCIPLE
+ REALITY IS FOR PEOPLE WHO CAN'T FACE SCIENCE FICTION.
  Job cpu time:       0 days  0 hours  0 minutes  0.4 seconds.
  Elapsed time:       0 days  0 hours  0 minutes  0.4 seconds.
  File lengths (MBytes):  RWF=      6 Int=      0 D2E=      0 Chk=      1 Scr=      1
- Normal termination of Gaussian DV at Wed Nov 29 16:44:50 2023.
+ Normal termination of Gaussian DV at Thu Nov 30 10:57:02 2023.
