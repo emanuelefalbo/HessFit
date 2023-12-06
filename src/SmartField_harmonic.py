@@ -4,10 +4,10 @@ import parser_gau as pgau
 import force_constant_mod as fc
 import average_across_types as aat
 # import printout_mod as pout
-import argparse
 import os
 import readin_opts as rdin
 import print_top as top
+import log2topol
 import numpy as np
 # import scipy.optimize as optimize
 from scipy.sparse import rand
@@ -105,6 +105,7 @@ def main():
         k_angles = coeffs[No_bonds : No_bonds + No_angles ]   #* (627.509391)
         k_tors = coeffs[No_ric - No_dihes : No_ric]           #* 627.509391  # Torsional Gradient; kcal/mol rad
     
+    # If opt == sem
     mdin = json_opts['opt']
     mode = json_opts['mode']
     bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, hess_eff, atype_list, bond_list, k_bonds, mdin, mode)
@@ -130,7 +131,14 @@ def main():
     
    # Make dihedral directory for subsquent torsion fitting
     fname = 'SmartField4gau.gjf'
-    top.print_ff_strings(fname, atype_list, charge)
+    top.build_dihe_folder(fname, atype_list, charge)
+    
+    # Build topolo.txt file 
+    bond_list, angle_list, tors_list = log2topol.read_Top(text_qm_log)
+    os.chdir('dihedrals')
+    log2topol.print_topol(bond_list, angle_list, tors_list)
+    
+    
 
 if __name__ == "__main__":
     main()

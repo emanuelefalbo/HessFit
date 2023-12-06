@@ -2,7 +2,7 @@
 
 import os
 
-def print_ff_strings(fname, type_list, charges):
+def build_dihe_folder(fname, type_list, charges):
     # Function to store force field strings, and
     # atomtype-charges for the GauScan2log function
     folder = 'dihedrals'
@@ -23,6 +23,10 @@ def print_ff_strings(fname, type_list, charges):
     with open(f2_path,'w') as f2:
         for type, charge in zip(type_list, charges):
                 f2.write(f'{type}-{charge}\n')
+                
+    
+                
+    
 
 def print_GauInp(*args):
     ele_list, type_list, coord, bond_type_list, k_bond_list, bond_length_list, angle_type_list, k_angle_list, angle_length_list, torsion_type_list, v1_list, v2_list, v3_list, phase_list, hybrid_list, charges = args

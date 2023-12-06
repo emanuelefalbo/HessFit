@@ -47,7 +47,7 @@ def set_bonds(coords, hess, type_list,
         r_AB = np.linalg.norm(diff_AB)
         bond_length_list.append(r_AB)
         bond_type_list.append(type_list[i] + ' ' + type_list[j]) 
-        if mdin == 'modsem':            # Triggers on ModSeminario 
+        if mdin == 'sem':            # Triggers on Seminario 
             k_bonds[m] = sem_mod.get_ModSem_FcBonds(i, j, diff_AB, r_AB, hess)
 
     bond_type_list = flat_list(bond_type_list)
@@ -91,7 +91,7 @@ def set_angles(coords, hess, type_list,
         angle_length_list.append(theta)
         angle_type_list.append(type_list[i] + ' ' + type_list[j] +  \
                                ' ' + type_list[k]) 
-        if mdin == 'modsem':            # Triggers on ModSeminario 
+        if mdin == 'sem':            # Triggers on ModSeminario 
            k_angles[m] = sem_mod.get_ModSem_FcAngles(i, j, k, r_AB, r_BC, \
                                                      u_AB, u_BC, hess)
 
@@ -154,7 +154,7 @@ def set_torsion(coords, type_list, tors_list, \
             
             # Compute Torsional Force Constant 
             # on the basis  of torsion periodicity: sp3,sp2,sp
-            if hybrid_list[m] == 9:           # sp3-sp3 bonds
+            if hybrid_list[m] == 9:           
                 del_1 = abs(phi_deg - 60.)
                 del_2 = abs(phi_deg - 180.)
                 eps = 5.0

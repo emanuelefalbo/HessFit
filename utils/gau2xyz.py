@@ -11,7 +11,6 @@ def read_opt_xyz(fname):
         for each_line in file:
             all_lines.append(each_line.strip())
     
-    
     i=0
     j=0
     for s in range(len(all_lines)):                              #Reads the Input orientation information
