@@ -29,7 +29,8 @@ def main():
     BS = "build_4Smart.py"
     JSON = opts.optfile
 
-    subprocess.run([BS, JSON, "-path", GPATH], check=True)
+    # subprocess.run([BS, JSON, "-path", GPATH], check=True)
+    subprocess.run([BS, JSON], check=True)
 
     for f in ["GauHarm.gjf", "GauNonBon.gjf"]:
         print(f"Executing Gaussian on {f}")

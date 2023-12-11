@@ -108,17 +108,22 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
         
 
 def main():
-    parser = rdin.commandline_parser2()
+    parser = rdin.commandline_parser3()
     opts = parser.parse_args()
     json_opts = rdin.read_optfile_3(opts.optfile)
     # opts = parser.parse_args()
     f_qm_log = json_opts['files']['log_qm_file']
     f_qm_fchk = json_opts['files']['fchk_qm_file']
+    f_atype = json_opts['files']['atype_file']
     text_qm_log = pgau.store_any_file(f_qm_log)
     text_qm_fchk = pgau.store_any_file(f_qm_fchk)
+    text_atype = pgau.store_any_file(f_atype)
+    print(text_atype)
     
-    N_atoms, qm_XYZ = pgau.read_XYZ(text_qm_fchk)                 
-    ele_list, type_list = pgau.read_NamesTypes(text_qm_log, N_atoms)
+    N_atoms, qm_XYZ = pgau.read_XYZ(text_qm_fchk)
+    ele_list, atype_list = pgau.read_NamesTypes(text_atype)             
+    # ele_list, type_list = pgau.read_NamesTypes(text_qm_log, N_atoms)
+    print(atype_list)
     ric_list, force_1D = pgau.read_RicDim_Grad(text_qm_fchk)
     No_ric = ric_list[0]
     No_bonds = ric_list[1]
@@ -133,12 +138,14 @@ def main():
     k_tors = np.ones(No_dihes)
     # print(No_dihes)
     
-    mdin = opts.mode
-    bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, None, type_list, \
-                      bond_list, k_bonds, 'ric', mdin)
-    angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, None, type_list, \
-                      angle_list, k_angles, 'ric', mdin)
-    tors_type_list, v1, _, _, _, _, periodic_list = fc.set_torsion(qm_XYZ, type_list, tors_list, k_tors, force_1D, mdin)
+    mdin = json_opts['opt']
+    mode = json_opts['mode']
+    print(mode, mdin)
+    bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, None, atype_list, \
+                      bond_list, k_bonds, mdin, mode)
+    angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, None, atype_list, \
+                      angle_list, k_angles, mdin, mode)
+    tors_type_list, v1, _, _, _, _, periodic_list = fc.set_torsion(qm_XYZ, atype_list, tors_list, k_tors, force_1D, mode)
     
     # Take out Mirror atom types of bonds & angles
     bond_reduced, _ = aat.make_list_unique(bond_type_list, k_bond_arr)
@@ -146,16 +153,16 @@ def main():
     tors_reduced, hybrid_unique = aat.make_list_unique(tors_type_list, periodic_list)
     
     # Print all into Gaussian Input
-    print_GauHarm(ele_list, type_list, qm_XYZ, \
+    print_GauHarm(ele_list, atype_list, qm_XYZ, \
                  bond_reduced, k_bond_arr, bond_arr, \
                  angle_reduced, k_angle_arr, angle_arr, \
                  tors_reduced, hybrid_unique, \
                  chg)
     
     path = os.environ.get("g09root") + "/g09"
-    VDW_list = pgau.read_AmberParm(path, type_list)
+    VDW_list = pgau.read_AmberParm(path, atype_list)
     
-    print_GauNonBon(ele_list, type_list, qm_XYZ, \
+    print_GauNonBon(ele_list, atype_list, qm_XYZ, \
                  bond_reduced, bond_arr, \
                  angle_reduced, k_angle_arr, \
                  tors_reduced, hybrid_unique, \

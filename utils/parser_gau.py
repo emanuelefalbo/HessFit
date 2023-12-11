@@ -210,14 +210,15 @@ def read_NamesTypes(all_lines):
     """
     ele_list = []
     atype_list = []
-    for item in all_lines:
-            ele_list.append(item[0])
-            atype_list.append(item[2:])
-        
-    # Check if atype_lsit is not null
-    if all_lines is not None and len(all_lines) > 0:
-        for i in range(len(ele_list)):
-            atype_list[i] = ''.join(f'{ele_list[i]}{i}')
+    if all_lines is not None and len(all_lines) > 0: 
+        for item in all_lines:
+                ele_list.append(item[0])
+                atype_list.append(item[2:])
+    
+    # Build atype_list from scratch if is null
+    for i in range(len(ele_list)):
+        if not atype_list[i]:
+           atype_list[i] = ''.join(f'{ele_list[i]}{i}')
 
     ele_list = flat_list(ele_list)
     atype_list = flat_list(atype_list)
