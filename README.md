@@ -7,7 +7,7 @@ The directoryutils contains instead all the necessary modules.
 
 # Install 
 
-It currently works with the Gaussian outputs, and a json file containing the necessary files, and type of results.
+It currently works with the Gaussian outputs, and a json filea containing the necessary files, and type of results.
 A numpy python library is required to properly use the program alongside other module.
 Numpy can be installed by the following command:
 ```
@@ -22,11 +22,10 @@ export PATH=$PATH:/path/to/SmartField/src
 export PATH=$PATH:/path/to/SmartField/utils
 export PATH=$PATH:/path/to/SmartField/build_4Smart
 ```
-with path/to/PySmartField being the full path to where it is located. 
+with path/to/SmartField being the full path to where it is located. 
 The last two lines add the programs to your bash path (see setenv for .tcsh).
 
 # Usage 
-
 
 **1.0 build_4Smart**
 
@@ -54,7 +53,7 @@ optional arguments:
 
 **1.1 Harmonic FF**
 
-Provided that all modules and main program of **PySmartField** are in your path,
+Provided that all modules and main program of **SmartField** are in your path,
 it can be simply used as:
 ```
 SmartField_harmonic.py.py option_file.json
@@ -86,5 +85,6 @@ This part of program works along with a json file like the following:
 
 **1.2. Dihedral Parameters**
 
+...
 
 
