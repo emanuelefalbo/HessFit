@@ -330,6 +330,64 @@ def read_AmberParm(path, type_list):
     return VDW_new
 
 
+def read_mass(all_lines, N_atom, mode):
+    """ 
+    Reading Masses from fchk file:
+    all_lines : text file
+    """
+    
+    # semi_last_column = []
+    
+    # # Iterate through lines until encountering "Temperature" string
+    # for line in lines:
+    #     if "Temperature" in line:
+    #         break
+    #     words = line.split()
+    #     if len(words) > 0:
+    #         semi_last_column.append(words[-2])
+    
+    # # Display the semi-last column strings
+    # print(semi_last_column)
+    
+    if mode == 'qm':
+        mass_list = []
+        for s in range(len(all_lines)):                          # Get no of Atoms
+            if 'Real atomic weights' in all_lines[s]:
+                N_mass = int(all_lines[s][-10:])
+                nlines = int(N_mass/5.0) + 1
+                start = s
+                for e in range2(start + 1, start + nlines):
+                    mass_list.append(all_lines[e].split() )
+        
+        mass_flat = flat_list(mass_list)
+        
+    
+        # Take out Garbage Strings
+        if len(mass_flat) != N_mass:
+            diff = abs(len(mass_flat)-N_mass)
+            # print('diff = ', diff)
+            hess_flat_mod = mass_flat[:-diff]
+            mass_1D = np.array(hess_flat_mod, float)
+        else:
+            mass_1D = np.array(mass_flat,float)
+        return mass_1D
+    elif mode =='mm':
+        mass_col = []
+        start_capture = False
+        # Iterate through lines between 'Temperature' and 'Molecular mass'
+        for line in all_lines:
+            if "Molecular mass" in line:
+                break
+            if start_capture:
+                words = line.split()
+                if len(words) > 0:
+                    mass_col.append(words[-1])
+            if "Temperature" in line:
+                start_capture = True
+        mass_1D = np.asarray(mass_col,float)
+        return mass_1D
+
+
 
     
 

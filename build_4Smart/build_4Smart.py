@@ -118,12 +118,10 @@ def main():
     text_qm_log = pgau.store_any_file(f_qm_log)
     text_qm_fchk = pgau.store_any_file(f_qm_fchk)
     text_atype = pgau.store_any_file(f_atype)
-    print(text_atype)
     
     N_atoms, qm_XYZ = pgau.read_XYZ(text_qm_fchk)
     ele_list, atype_list = pgau.read_NamesTypes(text_atype)             
     # ele_list, type_list = pgau.read_NamesTypes(text_qm_log, N_atoms)
-    print(atype_list)
     ric_list, force_1D = pgau.read_RicDim_Grad(text_qm_fchk)
     No_ric = ric_list[0]
     No_bonds = ric_list[1]
@@ -140,7 +138,6 @@ def main():
     
     mdin = json_opts['opt']
     mode = json_opts['mode']
-    print(mode, mdin)
     bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, None, atype_list, \
                       bond_list, k_bonds, mdin, mode)
     angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, None, atype_list, \

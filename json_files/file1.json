@@ -1,0 +1,11 @@
+{
+    "files": {
+        "log_qm_file":  "file.log",
+        "fchk_qm_file": "file.fchk",
+        "fchk_mm_file": "GauHarm.fchk",
+        "fchk_nb_file": "GauNonBon.fchk",
+        "atype_file": "file_type.txt"
+         },
+    "mode": "mean",
+    "opt": "ric"
+}
