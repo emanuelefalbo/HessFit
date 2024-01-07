@@ -59,9 +59,22 @@ The file1.json is composed as :
  "fchk_mm_file": Gaussian format check-point file of artificial MM (freq) calculation
  "fchk_nb_file": Gaussian format check-point file of artificial MM (freq) calculation
  "atype_file": column file containing element and atom types
- "mode": "mean" averages all force contsants over same types, while "all" leaves it unchanged
+ "mode": "mean" string averages all force contsants over same types, while "all" leaves it unchanged
  "opt": "ric" string perform the Hessian diagonalization in redundant internal coordinates, whereas "sem" string performs the Seminario method. 
 ```
+
+The "atype_file" must be a tw-column file with the element, and the atom type on the first and second column respectively: 
+
+```
+N-N3
+C-CT
+C-C 
+O-O 
+C-CT
+C-CA
+...
+```
+
 
 GauHarm.gjf and GauHarm.gjf are the necessary input files for *SmartField_harmonic.py* and need to be specified in the file1.json.
 The output is a *SmartField4gau.gjf* and its output (SmartField4gau.log) which contains the optimization of the system with computed harmonic force field. 
