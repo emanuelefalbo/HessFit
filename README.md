@@ -63,7 +63,7 @@ The file1.json is composed as :
  "opt": "ric" string perform the Hessian diagonalization in redundant internal coordinates, whereas "sem" string performs the Seminario method. 
 ```
 
-The "atype_file" must be a tw-column file with the element, and the atom type on the first and second column respectively: 
+The "atype_file" must be a two-column file with the element, and the atom type on the first and second column respectively: 
 
 ```
 N-N3
