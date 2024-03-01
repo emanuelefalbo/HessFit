@@ -5,6 +5,7 @@ import numpy as np
 from numpy.linalg import inv
 from scipy import optimize
 import matplotlib.pyplot as plt
+import pandas as pd
 
 
 def build_parser():
@@ -147,9 +148,13 @@ def main():
     data = load_data(fname)
     xval = data[:,0] # - 180.0
     qm_rel = ( data[:,1] - min(data[:,1]) ) *6.275030E02  # Eh to kcal/mol
-    mm_rel = ( data[:,2] - min(data[:,2]) ) *6.275030E02
+    mm_rel = ( data[:,2] - min(data[:,2]) ) #*6.275030E02
     yval =  ( qm_rel - mm_rel ) 
+    pd.Series(qm_rel).to_csv('qm_rel.csv', index=False)
+    pd.Series(mm_rel).to_csv('mm_rel.csv', index=False)
     
+    
+    print(qm_rel, mm_rel)
     A_oplsa = oplsa_matrix(xval, None)
     A_rybe = RyBe_matrix(xval, None)
     # LLSQ

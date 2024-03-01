@@ -34,7 +34,7 @@ default = current directory """
 def commandline_parser3():
     parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument('optfile', nargs='?', help='option file in json')
-    parser.add_argument('-path', default='$g09root', help='path to Gaussian09/16 program')
+    parser.add_argument('--path', default='$g09root', help='path to Gaussian09/16 program')
     return parser
 
 def read_optfile(fname):

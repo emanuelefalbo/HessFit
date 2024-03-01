@@ -23,9 +23,16 @@ def main():
     print_init()
     parser = rdin.commandline_parser3()
     opts = parser.parse_args()
-
-    GPATH = opts.path + "g09"
-   # GPATH = os.environ.get("g09root") + "/g09"
+    
+    groot = os.environ.get('g09root') 
+    print(groot)
+    # GPATH = opts.path + "g09"
+    if not groot or not os.path.exists(os.path.join(groot, "g09")):
+        groot = opts.path
+        
+    if groot:
+        GPATH = os.path.join(groot, "g09")
+        
     SM = "Smart_harmonic.py"
     BS = "build_4Smart.py"
     JSON = opts.optfile
