@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import numpy as np
+import os
 
 def range2(start, end):
      return range(start, end+1)
@@ -212,14 +213,20 @@ def read_NamesTypes(all_lines):
     atype_list = []
     if all_lines is not None and len(all_lines) > 0: 
         for item in all_lines:
-                ele_list.append(item[0])
-                atype_list.append(item[2:])
+                if "-" in item:
+                    ele_list.append(item.split("-")[0])
+                    atype_list.append(item.split("-")[1])
+                else:
+                    ele_list.append(item)
+                    # print(item.split("-")[0])
     
     # Build atype_list from scratch if is null
-    for i in range(len(ele_list)):
-        if not atype_list[i]:
-           atype_list[i] = ''.join(f'{ele_list[i]}{i}')
-
+    if not atype_list:
+        for i, var in enumerate(ele_list):
+        # if not atype_list:
+            atype_list.append(''.join(f'{var}{i}'))
+        #    atype_list[i] = ''.join(f'{ele_list[i]}{i}')
+        
     ele_list = flat_list(ele_list)
     atype_list = flat_list(atype_list)
 

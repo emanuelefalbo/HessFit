@@ -9,7 +9,7 @@ import os
 
 def print_GauHarm(*args):
     ele_ls, tp_ls, coord, bond_tp_ls, k_bond_ls, bond_ln_ls, angle_tp_ls, k_angle_ls, \
-    angle_ln_ls, torsion_type_list, hybrid_list, chg = args
+    angle_ln_ls, torsion_type_list, hybrid_list, chg, formal_chg, multi = args
 
     header_gjf = """%mem=1GB
 %nprocshared=1
@@ -18,7 +18,7 @@ def print_GauHarm(*args):
  
 Title
 
-0 1
+{f_chg} {mult}
 """
 
     master_func = """
@@ -27,7 +27,7 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
 """
     fname = 'GauHarm.gjf'
     with open(fname, 'w') as fout:
-        fout.write(header_gjf)
+        fout.write(header_gjf.format(f_chg = formal_chg, mult=multi))
         for m, p, l in zip(ele_ls, tp_ls, coord):
             s2 = '  '.join(f'{x:.6f}' for x in l)
             fout.write(f'{m}-{p}-0.00  {s2}\n')
@@ -56,8 +56,9 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
         
         
         
-def print_GauNonBon(elements, types, coordinates, bond_types, bond_lengths, angle_types, \
-                    angle_lengths, torsion_type_list, hybrid_list,  charges, vdw):
+def print_GauNonBon(*args):
+    elements, types, coordinates, bond_types, bond_lengths, angle_types, \
+    angle_lengths, torsion_type_list, hybrid_list,  charges, vdw, formal_chg, multi = args
     header_gjf = """%mem=1GB
 %nprocshared=1
 %chk=GauNonBon.chk
@@ -65,7 +66,7 @@ def print_GauNonBon(elements, types, coordinates, bond_types, bond_lengths, angl
  
 Title
 
-0 1
+{f_chg} {mult}
 """
 
     master_func = """
@@ -74,7 +75,7 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
 """
     fname = 'GauNonBon.gjf'
     with open(fname, 'w') as fout:
-        fout.write(header_gjf)
+        fout.write(header_gjf.format(f_chg = formal_chg, mult=multi))
 
         for element, type_, coords, charge in zip(elements, types, coordinates, charges):
             coord_str = '  '.join(f'{x:.6f}' for x in coords)
@@ -115,6 +116,8 @@ def main():
     f_qm_log = json_opts['files']['log_qm_file']
     f_qm_fchk = json_opts['files']['fchk_qm_file']
     f_atype = json_opts['files']['atype_file']
+    formal_chg = json_opts['charge']
+    multi = json_opts['multiplicity']
     text_qm_log = pgau.store_any_file(f_qm_log)
     text_qm_fchk = pgau.store_any_file(f_qm_fchk)
     text_atype = pgau.store_any_file(f_atype)
@@ -154,7 +157,7 @@ def main():
                  bond_reduced, k_bond_arr, bond_arr, \
                  angle_reduced, k_angle_arr, angle_arr, \
                  tors_reduced, hybrid_unique, \
-                 chg)
+                 chg, formal_chg, multi)
     
     path = os.environ.get("g09root") + "/g09"
     VDW_list = pgau.read_AmberParm(path, atype_list)
@@ -163,7 +166,7 @@ def main():
                  bond_reduced, bond_arr, \
                  angle_reduced, k_angle_arr, \
                  tors_reduced, hybrid_unique, \
-                 chg, VDW_list)
+                 chg, VDW_list, formal_chg, multi)
 
 
 

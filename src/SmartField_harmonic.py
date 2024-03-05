@@ -61,6 +61,8 @@ def main():
     f_atype = json_opts['files']['atype_file']
     f_mm_fchk = json_opts['files']['fchk_mm_file']
     f_nb_fchk = json_opts['files']['fchk_nb_file']
+    formal_chg = json_opts['charge']
+    multi = json_opts['multiplicity']
     
     # Store all fiels in texts
     text_qm_log = pgau.store_any_file(f_qm_log)
@@ -122,7 +124,8 @@ def main():
     top.print_GauInp(ele_list, atype_list, qm_XYZ, \
                  bonds_unique, k_bonds_unique, bond_arr, \
                  angles_unique, k_angles_unique, angle_arr, \
-                 tors_unique, v1, v2, v3, phase, periodic_list, charge)
+                 tors_unique, v1, v2, v3, phase, periodic_list, charge, \
+                 formal_chg, multi)
 
     top.print_AmbFrcmod(atype_list, \
                  bonds_unique, k_bonds_unique, bond_arr, \

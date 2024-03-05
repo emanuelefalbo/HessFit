@@ -32,7 +32,7 @@ def print_GauInp(*args):
     ele_list, type_list, coord, bond_type_list, \
     k_bond_list, bond_length_list, angle_type_list, k_angle_list, \
     angle_length_list, torsion_type_list, v1_list, v2_list, \
-    v3_list, phase_list, hybrid_list, charges = args
+    v3_list, phase_list, hybrid_list, charges, formal_chg, multi = args
 
     header_gjf = """%mem=1GB
 %nprocshared=1
@@ -41,7 +41,7 @@ def print_GauInp(*args):
 
 Title
 
-0 1
+{f_chg} {mult}
 """
 
     master_function = """
@@ -50,7 +50,7 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
 """
     filename = 'SmartField4gau.gjf'
     with open(filename, 'w') as file_out:
-        file_out.write(header_gjf)
+        file_out.write(header_gjf.format(f_chg = formal_chg, mult=multi))
         for element, type, coordinates, charge in zip(ele_list, type_list, coord, charges):
             formatted_coords = '  '.join(f'{x:.6f}' for x in coordinates)
             file_out.write(f'{element}-{type}-{charge}  {formatted_coords}\n')

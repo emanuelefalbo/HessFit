@@ -97,10 +97,7 @@ def get_fit(model, fname, coeffs, A_matrix, xval, qm_rel, mm_rel):
     f.close()
 
     return yfit
-
     
-
-
 #####################
 # NON LINEAR FITTING
 #####################
@@ -148,13 +145,11 @@ def main():
     data = load_data(fname)
     xval = data[:,0] # - 180.0
     qm_rel = ( data[:,1] - min(data[:,1]) ) *6.275030E02  # Eh to kcal/mol
-    mm_rel = ( data[:,2] - min(data[:,2]) ) #*6.275030E02
+    mm_rel = ( data[:,2] - min(data[:,2]) ) *6.275030E02
     yval =  ( qm_rel - mm_rel ) 
     pd.Series(qm_rel).to_csv('qm_rel.csv', index=False)
     pd.Series(mm_rel).to_csv('mm_rel.csv', index=False)
     
-    
-    print(qm_rel, mm_rel)
     A_oplsa = oplsa_matrix(xval, None)
     A_rybe = RyBe_matrix(xval, None)
     # LLSQ
@@ -221,8 +216,8 @@ def main():
        fig = plt.subplots(1, figsize= (10,8), dpi=96 )
        plt.plot(xval, qm_rel, label='QM', marker='o', markersize=8, fillstyle='none', c='black', linestyle='dashed', dashes=(5, 10))
        plt.plot(xval, mm_rel, label='MM', marker='o', markersize=8, fillstyle='none', c='orangered', linestyle='dashed', dashes=(5, 10))
-       plt.plot(xval, yfit_oplsa, label='LLSQ$_{OPLSA}$', marker='o',  markersize=10, c='blue')
-       plt.plot(xval, yfit_rybe, label='LLSQ$_{Ry-Be}$', marker='o',  markersize=10, c='green')
+       plt.plot(xval, yfit_oplsa, label='Fitted$_{LLS}$', marker='o',  markersize=10, c='blue', alpha=0.6)
+    #    plt.plot(xval, yfit_rybe, label='LLSQ$_{Ry-Be}$', marker='o',  markersize=10, c='green')
        # plt.plot(xval, yfit_w_linear, label='WLLSQ', marker='v')
        # plt.plot(xval, yfit_non_linear, label='NON-LLSQ', marker='v')
        plt.xlabel('Angle (°)', fontsize=18)
