@@ -37,7 +37,7 @@ def print_GauInp(*args):
     header_gjf = """%mem=1GB
 %nprocshared=1
 %chk=SmartField4gau.chk
-#p Amber=(SoftFirst,Print) nosymm geom=nocrowd opt Freq
+#p Amber=(SoftFirst,Print) nosymm geom=nocrowd opt(MaxMicroiterations=2000) Freq
 
 Title
 
