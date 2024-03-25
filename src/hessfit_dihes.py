@@ -16,7 +16,7 @@ def printout_start():
     Author : Emanuele Falbo
     E-Mail : falbo.emanuele@gmail.com
     =============================================================
-    SmartField_Torsion : a program to fragment molecules 
+    hessfit_Torsion : a program to fragment molecules 
                          on the basis of their dihedral angles
                          prepare and compute inputs for subsequent QM and 
                          MM rigid torsional scans

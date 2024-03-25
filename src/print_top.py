@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import get_amass 
 
 def build_dihe_folder(fname, type_list, charges):
     # Function to store force field strings, and
@@ -36,7 +37,7 @@ def print_GauInp(*args):
 
     header_gjf = """%mem=1GB
 %nprocshared=1
-%chk=SmartField4gau.chk
+%chk=hessfit4gau.chk
 #p Amber=(SoftFirst,Print) nosymm geom=nocrowd opt(MaxMicroiterations=2000) Freq
 
 Title
@@ -48,7 +49,7 @@ Title
 !Master function
 NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
 """
-    filename = 'SmartField4gau.gjf'
+    filename = 'hessfit4gau.gjf'
     with open(filename, 'w') as file_out:
         file_out.write(header_gjf.format(f_chg = formal_chg, mult=multi))
         for element, type, coordinates, charge in zip(ele_list, type_list, coord, charges):
@@ -83,7 +84,7 @@ def write_torsions(file, torsion_type_list, phase_list, v1_list, v2_list, v3_lis
 
 
 def print_AmbFrcmod(*args):
-    type_list, bond_type_list, k_bond_list, bond_length_list, \
+    ele_list, type_list, bond_type_list, k_bond_list, bond_length_list, \
     angle_type_list, k_angle_list, angle_length_list, torsion_type_list, \
     v1_list, v2_list, v3_list, phase_list, hybrid_list = args
 
@@ -99,11 +100,13 @@ def print_AmbFrcmod(*args):
     """
 
     type_list_unique = set(type_list)
-    filename = 'SmartField_frcmod.txt'
+    filename = 'hessfit_frcmod.txt'
     with open(filename, 'w') as file_out:
         file_out.write('MASS\n')
-        for type_entry in type_list_unique:
-            file_out.write(f'{type_entry}\n')
+        for ele, type_entry in zip(ele_list,type_list_unique):
+            element_mass = get_amass.elements_dict.get(ele)
+            # print(element_mass)
+            file_out.write(f'{type_entry}  {element_mass}\n')
         file_out.write('\n')
 
         write_bonds_amber(file_out, bond_type_list, k_bond_list, bond_length_list)

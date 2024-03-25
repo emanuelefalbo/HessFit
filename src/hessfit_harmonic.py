@@ -127,13 +127,13 @@ def main():
                  tors_unique, v1, v2, v3, phase, periodic_list, charge, \
                  formal_chg, multi)
 
-    top.print_AmbFrcmod(atype_list, \
+    top.print_AmbFrcmod(ele_list, atype_list, \
                  bonds_unique, k_bonds_unique, bond_arr, \
                  angles_unique, k_angles_unique, angle_arr, \
                  tors_type_list, v1, v2, v3, phase, periodic_list)
     
    # Make dihedral directory for subsquent torsion fitting
-    fname = 'SmartField4gau.gjf'
+    fname = 'hessfit4gau.gjf'
     top.build_dihe_folder(fname, atype_list, charge)
     
     # Build topolo.txt file 

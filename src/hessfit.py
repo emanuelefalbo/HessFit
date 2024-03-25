@@ -8,7 +8,7 @@ import readin_opts as rdin
 def print_init():
      print("""
  ======================================================
-   Program:      SmartField
+   Program:      hessfit
    Creator:      Emanuele Falbo, Napoli
    Language:     Python 3.v later
    Description:  The program returns force constants for
@@ -33,8 +33,8 @@ def main():
     if groot:
         GPATH = os.path.join(groot, "g09")
         
-    SM = "Smart_harmonic.py"
-    BS = "build_4Smart.py"
+    SM = "hessfit_harmonic.py"
+    BS = "build_4_hessfit.py"
     JSON = opts.optfile
 
     # subprocess.run([BS, JSON, "-path", GPATH], check=True)
@@ -49,8 +49,9 @@ def main():
         subprocess.run([f"{GPATH}/formchk", "-3", f, f"{os.path.splitext(f)[0]}.fchk"], check=True)
 
     print(f"Executing {SM}")
-    subprocess.run(["SmartField_harmonic.py", JSON])
-    subprocess.run([f"{GPATH}/g09", "SmartField4gau.gjf"], check=True)
+    subprocess.run([SM, JSON])
+    # subprocess.run(["hessfit_harmonic.py", JSON])
+    subprocess.run([f"{GPATH}/g09", "hessfit4gau.gjf"], check=True)
 
 if __name__ == "__main__":
     main()
