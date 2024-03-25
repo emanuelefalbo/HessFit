@@ -99,14 +99,16 @@ def print_AmbFrcmod(*args):
     angle_length_list: degree angle list
     """
 
-    type_list_unique = set(type_list)
+    # type_list_unique = set(type_list)
+    element_mass =[]
+    for ele in ele_list:
+            element_mass.append(get_amass.elements_dict_lowercase.get(ele))
+
     filename = 'hessfit_frcmod.txt'
     with open(filename, 'w') as file_out:
         file_out.write('MASS\n')
-        for ele, type_entry in zip(ele_list,type_list_unique):
-            element_mass = get_amass.elements_dict.get(ele)
-            # print(element_mass)
-            file_out.write(f'{type_entry}  {element_mass}\n')
+        for ele, type_entry in zip(element_mass,type_list):
+            file_out.write(f'{type_entry} {ele}\n')
         file_out.write('\n')
 
         write_bonds_amber(file_out, bond_type_list, k_bond_list, bond_length_list)

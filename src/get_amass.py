@@ -43,4 +43,7 @@ elements_list = ['H', 'HE', 'LI', 'BE', 'B', 'C', 'N', 'O', 'F', 'NE', 'NA',\
                  'LR', 'RF', 'DB', 'SG', 'BH', 'HS', 'MT', 'DS', 'RG', 'CN',\
                  'NH', 'FL', 'MC', 'LV', 'TS', 'OG']
 
+elements_dict_lowercase = {key[0]+key[1:].lower():value for key, value in elements_dict.items()}
+# elements_dict_lowercase = {f'{key[0]+key[1].lower()}': value for key, value in elements_dict.items()}
+
 

@@ -1,8 +1,8 @@
 # HessFit
 
-SmartField returns the entire harmonic force fields and performs diehdral force constant fitting for any molecule. 
-In the directory "src", there is the **SmartField_harmonic.py** which returns calculated harmonic intra-molecular force field, i.e, stretching, bending, and dihedral force constants, and external inter-molecular parmateres, i.e, Van der Waals and atomi charges. As such, these latter might result too stiff for specific applications. 
-As alternative, least square fit of quantum-mechanically PES can be carried out with **SmartField_dihes.py**. 
+hessfit returns the entire harmonic force fields and performs diehdral force constant fitting for any molecule. 
+In the directory "src", there is the **hessfit_harmonic.py** which returns calculated harmonic intra-molecular force field, i.e, stretching, bending, and dihedral force constants, and external inter-molecular parmateres, i.e, Van der Waals and atomi charges. As such, these latter might result too stiff for specific applications. 
+As alternative, least square fit of quantum-mechanically PES can be carried out with **hessfit_dihes.py**. 
 The directory utils contains instead all the necessary modules.
 
 # Install 
@@ -11,18 +11,14 @@ It currently works with the Gaussian outputs, and json files containing the nece
 A numpy python library is required to properly use the program alongside other module.
 Numpy can be installed by the following command:
 ```
-pip install numpy
+pip install numpy pandas scipy
 ```
 while for the modules it is sufficient to add their directory to the **PYTHONPATH** into you .bashrc (bash) file:
 ```
-export PYTHONPATH="${PYTHONPATH}:/path/to/SmartField/src"
-export PYTHONPATH="${PYTHONPATH}:/path/to/SmartField/utils"
-export PYTHONPATH="${PYTHONPATH}:/path/to/SmartField/build_4Smart"
-export PATH=$PATH:/path/to/SmartField/src
-export PATH=$PATH:/path/to/SmartField/utils
-export PATH=$PATH:/path/to/SmartField/build_4Smart
+export PYTHONPATH="${PYTHONPATH}:/path/to/hessfit/src"
+export PATH=$PATH:/path/to/hessfit/src
 ```
-with path/to/SmartField being the full path to where it is located. 
+with path/to/hessfit being the full path to where it is located. 
 The last two lines add the programs to your bash path (see setenv for .tcsh).
 
 # Usage 
@@ -30,7 +26,7 @@ The last two lines add the programs to your bash path (see setenv for .tcsh).
 **1.1 Harmonic Force Field***
 
 The program is thought of as dual usage, i.e., it can be executed by launching the **run_smartfield.py** script that performs all 
-operations provided by the *build_4Smart.py* first, and *SmartField_harmonic.py* secondly, or these two scripts can be run independently
+operations provided by the *build_4Smart.py* first, and *hessfit_harmonic.py* secondly, or these two scripts can be run independently
 It works with a json file as described below:
 
 ```
@@ -76,9 +72,9 @@ C-CA
 ```
 
 
-GauHarm.gjf and GauHarm.gjf are the necessary input files for *SmartField_harmonic.py* and need to be specified in the file1.json.
-The output is a *SmartField4gau.gjf* and its output (SmartField4gau.log) which contains the optimization of the system with computed harmonic force field. 
-A further *SmartField_frcmod.txt* is outputted and can be transfered for other Moleculaar Mechanics software such as AMBER or GROMACS.
+GauHarm.gjf and GauHarm.gjf are the necessary input files for *hessfit_harmonic.py* and need to be specified in the file1.json.
+The output is a *hessfit4gau.gjf* and its output (hessfit4gau.log) which contains the optimization of the system with computed harmonic force field. 
+A further *hessfit_frcmod.txt* is outputted and can be transfered for other Moleculaar Mechanics software such as AMBER or GROMACS.
 
 
 **1.2. Dihedral Parameters**
