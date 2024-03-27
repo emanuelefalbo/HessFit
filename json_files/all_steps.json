@@ -1,0 +1,13 @@
+{
+    "files": {
+        "log_qm_file":  "zn_cccc_2.log",
+        "fchk_qm_file": "zn_cccc_2.fchk",
+        "fchk_mm_file": "GauHarm.fchk",
+        "fchk_nb_file": "GauNonBon.fchk",
+        "atype_file": "file_type.txt.bak"
+         },
+    "mode": "mean",
+    "charge":-2,
+    "multiplicity":1,
+    "opt": "ric"
+}

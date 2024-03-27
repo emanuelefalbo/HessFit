@@ -48,7 +48,7 @@ def main():
         print(f"Formatchecking {f} file")
         subprocess.run([f"{GPATH}/formchk", "-3", f, f"{os.path.splitext(f)[0]}.fchk"], check=True)
 
-    print(f"Executing {SM}")
+    print(f"Executing Harmonic: {SM}")
     subprocess.run([SM, JSON])
     # subprocess.run(["hessfit_harmonic.py", JSON])
     subprocess.run([f"{GPATH}/g09", "hessfit4gau.gjf"], check=True)

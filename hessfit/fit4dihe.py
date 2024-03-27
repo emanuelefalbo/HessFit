@@ -3,7 +3,7 @@
 import argparse
 import numpy as np
 from numpy.linalg import inv
-from scipy import optimize
+# from scipy import optimize
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -24,11 +24,16 @@ def build_parser():
 
 def load_data(fname):
     data = []
-    with open(fname,'r') as f:
-        for line in f:
-            data.append(line.split())
-        data = np.array(data, dtype=float)    
-    return data
+    data = pd.read_csv(fname, header=None)
+    x = data.iloc[:,0].to_numpy()
+    y_qm = data.iloc[:,1].to_numpy()
+    y_mm = data.iloc[:,2].to_numpy()
+    return x, y_qm, y_mm
+    # with open(fname,'r') as f:
+    #     for line in f:
+    #         data.append(line.split())
+    #     data = np.array(data, dtype=float)    
+    # return data
 
 def oplsa_matrix(xval, phase):
     deg2rad = np.pi/180
@@ -142,10 +147,14 @@ def main():
     parser = build_parser()
     args = parser.parse_args()
     fname = args.file
-    data = load_data(fname)
-    xval = data[:,0] # - 180.0
-    qm_rel = ( data[:,1] - min(data[:,1]) ) *6.275030E02  # Eh to kcal/mol
-    mm_rel = ( data[:,2] - min(data[:,2]) ) *6.275030E02
+    # data = load_data(fname)
+    xval, qm_abs, mm_abs = load_data(fname)
+    # xval = data[:,0] # - 180.0
+    # xval = data[:,0] # - 180.0
+    qm_rel = ( qm_abs - min(qm_abs) ) *6.275030E02  # Eh to kcal/mol
+    mm_rel = ( mm_abs - min(mm_abs) ) *6.275030E02
+    # qm_rel = ( data[:,1] - min(data[:,1]) ) *6.275030E02  # Eh to kcal/mol
+    # mm_rel = ( data[:,2] - min(data[:,2]) ) *6.275030E02
     yval =  ( qm_rel - mm_rel ) 
     pd.Series(qm_rel).to_csv('qm_rel.csv', index=False)
     pd.Series(mm_rel).to_csv('mm_rel.csv', index=False)
