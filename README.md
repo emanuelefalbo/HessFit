@@ -15,10 +15,11 @@ pip install numpy pandas scipy
 ```
 
 Then, by cloning the directory locally, user should give:
-
+```
 git clone https://github.com/emanuelefalbo/HessFit
 cd HessFit
 python setup.py install
+```
 
 Otherwise, it is sufficient to add their directory to the **PYTHONPATH** into you .bashrc (bash) file:
 ```
