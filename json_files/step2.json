@@ -2,9 +2,9 @@
     "files": {
         "atom2type": "type_charge.txt",
         "force_file": "ff_string.txt",
-        "file_xyz": "../gly_opt.xyz",
-        "topol": "../bond_angle_list.txt"
+        "file_xyz": ".qm_opt.xyz",
+        "topol": "topol.txt"
     },
-    "method": "PM6",
+    "method": "B3LYP/6-31G*",
     "nprocs": "4"
     }
