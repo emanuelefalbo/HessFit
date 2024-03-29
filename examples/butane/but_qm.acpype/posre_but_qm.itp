@@ -1,8 +1,0 @@
-; posre_but_qm.itp created by acpype (v: 2022.6.6) on Tue Dec  5 14:54:46 2023
-
-[ position_restraints ]
-; atom  type      fx      fy      fz
-     1     1  1000  1000  1000
-     5     1  1000  1000  1000
-     8     1  1000  1000  1000
-    11     1  1000  1000  1000

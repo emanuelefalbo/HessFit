@@ -1,0 +1,456 @@
+ Entering Gaussian System, Link 0=/home/emanuele/chem_software/gaussian//g09/g09
+ Input=2_mm_140.gjf
+ Output=2_mm_140.log
+ Initial command:
+ /home/emanuele/chem_software/gaussian//gdv/l1.exe "/home/emanuele/chem_software/gaussian/scratch/Gau-23266.inp" -scrdir="/home/emanuele/chem_software/gaussian/scratch/"
+ Entering Link 1 = /home/emanuele/chem_software/gaussian//gdv/l1.exe PID=     23268.
+  
+ Copyright (c) 1988-2020, Gaussian, Inc.  All Rights Reserved.
+  
+ This is the private, development version of
+ the Gaussian(R) DV system of programs. It is based on
+ the Gaussian(R) 16 system (copyright 2016, Gaussian, Inc.),
+ the Gaussian(R) 09 system (copyright 2009, Gaussian, Inc.),
+ the Gaussian(R) 03 system (copyright 2003, Gaussian, Inc.),
+ the Gaussian(R) 98 system (copyright 1998, Gaussian, Inc.),
+ the Gaussian(R) 94 system (copyright 1995, Gaussian, Inc.),
+ the Gaussian 92(TM) system (copyright 1992, Gaussian, Inc.),
+ the Gaussian 90(TM) system (copyright 1990, Gaussian, Inc.),
+ the Gaussian 88(TM) system (copyright 1988, Gaussian, Inc.),
+ the Gaussian 86(TM) system (copyright 1986, Carnegie Mellon
+ University), and the Gaussian 82(TM) system (copyright 1983,
+ Carnegie Mellon University). Gaussian is a federally registered
+ trademark of Gaussian, Inc.
+  
+ This software contains proprietary and confidential information,
+ including trade secrets, belonging to Gaussian, Inc.
+  
+ This software is provided under written license and may be
+ used, copied, transmitted, or stored only in accord with that
+ written license.
+  
+ The following legend is applicable only to US Government
+ contracts under FAR:
+  
+                    RESTRICTED RIGHTS LEGEND
+  
+ Use, reproduction and disclosure by the US Government is
+ subject to restrictions as set forth in subparagraphs (a)
+ and (c) of the Commercial Computer Software - Restricted
+ Rights clause in FAR 52.227-19.
+  
+ Gaussian, Inc.
+ 340 Quinnipiac St., Bldg. 40, Wallingford CT 06492
+  
+  
+ ---------------------------------------------------------------
+ Warning -- This program may not be used in any manner that
+ competes with the business of Gaussian, Inc. or will provide
+ assistance to any competitor of Gaussian, Inc.  The licensee
+ of this program is prohibited from giving any competitor of
+ Gaussian, Inc. access to this program.  By using this program,
+ the user acknowledges that Gaussian, Inc. is engaged in the
+ business of creating and licensing software in the field of
+ computational chemistry and represents and warrants to the
+ licensee that it is not a competitor of Gaussian, Inc. and that
+ it will not use this program in any manner prohibited above.
+ ---------------------------------------------------------------
+  
+
+ Cite this work as:
+ Gaussian Development Version, Revision J.14,
+ M. J. Frisch, G. W. Trucks, H. B. Schlegel, G. E. Scuseria, 
+ M. A. Robb, J. R. Cheeseman, G. Scalmani, V. Barone, 
+ G. A. Petersson, H. Nakatsuji, X. Li, A. V. Marenich, M. Caricato, 
+ J. Bloino, B. G. Janesko, J. Zheng, R. Gomperts, B. Mennucci, 
+ H. P. Hratchian, J. V. Ortiz, A. F. Izmaylov, J. L. Sonnenberg, 
+ D. Williams-Young, F. Ding, F. Lipparini, F. Egidi, J. Goings, 
+ B. Peng, A. Petrone, T. Henderson, D. Ranasinghe, V. G. Zakrzewski, 
+ J. Gao, N. Rega, G. Zheng, W. Liang, M. Hada, M. Ehara, K. Toyota, 
+ R. Fukuda, J. Hasegawa, M. Ishida, T. Nakajima, Y. Honda, O. Kitao, 
+ H. Nakai, T. Vreven, K. Throssell, J. A. Montgomery, Jr., 
+ J. E. Peralta, F. Ogliaro, M. J. Bearpark, J. J. Heyd, 
+ E. N. Brothers, K. N. Kudin, V. N. Staroverov, T. A. Keith, 
+ R. Kobayashi, J. Normand, K. Raghavachari, A. P. Rendell, 
+ J. C. Burant, S. S. Iyengar, J. Tomasi, M. Cossi, J. M. Millam, 
+ M. Klene, C. Adamo, R. Cammi, J. W. Ochterski, R. L. Martin, 
+ K. Morokuma, O. Farkas, J. B. Foresman, and D. J. Fox, 
+ Gaussian, Inc., Wallingford CT, 2020.
+ 
+ ******************************************
+ Gaussian DV:  ES64L-GDVRevJ.14 29-Dec-2020
+                29-Mar-2024 
+ ******************************************
+ %mem=1GB
+ %nprocshared=1
+ Will use up to    1 processors via shared memory.
+ %chk=2_mm_140.chk
+ ----------------------------------------------
+ #p Amber=(SoftFirst,Print) geom=nocrowd nosymm
+ ----------------------------------------------
+ 1/37=210000000,38=1,56=2,64=203,172=1/1;
+ 2/12=1,15=1,40=1/2;
+ 3/5=30,11=9,25=1,30=1,41=10030000,43=2/1;
+ 4/20=11,24=3,119=11/2;
+ 99/5=1,9=1/99;
+ Leave Link    1 at Fri Mar 29 18:25:43 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/chem_software/gaussian//gdv/l101.exe)
+ -----
+ Title
+ -----
+ Symbolic Z-matrix:
+ Charge =  0 Multiplicity = 1
+ C-C0--0.267532       -2.38842   0.50329  -0.16618 
+ H-H1-+0.083821       -1.65567   0.06561  -0.85323 
+ H-H2-+0.077363       -3.17055   0.97033  -0.77523 
+ H-H3-+0.077360       -2.85254  -0.32071   0.38726 
+ C-C4--0.092257       -1.73019   1.51143   0.77307 
+ H-H5-+0.060623       -1.23837   2.30844   0.18221 
+ H-H6-+0.060622       -0.92062   1.01776   1.34521 
+ C-C7--0.092258       -2.74578   2.13446   1.74194 
+ H-H8-+0.060627       -3.55552   2.6279    1.17003 
+ H-H9-+0.060618       -3.23739   1.33724   2.33287 
+ C-C10--0.267532      -2.08762   3.14292   2.68093 
+ H-H11-+0.077330      -1.62358   3.9668    2.12702 
+ H-H12-+0.083821      -2.82028   3.58118   3.36765 
+ H-H13-+0.077394      -1.3053    2.67634   3.29012 
+ 
+ ITRead=  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+ MicOpt= -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+ NAtoms=     14 NQM=       14 NQMF=       0 NMMI=      0 NMMIF=      0
+                NMic=       0 NMicF=      0.
+                    Isotopes and Nuclear Properties:
+ (Nuclear quadrupole moments (NQMom) in fm**2, nuclear magnetic moments (NMagM)
+  in nuclear magnetons)
+
+  Atom         1           2           3           4           5           6           7           8           9          10
+ IAtWgt=          12           1           1           1          12           1           1          12           1           1
+ AtmWgt=  12.0000000   1.0078250   1.0078250   1.0078250  12.0000000   1.0078250   1.0078250  12.0000000   1.0078250   1.0078250
+ NucSpn=           0           1           1           1           0           1           1           0           1           1
+ AtZEff=  -0.0000000  -0.0000000  -0.0000000  -0.0000000  -0.0000000  -0.0000000  -0.0000000  -0.0000000  -0.0000000  -0.0000000
+ NQMom=    0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000
+ NMagM=    0.0000000   2.7928460   2.7928460   2.7928460   0.0000000   2.7928460   2.7928460   0.0000000   2.7928460   2.7928460
+ AtZNuc=   6.0000000   1.0000000   1.0000000   1.0000000   6.0000000   1.0000000   1.0000000   6.0000000   1.0000000   1.0000000
+
+  Atom        11          12          13          14
+ IAtWgt=          12           1           1           1
+ AtmWgt=  12.0000000   1.0078250   1.0078250   1.0078250
+ NucSpn=           0           1           1           1
+ AtZEff=  -0.0000000  -0.0000000  -0.0000000  -0.0000000
+ NQMom=    0.0000000   0.0000000   0.0000000   0.0000000
+ NMagM=    0.0000000   2.7928460   2.7928460   2.7928460
+ AtZNuc=   6.0000000   1.0000000   1.0000000   1.0000000
+ Generating MM parameters.
+ Read MM parameter file:
+ Define C0         1
+ Define C4         2
+ Define H6         3
+ Define C7         4
+ Define H8         5
+ Define H9         6
+ Define C10        7
+ Define H11        8
+ Define H12        9
+ Define H13       10
+ Include all MM classes
+
+ MM sanity checks:
+ All charges sum to:                0.00000000
+ Charges of atoms sum to:           0.00000000
+ WARNING -- The following centers have non-zero partial charges, but zero Vanderwaals
+ parameters.  These centers can collapse onto other centers with non-zero charge.
+   Center  Layer   Charge
+      1 C    R   -0.267532
+      5 C    R   -0.092257
+      7 H    R    0.060622
+      8 C    R   -0.092258
+      9 H    R    0.060627
+     10 H    R    0.060618
+     11 C    R   -0.267532
+     12 H    R    0.077330
+     13 H    R    0.083821
+     14 H    R    0.077394
+ MMInit generated parameter data with length LenPar=        3661.
+ MM Charge=              0.0000 electrons
+ MM Dipole moment (Debye):
+    X=              0.0002    Y=              0.0000    Z=              0.0000  Tot=              0.0002
+ MM Quadrupole moment (Debye-Ang):
+   XX=              2.5054   YY=              2.3956   ZZ=              2.4817
+   XY=              0.0411   XZ=             -0.0740   YZ=              0.3541
+ MM Traceless Quadrupole moment (Debye-Ang):
+   XX=              0.0445   YY=             -0.0653   ZZ=              0.0208
+   XY=              0.0411   XZ=             -0.0740   YZ=              0.3541
+ MM Octapole moment (Debye-Ang**2):
+  XXX=            -16.8233  YYY=             13.1023  ZZZ=              9.3609  XYY=             -5.2123
+  XXY=              4.3847  XXZ=              3.4828  XZZ=             -5.7390  YZZ=              5.4149
+  YYZ=              4.3040  XYZ=             -0.8757
+ MM Hexadecapole moment (Debye-Ang**3):
+ XXXX=             78.3399 YYYY=             64.0183 ZZZZ=             42.8044 XXXY=            -30.2170
+ XXXZ=            -21.6956 YYYX=            -27.7441 YYYZ=             28.0224 ZZZX=            -21.3683
+ ZZZY=             28.2556 XXYY=             22.9330 XXZZ=             21.8300 YYZZ=             22.2543
+ XXYZ=             10.0299 YYXZ=            -10.9390 ZZXY=            -13.5566
+ Leave Link  101 at Fri Mar 29 18:25:43 2024, MaxMem=   134217728 cpu:               0.2 elap:               0.2
+ (Enter /home/emanuele/chem_software/gaussian//gdv/l202.exe)
+                          Input orientation:                          
+ ---------------------------------------------------------------------
+ Center     Atomic      Atomic             Coordinates (Angstroms)
+ Number     Number       Type             X           Y           Z
+ ---------------------------------------------------------------------
+      1          6    90000001       -2.388423    0.503286   -0.166176
+      2          1    20001035       -1.655667    0.065608   -0.853225
+      3          1    20001036       -3.170551    0.970332   -0.775230
+      4          1    20001037       -2.852538   -0.320709    0.387257
+      5          6    90000002       -1.730194    1.511425    0.773066
+      6          1    20001040       -1.238367    2.308439    0.182206
+      7          1    90000003       -0.920619    1.017758    1.345213
+      8          6    90000004       -2.745781    2.134459    1.741943
+      9          1    90000005       -3.555517    2.627903    1.170033
+     10          1    90000006       -3.237394    1.337235    2.332868
+     11          6    90000007       -2.087620    3.142917    2.680926
+     12          1    90000008       -1.623577    3.966797    2.127019
+     13          1    90000009       -2.820280    3.581179    3.367646
+     14          1    90000010       -1.305299    2.676337    3.290124
+ ---------------------------------------------------------------------
+                    Distance matrix (angstroms):
+                    1          2          3          4          5
+     1  C    0.000000
+     2  H    1.095687   0.000000
+     3  H    1.095812   1.766206   0.000000
+     4  H    1.095746   1.766504   1.766153   0.000000
+     5  C    1.527018   2.177329   2.182803   2.182938   0.000000
+     6  H    2.168542   2.505304   2.537824   3.091927   1.107358
+     7  H    2.168739   2.505996   3.092042   2.538008   1.107462
+     8  C    2.535616   3.493335   2.805669   2.806140   1.535679
+     9  H    2.767952   3.777348   2.584529   3.130692   2.176215
+    10  H    2.767931   3.777576   3.130393   2.585013   2.176000
+    11  C    3.894114   4.706021   4.223491   4.224065   2.535636
+    12  H    4.223700   4.909395   4.449155   4.787465   2.805959
+    13  H    4.706147   5.615275   4.909443   4.910040   3.493424
+    14  H    4.223898   4.909787   4.787141   4.450042   2.805911
+                    6          7          8          9         10
+     6  H    0.000000
+     7  H    1.766184   0.000000
+     8  C    2.176085   2.176151   0.000000
+     9  H    2.539103   3.092886   1.107357   0.000000
+    10  H    3.092684   2.538695   1.107448   1.766129   0.000000
+    11  C    2.767885   2.768090   1.527040   2.168584   2.168781
+    12  H    2.584731   3.130847   2.182908   2.537883   3.092147
+    13  H    3.777479   3.777575   2.177489   2.505756   2.506000
+    14  H    3.130333   2.584868   2.182999   3.092024   2.538213
+                   11         12         13         14
+    11  C    0.000000
+    12  H    1.095868   0.000000
+    13  H    1.095650   1.766339   0.000000
+    14  H    1.095831   1.766183   1.766328   0.000000
+ Symmetry turned off by external request.
+ Stoichiometry    C4H10
+ Framework group  C1[X(C4H10)]
+ Deg. of freedom    36
+ Full point group                 C1      NOp   1
+ Rotational constants (GHZ):          22.9471542           3.6614958           3.4269039
+ Leave Link  202 at Fri Mar 29 18:25:43 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/chem_software/gaussian//gdv/l301.exe)
+ Standard basis: Dummy (5D, 7F)
+    14 basis functions,    14 primitive gaussians,    14 cartesian basis functions
+     9 alpha electrons        9 beta electrons
+       nuclear repulsion energy        36.4458169092 Hartrees.
+ IExCor=       0 DFT=F Ex=HF Corr=None N6=None ScaHFX=  1.000000
+ ScaDFX=  1.000000  1.000000  1.000000  1.000000  1.000000  0.000000
+ ScaDFX=  0.000000  0.000000  0.000000  0.000000  0.000000  0.000000
+ IRadAn=      5 IRanWt=     -1 IRanGd=            0 ICorTp=0 IEmpDi=  4
+ NAtoms=   14 NActive=   14 NUniq=   14 SFac= 1.00D+00 NAtFMM=   60 NAOKFM=F Big=F
+ Integral buffers will be    131072 words long.
+ Raffenetti 1 integral format.
+ Two-electron integral symmetry is turned off.
+ Leave Link  301 at Fri Mar 29 18:25:43 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/chem_software/gaussian//gdv/l402.exe)
+ AMBER calculation of energy.
+ ****************************
+ MOLECULAR MECHANICS FUNCTION
+ ****************************
+ Atomic parameters:
+ Center  VDW
+      1 0.0000 0.0000000
+      2 1.3870 0.0157000
+      3 1.2870 0.0157000
+      4 1.1870 0.0157000
+      5 0.0000 0.0000000
+      6 1.3590 0.0150000
+      7 0.0000 0.0000000
+      8 0.0000 0.0000000
+      9 0.0000 0.0000000
+     10 0.0000 0.0000000
+     11 0.0000 0.0000000
+     12 0.0000 0.0000000
+     13 0.0000 0.0000000
+     14 0.0000 0.0000000
+ Molecular mechanics terms:
+ NBDir 3 1      0      0
+ HrmStr1  1- 2  374.50 1.0910
+ HrmStr1  1- 3  371.63 1.0920
+ HrmStr1  1- 4  371.66 1.0920
+ HrmStr1  1- 5  311.98 1.5270
+ HrmStr1  5- 6  362.71 1.0950
+ HrmStr1  5- 7  362.77 1.0950
+ HrmStr1  5- 8  307.49 1.5290
+ HrmStr1  8- 9  362.77 1.0950
+ HrmStr1  8-10  362.77 1.0950
+ HrmStr1  8-11  312.23 1.5270
+ HrmStr1 11-12  371.65 1.0920
+ HrmStr1 11-13  374.54 1.0910
+ HrmStr1 11-14  371.65 1.0920
+ HrmBnd1  1- 5- 6  40.60 109.50
+ HrmBnd1  1- 5- 7  40.73 109.50
+ HrmBnd1  1- 5- 8  61.43 113.37
+ HrmBnd1  2- 1- 3  36.52 107.65
+ HrmBnd1  2- 1- 4  36.50 107.65
+ HrmBnd1  2- 1- 5  43.83 111.52
+ HrmBnd1  3- 1- 4  36.76 107.49
+ HrmBnd1  3- 1- 5  44.75 111.17
+ HrmBnd1  4- 1- 5  44.80 111.17
+ HrmBnd1  5- 8- 9  40.89 109.11
+ HrmBnd1  5- 8-10  40.89 109.11
+ HrmBnd1  5- 8-11  61.44 113.37
+ HrmBnd1  6- 5- 7  28.57 105.97
+ HrmBnd1  6- 5- 8  40.86 109.11
+ HrmBnd1  7- 5- 8  40.88 109.11
+ HrmBnd1  8-11-12  44.81 111.17
+ HrmBnd1  8-11-13  43.95 111.52
+ HrmBnd1  8-11-14  44.81 111.17
+ HrmBnd1  9- 8-10  28.58 105.97
+ HrmBnd1  9- 8-11  40.73 109.50
+ HrmBnd1 10- 8-11  40.73 109.50
+ HrmBnd1 12-11-13  36.54 107.65
+ HrmBnd1 12-11-14  36.77 107.49
+ HrmBnd1 13-11-14  36.54 107.65
+ AmbTrs  2- 1- 5- 6   0   0   0   0  0.0000  0.0000  3.3200  0.0000  9.0
+ AmbTrs  2- 1- 5- 7   0   0   0   0  0.0000  0.0000  3.3300  0.0000  9.0
+ AmbTrs  2- 1- 5- 8   0   0   0   0  0.0000  0.0000  2.2100  0.0000  9.0
+ AmbTrs  3- 1- 5- 6   0   0   0   0  0.0000  0.0000  1.2400  0.0000  9.0
+ AmbTrs  3- 1- 5- 7   0   0   0   0  0.0000  0.0000  2.0200  0.0000  9.0
+ AmbTrs  3- 1- 5- 8   0   0   0   0  0.0000  0.0000  2.3200  0.0000  9.0
+ AmbTrs  4- 1- 5- 6   0   0   0   0  0.0000  0.0000  2.0200  0.0000  9.0
+ AmbTrs  4- 1- 5- 7   0   0   0   0  0.0000  0.0000  1.2400  0.0000  9.0
+ AmbTrs  4- 1- 5- 8   0   0   0   0  0.0000  0.0000  2.3200  0.0000  9.0
+ AmbTrs  1- 5- 8- 9   0   0   0   0  0.0000  0.0000  2.2700  0.0000  9.0
+ AmbTrs  1- 5- 8-10   0   0   0   0  0.0000  0.0000  2.2700  0.0000  9.0
+ AmbTrs  1- 5- 8-11   0   0   0   0  0.0000  0.0000  0.0000  0.0000  9.0
+ AmbTrs  6- 5- 8- 9   0   0   0   0  0.0000  0.0000  3.5500  0.0000  9.0
+ AmbTrs  6- 5- 8-10   0   0   0   0  0.0000  0.0000  2.2800  0.0000  9.0
+ AmbTrs  6- 5- 8-11   0   0   0   0  0.0000  0.0000  2.2700  0.0000  9.0
+ AmbTrs  7- 5- 8- 9   0   0   0   0  0.0000  0.0000  2.2900  0.0000  9.0
+ AmbTrs  7- 5- 8-10   0   0   0   0  0.0000  0.0000  3.5500  0.0000  9.0
+ AmbTrs  7- 5- 8-11   0   0   0   0  0.0000  0.0000  2.2700  0.0000  9.0
+ AmbTrs  5- 8-11-12   0   0   0   0  0.0000  0.0000  2.3200  0.0000  9.0
+ AmbTrs  5- 8-11-13   0   0   0   0  0.0000  0.0000  2.2100  0.0000  9.0
+ AmbTrs  5- 8-11-14   0   0   0   0  0.0000  0.0000  2.3200  0.0000  9.0
+ AmbTrs  9- 8-11-12   0   0   0   0  0.0000  0.0000  1.2400  0.0000  9.0
+ AmbTrs  9- 8-11-13   0   0   0   0  0.0000  0.0000  3.3300  0.0000  9.0
+ AmbTrs  9- 8-11-14   0   0   0   0  0.0000  0.0000  2.0200  0.0000  9.0
+ AmbTrs 10- 8-11-12   0   0   0   0  0.0000  0.0000  2.0200  0.0000  9.0
+ AmbTrs 10- 8-11-13   0   0   0   0  0.0000  0.0000  3.3300  0.0000  9.0
+ AmbTrs 10- 8-11-14   0   0   0   0  0.0000  0.0000  1.2400  0.0000  9.0
+ NBPair  2- 1 3 1      0      0 -1.000 -1.000
+ NBPair  3- 2 3 1      0      0 -1.000 -1.000
+ NBPair  4- 2 3 1      0      0 -1.000 -1.000
+ NBPair  5- 2 3 1      0      0 -1.000 -1.000
+ NBPair  3- 1 3 1      0      0 -1.000 -1.000
+ NBPair  4- 3 3 1      0      0 -1.000 -1.000
+ NBPair  5- 3 3 1      0      0 -1.000 -1.000
+ NBPair  4- 1 3 1      0      0 -1.000 -1.000
+ NBPair  5- 4 3 1      0      0 -1.000 -1.000
+ NBPair  5- 1 3 1      0      0 -1.000 -1.000
+ NBPair  6- 2 3 1      0      0 -0.500 -0.167
+ NBPair  7- 2 3 1      0      0 -0.500 -0.167
+ NBPair  8- 2 3 1      0      0 -0.500 -0.167
+ NBPair  6- 3 3 1      0      0 -0.500 -0.167
+ NBPair  7- 3 3 1      0      0 -0.500 -0.167
+ NBPair  8- 3 3 1      0      0 -0.500 -0.167
+ NBPair  6- 4 3 1      0      0 -0.500 -0.167
+ NBPair  7- 4 3 1      0      0 -0.500 -0.167
+ NBPair  8- 4 3 1      0      0 -0.500 -0.167
+ NBPair  6- 1 3 1      0      0 -1.000 -1.000
+ NBPair  7- 1 3 1      0      0 -1.000 -1.000
+ NBPair  8- 1 3 1      0      0 -1.000 -1.000
+ NBPair  6- 5 3 1      0      0 -1.000 -1.000
+ NBPair  7- 6 3 1      0      0 -1.000 -1.000
+ NBPair  8- 6 3 1      0      0 -1.000 -1.000
+ NBPair  7- 5 3 1      0      0 -1.000 -1.000
+ NBPair  8- 7 3 1      0      0 -1.000 -1.000
+ NBPair  8- 5 3 1      0      0 -1.000 -1.000
+ NBPair  9- 1 3 1      0      0 -0.500 -0.167
+ NBPair 10- 1 3 1      0      0 -0.500 -0.167
+ NBPair 11- 1 3 1      0      0 -0.500 -0.167
+ NBPair  9- 6 3 1      0      0 -0.500 -0.167
+ NBPair 10- 6 3 1      0      0 -0.500 -0.167
+ NBPair 11- 6 3 1      0      0 -0.500 -0.167
+ NBPair  9- 7 3 1      0      0 -0.500 -0.167
+ NBPair 10- 7 3 1      0      0 -0.500 -0.167
+ NBPair 11- 7 3 1      0      0 -0.500 -0.167
+ NBPair  9- 5 3 1      0      0 -1.000 -1.000
+ NBPair 10- 5 3 1      0      0 -1.000 -1.000
+ NBPair 11- 5 3 1      0      0 -1.000 -1.000
+ NBPair  9- 8 3 1      0      0 -1.000 -1.000
+ NBPair 10- 9 3 1      0      0 -1.000 -1.000
+ NBPair 11- 9 3 1      0      0 -1.000 -1.000
+ NBPair 10- 8 3 1      0      0 -1.000 -1.000
+ NBPair 11-10 3 1      0      0 -1.000 -1.000
+ NBPair 11- 8 3 1      0      0 -1.000 -1.000
+ NBPair 12- 5 3 1      0      0 -0.500 -0.167
+ NBPair 13- 5 3 1      0      0 -0.500 -0.167
+ NBPair 14- 5 3 1      0      0 -0.500 -0.167
+ NBPair 12- 9 3 1      0      0 -0.500 -0.167
+ NBPair 13- 9 3 1      0      0 -0.500 -0.167
+ NBPair 14- 9 3 1      0      0 -0.500 -0.167
+ NBPair 12-10 3 1      0      0 -0.500 -0.167
+ NBPair 13-10 3 1      0      0 -0.500 -0.167
+ NBPair 14-10 3 1      0      0 -0.500 -0.167
+ NBPair 12- 8 3 1      0      0 -1.000 -1.000
+ NBPair 13- 8 3 1      0      0 -1.000 -1.000
+ NBPair 14- 8 3 1      0      0 -1.000 -1.000
+ NBPair 12-11 3 1      0      0 -1.000 -1.000
+ NBPair 13-12 3 1      0      0 -1.000 -1.000
+ NBPair 14-12 3 1      0      0 -1.000 -1.000
+ NBPair 13-11 3 1      0      0 -1.000 -1.000
+ NBPair 14-13 3 1      0      0 -1.000 -1.000
+ NBPair 14-11 3 1      0      0 -1.000 -1.000
+ Energy per function type:
+ Direct Coulomb + vdW (small)                           0.005842235
+ Direct Coulomb (large)                                -0.055929582
+ Direct vdW (large)                                     0.000000000
+ Non-direct Coulomb + vdW (small)                       0.032218532
+ Non-direct Coulomb (large)                             0.021661104
+ Non-direct vdW (large)                                 0.000000000
+ Harmonic stretch I                                     0.000438252
+ Harmonic bend I                                        0.000221604
+ Amber torsion                                          0.000066327
+ Energy per function class:
+        Coulomb               0.003815601
+    Vanderwaals              -0.000023313
+     Stretching               0.000438252
+        Bending               0.000221604
+        Torsion               0.000066327
+ Energy=    4.518470613E-03 NIter=   0.
+ Dipole moment=       0.000060       0.000017       0.000006
+ Leave Link  402 at Fri Mar 29 18:25:43 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/chem_software/gaussian//gdv/l9999.exe)
+ Unable to Open any file for archive entry.
+ 1\1\GINC-EMANUELE-XPS-13-9343\SP\AMBER\ZDO\C4H10\EMANUELE\29-Mar-2024\
+ 0\\#p Amber=(SoftFirst,Print) geom=nocrowd nosymm\\Title\\0,1\C,0,-2.3
+ 88423,0.503286,-0.166176\H,0,-1.655667,0.065608,-0.853225\H,0,-3.17055
+ 1,0.970332,-0.77523\H,0,-2.852538,-0.320709,0.387257\C,0,-1.730194,1.5
+ 11425,0.773066\H,0,-1.238367,2.308439,0.182206\H,0,-0.920619,1.017758,
+ 1.345213\C,0,-2.745781,2.134459,1.741943\H,0,-3.555517,2.627903,1.1700
+ 33\H,0,-3.237394,1.337235,2.332868\C,0,-2.08762,3.142917,2.680926\H,0,
+ -1.623577,3.966797,2.127019\H,0,-2.82028,3.581179,3.367646\H,0,-1.3052
+ 99,2.676337,3.290124\\Version=ES64L-GDVRevJ.14\HF=0.0045185\RMSD=0.000
+ e+00\Dipole=0.0000605,0.0000168,0.0000063\PG=C01 [X(C4H10)]\\@
+ The archive entry for this job was punched.
+
+
+ Make no judgements where you have no compassion.
+                               -- Anne McCaffrey
+ Job cpu time:       0 days  0 hours  0 minutes  0.4 seconds.
+ Elapsed time:       0 days  0 hours  0 minutes  0.4 seconds.
+ File lengths (MBytes):  RWF=      6 Int=      0 D2E=      0 Chk=      1 Scr=      1
+ Normal termination of Gaussian DV at Fri Mar 29 18:25:43 2024.

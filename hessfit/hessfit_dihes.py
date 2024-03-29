@@ -7,6 +7,7 @@ import numpy as np
 import gauScan2com as scan2mm
 import readin_opts as rdin
 import log2scan
+import pandas as pd
 
 # import gcutil as gc
 # from openbabel import openbabel as ob
@@ -133,123 +134,132 @@ def main():
     nprocs = json_opts['nprocs']
     qm_method = json_opts['method']
     
-    # data = read_XYZ(file_xyz)
-    # ele = [ i[0] for i in data ]
-    # # cords = np.array([ i[1:4] for i in data ], dtype=float)
-    # tors_list = read_topology(file_top)
+    data = read_XYZ(file_xyz)
+    ele = [ i[0] for i in data ]
+    # cords = np.array([ i[1:4] for i in data ], dtype=float)
+    tors_list = read_topology(file_top)
 
-    # # Building torsional list by element type
-    # ele_list = []
-    # for id_1, x in enumerate(tors_list):
-    #     tmp_list = []
-    #     for id_2, y in enumerate(x):
-    #         tmp_list.append(ele[y-1])
-    #     ele_list.append(tmp_list)
+    # Building torsional list by element type
+    ele_list = []
+    for id_1, x in enumerate(tors_list):
+        tmp_list = []
+        for id_2, y in enumerate(x):
+            tmp_list.append(ele[y-1])
+        ele_list.append(tmp_list)
 
-    # # Explicit tors_unique by element strings
-    # ele_unique = tuple(set([tuple(i) for i in ele_list]))
-    # ele_unique_list = [ list(i) for i in ele_unique]
-    # print(" Torsional Angles by Elements:")
-    # print(" ----------------------------\n")
-    # [print(i, ": ", *j) for i, j in enumerate(ele_unique_list)]
-    # print("")
+    # Explicit tors_unique by element strings
+    ele_unique = tuple(set([tuple(i) for i in ele_list]))
+    ele_unique_list = [ list(i) for i in ele_unique]
+    print(" Torsional Angles by Elements:")
+    print(" ----------------------------\n")
+    [print(i, ": ", *j) for i, j in enumerate(ele_unique_list)]
+    print("")
     
-    # tmp_center = tuple(set([tuple(i[1:3]) for i in tors_list]))
-    # print(" Rotation Around Bonds:")
-    # print(" ----------------------\n") 
-    # [ print(" {}- {} ".format(i,j)) for i, j in tmp_center ]
-    # print("")
+    tmp_center = tuple(set([tuple(i[1:3]) for i in tors_list]))
+    print(" Rotation Around Bonds:")
+    print(" ----------------------\n") 
+    [ print(" {}- {} ".format(i,j)) for i, j in tmp_center ]
+    print("")
 
-    # # Explicit tors_unique 
-    # tors_mean_list = []
-    # for i, x in enumerate(ele_unique_list, start=0):
-    #     for j, y in enumerate(ele_list, start=0):
-    #         if x == y:
-    #            tors_mean_list.append(tors_list[j])
-    #            break
+    # Explicit tors_unique 
+    tors_mean_list = []
+    for i, x in enumerate(ele_unique_list, start=0):
+        for j, y in enumerate(ele_list, start=0):
+            if x == y:
+               tors_mean_list.append(tors_list[j])
+               break
 
-    # print(" Atomic indices in Torsional Angles:")
-    # print(" ---------------------------------------------\n")
-    # [ print(" {}- {}- {}- {} ".format(i,j, k, l)) for i,j,k,l in tors_mean_list ]
-    # print("")
+    print(" Atomic indices in Torsional Angles:")
+    print(" ---------------------------------------------\n")
+    [ print(" {}- {}- {}- {} ".format(i,j, k, l)) for i,j,k,l in tors_mean_list ]
+    print("")
     
-    # # Reading in ff_string and type_charge files
-    # atype_chg = scan2mm.read_txt_info(file_atype)
-    # ffs = scan2mm.read_txt_info(file_ff_str)
-    # atypes = [item[0].split('-')[0] for item in atype_chg]
+    # Reading in ff_string and type_charge files
+    atype_chg = scan2mm.read_txt_info(file_atype)
+    ffs = scan2mm.read_txt_info(file_ff_str)
+    atypes = [item[0].split('-')[0] for item in atype_chg]
     
-    # # Replacing indices with string atype
-    # tors_tmp = substitute_strings(tors_mean_list, atypes)
-    # tors_type_list = {idx:x.split(' ') for idx, x in enumerate(tors_tmp)}
-    # print(" Atomic Type per indices in Torsional Angles:")
-    # print(" ---------------------------------------------\n")
-    # [ print(" {}- {}- {}- {} ".format(i,j, k, l)) for i,j,k,l in tors_type_list.values() ]
-    # print("")
+    # Replacing indices with string atype
+    tors_tmp = substitute_strings(tors_mean_list, atypes)
+    tors_type_list = {idx:x.split(' ') for idx, x in enumerate(tors_tmp)}
+    print(" Atomic Type per indices in Torsional Angles:")
+    print(" ---------------------------------------------\n")
+    [ print(" {}- {}- {}- {} ".format(i,j, k, l)) for i,j,k,l in tors_type_list.values() ]
+    print("")
     
     # # Writing QM Scan files for each torsional:
-    # for id, x in enumerate(tors_mean_list):
-    #     fqm = str(id) + '_qm.gjf'
-    #     # fmm = str(id) + '_zmat_mm.gjf'
-    #     print2QM(fqm, data, x, nprocs, qm_method)
+    for id, x in enumerate(tors_mean_list):
+        fqm = str(id) + '_qm.gjf'
+        # fmm = str(id) + '_zmat_mm.gjf'
+        print2QM(fqm, data, x, nprocs, qm_method)
     
-    # GPATH = os.environ.get("g09root") + "/g09"
-    # file_pattern = '*_qm.gjf*'
-    # file_qm_list = sorted(glob.glob(file_pattern))      # the order matters
+    GPATH = os.environ.get("g09root") + "/g09"
+    file_pattern = '*_qm.gjf*'
+    file_qm_list = sorted(glob.glob(file_pattern))      # the order matters
     
-    # # Calling Gaussian to perfrom Scan on each QM dihedral
-    # for id, f in enumerate(file_qm_list):
-    #     print(f"Executing Gaussian Scan on {f}")
-    #     file_base = os.path.splitext(f)[0]
-    #     log_file = file_base + '.log'  
+    # Calling Gaussian to perfrom Scan on each QM dihedral
+    for id, f in enumerate(file_qm_list):
+        print(f"Executing Gaussian Scan on {f}")
+        file_base = os.path.splitext(f)[0]
+        log_file = file_base + '.log'  
         
     # # Check if the log files exist 
-    #     if os.path.exists(log_file):
-    #         print(f"Log file {log_file} already exists.\n")
-    #     else:
-    #         process = subprocess.Popen([f"{GPATH}/g09", f], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    #         stdout, stderr = process.communicate()  # Wait for the process to finish
-    #         if process.returncode != 0:
-    #             print(f"Error executing Gaussian Scan on {f}. Details: {stderr.decode()}")
-    #         else:
-    #             print(f"Gaussian Scan executed successfully on {f}")
+        if os.path.exists(log_file):
+            print(f"Log file {log_file} already exists.\n")
+        else:
+            process = subprocess.Popen([f"{GPATH}/g09", f], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            stdout, stderr = process.communicate()  # Wait for the process to finish
+            if process.returncode != 0:
+                print(f"Error executing Gaussian Scan on {f}. Details: {stderr.decode()}")
+            else:
+                print(f"Gaussian Scan executed successfully on {f}")
                 
-    #     #  Creating MM input geometries for each QM file 
-    #     ele, coords, Natoms = scan2mm.read_log(log_file)
-    #     file_mm_list = scan2mm.print_mm(f, ele, coords, Natoms, atype_chg, ffs)
+        #  Creating MM input geometries for each QM file 
+        ele, coords, Natoms = scan2mm.read_log(log_file)
+        file_mm_list = scan2mm.print_mm(f, ele, coords, Natoms, atype_chg, ffs)
         
-    #     # Silcening n-th dihedral by replacing with 0.0 barrier terms
-    #     replace_item = tors_type_list[id]
-    #     for idf, file in enumerate(file_mm_list):
-    #         replace_nth_tors(file, replace_item)
+        # Silcening n-th dihedral by replacing with 0.0 barrier terms
+        replace_item = tors_type_list[id]
+        for idf, file in enumerate(file_mm_list):
+            replace_nth_tors(file, replace_item)
         
-    #     # Calling Gaussian to perform Optimization on each QM input for full scan 
-    #     # for jd, fj in enumerate(file_mm_list):
-    #         process = subprocess.Popen([f"{GPATH}/g09", file], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    #         stdout, stderr = process.communicate()  # Wait for the process to finish
-    #         if process.returncode != 0:
-    #             print(f"Error executing MM Gaussian Optimization on {file}. Details: {stderr.decode()}")
-    #         else:
-    #             print(f"Gaussian Optimization executed successfully on {file}")
+        # Calling Gaussian to perform Optimization on each QM input for full scan 
+        for jd, fj in enumerate(file_mm_list):
+            process = subprocess.Popen([f"{GPATH}/g09", file], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            stdout, stderr = process.communicate()  # Wait for the process to finish
+            if process.returncode != 0:
+                print(f"Error executing MM Gaussian Optimization on {file}. Details: {stderr.decode()}")
+            else:
+                print(f"Gaussian Optimization executed successfully on {file}")
 
     
     file_pattern = '*_qm.log*'
     qm_logs_list = sorted(glob.glob(file_pattern))      
-    print(qm_logs_list)
 
     for file in qm_logs_list:
-        fout_qm = os.path.splitext(file)[0] + "_scan_energy.txt"
+        fout_qm = os.path.splitext(file)[0] + "_scan_energy.csv"
         # Gathering energies from QM file
         subprocess.run(["log2scan.py", "-t", "qm", "-f", file, "-o", fout_qm], check=True)
 
         # Gathering energies from MM files
         fext_mm = file.split("_")[0]
-        files = fext_mm + "_mm_*log*"
-        print(fext_mm)
-        fout_mm = fext_mm + "_scan_energy.txt"
-        subprocess.run(["get_mm_energy.py", "-t", "mm", files, "-o", fout_mm], check=True)
-
-          # log2scan.py -t qm -f 0_qm.log -o hooh_qm.txt
-    # get_mm_energy.py -t mm -o hooh_mm.txt 0_mm_*log*
+        pattern = '_mm*log'
+        files = sorted(glob.glob(fext_mm+pattern)) 
+        fout_mm = fext_mm + "_mm_scan_energy.csv"
+        subprocess.run(["get_mm_energy.py", "-t", "mm"] + files +["-o", fout_mm], check=True)
+        
+        df1 = pd.read_csv(fout_qm, names=['col1', 'col2'])
+        df2 = pd.read_csv(fout_mm, header=None, usecols=[1], names=['col3'])
+        
+        merged_df = pd.concat([df1, df2], axis=1)
+        f_merged = os.path.splitext(file)[0] + '_all.csv'
+        merged_df.to_csv(f_merged, header=None, index=False)
+        
+        # LLS: Fitting of MM single-point PES to QM relaxes scan
+        print(f"LLS fitting on: {file}\n")
+        subprocess.run(["fit4dihe.py"] + [f_merged], check=True)
+        
+        
 
 
 

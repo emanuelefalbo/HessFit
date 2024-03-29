@@ -1,5 +1,0 @@
-! Namelist
-&ctrl
-sb = 'off',
-bb = 'off',
-/

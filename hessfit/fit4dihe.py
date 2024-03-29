@@ -116,13 +116,12 @@ def non_linear_f(x, a1, a2, a3, a4, p1, p2, p3, p4):
 
 def solve_LLSQ(A_matrix, yval):
     # coeffs = np.dot(np.linalg.inv(np.dot(A_matrix.T, A_matrix)), np.dot(A_matrix.T, yval))
-    coeffs = np.linalg.lstsq(A_matrix, yval)[0]
-    print(coeffs)
+    coeffs = np.linalg.lstsq(A_matrix, yval, rcond=None)[0]
     # cov_matrix = np.diag(residual(coeffs, xval, yval)**2)
     print('', 60*'=')
     print(' Torsional Coefficients after LLSQ (kcal/mol): ')
     print('', 60*'=')
-    [ print(' Coefficient # {} = {:.4f}'.format(i+1, x)) for i, x in enumerate(coeffs)]
+    [ print(' Coefficient # {} = {:.4f}'.format(i+1, x)) for i, x in enumerate(coeffs[1:])]
 
     return coeffs
 

@@ -121,7 +121,7 @@ def main():
     energy = list(energy_au)
     df = pd.DataFrame([phi, energy]).T
     # df = pd.DataFrame([phi, energy_au], columns=['Angle', 'Energy'])
-    df.to_csv(fout)
+    df.to_csv(fout, header=None)
 
 
 if __name__ == '__main__':

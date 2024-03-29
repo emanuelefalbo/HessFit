@@ -1,0 +1,13 @@
+{
+    "files": {
+        "log_qm_file":  "but_qm.log",
+        "fchk_qm_file": "but_qm.fchk",
+        "fchk_mm_file": "GauHarm.fchk",
+        "fchk_nb_file": "GauNonBon.fchk",
+        "atype_file": "atomtype.txt"
+         },
+    "mode": "mean",
+    "charge":0,
+    "multiplicity":1,
+    "opt": "ric"
+}

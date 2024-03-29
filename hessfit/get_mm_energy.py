@@ -20,7 +20,7 @@ def build_parser():
     txt = 'MM log files'
     par.add_argument('filelist', type=str, help=txt, nargs='+')
     par.add_argument('-o', type=str, help='name output file', default='output.csv', nargs='?')
-    par.add_argument('-t', type=str, default='mm', help='type of log file', nargs='?')
+    par.add_argument('-t', type=str, default='mm', choices=['mm', 'qm'], help='type of log file', nargs='?')
     return par
 
 if __name__ == '__main__':
@@ -44,7 +44,7 @@ if __name__ == '__main__':
                        res.append(line[23:40]) 
     df =pd.DataFrame(res)
     fout = OPTS.o
-    df.to_csv(fout)
+    df.to_csv(fout, header=None)
                        
 
 
