@@ -21,10 +21,10 @@ cd HessFit
 python setup.py install
 ```
 
-Otherwise, it is sufficient to add their directory to the **PYTHONPATH** into you .bashrc (bash) file:
+Alternatively, it is sufficient to add their directory to the **PYTHONPATH** into you .bashrc (bash) file:
 ```
-export PYTHONPATH="${PYTHONPATH}:/path/to/hessfit/src"
-export PATH=$PATH:/path/to/hessfit/src
+export PYTHONPATH="${PYTHONPATH}:/path/to/hessfit/"
+export PATH=$PATH:/path/to/hessfit/
 ```
 with path/to/hessfit being the full path to where it is located. 
 The last line add the programs to your bash path (see setenv for .tcsh) to make it visibile anywhere.
