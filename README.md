@@ -126,7 +126,7 @@ The step2.json is composed as :
 ```
 
 While type_charge.txt, ff_string.txt, and topol.txt are generated internally, users must specify which optimized xyz geometry to use for the torsional scans.
-It must be noted that since several methods, like ab initio or semi-empirical ones, can be chosen for the torsional scan, their completion time will depend on the number of processors and method chosen. The output files "*x_qm_all.csv" (x=1,2,...) contains the angle, QM, and MM energies in 1st, 2nd, and 3rd columns, respectively for each scanned dihedral. The internal subroutine *fit4dihe.py* processes these files and return the Fourier coefficients. 
+It must be noted that since several methods, like ab initio or semi-empirical ones, can be chosen for the torsional scan, their completion time will depend on the number of processors and method chosen. The output files *x_qm_all.csv* (x=1,2,...) contains the angle, QM, and MM energies in 1st, 2nd, and 3rd columns, respectively for each scanned dihedral. The internal subroutine *fit4dihe.py* processes these files and return the Fourier coefficients. 
 
 
 
