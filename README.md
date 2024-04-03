@@ -28,7 +28,7 @@ The last line add the programs to your bash path (see setenv for .tcsh) to make 
 
 # Usage 
 
-**1.1 Harmonic Force Field***
+**1.1 Harmonic Force Field**
 
 The program is thought of as dual usage, i.e., it can be executed by launching the **hessfit.py** script that performs all 
 operations provided by the *build_4_hessfit.py* first, and *hessfit_harmonic.py* secondly, or these two scripts can be run independently.
