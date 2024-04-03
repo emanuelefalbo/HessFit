@@ -76,7 +76,7 @@ An example of input file for gaussian is the following:
 %mem=1GB
 %nprocshared=1
 %chk=but_qm.chk
-#P B3LYP/def2TZVPP Geom=Connectivity opt=(calcall,tight,maxstep=7,maxcycles=100) Freq
+#P B3LYP/def2TZVPP Geom=Connectivity opt=(calcall,tight,maxstep=7,maxcycles=100) Freq=intmodes
 
 title
 
