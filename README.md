@@ -68,7 +68,21 @@ The step1.json is composed as :
  "mode": "mean" string averages all force contsants over same types, while "all" leaves it unchanged
  "charge": the molecular charge of compound
  "multiplicity": the molecular multiplicity accoding to spin state
- "opt": "ric" string perform the Hessian diagonalization in redundant internal coordinates, whereas "sem" string performs the Seminario method. 
+ "opt": "ric" string perform the Hessian diagonalization in redundant internal coordinates, whereas "sem" string performs the Seminario method.
+
+```
+An example of input file for gaussian is the following:
+```
+%mem=1GB
+%nprocshared=1
+%chk=but_qm.chk
+#P B3LYP/def2TZVPP Geom=Connectivity opt=(calcall,tight,maxstep=7,maxcycles=100) Freq
+
+title
+
+0 1
+...
+
 ```
 
 The "atype_file" must be a two-column file with the element, and the atom type on the first and second column respectively: 
