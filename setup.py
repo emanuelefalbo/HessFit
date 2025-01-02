@@ -8,6 +8,6 @@ setup(
       packages = find_packages(),
       package_data={'hessfit': ['json_files/*']},
       entry_points = {
-        'console_scripts': ['smartfit=src.main:main',]
+        'console_scripts': ['hessfit=hessfit.hessfit:main',]
       },
      )

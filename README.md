@@ -7,31 +7,28 @@ The directory utils contains instead all the necessary modules.
 
 # Install
 
-It currently works with the Gaussian outputs, and json files containing the necessary input information. It has been currently tested with Gaussian09. 
-A numpy python library is required to properly use the program alongside other module.
-Numpy can be installed by the following command:
+It currently works with the Gaussian outputs, and json files containing the necessary input information. It has been currently tested with Gaussian09/16. 
+The following python libraries are srequired to properly use the program alongside other modules. These can be installed with pip:
 ```
 pip install numpy pandas scipy
 ```
-
 Then, by cloning the directory locally, user should give:
 ```
 git clone https://github.com/emanuelefalbo/HessFit
 cd HessFit
 python setup.py install
 ```
-
-Otherwise, it is sufficient to add their directory to the **PYTHONPATH** into you .bashrc (bash) file:
+Alternatively, it is sufficient to add their directory to the **PYTHONPATH** into you .bashrc (bash) file to call the main executable (**hessfit.py**):
 ```
-export PYTHONPATH="${PYTHONPATH}:/path/to/hessfit/src"
-export PATH=$PATH:/path/to/hessfit/src
+export PYTHONPATH="${PYTHONPATH}:/path/to/hessfit/"
+export PATH=$PATH:/path/to/hessfit/
 ```
 with path/to/hessfit being the full path to where it is located. 
 The last line add the programs to your bash path (see setenv for .tcsh) to make it visibile anywhere.
 
 # Usage 
 
-**1.1 Harmonic Force Field***
+**1.1 Harmonic Force Field**
 
 The program is thought of as dual usage, i.e., it can be executed by launching the **hessfit.py** script that performs all 
 operations provided by the *build_4_hessfit.py* first, and *hessfit_harmonic.py* secondly, or these two scripts can be run independently.
@@ -68,7 +65,21 @@ The step1.json is composed as :
  "mode": "mean" string averages all force contsants over same types, while "all" leaves it unchanged
  "charge": the molecular charge of compound
  "multiplicity": the molecular multiplicity accoding to spin state
- "opt": "ric" string perform the Hessian diagonalization in redundant internal coordinates, whereas "sem" string performs the Seminario method. 
+ "opt": "ric" string perform the Hessian diagonalization in redundant internal coordinates, whereas "sem" string performs the Seminario method.
+
+```
+An example of input file for gaussian is the following:
+```
+%mem=1GB
+%nprocshared=1
+%chk=but_qm.chk
+#P B3LYP/def2TZVPP Geom=Connectivity opt=(calcall,tight,maxstep=7,maxcycles=100) Freq=intmodes
+
+title
+
+0 1
+...
+
 ```
 
 The "atype_file" must be a two-column file with the element, and the atom type on the first and second column respectively: 
@@ -126,8 +137,7 @@ The step2.json is composed as :
 ```
 
 While type_charge.txt, ff_string.txt, and topol.txt are generated internally, users must specify which optimized xyz geometry to use for the torsional scans.
-It must be noted that since several methods, like ab initio or semi-empirical ones, can be chosen for the torsional scan, their completion time will depend on the number of processors and method chosen. 
+It must be noted that since several methods, like ab initio or semi-empirical ones, can be chosen for the torsional scan, their completion time will depend on the number of processors and method chosen. The output files *x_qm_all.csv* (x=1,2,...) contains the angle, QM, and MM energies in 1st, 2nd, and 3rd columns, respectively for each scanned dihedral. The internal subroutine *fit4dihe.py* processes these files and return the Fourier coefficients. 
 
-...
 
 

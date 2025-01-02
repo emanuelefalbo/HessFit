@@ -1,9 +1,9 @@
- Entering Gaussian System, Link 0=/home/emanuele/chem_software/gaussian//g09/g09
+ Entering Gaussian System, Link 0=/home/emanuele/compchem_software/gaussian//g09/g09
  Input=2_mm_140.gjf
  Output=2_mm_140.log
  Initial command:
- /home/emanuele/chem_software/gaussian//gdv/l1.exe "/home/emanuele/chem_software/gaussian/scratch/Gau-23266.inp" -scrdir="/home/emanuele/chem_software/gaussian/scratch/"
- Entering Link 1 = /home/emanuele/chem_software/gaussian//gdv/l1.exe PID=     23268.
+ /home/emanuele/compchem_software/gaussian//gdv/l1.exe "/home/emanuele/compchem_software/gaussian/scratch/Gau-3121663.inp" -scrdir="/home/emanuele/compchem_software/gaussian/scratch/"
+ Entering Link 1 = /home/emanuele/compchem_software/gaussian//gdv/l1.exe PID=   3121665.
   
  Copyright (c) 1988-2020, Gaussian, Inc.  All Rights Reserved.
   
@@ -79,7 +79,7 @@
  
  ******************************************
  Gaussian DV:  ES64L-GDVRevJ.14 29-Dec-2020
-                29-Mar-2024 
+                 2-Apr-2024 
  ******************************************
  %mem=1GB
  %nprocshared=1
@@ -93,8 +93,8 @@
  3/5=30,11=9,25=1,30=1,41=10030000,43=2/1;
  4/20=11,24=3,119=11/2;
  99/5=1,9=1/99;
- Leave Link    1 at Fri Mar 29 18:25:43 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
- (Enter /home/emanuele/chem_software/gaussian//gdv/l101.exe)
+ Leave Link    1 at Tue Apr  2 09:23:34 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/compchem_software/gaussian//gdv/l101.exe)
  -----
  Title
  -----
@@ -189,8 +189,8 @@
  XXXZ=            -21.6956 YYYX=            -27.7441 YYYZ=             28.0224 ZZZX=            -21.3683
  ZZZY=             28.2556 XXYY=             22.9330 XXZZ=             21.8300 YYZZ=             22.2543
  XXYZ=             10.0299 YYXZ=            -10.9390 ZZXY=            -13.5566
- Leave Link  101 at Fri Mar 29 18:25:43 2024, MaxMem=   134217728 cpu:               0.2 elap:               0.2
- (Enter /home/emanuele/chem_software/gaussian//gdv/l202.exe)
+ Leave Link  101 at Tue Apr  2 09:23:34 2024, MaxMem=   134217728 cpu:               0.2 elap:               0.2
+ (Enter /home/emanuele/compchem_software/gaussian//gdv/l202.exe)
                           Input orientation:                          
  ---------------------------------------------------------------------
  Center     Atomic      Atomic             Coordinates (Angstroms)
@@ -248,8 +248,8 @@
  Deg. of freedom    36
  Full point group                 C1      NOp   1
  Rotational constants (GHZ):          22.9471542           3.6614958           3.4269039
- Leave Link  202 at Fri Mar 29 18:25:43 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
- (Enter /home/emanuele/chem_software/gaussian//gdv/l301.exe)
+ Leave Link  202 at Tue Apr  2 09:23:34 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/compchem_software/gaussian//gdv/l301.exe)
  Standard basis: Dummy (5D, 7F)
     14 basis functions,    14 primitive gaussians,    14 cartesian basis functions
      9 alpha electrons        9 beta electrons
@@ -262,8 +262,8 @@
  Integral buffers will be    131072 words long.
  Raffenetti 1 integral format.
  Two-electron integral symmetry is turned off.
- Leave Link  301 at Fri Mar 29 18:25:43 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
- (Enter /home/emanuele/chem_software/gaussian//gdv/l402.exe)
+ Leave Link  301 at Tue Apr  2 09:23:34 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/compchem_software/gaussian//gdv/l402.exe)
  AMBER calculation of energy.
  ****************************
  MOLECULAR MECHANICS FUNCTION
@@ -432,25 +432,29 @@
         Torsion               0.000066327
  Energy=    4.518470613E-03 NIter=   0.
  Dipole moment=       0.000060       0.000017       0.000006
- Leave Link  402 at Fri Mar 29 18:25:43 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
- (Enter /home/emanuele/chem_software/gaussian//gdv/l9999.exe)
+ Leave Link  402 at Tue Apr  2 09:23:34 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ (Enter /home/emanuele/compchem_software/gaussian//gdv/l9999.exe)
  Unable to Open any file for archive entry.
- 1\1\GINC-EMANUELE-XPS-13-9343\SP\AMBER\ZDO\C4H10\EMANUELE\29-Mar-2024\
- 0\\#p Amber=(SoftFirst,Print) geom=nocrowd nosymm\\Title\\0,1\C,0,-2.3
- 88423,0.503286,-0.166176\H,0,-1.655667,0.065608,-0.853225\H,0,-3.17055
- 1,0.970332,-0.77523\H,0,-2.852538,-0.320709,0.387257\C,0,-1.730194,1.5
- 11425,0.773066\H,0,-1.238367,2.308439,0.182206\H,0,-0.920619,1.017758,
- 1.345213\C,0,-2.745781,2.134459,1.741943\H,0,-3.555517,2.627903,1.1700
- 33\H,0,-3.237394,1.337235,2.332868\C,0,-2.08762,3.142917,2.680926\H,0,
- -1.623577,3.966797,2.127019\H,0,-2.82028,3.581179,3.367646\H,0,-1.3052
- 99,2.676337,3.290124\\Version=ES64L-GDVRevJ.14\HF=0.0045185\RMSD=0.000
- e+00\Dipole=0.0000605,0.0000168,0.0000063\PG=C01 [X(C4H10)]\\@
+ 1\1\GINC-PC12\SP\AMBER\ZDO\C4H10\EMANUELE\02-Apr-2024\0\\#p Amber=(Sof
+ tFirst,Print) geom=nocrowd nosymm\\Title\\0,1\C,0,-2.388423,0.503286,-
+ 0.166176\H,0,-1.655667,0.065608,-0.853225\H,0,-3.170551,0.970332,-0.77
+ 523\H,0,-2.852538,-0.320709,0.387257\C,0,-1.730194,1.511425,0.773066\H
+ ,0,-1.238367,2.308439,0.182206\H,0,-0.920619,1.017758,1.345213\C,0,-2.
+ 745781,2.134459,1.741943\H,0,-3.555517,2.627903,1.170033\H,0,-3.237394
+ ,1.337235,2.332868\C,0,-2.08762,3.142917,2.680926\H,0,-1.623577,3.9667
+ 97,2.127019\H,0,-2.82028,3.581179,3.367646\H,0,-1.305299,2.676337,3.29
+ 0124\\Version=ES64L-GDVRevJ.14\HF=0.0045185\RMSD=0.000e+00\Dipole=0.00
+ 00605,0.0000168,0.0000063\PG=C01 [X(C4H10)]\\@
  The archive entry for this job was punched.
 
 
- Make no judgements where you have no compassion.
-                               -- Anne McCaffrey
+ I think that all right-thinking people in this
+ country are sick and tired of being told that
+ ordinary, decent people are fed up in this country
+ with being sick and tired.  I'm certainly not!
+ But I'm sick and tired of being told that I am!
+                               -- Monty Python
  Job cpu time:       0 days  0 hours  0 minutes  0.4 seconds.
  Elapsed time:       0 days  0 hours  0 minutes  0.4 seconds.
  File lengths (MBytes):  RWF=      6 Int=      0 D2E=      0 Chk=      1 Scr=      1
- Normal termination of Gaussian DV at Fri Mar 29 18:25:43 2024.
+ Normal termination of Gaussian DV at Tue Apr  2 09:23:34 2024.
