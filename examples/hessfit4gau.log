@@ -2,8 +2,8 @@
  Input=hessfit4gau.gjf
  Output=hessfit4gau.log
  Initial command:
- /home/emanuele/chem_software/gaussian//gdv/l1.exe "/home/emanuele/chem_software/gaussian/scratch/Gau-9417.inp" -scrdir="/home/emanuele/chem_software/gaussian/scratch/"
- Entering Link 1 = /home/emanuele/chem_software/gaussian//gdv/l1.exe PID=      9419.
+ /home/emanuele/chem_software/gaussian//gdv/l1.exe "/home/emanuele/chem_software/gaussian/scratch/Gau-14306.inp" -scrdir="/home/emanuele/chem_software/gaussian/scratch/"
+ Entering Link 1 = /home/emanuele/chem_software/gaussian//gdv/l1.exe PID=     14308.
   
  Copyright (c) 1988-2020, Gaussian, Inc.  All Rights Reserved.
   
@@ -79,7 +79,7 @@
  
  ******************************************
  Gaussian DV:  ES64L-GDVRevJ.14 29-Dec-2020
-                29-Mar-2024 
+                30-Dec-2024 
  ******************************************
  %mem=1GB
  %nprocshared=1
@@ -104,7 +104,7 @@
  1/6=10,10=10,18=4000020,19=15,64=203,139=2000/3(-4);
  2/9=110,12=1,15=1/2;
  99/9=10/99;
- Leave Link    1 at Fri Mar 29 17:06:05 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link    1 at Mon Dec 30 12:08:29 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l101.exe)
  -----
  Title
@@ -201,7 +201,7 @@
  XXXZ=             -0.0026 YYYX=              0.0434 YYYZ=              0.0002 ZZZX=             -0.0005
  ZZZY=              0.0002 XXYY=              6.2712 XXZZ=              5.2927 YYZZ=              1.8518
  XXYZ=              0.0009 YYXZ=             -0.0003 ZZXY=             -1.3397
- Leave Link  101 at Fri Mar 29 17:06:06 2024, MaxMem=   134217728 cpu:               0.3 elap:               0.3
+ Leave Link  101 at Mon Dec 30 12:08:29 2024, MaxMem=   134217728 cpu:               0.3 elap:               0.3
  (Enter /home/emanuele/chem_software/gaussian//gdv/l103.exe)
 
  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
@@ -212,7 +212,7 @@
  Number of steps in this run=      2 maximum allowed number of steps=      2.
  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
 
- Leave Link  103 at Fri Mar 29 17:06:06 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  103 at Mon Dec 30 12:08:30 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l202.exe)
                           Input orientation:                          
  ---------------------------------------------------------------------
@@ -271,7 +271,7 @@
  Deg. of freedom    11
  Full point group                 C2H     NOp   4
  Rotational constants (GHZ):          23.6116490           3.6179190           3.3991535
- Leave Link  202 at Fri Mar 29 17:06:06 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  202 at Mon Dec 30 12:08:30 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l301.exe)
  Standard basis: Dummy (5D, 7F)
     14 basis functions,    14 primitive gaussians,    14 cartesian basis functions
@@ -285,7 +285,7 @@
  Integral buffers will be    131072 words long.
  Raffenetti 1 integral format.
  Two-electron integral symmetry is turned off.
- Leave Link  301 at Fri Mar 29 17:06:06 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  301 at Mon Dec 30 12:08:30 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l402.exe)
  AMBER calculation of energy and first derivatives.
  NRF= 0 NRA=   0 NVA=  14 HaveQM=F NVQ=       0
@@ -488,7 +488,7 @@
         Torsion               0.000064268
  Energy=    3.958893398E-03 NIter=   0.
  Dipole moment=      -0.000035      -0.000063       0.000157
- Leave Link  402 at Fri Mar 29 17:06:06 2024, MaxMem=   134217728 cpu:               0.1 elap:               0.1
+ Leave Link  402 at Mon Dec 30 12:08:30 2024, MaxMem=   134217728 cpu:               0.1 elap:               0.1
  (Enter /home/emanuele/chem_software/gaussian//gdv/l716.exe)
  Dipole        =-3.47191723D-05-6.25247064D-05 1.57196752D-04
  -------------------------------------------------------------------
@@ -512,7 +512,7 @@
  -------------------------------------------------------------------
  Cartesian Forces:  Max     0.000058938 RMS     0.000028470
  Z-matrix is all fixed cartesians, so copy forces.
- Leave Link  716 at Fri Mar 29 17:06:06 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  716 at Mon Dec 30 12:08:30 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l103.exe)
 
  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
@@ -581,7 +581,7 @@
  Largest change from initial coordinates is atom    6       0.005 Angstoms.
  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
 
- Leave Link  103 at Fri Mar 29 17:06:06 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  103 at Mon Dec 30 12:08:30 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l202.exe)
                           Input orientation:                          
  ---------------------------------------------------------------------
@@ -640,10 +640,10 @@
  Deg. of freedom    36
  Full point group                 C1      NOp   1
  Rotational constants (GHZ):          23.5199695           3.6349763           3.4128097
- Leave Link  202 at Fri Mar 29 17:06:06 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  202 at Mon Dec 30 12:08:30 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l9999.exe)
  Unable to Open any file for archive entry.
- 1\1\GINC-EMANUELE-XPS-13-9343\FOpt\AMBER\ZDO\C4H10\EMANUELE\29-Mar-202
+ 1\1\GINC-EMANUELE-XPS-13-9343\FOpt\AMBER\ZDO\C4H10\EMANUELE\30-Dec-202
  4\0\\#p Amber=(SoftFirst,Print) nosymm geom=nocrowd opt(MaxMicroiterat
  ions=2000) Freq\\Title\\0,1\C,1.9521799478,-0.1204297947,-0.0000599902
  \H,2.7411209541,0.6335744324,0.0002377187\H,2.0992463034,-0.7504569605
@@ -659,14 +659,19 @@
  The archive entry for this job was punched.
 
 
- YOU CAN LEAD A BOY TO COLLEGE....
- BUT YOU CANNOT MAKE HIM THINK....
-           ELBERT HUBBARD
- Leave Link 9999 at Fri Mar 29 17:06:06 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
- Job cpu time:       0 days  0 hours  0 minutes  0.6 seconds.
- Elapsed time:       0 days  0 hours  0 minutes  0.6 seconds.
+ IF YOU WISH TO UNDERSTAND THE FRAGRANCE OF THE ROSE, 
+ OR THE TENACITY OF THE OAK; 
+ IF YOU ARE NOT SATISFIED UNTIL YOU KNOW THE SECRET PATHS 
+ BY WHICH THE SUNSHINE AND THE AIR ACHIEVE THESE WONDERS; 
+ IF YOU WISH TO SEE THE PATTERN WHICH UNDERLIES ONE LARGE FIELD OF 
+ HUMAN EXPERIENCE AND HUMAN MEASUREMENT, THEN TAKE UP CHEMISTRY.
+
+                                         -- C. A. COULSON, 1973.
+ Leave Link 9999 at Mon Dec 30 12:08:30 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Job cpu time:       0 days  0 hours  0 minutes  0.7 seconds.
+ Elapsed time:       0 days  0 hours  0 minutes  0.7 seconds.
  File lengths (MBytes):  RWF=      6 Int=      0 D2E=      0 Chk=      1 Scr=      1
- Normal termination of Gaussian DV at Fri Mar 29 17:06:06 2024.
+ Normal termination of Gaussian DV at Mon Dec 30 12:08:30 2024.
  (Enter /home/emanuele/chem_software/gaussian//gdv/l1.exe)
  Link1:  Proceeding to internal job step number  2.
  --------------------------------------------------------------
@@ -679,7 +684,7 @@
  7/8=1,25=1,30=1,44=-1/16;
  1/10=4,18=10,30=1,64=203,139=2000/3;
  99//99;
- Leave Link    1 at Fri Mar 29 17:06:06 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link    1 at Mon Dec 30 12:08:30 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l101.exe)
  MM symbol table in CpMMST:
  There are   15 entries in the MM symbol table.
@@ -783,7 +788,7 @@
  XXXZ=             -0.0021 YYYX=              0.0180 YYYZ=              0.0001 ZZZX=             -0.0006
  ZZZY=              0.0001 XXYY=              6.2260 XXZZ=              5.2563 YYZZ=              1.8600
  XXYZ=              0.0021 YYXZ=             -0.0002 ZZXY=             -1.3401
- Leave Link  101 at Fri Mar 29 17:06:06 2024, MaxMem=   134217728 cpu:               0.2 elap:               0.2
+ Leave Link  101 at Mon Dec 30 12:08:30 2024, MaxMem=   134217728 cpu:               0.2 elap:               0.2
  (Enter /home/emanuele/chem_software/gaussian//gdv/l103.exe)
 
  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
@@ -793,7 +798,7 @@
  Number of steps in this run=      2 maximum allowed number of steps=      2.
  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
 
- Leave Link  103 at Fri Mar 29 17:06:06 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  103 at Mon Dec 30 12:08:30 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l202.exe)
                           Input orientation:                          
  ---------------------------------------------------------------------
@@ -852,7 +857,7 @@
  Deg. of freedom    36
  Full point group                 C1      NOp   1
  Rotational constants (GHZ):          23.5199695           3.6349763           3.4128097
- Leave Link  202 at Fri Mar 29 17:06:06 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  202 at Mon Dec 30 12:08:30 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l301.exe)
  Standard basis: Dummy (5D, 7F)
     14 basis functions,    14 primitive gaussians,    14 cartesian basis functions
@@ -866,7 +871,7 @@
  Integral buffers will be    131072 words long.
  Raffenetti 1 integral format.
  Two-electron integral symmetry is turned off.
- Leave Link  301 at Fri Mar 29 17:06:06 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  301 at Mon Dec 30 12:08:30 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l402.exe)
  AMBER calculation of energy, first and second derivatives.
  Energy per function type:
@@ -887,7 +892,7 @@
         Torsion               0.000064268
  Energy=    3.958893398E-03 NIter=   0.
  Dipole moment=      -0.000035      -0.000063       0.000157
- Leave Link  402 at Fri Mar 29 17:06:07 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  402 at Mon Dec 30 12:08:30 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l716.exe)
  Dipole        =-3.47191723D-05-6.25247064D-05 1.57196752D-04
  Full mass-weighted force constant matrix:
@@ -1284,7 +1289,7 @@
  -------------------------------------------------------------------
  Cartesian Forces:  Max     0.000058938 RMS     0.000028470
  Z-matrix is all fixed cartesians, so copy forces.
- Leave Link  716 at Fri Mar 29 17:06:07 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  716 at Mon Dec 30 12:08:30 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l103.exe)
 
  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
@@ -1360,10 +1365,10 @@
     -- Stationary point found.
  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
 
- Leave Link  103 at Fri Mar 29 17:06:07 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  103 at Mon Dec 30 12:08:30 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l9999.exe)
  Unable to Open any file for archive entry.
- 1\1\GINC-EMANUELE-XPS-13-9343\Freq\AMBER\ZDO\C4H10\EMANUELE\29-Mar-202
+ 1\1\GINC-EMANUELE-XPS-13-9343\Freq\AMBER\ZDO\C4H10\EMANUELE\30-Dec-202
  4\0\\#P Geom=AllCheck Guess=TCheck SCRF=Check GenChk AMBER/ZDO Freq\\T
  itle\\0,1\C,1.9521799478,-0.1204297947,-0.0000599902\H,2.7411209541,0.
  6335744324,0.0002377187\H,2.0992463034,-0.7504569605,-0.8800324885\H,2
@@ -1542,11 +1547,15 @@
  The archive entry for this job was punched.
 
 
- In the beginning the Universe was created.
- This has made a lot of people very angry
- and been widely regarded as a bad move.
-                               -D.Adams
+ IF YOU WISH TO UNDERSTAND THE FRAGRANCE OF THE ROSE, 
+ OR THE TENACITY OF THE OAK; 
+ IF YOU ARE NOT SATISFIED UNTIL YOU KNOW THE SECRET PATHS 
+ BY WHICH THE SUNSHINE AND THE AIR ACHIEVE THESE WONDERS; 
+ IF YOU WISH TO SEE THE PATTERN WHICH UNDERLIES ONE LARGE FIELD OF 
+ HUMAN EXPERIENCE AND HUMAN MEASUREMENT, THEN TAKE UP CHEMISTRY.
+
+                                         -- C. A. COULSON, 1973.
  Job cpu time:       0 days  0 hours  0 minutes  0.5 seconds.
- Elapsed time:       0 days  0 hours  0 minutes  0.4 seconds.
+ Elapsed time:       0 days  0 hours  0 minutes  0.5 seconds.
  File lengths (MBytes):  RWF=      6 Int=      0 D2E=      0 Chk=      1 Scr=      1
- Normal termination of Gaussian DV at Fri Mar 29 17:06:07 2024.
+ Normal termination of Gaussian DV at Mon Dec 30 12:08:30 2024.

@@ -2,8 +2,8 @@
  Input=GauHarm.gjf
  Output=GauHarm.log
  Initial command:
- /home/emanuele/chem_software/gaussian//gdv/l1.exe "/home/emanuele/chem_software/gaussian/scratch/Gau-9398.inp" -scrdir="/home/emanuele/chem_software/gaussian/scratch/"
- Entering Link 1 = /home/emanuele/chem_software/gaussian//gdv/l1.exe PID=      9400.
+ /home/emanuele/chem_software/gaussian//gdv/l1.exe "/home/emanuele/chem_software/gaussian/scratch/Gau-14287.inp" -scrdir="/home/emanuele/chem_software/gaussian/scratch/"
+ Entering Link 1 = /home/emanuele/chem_software/gaussian//gdv/l1.exe PID=     14289.
   
  Copyright (c) 1988-2020, Gaussian, Inc.  All Rights Reserved.
   
@@ -79,7 +79,7 @@
  
  ******************************************
  Gaussian DV:  ES64L-GDVRevJ.14 29-Dec-2020
-                29-Mar-2024 
+                30-Dec-2024 
  ******************************************
  %mem=1GB
  %nprocshared=1
@@ -95,7 +95,7 @@
  7/8=21,25=1,30=1,44=-1/16;
  1/10=4,18=20,30=1,64=303/3;
  99//99;
- Leave Link    1 at Fri Mar 29 17:06:03 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link    1 at Mon Dec 30 12:08:26 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l101.exe)
  -----
  Title
@@ -164,7 +164,7 @@
  there is no Vanderwaals repulsion. Centers can collapse
  onto each other.
  MMInit generated parameter data with length LenPar=        3633.
- Leave Link  101 at Fri Mar 29 17:06:03 2024, MaxMem=   134217728 cpu:               0.3 elap:               0.3
+ Leave Link  101 at Mon Dec 30 12:08:27 2024, MaxMem=   134217728 cpu:               0.3 elap:               0.6
  (Enter /home/emanuele/chem_software/gaussian//gdv/l103.exe)
 
  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
@@ -245,7 +245,7 @@
  Number of steps in this run=      2 maximum allowed number of steps=      2.
  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
 
- Leave Link  103 at Fri Mar 29 17:06:03 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  103 at Mon Dec 30 12:08:27 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l202.exe)
                           Input orientation:                          
  ---------------------------------------------------------------------
@@ -304,7 +304,7 @@
  Deg. of freedom    11
  Full point group                 C2H     NOp   4
  Rotational constants (GHZ):          23.6116490           3.6179190           3.3991535
- Leave Link  202 at Fri Mar 29 17:06:03 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.1
+ Leave Link  202 at Mon Dec 30 12:08:27 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.1
  (Enter /home/emanuele/chem_software/gaussian//gdv/l301.exe)
  Standard basis: Dummy (5D, 7F)
     14 basis functions,    14 primitive gaussians,    14 cartesian basis functions
@@ -318,7 +318,7 @@
  Integral buffers will be    131072 words long.
  Raffenetti 1 integral format.
  Two-electron integral symmetry is turned off.
- Leave Link  301 at Fri Mar 29 17:06:04 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.1
+ Leave Link  301 at Mon Dec 30 12:08:27 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.1
  (Enter /home/emanuele/chem_software/gaussian//gdv/l402.exe)
  AMBER calculation of energy, first and second derivatives.
  ****************************
@@ -471,7 +471,7 @@
         Torsion               0.000028534
  Energy=    2.853633417E-05 NIter=   0.
  Dipole moment=       0.000000       0.000000       0.000000
- Leave Link  402 at Fri Mar 29 17:06:04 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.1
+ Leave Link  402 at Mon Dec 30 12:08:27 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.1
  (Enter /home/emanuele/chem_software/gaussian//gdv/l716.exe)
  Dipole        = 0.00000000D+00 0.00000000D+00 0.00000000D+00
  Full mass-weighted force constant matrix:
@@ -2312,7 +2312,7 @@
  -------------------------------------------------------------------
  Cartesian Forces:  Max     0.000353862 RMS     0.000095203
  FormGI is forming the generalized inverse of G from B-inverse, IUseBI=4.
- Leave Link  716 at Fri Mar 29 17:06:04 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.1
+ Leave Link  716 at Mon Dec 30 12:08:27 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.2
  (Enter /home/emanuele/chem_software/gaussian//gdv/l103.exe)
 
  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
@@ -2482,10 +2482,10 @@
  --------------------------------------------------------------------------------
  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
 
- Leave Link  103 at Fri Mar 29 17:06:04 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  103 at Mon Dec 30 12:08:28 2024, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l9999.exe)
  Unable to Open any file for archive entry.
- 1\1\GINC-EMANUELE-XPS-13-9343\Freq\AMBER\ZDO\C4H10\EMANUELE\29-Mar-202
+ 1\1\GINC-EMANUELE-XPS-13-9343\Freq\AMBER\ZDO\C4H10\EMANUELE\30-Dec-202
  4\0\\#p Amber=(SoftOnly,Print) nosymm Freq=intmodes\\Title\\0,1\C,1.95
  6897,-0.120392,0.\H,2.742005,0.637259,0.\H,2.103753,-0.749379,-0.88076
  \H,2.103753,-0.749379,0.88076\C,0.566957,0.512915,0.\H,0.461751,1.1634
@@ -2606,11 +2606,9 @@
  The archive entry for this job was punched.
 
 
- A MAN THINKING OR WORKING IS ALWAYS ALONE, 
- LET HIM BE WHERE HE WILL.
-
-                                    -- THOREAU
+ "A LITTLE BIT GOES A LONG WAY"
+ R.S. MULLIKEN AS QUOTED BY K. RUEDENBERG
  Job cpu time:       0 days  0 hours  0 minutes  0.6 seconds.
- Elapsed time:       0 days  0 hours  0 minutes  0.9 seconds.
+ Elapsed time:       0 days  0 hours  0 minutes  1.2 seconds.
  File lengths (MBytes):  RWF=      6 Int=      0 D2E=      0 Chk=      1 Scr=      1
- Normal termination of Gaussian DV at Fri Mar 29 17:06:04 2024.
+ Normal termination of Gaussian DV at Mon Dec 30 12:08:28 2024.
