@@ -109,6 +109,7 @@ def main():
     
     # If opt == sem
     mdin = json_opts['opt']
+    print(mdin)
     mode = json_opts['mode']
     bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, hess_eff, atype_list, bond_list, k_bonds, mdin, mode)
     angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, hess_eff, atype_list, angle_list, k_angles, mdin, mode)

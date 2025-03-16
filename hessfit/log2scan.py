@@ -98,6 +98,7 @@ def read_log(file_log, ftype):
      f.close()   
 
      energy_list = []
+     print(add)
      [ energy_list.append(list(map(float,i[2:]))) for i in splitted_line ] 
      energy = [ y for x in energy_list for y in x]
      energy = np.array(energy)
