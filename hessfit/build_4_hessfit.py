@@ -56,6 +56,8 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
         
         
         
+        
+        
 def print_GauNonBon(*args):
     elements, types, coordinates, bond_types, bond_lengths, angle_types, \
     angle_lengths, torsion_type_list, hybrid_list,  charges, vdw, formal_chg, multi = args
