@@ -6,6 +6,7 @@
         "fchk_nb_file": "GauNonBon.fchk",
         "atype_file": "atomtype.txt"
          },
+    "molecule_file": "molecule.xyz",
     "mode": "mean",
     "charge":0,
     "multiplicity":1,

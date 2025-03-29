@@ -7,21 +7,18 @@ The directory utils contains instead all the necessary modules.
 
 # Install
 
-It currently works with the Gaussian outputs, and json files containing the necessary input information. It has been currently tested with Gaussian09. 
-A numpy python library is required to properly use the program alongside other module.
-Numpy can be installed by the following command:
+It currently works with the Gaussian outputs, and json files containing the necessary input information. It has been currently tested with Gaussian09/16. 
+The following python libraries are srequired to properly use the program alongside other modules. These can be installed with pip:
 ```
 pip install numpy pandas scipy
 ```
-
 Then, by cloning the directory locally, user should give:
 ```
 git clone https://github.com/emanuelefalbo/HessFit
 cd HessFit
 python setup.py install
 ```
-
-Alternatively, it is sufficient to add their directory to the **PYTHONPATH** into you .bashrc (bash) file:
+Alternatively, it is sufficient to add their directory to the **PYTHONPATH** into you .bashrc (bash) file to call the main executable (**hessfit.py**):
 ```
 export PYTHONPATH="${PYTHONPATH}:/path/to/hessfit/"
 export PATH=$PATH:/path/to/hessfit/
@@ -31,7 +28,7 @@ The last line add the programs to your bash path (see setenv for .tcsh) to make 
 
 # Usage 
 
-**1.1 Harmonic Force Field***
+**1.1 Harmonic Force Field**
 
 The program is thought of as dual usage, i.e., it can be executed by launching the **hessfit.py** script that performs all 
 operations provided by the *build_4_hessfit.py* first, and *hessfit_harmonic.py* secondly, or these two scripts can be run independently.
@@ -68,7 +65,21 @@ The step1.json is composed as :
  "mode": "mean" string averages all force contsants over same types, while "all" leaves it unchanged
  "charge": the molecular charge of compound
  "multiplicity": the molecular multiplicity accoding to spin state
- "opt": "ric" string perform the Hessian diagonalization in redundant internal coordinates, whereas "sem" string performs the Seminario method. 
+ "opt": "ric" string perform the Hessian diagonalization in redundant internal coordinates, whereas "sem" string performs the Seminario method.
+
+```
+An example of input file for gaussian is the following:
+```
+%mem=1GB
+%nprocshared=1
+%chk=but_qm.chk
+#P B3LYP/def2TZVPP Geom=Connectivity opt=(calcall,tight,maxstep=7,maxcycles=100) Freq=intmodes
+
+title
+
+0 1
+...
+
 ```
 
 The "atype_file" must be a two-column file with the element, and the atom type on the first and second column respectively: 

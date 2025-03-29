@@ -54,6 +54,7 @@ def main():
     BS = "build_4_hessfit.py"
     JSON = opts.optfile
 
+<<<<<<< HEAD
     # subprocess.run([BS, JSON, "--path", GPATH], check=True)
     subprocess.run([BS, JSON], check=True)
     
