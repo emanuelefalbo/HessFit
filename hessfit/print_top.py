@@ -116,17 +116,25 @@ def print_AmbFrcmod(*args):
         write_torsions_amber(file_out, torsion_type_list, phase_list, v1_list, v2_list, v3_list, hybrid_list)
 
 
+# def write_bonds_amber(file, bond_type_list, k_bond_list, bond_length_list):
+#     file.write('BOND\n')
+#     for bond_type, k_bond, bond_length in zip(bond_type_list, k_bond_list, bond_length_list):
+#         file.write(f'{bond_type} {k_bond:.3f} {bond_length:.3f}\n')
+#     file.write('\n')
+    
 def write_bonds_amber(file, bond_type_list, k_bond_list, bond_length_list):
     file.write('BOND\n')
     for bond_type, k_bond, bond_length in zip(bond_type_list, k_bond_list, bond_length_list):
-        file.write(f'{bond_type} {k_bond:.3f} {bond_length:.3f}\n')
+        bond_type_formatted = '- '.join(bond_type.split())
+        file.write(f'{bond_type_formatted} {k_bond:.3f} {bond_length:.3f}\n')
     file.write('\n')
 
 
 def write_angles_amber(file, angle_type_list, k_angle_list, angle_length_list):
     file.write('ANGLE\n')
     for angle_type, k_angle, angle_length in zip(angle_type_list, k_angle_list, angle_length_list):
-        file.write(f'{angle_type} {k_angle:.3f} {angle_length:.3f}\n')
+        angle_type_formatted = '- '.join(angle_type.split())
+        file.write(f'{angle_type_formatted} {k_angle:.3f} {angle_length:.3f}\n')
     file.write('\n')
         
 
@@ -135,7 +143,8 @@ def write_torsions_amber(file, torsion_type_list, phase_list, v1_list, v2_list, 
     file.write('DIHE\n')
     for torsion_type, phase, v1, v2, v3, hybrid in zip(torsion_type_list, phase_list, v1_list, v2_list, v3_list, hybrid_list):
         formatted_phase = '  '.join(f'{x}' for x in phase)
-        file.write(f'{torsion_type} {formatted_phase} {v1:.2f} {v2:.2f} {v3:.2f} 0. {hybrid}\n')
+        torsion_type_formatted = '- '.join(torsion_type.split())
+        file.write(f'{torsion_type_formatted} {formatted_phase} {v1:.2f} {v2:.2f} {v3:.2f} 0. {hybrid}\n')
     file.write('\n')
     
 

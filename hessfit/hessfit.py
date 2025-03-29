@@ -54,18 +54,17 @@ def main():
     BS = "build_4_hessfit.py"
     JSON = opts.optfile
 
-<<<<<<< HEAD
     # subprocess.run([BS, JSON, "--path", GPATH], check=True)
-    subprocess.run([BS, JSON], check=True)
+    # subprocess.run([BS, JSON], check=True)
     
     gaussian_exe = "g16" if opts.version == "g16" else "g09"
-    for f in ["GauHarm.gjf", "GauNonBon.gjf"]:
-        print(f"Executing Gaussian on {f}")
-        subprocess.run([f"{GPATH}/{gaussian_exe}", f], check=True)
+    # for f in ["GauHarm.gjf", "GauNonBon.gjf"]:
+    #     print(f"Executing Gaussian on {f}")
+    #     subprocess.run([f"{GPATH}/{gaussian_exe}", f], check=True)
 
-    for f in ["GauHarm.chk", "GauNonBon.chk"]:
-        print(f"Formatchecking {f} file")
-        subprocess.run([f"{GPATH}/formchk", "-3", f, f"{os.path.splitext(f)[0]}.fchk"], check=True)
+    # for f in ["GauHarm.chk", "GauNonBon.chk"]:
+    #     print(f"Formatchecking {f} file")
+    #     subprocess.run([f"{GPATH}/formchk", "-3", f, f"{os.path.splitext(f)[0]}.fchk"], check=True)
 
     print(f"Executing Harmonic: {SM}")
     subprocess.run([SM, JSON])
