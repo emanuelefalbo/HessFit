@@ -34,11 +34,10 @@ def main():
     else:
         groot = g09root if g09root else None
     
-    print(groot)
-    print("")
     # Validate the selected Gaussian path
     if groot:
         GPATH = os.path.join(groot, opts.version)
+        print(f"GPATH == {GPATH}")
         if not os.path.exists(GPATH):
             print(f"Warning: {GPATH} does not exist. Falling back to user-defined path.")
             groot = opts.path
@@ -54,17 +53,17 @@ def main():
     BS = "build_4_hessfit.py"
     JSON = opts.optfile
 
-    # subprocess.run([BS, JSON, "--path", GPATH], check=True)
+    subprocess.run([BS, JSON, "--path", GPATH], check=True)
     # subprocess.run([BS, JSON], check=True)
     
     gaussian_exe = "g16" if opts.version == "g16" else "g09"
-    # for f in ["GauHarm.gjf", "GauNonBon.gjf"]:
-    #     print(f"Executing Gaussian on {f}")
-    #     subprocess.run([f"{GPATH}/{gaussian_exe}", f], check=True)
+    for f in ["GauHarm.gjf", "GauNonBon.gjf"]:
+        print(f"Executing Gaussian on {f}")
+        subprocess.run([f"{GPATH}/{gaussian_exe}", f], check=True)
 
-    # for f in ["GauHarm.chk", "GauNonBon.chk"]:
-    #     print(f"Formatchecking {f} file")
-    #     subprocess.run([f"{GPATH}/formchk", "-3", f, f"{os.path.splitext(f)[0]}.fchk"], check=True)
+    for f in ["GauHarm.chk", "GauNonBon.chk"]:
+        print(f"Formatchecking {f} file")
+        subprocess.run([f"{GPATH}/formchk", "-3", f, f"{os.path.splitext(f)[0]}.fchk"], check=True)
 
     print(f"Executing Harmonic: {SM}")
     subprocess.run([SM, JSON])

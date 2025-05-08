@@ -133,6 +133,8 @@ def main():
                  angles_unique, k_angles_unique, angle_arr, \
                  tors_type_list, v1, v2, v3, phase, periodic_list)
     
+    
+    
    # Make dihedral directory for subsquent torsion fitting
     fname = 'hessfit4gau.gjf'
     top.build_dihe_folder(fname, atype_list, charge)

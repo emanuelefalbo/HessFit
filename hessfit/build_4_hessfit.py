@@ -56,6 +56,8 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
         
         
         
+        
+        
 def print_GauNonBon(*args):
     elements, types, coordinates, bond_types, bond_lengths, angle_types, \
     angle_lengths, torsion_type_list, hybrid_list,  charges, vdw, formal_chg, multi = args
@@ -74,12 +76,20 @@ Title
 NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
 """
     fname = 'GauNonBon.gjf'
+
     with open(fname, 'w') as fout:
         fout.write(header_gjf.format(f_chg = formal_chg, mult=multi))
+        for m, p, l in zip(elements, types, coordinates):
+            s2 = '  '.join(f'{x:.6f}' for x in l)
+            fout.write(f'{m}-{p}-0.00  {s2}\n')
 
-        for element, type_, coords, charge in zip(elements, types, coordinates, charges):
-            coord_str = '  '.join(f'{x:.6f}' for x in coords)
-            fout.write(f'{element}-{type_}-{charge}  {coord_str}\n')
+
+    # with open(fname, 'w') as fout:
+    #     fout.write(header_gjf.format(f_chg = formal_chg, mult=multi))
+
+    #     for element, type_, coords, charge in zip(elements, types, coordinates, charges):
+    #         coord_str = '  '.join(f'{x:.6f}' for x in coords)
+    #         fout.write(f'{element}-{type_}-{charge}  {coord_str}\n')
 
         fout.write(master_func)
         fout.write('! SMARTFIELD FF\n')
@@ -110,8 +120,35 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
 
 def main():
     parser = rdin.commandline_parser3()
+    parser.add_argument('--version', choices=['g09', 'g16'], default='g09', help='Select Gaussian version (g09 or g16)')
     opts = parser.parse_args()
     json_opts = rdin.read_optfile_3(opts.optfile)
+
+    g09root = os.environ.get('g09root')
+    g16root = os.environ.get('g16root')
+    
+    # Determine which Gaussian version to use
+    if opts.version == 'g16':
+        groot = g16root if g16root else None
+    else:
+        groot = g09root if g09root else None
+    
+    # Validate the selected Gaussian path
+    if groot:
+        GPATH = os.path.join(groot, opts.version)
+        print(f"GPATH == {GPATH}")
+
+        if not os.path.exists(GPATH):
+            print(f"Warning: {GPATH} does not exist. Falling back to user-defined path.")
+            groot = opts.path
+            GPATH = os.path.join(groot, opts.version)
+    else:
+        groot = opts.path
+        GPATH = os.path.join(groot, opts.version)
+    
+    if not os.path.exists(GPATH):
+        raise FileNotFoundError(f"Error: No valid Gaussian installation found at {GPATH}.")
+
     # opts = parser.parse_args()
     f_qm_log = json_opts['files']['log_qm_file']
     f_qm_fchk = json_opts['files']['fchk_qm_file']
@@ -159,8 +196,8 @@ def main():
                  tors_reduced, hybrid_unique, \
                  chg, formal_chg, multi)
     
-    path = os.environ.get("g09root") + "/g09"
-    VDW_list = pgau.read_AmberParm(path, atype_list)
+    # path = os.environ.get("g09root") + "/g09"
+    VDW_list = pgau.read_AmberParm(GPATH, atype_list)
     
     print_GauNonBon(ele_list, atype_list, qm_XYZ, \
                  bond_reduced, bond_arr, \
