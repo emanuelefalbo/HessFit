@@ -87,7 +87,6 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
     with open(fname, 'w') as fout:
         fout.write(header_gjf.format(f_chg = formal_chg, mult=multi))
 
-        print(charges)
         for element, type_, coords, charge in zip(elements, types, coordinates, charges):
             coord_str = '  '.join(f'{x:.6f}' for x in coords)
             fout.write(f'{element}-{type_}-{charge}  {coord_str}\n')
