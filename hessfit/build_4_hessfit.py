@@ -79,17 +79,18 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
 
     with open(fname, 'w') as fout:
         fout.write(header_gjf.format(f_chg = formal_chg, mult=multi))
-        for m, p, l in zip(elements, types, coordinates):
-            s2 = '  '.join(f'{x:.6f}' for x in l)
-            fout.write(f'{m}-{p}-0.00  {s2}\n')
+        # for m, p, l in zip(elements, types, coordinates):
+        #     s2 = '  '.join(f'{x:.6f}' for x in l)
+        #     fout.write(f'{m}-{p}-0.00  {s2}\n')
 
 
     # with open(fname, 'w') as fout:
     #     fout.write(header_gjf.format(f_chg = formal_chg, mult=multi))
 
-    #     for element, type_, coords, charge in zip(elements, types, coordinates, charges):
-    #         coord_str = '  '.join(f'{x:.6f}' for x in coords)
-    #         fout.write(f'{element}-{type_}-{charge}  {coord_str}\n')
+        print(charges)
+        for element, type_, coords, charge in zip(elements, types, coordinates, charges):
+            coord_str = '  '.join(f'{x:.6f}' for x in coords)
+            fout.write(f'{element}-{type_}-{charge}  {coord_str}\n')
 
         fout.write(master_func)
         fout.write('! SMARTFIELD FF\n')
@@ -170,6 +171,7 @@ def main():
 
     # # Reading in Topology in RIC from log file
     chg = pgau.read_CM5(text_qm_log, N_atoms)
+    print(chg)
     bond_list, angle_list, tors_list = pgau.read_Top(text_qm_log, ric_list)
     k_bonds = np.ones(No_bonds)                          
     k_angles = np.ones(No_angles)
