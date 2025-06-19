@@ -171,7 +171,6 @@ def main():
 
     # # Reading in Topology in RIC from log file
     chg = pgau.read_CM5(text_qm_log, N_atoms)
-    print("charge", chg)
     bond_list, angle_list, tors_list = pgau.read_Top(text_qm_log, ric_list)
     k_bonds = np.ones(No_bonds)                          
     k_angles = np.ones(No_angles)
