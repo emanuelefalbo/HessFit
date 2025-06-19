@@ -278,6 +278,7 @@ def read_CM5(all_lines, N_atoms):
          """
          match = 'Hirshfeld charges, spin densities, dipoles, and CM5 charges using IRadAn=      5:'
          match_2 = 'Mulliken charges:'
+         match_3 = 'Mulliken charges and spin densities:'
          text = []
 
          if match in all_lines:
@@ -297,6 +298,15 @@ def read_CM5(all_lines, N_atoms):
                      break
              
              chg = [ x[2] for x in text ]
+         if not text:                                                # If Mulliken not found, try Mulliken charges and spin densities
+             for s in range(len(all_lines)):
+                 if match_3 in all_lines[s]:
+                     start = s
+                     for e in range2(start + 2, start + N_atoms+1):
+                         text.append(all_lines[e].split())
+                     break
+             chg = [ x[2] for x in text ]
+        
 
          # Add '+' to positive charge
          chg_mod = []
@@ -306,7 +316,7 @@ def read_CM5(all_lines, N_atoms):
              else:
                 tmp = x
              chg_mod.append(tmp)
-
+             
          return chg_mod
 
 

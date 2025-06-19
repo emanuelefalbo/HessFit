@@ -2,8 +2,8 @@
  Input=GauHarm.gjf
  Output=GauHarm.log
  Initial command:
- /home/emanuele/chem_software/gaussian//gdv/l1.exe "/home/emanuele/chem_software/gaussian/scratch/Gau-189906.inp" -scrdir="/home/emanuele/chem_software/gaussian/scratch/"
- Entering Link 1 = /home/emanuele/chem_software/gaussian//gdv/l1.exe PID=    189908.
+ /home/emanuele/chem_software/gaussian//gdv/l1.exe "/home/emanuele/chem_software/gaussian/scratch/Gau-313522.inp" -scrdir="/home/emanuele/chem_software/gaussian/scratch/"
+ Entering Link 1 = /home/emanuele/chem_software/gaussian//gdv/l1.exe PID=    313524.
   
  Copyright (c) 1988-2020, Gaussian, Inc.  All Rights Reserved.
   
@@ -95,7 +95,7 @@
  7/8=21,25=1,30=1,44=-1/16;
  1/10=4,18=20,30=1,64=303/3;
  99//99;
- Leave Link    1 at Thu Jun 19 11:02:02 2025, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link    1 at Thu Jun 19 11:27:16 2025, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l101.exe)
  -----
  Title
@@ -154,7 +154,7 @@
  there is no Vanderwaals repulsion. Centers can collapse
  onto each other.
  MMInit generated parameter data with length LenPar=        2689.
- Leave Link  101 at Thu Jun 19 11:02:03 2025, MaxMem=   134217728 cpu:               0.3 elap:               0.3
+ Leave Link  101 at Thu Jun 19 11:27:17 2025, MaxMem=   134217728 cpu:               0.2 elap:               0.3
  (Enter /home/emanuele/chem_software/gaussian//gdv/l103.exe)
 
  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
@@ -235,7 +235,7 @@
  Number of steps in this run=      2 maximum allowed number of steps=      2.
  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
 
- Leave Link  103 at Thu Jun 19 11:02:03 2025, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  103 at Thu Jun 19 11:27:17 2025, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l202.exe)
                           Input orientation:                          
  ---------------------------------------------------------------------
@@ -294,7 +294,7 @@
  Deg. of freedom    11
  Full point group                 C2H     NOp   4
  Rotational constants (GHZ):          23.6116490           3.6179190           3.3991535
- Leave Link  202 at Thu Jun 19 11:02:03 2025, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  202 at Thu Jun 19 11:27:17 2025, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l301.exe)
  Standard basis: Dummy (5D, 7F)
     14 basis functions,    14 primitive gaussians,    14 cartesian basis functions
@@ -308,7 +308,7 @@
  Integral buffers will be    131072 words long.
  Raffenetti 1 integral format.
  Two-electron integral symmetry is turned off.
- Leave Link  301 at Thu Jun 19 11:02:03 2025, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  301 at Thu Jun 19 11:27:17 2025, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l402.exe)
  AMBER calculation of energy, first and second derivatives.
  ****************************
@@ -462,7 +462,7 @@
         Torsion               0.000028534
  Energy=    7.142711588E-05 NIter=   0.
  Dipole moment=       0.000000       0.000000       0.000000
- Leave Link  402 at Thu Jun 19 11:02:03 2025, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  402 at Thu Jun 19 11:27:17 2025, MaxMem=   134217728 cpu:               0.0 elap:               0.1
  (Enter /home/emanuele/chem_software/gaussian//gdv/l716.exe)
  Dipole        = 0.00000000D+00 0.00000000D+00 0.00000000D+00
  Full mass-weighted force constant matrix:
@@ -2289,7 +2289,7 @@
  -------------------------------------------------------------------
  Cartesian Forces:  Max     0.000548550 RMS     0.000166175
  FormGI is forming the generalized inverse of G from B-inverse, IUseBI=4.
- Leave Link  716 at Thu Jun 19 11:02:03 2025, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  716 at Thu Jun 19 11:27:17 2025, MaxMem=   134217728 cpu:               0.1 elap:               0.1
  (Enter /home/emanuele/chem_software/gaussian//gdv/l103.exe)
 
  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
@@ -2459,7 +2459,7 @@
  --------------------------------------------------------------------------------
  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
 
- Leave Link  103 at Thu Jun 19 11:02:03 2025, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  103 at Thu Jun 19 11:27:17 2025, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l9999.exe)
  Unable to Open any file for archive entry.
  1\1\GINC-EMANUELE-XPS-13-9343\Freq\AMBER\ZDO\C4H10\EMANUELE\19-Jun-202
@@ -2583,11 +2583,10 @@
  The archive entry for this job was punched.
 
 
- SEE YOU NOW,
- YOUR BAIT OF FALSEHOOD TAKES THIS CARP OF TRUTH.
- AND THUS DO WE OF WISDOM AND OF REACH...
- BY INDIRECTIONS FIND DIRECTIONS OUT.    -- HAMLET, II, 1
+ CHRISTMAS IS ON TOP OF A STEEP HILL.
+ THE CLOSER YOU GET, THE STEEPER THE HILL IS.
+          -- LINUS, OF PEANUTS
  Job cpu time:       0 days  0 hours  0 minutes  0.6 seconds.
  Elapsed time:       0 days  0 hours  0 minutes  0.5 seconds.
  File lengths (MBytes):  RWF=      6 Int=      0 D2E=      0 Chk=      1 Scr=      1
- Normal termination of Gaussian DV at Thu Jun 19 11:02:03 2025.
+ Normal termination of Gaussian DV at Thu Jun 19 11:27:17 2025.
