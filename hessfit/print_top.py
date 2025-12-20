@@ -107,8 +107,11 @@ def print_AmbFrcmod(*args):
     filename = 'hessfit_frcmod.txt'
     with open(filename, 'w') as file_out:
         file_out.write('MASS\n')
-        for ele, type_entry in zip(element_mass,type_list):
-            file_out.write(f'{type_entry} {ele}\n')
+        seen = set()
+        for ele, type_entry in zip(element_mass, type_list):
+            if type_entry not in seen:
+                file_out.write(f'{type_entry} {ele}\n')
+            seen.add(type_entry)
         file_out.write('\n')
 
         write_bonds_amber(file_out, bond_type_list, k_bond_list, bond_length_list)

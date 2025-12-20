@@ -24,7 +24,8 @@ def build_parser():
 
 def load_data(fname):
     data = []
-    data = pd.read_csv(fname, header=None)
+    data = pd.read_csv(fname, delim_whitespace=True, header=None)
+    print(data)
     x = data.iloc[:,0].to_numpy()
     y_qm = data.iloc[:,1].to_numpy()
     y_mm = data.iloc[:,2].to_numpy()
@@ -151,7 +152,7 @@ def main():
     # xval = data[:,0] # - 180.0
     # xval = data[:,0] # - 180.0
     qm_rel = ( qm_abs - min(qm_abs) ) *6.275030E02  # Eh to kcal/mol
-    mm_rel = ( mm_abs - min(mm_abs) ) *6.275030E02
+    mm_rel = ( mm_abs - min(mm_abs) ) /6 #*6.275030E02
     # qm_rel = ( data[:,1] - min(data[:,1]) ) *6.275030E02  # Eh to kcal/mol
     # mm_rel = ( data[:,2] - min(data[:,2]) ) *6.275030E02
     yval =  ( qm_rel - mm_rel ) 

@@ -2,8 +2,8 @@
  Input=GauNonBon.gjf
  Output=GauNonBon.log
  Initial command:
- /home/emanuele/chem_software/gaussian//gdv/l1.exe "/home/emanuele/chem_software/gaussian/scratch/Gau-313599.inp" -scrdir="/home/emanuele/chem_software/gaussian/scratch/"
- Entering Link 1 = /home/emanuele/chem_software/gaussian//gdv/l1.exe PID=    313602.
+ /home/emanuele/chem_software/gaussian//gdv/l1.exe "/home/emanuele/chem_software/gaussian/scratch/Gau-6412.inp" -scrdir="/home/emanuele/chem_software/gaussian/scratch/"
+ Entering Link 1 = /home/emanuele/chem_software/gaussian//gdv/l1.exe PID=      6414.
   
  Copyright (c) 1988-2020, Gaussian, Inc.  All Rights Reserved.
   
@@ -79,7 +79,7 @@
  
  ******************************************
  Gaussian DV:  ES64L-GDVRevJ.14 29-Dec-2020
-                19-Jun-2025 
+                20-Dec-2025 
  ******************************************
  %mem=1GB
  %nprocshared=1
@@ -95,7 +95,7 @@
  7/8=21,25=1,30=1,44=-1/16;
  1/10=4,18=20,30=1,64=303/3;
  99//99;
- Leave Link    1 at Thu Jun 19 11:27:17 2025, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link    1 at Sat Dec 20 16:26:06 2025, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l101.exe)
  -----
  Title
@@ -169,7 +169,7 @@
  XXXZ=             -0.0026 YYYX=              0.0434 YYYZ=              0.0002 ZZZX=             -0.0005
  ZZZY=              0.0002 XXYY=              6.2712 XXZZ=              5.2927 YYZZ=              1.8518
  XXYZ=              0.0009 YYXZ=             -0.0003 ZZXY=             -1.3397
- Leave Link  101 at Thu Jun 19 11:27:17 2025, MaxMem=   134217728 cpu:               0.3 elap:               0.2
+ Leave Link  101 at Sat Dec 20 16:26:06 2025, MaxMem=   134217728 cpu:               0.3 elap:               0.3
  (Enter /home/emanuele/chem_software/gaussian//gdv/l103.exe)
 
  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
@@ -250,7 +250,7 @@
  Number of steps in this run=      2 maximum allowed number of steps=      2.
  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
 
- Leave Link  103 at Thu Jun 19 11:27:17 2025, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  103 at Sat Dec 20 16:26:06 2025, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l202.exe)
                           Input orientation:                          
  ---------------------------------------------------------------------
@@ -309,7 +309,7 @@
  Deg. of freedom    11
  Full point group                 C2H     NOp   4
  Rotational constants (GHZ):          23.6116490           3.6179190           3.3991535
- Leave Link  202 at Thu Jun 19 11:27:17 2025, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  202 at Sat Dec 20 16:26:06 2025, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l301.exe)
  Standard basis: Dummy (5D, 7F)
     14 basis functions,    14 primitive gaussians,    14 cartesian basis functions
@@ -323,7 +323,7 @@
  Integral buffers will be    131072 words long.
  Raffenetti 1 integral format.
  Two-electron integral symmetry is turned off.
- Leave Link  301 at Thu Jun 19 11:27:17 2025, MaxMem=   134217728 cpu:               0.1 elap:               0.0
+ Leave Link  301 at Sat Dec 20 16:26:06 2025, MaxMem=   134217728 cpu:               0.1 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l402.exe)
  AMBER calculation of energy, first and second derivatives.
  ****************************
@@ -487,7 +487,7 @@
     Vanderwaals               0.000803189
  Energy=    4.731956307E-03 NIter=   0.
  Dipole moment=      -0.000003       0.000002       0.000085
- Leave Link  402 at Thu Jun 19 11:27:17 2025, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  402 at Sat Dec 20 16:26:06 2025, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l716.exe)
  Dipole        =-2.90412355D-06 2.38538995D-06 8.50114084D-05
  Full mass-weighted force constant matrix:
@@ -2616,7 +2616,7 @@
  -------------------------------------------------------------------
  Cartesian Forces:  Max     0.000887795 RMS     0.000441151
  FormGI is forming the generalized inverse of G from B-inverse, IUseBI=4.
- Leave Link  716 at Thu Jun 19 11:27:17 2025, MaxMem=   134217728 cpu:               0.1 elap:               0.1
+ Leave Link  716 at Sat Dec 20 16:26:06 2025, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l103.exe)
 
  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
@@ -2818,10 +2818,10 @@
  --------------------------------------------------------------------------------
  GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad
 
- Leave Link  103 at Thu Jun 19 11:27:18 2025, MaxMem=   134217728 cpu:               0.0 elap:               0.0
+ Leave Link  103 at Sat Dec 20 16:26:06 2025, MaxMem=   134217728 cpu:               0.0 elap:               0.0
  (Enter /home/emanuele/chem_software/gaussian//gdv/l9999.exe)
  Unable to Open any file for archive entry.
- 1\1\GINC-EMANUELE-XPS-13-9343\Freq\AMBER\ZDO\C4H10\EMANUELE\19-Jun-202
+ 1\1\GINC-EMANUELE-XPS-13-9343\Freq\AMBER\ZDO\C4H10\EMANUELE\20-Dec-202
  5\0\\#p Amber=(SoftOnly,Print) nosymm Freq=intmodes\\Title\\0,1\C,1.95
  6897,-0.120392,0.\H,2.742005,0.637259,0.\H,2.103753,-0.749379,-0.88076
  \H,2.103753,-0.749379,0.88076\C,0.566957,0.512915,0.\H,0.461751,1.1634
@@ -2953,11 +2953,11 @@
  The archive entry for this job was punched.
 
 
- ... THIS SEEMS PLAINLY ABSURD; BUT WHOEVER WISHES TO BECOME A 
- PHILOSOPHER MUST LEARN NOT TO BE FRIGHTENED BY ABSURDITIES.
-
-                          -- BERTRAND RUSSELL
+ "ANNA, YOU MUSN'T SPEAK OF OXIDIZED MURIATIC ACID
+ ANYMORE, FROM NOW ON YOU MUST SAY CHLORINE."
+   -- JENS JACOB BERZELIUS, IN 1820, TO HIS COOK, WHO HAD
+ COMPLAINED OF THE SMELL OF THE FLASK SHE WAS CLEANING.
  Job cpu time:       0 days  0 hours  0 minutes  0.5 seconds.
  Elapsed time:       0 days  0 hours  0 minutes  0.5 seconds.
  File lengths (MBytes):  RWF=      6 Int=      0 D2E=      0 Chk=      1 Scr=      1
- Normal termination of Gaussian DV at Thu Jun 19 11:27:18 2025.
+ Normal termination of Gaussian DV at Sat Dec 20 16:26:06 2025.
