@@ -3,12 +3,13 @@
 import subprocess
 import os
 import readin_opts as rdin
-
+import parser_gau as pgau
+import geom2atype as g2a
 
 def print_init():
      print("""
  ======================================================
-   Program:      hessfit
+   Program:      HessFit
    Creator:      Emanuele Falbo, Napoli
    Language:     Python 3.v later
    Description:  The program returns force constants for
@@ -23,6 +24,7 @@ def main():
     print_init()
     parser = rdin.commandline_parser3()
     parser.add_argument('--version', choices=['g09', 'g16'], default='g09', help='Select Gaussian version (g09 or g16)')
+    parser.add_argument('--test', action='store_true', default=False, help='Test HessFit FF with Gaussian internal routines')
     opts = parser.parse_args()
     
     g09root = os.environ.get('g09root')
@@ -49,9 +51,12 @@ def main():
     if not os.path.exists(GPATH):
         raise FileNotFoundError(f"Error: No valid Gaussian installation found at {GPATH}.")
     
+
     SM = "hessfit_harmonic.py"
     BS = "build_4_hessfit.py"
     JSON = opts.optfile
+
+
 
     subprocess.run([BS, JSON, "--path", GPATH], check=True)
     # subprocess.run([BS, JSON], check=True)
@@ -67,8 +72,10 @@ def main():
 
     print(f"Executing Harmonic: {SM}")
     subprocess.run([SM, JSON])
-    # subprocess.run(["hessfit_harmonic.py", JSON])
-    subprocess.run([f"{GPATH}/{gaussian_exe}", "hessfit4gau.gjf"], check=True)
+
+    if opts.test:
+        print(f"Executing Gaussian on hessfit4gau.gjf")
+        subprocess.run([f"{GPATH}/{gaussian_exe}", "hessfit4gau.gjf"], check=True)
 
 if __name__ == "__main__":
     main()

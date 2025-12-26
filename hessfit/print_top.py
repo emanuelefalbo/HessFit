@@ -2,6 +2,7 @@
 
 import os
 import get_amass 
+import guessBO
 
 def build_dihe_folder(fname, type_list, charges):
     # Function to store force field strings, and
@@ -150,4 +151,98 @@ def write_torsions_amber(file, torsion_type_list, phase_list, v1_list, v2_list, 
         file.write(f'{torsion_type_formatted} {formatted_phase} {v1:.2f} {v2:.2f} {v3:.2f} 0. {hybrid}\n')
     file.write('\n')
     
+
+
+def print_mol2(ele_list, type_list, coord, charges, bonds_list):
+    """
+    Write a MOL2 file with atom types, coordinates, and charges.
+    
+    Args:
+        ele_list: list of element symbols
+        type_list: list of atom types
+        coord: list of coordinates [x, y, z]
+        charges: list of atomic charges
+        bonds: list of tuples [(atom1_idx, atom2_idx, bond_order), ...] (optional)
+    """
+    filename = 'hessfit.mol2'
+    num_atoms = len(ele_list)
+    num_bonds = len(bonds_list) if bonds_list else 0
+    
+    with open(filename, 'w') as file_out:
+        file_out.write('@<TRIPOS>MOLECULE\n')
+        file_out.write('hessfit\n')
+        file_out.write(f'{num_atoms} {num_bonds} 0 0 0\n')
+        file_out.write('SMALL\n')
+        file_out.write('NO_CHARGES\n\n')
+        
+        file_out.write('@<TRIPOS>ATOM\n')
+
+        for i, (element, atom_type, coordinates, charge) in enumerate(zip(ele_list, type_list, coord, charges), 1):
+            x, y, z = coordinates
+            charge_float = float(charge.replace('+', ''))
+            file_out.write(f'{i} {element} {x:.4f} {y:.4f} {z:.4f} {atom_type} 1 RES {charge_float:.4f}\n')
+
+        file_out.write('\n@<TRIPOS>BOND\n')
+        for i, bond in enumerate(bonds_list, 1):
+            atom1, atom2, *_ = bond
+            file_out.write(f'{i} {atom1} {atom2} 1\n')
+
+
+def write_mol2(
+    filename,
+    elements,
+    coords,
+    bonds,
+    atom_types,
+    aromatic_atoms,
+    charges=None,
+    mol_name="MOL",
+    res_name="MOL"
+):
+    nat = len(elements)
+    nbond = sum(len(b) for b in bonds) // 2
+
+    if charges is None:
+        charges = [0.0] * nat
+    else:
+        assert len(charges) == nat, "Charge array length mismatch"
+
+    with open(filename, "w") as f:
+        # ---------- MOLECULE ----------
+        f.write("@<TRIPOS>MOLECULE\n")
+        f.write(f"{mol_name}\n")
+        f.write(f"{nat} {nbond} 0 0 0\n")
+        f.write("SMALL\n")
+        f.write("USER_CHARGES\n\n")
+
+        # ---------- ATOMS ----------
+        f.write("@<TRIPOS>ATOM\n")
+        for i in range(nat):
+            x, y, z = coords[i]
+            charge_float = float(charges[i].strip())  # <-- safe
+            f.write(
+                f"{i+1:5d} "
+                f"{elements[i]}{i+1:<3d} "
+                f"{x:10.4f} {y:10.4f} {z:10.4f} "
+                f"{atom_types[i]:<4s} "
+                f"1 {res_name:<3s} "
+                f"{charge_float:10.6f}\n"
+            )
+
+        # ---------- BONDS ----------
+        f.write("\n@<TRIPOS>BOND\n")
+        bid = 1
+        for i in range(nat):
+            for j in bonds[i]:
+                if j > i:
+                    if i in aromatic_atoms and j in aromatic_atoms:
+                        btype = "ar"
+                    else:
+                        btype = guessBO.guess_bond_order(i, j, elements, coords)
+
+                    f.write(
+                        f"{bid:5d} {i+1:5d} {j+1:5d} {btype}\n"
+                    )
+                    bid += 1
+
 

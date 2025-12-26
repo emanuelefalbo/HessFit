@@ -3,6 +3,13 @@
 import numpy as np
 import os
 
+
+Z2SYM = {
+    1: "H",  6: "C",  7: "N",  8: "O", 16: "S"
+}
+
+BOHR_TO_ANG = 0.52917721092
+
 def range2(start, end):
      return range(start, end+1)
 
@@ -408,7 +415,97 @@ def read_mass(all_lines, N_atom, mode):
 
 
 
-    
+def read_fchk_block(lines, label, nvals):
+    data = []
+    for i, line in enumerate(lines):
+        if line.startswith(label):
+            j = i + 1
+            while len(data) < nvals:
+                data.extend(map(float, lines[j].split()))
+                j += 1
+            return np.array(data)
+    raise RuntimeError(f"Block '{label}' not found")
 
-   
+def read_fchk_scalar(lines, label):
+    for line in lines:
+        if line.startswith(label):
+            return int(line.split()[-1])
+    raise RuntimeError(f"Scalar '{label}' not found")
 
+
+
+def read_num_atoms_fchk(lines):
+    return read_fchk_scalar(lines, "Number of atoms")
+
+def read_elements_fchk(lines, natoms):
+    Z = read_fchk_block(lines, "Atomic numbers", natoms).astype(int)
+    elements = [Z2SYM[z] for z in Z]
+    return Z, elements
+
+def read_cartesian_coords_fchk(lines, natoms, to_angstrom=True):
+    xyz = read_fchk_block(
+        lines,
+        "Current cartesian coordinates",
+        3 * natoms
+    ).reshape(natoms, 3)
+
+    if to_angstrom:
+        xyz *= BOHR_TO_ANG
+
+    return xyz
+
+def read_cartesian_hessian_fchk(lines, natoms):
+    ndof = 3 * natoms
+    ntri = ndof * (ndof + 1) // 2
+
+    hess_tri = read_fchk_block(
+        lines,
+        "Cartesian Force Constants",
+        ntri
+    )
+
+    H = np.zeros((ndof, ndof))
+    idx = 0
+    for i in range(ndof):
+        for j in range(i + 1):
+            H[i, j] = hess_tri[idx]
+            H[j, i] = hess_tri[idx]
+            idx += 1
+
+    return H
+
+def read_atomic_masses_fchk(lines, natoms):
+    """
+    Reads Gaussian 'Integer atomic weights' from .fchk file.
+
+    Returns:
+        masses : numpy array of shape (natoms,)
+                 atomic masses in atomic mass units (amu)
+    """
+    masses = read_fchk_block(
+        lines,
+        "Real atomic weights",
+        natoms
+    ).astype(float)
+
+    return masses
+
+
+def read_fchk(filename):
+    with open(filename) as f:
+        lines = f.readlines()
+
+    natoms = read_num_atoms_fchk(lines)
+    Z, elements = read_elements_fchk(lines, natoms)
+    coords = read_cartesian_coords_fchk(lines, natoms)
+    masses = read_atomic_masses_fchk(lines, natoms)
+    H_cart = read_cartesian_hessian_fchk(lines, natoms)
+
+    return {
+        "natoms": natoms,
+        "Z": Z,
+        "elements": elements,
+        "coords": coords,
+        "masses": masses,
+        "H_cart": H_cart
+    }

@@ -9,6 +9,7 @@ import readin_opts as rdin
 import print_top as top
 import log2topol
 import numpy as np
+import geom2atype as g2a
 # import scipy.optimize as optimize
 from scipy.sparse import rand
 from scipy.optimize import lsq_linear
@@ -32,7 +33,7 @@ def solve_lsq(A, b):
 
 def fit_hessian(qm_hessian, md_hessian):
     # Extract 3x3 submatrices
-    N_atoms = np.int(qm_hessian.shape[0]/3)
+    N_atoms = int(qm_hessian.shape[0]/3)
     subs_mm, subs_qm = [], []
     for i in range(N_atoms-1):
         for j in range(i+1, N_atoms):
@@ -48,7 +49,8 @@ def fit_hessian(qm_hessian, md_hessian):
         # print(submatrix)
         print(np.array2string(mm, precision=2, suppress_small=True))
         # print(np.linalg.lstsq(mm.flatten(), qm.flatten(), rcond=-1)[0])
-        fit = lsq_linear(qm.reshape(-1,1), mm.flatten()).x
+        # fit = lsq_linear(qm.reshape(-1,1), mm.flatten()).x
+        fit = np.linalg.lstsq(mm.reshape(-1,1), qm.flatten(), rcond=None)
         print(fit)
 
 
@@ -56,6 +58,10 @@ def main():
     parser = rdin.commandline_parser1()
     opts = parser.parse_args()
     json_opts = rdin.read_optfile(opts.optfile)
+
+    #Generate atom types from geometry 
+
+
     f_qm_log = json_opts['files']['log_qm_file']
     f_qm_fchk = json_opts['files']['fchk_qm_file']
     f_atype = json_opts['files']['atype_file']
@@ -72,8 +78,18 @@ def main():
     text_nb_fchk = pgau.store_any_file(f_nb_fchk)
     
     # Opening texts contents : XYZ, Grad, Hess, Topology & etc
-    N_atoms, qm_XYZ = pgau.read_XYZ(text_qm_fchk)                 
-    ele_list, atype_list = pgau.read_NamesTypes(text_atype)
+    # N_atoms, qm_XYZ = pgau.read_XYZ(text_qm_fchk)        
+    fchk = pgau.read_fchk(f_qm_fchk)
+    N_atoms = fchk["natoms"]
+    qm_XYZ = fchk["coords"]
+    ele_list = fchk["elements"]
+    # # H_cart = fchk["H_cart"]
+    # # masses = fchk["masses"]
+    # ele_list, atype_list = pgau.read_NamesTypes(text_atype)
+
+    atype_list = g2a.assign_gaff_atom_types(ele_list, qm_XYZ) # overwriting existing atype from json
+    # atype_list = g2a.assign_atom_types(ele_list, qm_XYZ) # overwriting existing atype from json
+
     ric_list, force_1D = pgau.read_RicDim_Grad(text_qm_fchk)
     No_ric = ric_list[0]
     No_bonds = ric_list[1]
@@ -100,6 +116,9 @@ def main():
         hessRIC_mm = pgau.read_HessRIC(text_mm_fchk, ric_list)
         hessRIC_nb = pgau.read_HessRIC(text_nb_fchk, ric_list)
         hess_eff = hessRIC_qm - hessRIC_nb
+
+        # fit_hessian(hess_eff, hessRIC_mm)
+
         diag_QM = np.diagonal(hess_eff)                       # Take diagonal items of H_QM
         MM_diag = get_DiagMatrix(hessRIC_mm)                  # Make sure H_MM is diagonal
         coeffs = np.linalg.solve(MM_diag, diag_QM)            # Solve Linear System for Bond and Angles only H_MM*K = H_QM ; ignoring Torsion 
@@ -109,7 +128,6 @@ def main():
     
     # If opt == sem
     mdin = json_opts['opt']
-    print(mdin)
     mode = json_opts['mode']
     bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, hess_eff, atype_list, bond_list, k_bonds, mdin, mode)
     angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, hess_eff, atype_list, angle_list, k_angles, mdin, mode)
@@ -133,16 +151,50 @@ def main():
                  angles_unique, k_angles_unique, angle_arr, \
                  tors_type_list, v1, v2, v3, phase, periodic_list)
     
-    
+       
     
    # Make dihedral directory for subsquent torsion fitting
     fname = 'hessfit4gau.gjf'
     top.build_dihe_folder(fname, atype_list, charge)
     
+   # 2. GAFF typing
+    # print(bond_list)
+    bond_list = g2a.build_bonds(ele_list, qm_XYZ)
+    aromatic_atoms = g2a.detect_aromatic_atoms(ele_list, bond_list)
+
+    print(type(charge[0]), charge[0])
+    print(len(ele_list), len(qm_XYZ), len(bond_list), len(atype_list), len(charge))
+
+    
+    top.write_mol2(
+    "hessfit.mol2",
+    ele_list,
+    qm_XYZ,
+    bond_list,
+    atype_list,
+    aromatic_atoms,
+    charges=charge
+)
+
+    # Write tleap file
+    with open('tleap.in', 'w') as f:
+        f.write('source leaprc.gaff\n')
+        f.write('loadamberparams hessfit_frcmod.txt\n')
+        f.write('mol = loadmol2 hessfit.mol2\n')
+        f.write('check mol\n')
+
+
     # Build topolo.txt file 
     bond_list, angle_list, tors_list = log2topol.read_Top(text_qm_log)
     os.chdir('dihedrals')
     log2topol.print_topol(bond_list, angle_list, tors_list)
+
+       
+    # # Print mol2 file 
+    # top.print_mol2(ele_list, atype_list, qm_XYZ, charge, bond_list)
+
+
+
     
     
 
