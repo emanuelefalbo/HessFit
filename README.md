@@ -9,6 +9,11 @@ The directory utils contains instead all the necessary modules.
 
 It currently works with the Gaussian outputs, and json files containing the necessary input information. It has been currently tested with Gaussian09/16. 
 The following python libraries are srequired to properly use the program alongside other modules. These can be installed with pip:
+
+```
+**(Recommended)**
+pip install git+https://github.com/emanuelefalbo/HessFit.git
+```
 ```
 pip install numpy pandas scipy
 ```
