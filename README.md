@@ -35,7 +35,7 @@ operations provided by the *build_4_hessfit.py* first, and *hessfit_harmonic.py*
 It works with a json file as described below:
 
 ```
-hessfit.py  step1.json -path $g09root
+hessfit.py  step1.json -path $g09root --at gaff --test True
 ```
 
 The step1.json is composed as :
@@ -46,8 +46,7 @@ The step1.json is composed as :
         "log_qm_file":  "file.log",
         "fchk_qm_file": "file.fchk",
         "fchk_mm_file": "GauHarm.fchk",
-        "fchk_nb_file": "GauNonBon.fchk",
-        "atype_file": "file_type.txt"
+        "fchk_nb_file": "GauNonBon.fchk"
          },
     "mode": "mean",
     "charge":0,
@@ -56,12 +55,13 @@ The step1.json is composed as :
 }
 ```
 
+where --at option indicate to use the AMBER or GAFF atom type options. According to this variable, VDW parameters will be taken from amber.prm file in Gaussian path or extracted from tabulated data for GAFF. 
+
 ```
  "log_qm_file":  Gaussian output log file of QM (opt+Freq) calculation
  "fchk_qm_file": Gaussian format check-point file of QM (opt+freq) calculation
  "fchk_mm_file": Gaussian format check-point file of artificial MM (freq) calculation
  "fchk_nb_file": Gaussian format check-point file of artificial MM (freq) calculation
- "atype_file": column file containing element and atom types
  "mode": "mean" string averages all force contsants over same types, while "all" leaves it unchanged
  "charge": the molecular charge of compound
  "multiplicity": the molecular multiplicity accoding to spin state
@@ -82,20 +82,8 @@ title
 
 ```
 
-The "atype_file" must be a two-column file with the element, and the atom type on the first and second column respectively: 
-
-```
-N-N3
-C-CT
-C-C 
-O-O 
-C-CT
-C-CA
-...
-```
-
-If atom types are absent in the second column, a full list of atom types with their serial index will be used.
 GauHarm.gjf and GauHarm.gjf are the necessary input files for *hessfit_harmonic.py* and need to be specified in the step1.json, although these are created during the run.
+A rapid test of HessFit FF can be obtained using MM Gaussian routines with --test TRUE option. 
 The output is a *hessfit4gau.gjf* and its output (hessfit4gau.log) which contains the optimization+frequency of the system with computed HessFit harmonic force field. 
 A further *hessfit_frcmod.txt*, which is in AMBER-like format,  is outputted and can be transfered for other Moleculaar Mechanics software such as AMBER or GROMACS.
 
