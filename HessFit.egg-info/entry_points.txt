@@ -1,0 +1,4 @@
+[console_scripts]
+hessfit = hessfit:main
+hessfit-build = hessfit.build_4_hessfit:main
+hessfit-harmonic = hessfit.hessfit_harmonic:main

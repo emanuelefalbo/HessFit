@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "HessFit"
+version = "0.1.0"
+authors = [
+  { name="Emanuele Falbo", email="falbo.emanuele@gmail.com" },
+]
+description = "Harmonic force field calculations and dihedral force constant fitting"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Chemistry",
+]
+dependencies = [
+    "numpy",
+    "pandas",
+    "scipy",
+    "matplotlib",
+]
+
+[project.scripts]
+hessfit = "hessfit:main"
+hessfit-harmonic = "hessfit.hessfit_harmonic:main"
+hessfit-build = "hessfit.build_4_hessfit:main"
+# This creates a 'hessfit' command in the terminal automatically
