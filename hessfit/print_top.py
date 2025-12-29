@@ -34,7 +34,7 @@ def print_GauInp(*args):
     ele_list, type_list, coord, bond_type_list, \
     k_bond_list, bond_length_list, angle_type_list, k_angle_list, \
     angle_length_list, torsion_type_list, v1_list, v2_list, \
-    v3_list, phase_list, hybrid_list, charges, formal_chg, multi = args
+    v3_list, phase_list, hybrid_list, charges, vdw_params, formal_chg, multi = args
 
     header_gjf = """%mem=1GB
 %nprocshared=1
@@ -64,6 +64,13 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
         write_torsions(file_out, torsion_type_list, phase_list, v1_list, v2_list, v3_list, hybrid_list)
         file_out.write('\n')
 
+        file_out.write('!VDW\n')
+        for vdw in vdw_params:
+            s = ' '.join(map(str, vdw))
+            file_out.write(f'{s}\n')
+
+        file_out.write('\n')
+
 
 def write_bonds(file, bond_type_list, k_bond_list, bond_length_list):
     file.write('!Bonds\n')
@@ -82,6 +89,8 @@ def write_torsions(file, torsion_type_list, phase_list, v1_list, v2_list, v3_lis
     for torsion_type, phase, v1, v2, v3, hybrid in zip(torsion_type_list, phase_list, v1_list, v2_list, v3_list, hybrid_list):
         formatted_phase = '  '.join(f'{x}' for x in phase)
         file.write(f'AmbTrs {torsion_type} {formatted_phase} {v1:.2f} {v2:.2f} {v3:.2f} 0. {float(hybrid)}\n')
+
+    
 
 
 def print_AmbFrcmod(*args):

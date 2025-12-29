@@ -24,8 +24,11 @@ def main():
     print_init()
     parser = rdin.commandline_parser3()
     parser.add_argument('--version', choices=['g09', 'g16'], default='g09', help='Select Gaussian version (g09 or g16)')
-    parser.add_argument('--test', action='store_true', default=False, help='Test HessFit FF with Gaussian internal routines')
+    parser.add_argument('--at', choices=["gaff", "amber"], default="gaff",
+                        help='Select force field for VDW parameters (gaff or amber); default = gaff')
+    parser.add_argument('--test', default=False, help='Test HessFit FF with Gaussian internal routines')
     opts = parser.parse_args()
+    print(opts.at)
     
     g09root = os.environ.get('g09root')
     g16root = os.environ.get('g16root')
@@ -57,9 +60,8 @@ def main():
     JSON = opts.optfile
 
 
-
-    subprocess.run([BS, JSON, "--path", GPATH], check=True)
-    # subprocess.run([BS, JSON], check=True)
+    print(f"Executing Building .gjf files: {BS}")
+    subprocess.run([BS, JSON, "--path", GPATH, "--at", opts.at], check=True)
     
     gaussian_exe = "g16" if opts.version == "g16" else "g09"
     for f in ["GauHarm.gjf", "GauNonBon.gjf"]:
@@ -71,7 +73,7 @@ def main():
         subprocess.run([f"{GPATH}/formchk", "-3", f, f"{os.path.splitext(f)[0]}.fchk"], check=True)
 
     print(f"Executing Harmonic: {SM}")
-    subprocess.run([SM, JSON])
+    subprocess.run([SM, JSON, "--version", opts.version, "--at", opts.at], check=True)
 
     if opts.test:
         print(f"Executing Gaussian on hessfit4gau.gjf")

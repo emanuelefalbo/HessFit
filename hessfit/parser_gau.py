@@ -2,6 +2,7 @@
 
 import numpy as np
 import os
+import vdwparms as vdwparms
 
 
 Z2SYM = {
@@ -352,7 +353,13 @@ def read_AmberParm(path, type_list):
     for i in VDW_list:
         if i not in VDW_new:
             VDW_new.append(i)
-        
+
+    if not VDW_new:
+        print('No AMBER VDW parameters found for the given atom types\n' \
+        'using internal atom types as default (GAFF)')
+        vdw_table = vdwparms.compute_vdw_table(type_list)
+        VDW_new = vdwparms.write_gaussian_vdw(vdw_table)
+
     return VDW_new
 
 

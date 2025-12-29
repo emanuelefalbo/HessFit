@@ -6,6 +6,7 @@ import numpy as np
 import average_across_types as aat
 import readin_opts as rdin
 import os
+import geom2atype as g2a
 
 def print_GauHarm(*args):
     ele_ls, tp_ls, coord, bond_tp_ls, k_bond_ls, bond_ln_ls, angle_tp_ls, k_angle_ls, \
@@ -79,13 +80,6 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
 
     with open(fname, 'w') as fout:
         fout.write(header_gjf.format(f_chg = formal_chg, mult=multi))
-        for m, p, l in zip(elements, types, coordinates):
-            s2 = '  '.join(f'{x:.6f}' for x in l)
-            fout.write(f'{m}-{p}-0.00  {s2}\n')
-
-
-    with open(fname, 'w') as fout:
-        fout.write(header_gjf.format(f_chg = formal_chg, mult=multi))
 
         for element, type_, coords, charge in zip(elements, types, coordinates, charges):
             coord_str = '  '.join(f'{x:.6f}' for x in coords)
@@ -116,14 +110,9 @@ NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
             fout.write(f'{s}\n')
 
         fout.write('\n')
-        
 
-def main():
-    parser = rdin.commandline_parser3()
-    parser.add_argument('--version', choices=['g09', 'g16'], default='g09', help='Select Gaussian version (g09 or g16)')
-    opts = parser.parse_args()
-    json_opts = rdin.read_optfile_3(opts.optfile)
-
+def setup_gaussian_path(opts):
+    """Set up and validate Gaussian installation path."""
     g09root = os.environ.get('g09root')
     g16root = os.environ.get('g16root')
     
@@ -148,19 +137,46 @@ def main():
     
     if not os.path.exists(GPATH):
         raise FileNotFoundError(f"Error: No valid Gaussian installation found at {GPATH}.")
+    
+    return GPATH
+
+def main():
+    parser = rdin.commandline_parser3()
+    parser.add_argument('--version', choices=['g09', 'g16'], default='g09', help='Select Gaussian version (g09 or g16)')
+    parser.add_argument('--at', choices=["gaff", "amber"], default="gaff", help='Select force field for VDW parameters (gaff or amber); default = gaff')
+    opts = parser.parse_args()
+    json_opts = rdin.read_optfile_3(opts.optfile)
+
+    GPATH = setup_gaussian_path(opts)
 
     # opts = parser.parse_args()
     f_qm_log = json_opts['files']['log_qm_file']
     f_qm_fchk = json_opts['files']['fchk_qm_file']
-    f_atype = json_opts['files']['atype_file']
+    # f_atype = json_opts['files']['atype_file']
     formal_chg = json_opts['charge']
     multi = json_opts['multiplicity']
     text_qm_log = pgau.store_any_file(f_qm_log)
     text_qm_fchk = pgau.store_any_file(f_qm_fchk)
-    text_atype = pgau.store_any_file(f_atype)
+    # text_atype = pgau.store_any_file(f_atype)
     
     N_atoms, qm_XYZ = pgau.read_XYZ(text_qm_fchk)
-    ele_list, atype_list = pgau.read_NamesTypes(text_atype)             
+
+
+    fchk = pgau.read_fchk(f_qm_fchk)
+    N_atoms = fchk["natoms"]
+    qm_XYZ = fchk["coords"]
+    ele_list = fchk["elements"]
+    # # H_cart = fchk["H_cart"]
+    # # masses = fchk["masses"]
+    print(opts.at)
+    if opts.at == "amber":
+        atype_list = g2a.assign_amber_atom_types(ele_list, qm_XYZ) # overwriting existing atype from json
+    elif opts.at == "gaff":
+        atype_list = g2a.assign_gaff_atom_types(ele_list, qm_XYZ)
+
+    print(atype_list)  
+
+
     # ele_list, type_list = pgau.read_NamesTypes(text_qm_log, N_atoms)
     ric_list, force_1D = pgau.read_RicDim_Grad(text_qm_fchk)
     No_ric = ric_list[0]
@@ -198,6 +214,7 @@ def main():
     
     # path = os.environ.get("g09root") + "/g09"
     VDW_list = pgau.read_AmberParm(GPATH, atype_list)
+    print(VDW_list)
     
     print_GauNonBon(ele_list, atype_list, qm_XYZ, \
                  bond_reduced, bond_arr, \

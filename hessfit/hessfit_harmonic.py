@@ -13,6 +13,7 @@ import geom2atype as g2a
 # import scipy.optimize as optimize
 from scipy.sparse import rand
 from scipy.optimize import lsq_linear
+import build_4_hessfit as build4hessfit
 
 
 def get_DiagMatrix(AM):
@@ -56,15 +57,15 @@ def fit_hessian(qm_hessian, md_hessian):
 
 def main():
     parser = rdin.commandline_parser1()
+    parser.add_argument('--at', choices=["gaff", "amber"], default="gaff", help='Select force field for VDW parameters (gaff or amber); default = gaff')
+    parser.add_argument('--version', choices=['g09', 'g16'], default='g09', help='Select Gaussian version (g09 or g16)')
     opts = parser.parse_args()
     json_opts = rdin.read_optfile(opts.optfile)
 
-    #Generate atom types from geometry 
-
-
+   
     f_qm_log = json_opts['files']['log_qm_file']
     f_qm_fchk = json_opts['files']['fchk_qm_file']
-    f_atype = json_opts['files']['atype_file']
+    # f_atype = json_opts['files']['atype_file']
     f_mm_fchk = json_opts['files']['fchk_mm_file']
     f_nb_fchk = json_opts['files']['fchk_nb_file']
     formal_chg = json_opts['charge']
@@ -73,7 +74,7 @@ def main():
     # Store all fiels in texts
     text_qm_log = pgau.store_any_file(f_qm_log)
     text_qm_fchk = pgau.store_any_file(f_qm_fchk)
-    text_atype = pgau.store_any_file(f_atype)
+    # text_atype = pgau.store_any_file(f_atype)
     text_mm_fchk = pgau.store_any_file(f_mm_fchk)
     text_nb_fchk = pgau.store_any_file(f_nb_fchk)
     
@@ -87,8 +88,12 @@ def main():
     # # masses = fchk["masses"]
     # ele_list, atype_list = pgau.read_NamesTypes(text_atype)
 
-    atype_list = g2a.assign_gaff_atom_types(ele_list, qm_XYZ) # overwriting existing atype from json
-    # atype_list = g2a.assign_atom_types(ele_list, qm_XYZ) # overwriting existing atype from json
+    if opts.at == "amber":
+        atype_list = g2a.assign_amber_atom_types(ele_list, qm_XYZ) # overwriting existing atype from json
+    elif opts.at == "gaff":
+        atype_list = g2a.assign_gaff_atom_types(ele_list, qm_XYZ)
+
+    print(atype_list)
 
     ric_list, force_1D = pgau.read_RicDim_Grad(text_qm_fchk)
     No_ric = ric_list[0]
@@ -139,12 +144,19 @@ def main():
     # Same for torsion...
     tors_unique, val_unique = aat.make_list_unique(tors_type_list, v1)
 
+     # path = os.environ.get("g09root") + "/g09"
+    GPATH = build4hessfit.setup_gaussian_path(opts)
+    print(GPATH)
+    VDW_list = pgau.read_AmberParm(GPATH, atype_list)
+    print(VDW_list)
+
     # Print all into Gaussian Input
     top.print_GauInp(ele_list, atype_list, qm_XYZ, \
                  bonds_unique, k_bonds_unique, bond_arr, \
                  angles_unique, k_angles_unique, angle_arr, \
                  tors_unique, v1, v2, v3, phase, periodic_list, charge, \
-                 formal_chg, multi)
+                    VDW_list, formal_chg, multi)
+    
 
     top.print_AmbFrcmod(ele_list, atype_list, \
                  bonds_unique, k_bonds_unique, bond_arr, \
@@ -161,9 +173,6 @@ def main():
     # print(bond_list)
     bond_list = g2a.build_bonds(ele_list, qm_XYZ)
     aromatic_atoms = g2a.detect_aromatic_atoms(ele_list, bond_list)
-
-    print(type(charge[0]), charge[0])
-    print(len(ele_list), len(qm_XYZ), len(bond_list), len(atype_list), len(charge))
 
     
     top.write_mol2(

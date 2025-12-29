@@ -45,7 +45,8 @@ def read_optfile(fname):
         raise FileNotFoundError('Missing JSON file')
     with open(fname, 'r')  as fopen:
         data = json.load(fopen)
-    for i in ["log_qm_file", "fchk_qm_file", "atype_file", "fchk_mm_file", "fchk_nb_file"]:
+    for i in ["log_qm_file", "fchk_qm_file", "fchk_mm_file", "fchk_nb_file"]:
+    # for i in ["log_qm_file", "fchk_qm_file", "atype_file", "fchk_mm_file", "fchk_nb_file"]:
         if not os.path.exists(data['files'][i]):
             raise FileNotFoundError(f'Missing {i} file')
     return data
