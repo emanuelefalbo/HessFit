@@ -14,15 +14,13 @@ The following python libraries are srequired to properly use the program alongsi
 ```
 pip install git+https://github.com/emanuelefalbo/HessFit.git
 ```
+**(Dev Option)** or  by cloning the directory locally, user should give:
 ```
-pip install numpy pandas scipy
-```
-Then, by cloning the directory locally, user should give:
-```
-git clone https://github.com/emanuelefalbo/HessFit
+git clone https://github.com/emanuelefalbo/HessFit.git
 cd HessFit
-python setup.py install
+pip install -e .
 ```
+
 Alternatively, it is sufficient to add their directory to the **PYTHONPATH** into you .bashrc (bash) file to call the main executable (**hessfit.py**):
 ```
 export PYTHONPATH="${PYTHONPATH}:/path/to/hessfit/"
