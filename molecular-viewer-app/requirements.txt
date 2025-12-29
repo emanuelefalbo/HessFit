@@ -1,5 +1,0 @@
-Tkinter
-PyQt5
-py3Dmol
-json
-os
