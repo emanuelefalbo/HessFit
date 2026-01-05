@@ -30,6 +30,15 @@ def gaff_vdw_parameters():
         "n2": (1.8240, 0.1700),
         "n3": (1.8240, 0.1700),
         "na": (1.8240, 0.1700),
+
+        # ---- SULFUR ----
+        "s":  (2.0000, 0.2500),  # generic divalent sulfur
+        "sh": (2.0000, 0.2500),  # thiol sulfur
+        "ss": (2.0000, 0.2500),  # disulfide sulfur
+        "s2": (2.0000, 0.2500),  # sp2 sulfur
+        "s4": (2.0000, 0.2500),  # hypervalent sulfur (sulfone/sulfoxide)
+        "sx": (2.0000, 0.2500),  # aromatic sulfur
+        "sy": (2.0000, 0.2500),  # aromatic sulfur variant
     }
 
 def compute_vdw_table(atom_types):
