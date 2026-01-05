@@ -62,7 +62,6 @@ def main():
     opts = parser.parse_args()
     json_opts = rdin.read_optfile(opts.optfile)
 
-   
     f_qm_log = json_opts['files']['log_qm_file']
     f_qm_fchk = json_opts['files']['fchk_qm_file']
     # f_atype = json_opts['files']['atype_file']
@@ -92,8 +91,6 @@ def main():
         atype_list = g2a.assign_amber_atom_types(ele_list, qm_XYZ) # overwriting existing atype from json
     elif opts.at == "gaff":
         atype_list = g2a.assign_gaff_atom_types(ele_list, qm_XYZ)
-
-    print(atype_list)
 
     ric_list, force_1D = pgau.read_RicDim_Grad(text_qm_fchk)
     No_ric = ric_list[0]
@@ -146,9 +143,7 @@ def main():
 
      # path = os.environ.get("g09root") + "/g09"
     GPATH = build4hessfit.setup_gaussian_path(opts)
-    print(GPATH)
     VDW_list = pgau.read_AmberParm(GPATH, atype_list)
-    print(VDW_list)
 
     # Print all into Gaussian Input
     top.print_GauInp(ele_list, atype_list, qm_XYZ, \

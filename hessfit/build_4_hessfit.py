@@ -168,13 +168,13 @@ def main():
     ele_list = fchk["elements"]
     # # H_cart = fchk["H_cart"]
     # # masses = fchk["masses"]
-    print(opts.at)
     if opts.at == "amber":
         atype_list = g2a.assign_amber_atom_types(ele_list, qm_XYZ) # overwriting existing atype from json
     elif opts.at == "gaff":
         atype_list = g2a.assign_gaff_atom_types(ele_list, qm_XYZ)
 
-    print(atype_list)  
+    print("The following atom types have been assigned:")
+    [print(f"{el}-{at}") for el, at in zip(ele_list, atype_list)]
 
 
     # ele_list, type_list = pgau.read_NamesTypes(text_qm_log, N_atoms)
@@ -214,7 +214,6 @@ def main():
     
     # path = os.environ.get("g09root") + "/g09"
     VDW_list = pgau.read_AmberParm(GPATH, atype_list)
-    print(VDW_list)
     
     print_GauNonBon(ele_list, atype_list, qm_XYZ, \
                  bond_reduced, bond_arr, \

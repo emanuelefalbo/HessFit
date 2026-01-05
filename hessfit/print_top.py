@@ -128,6 +128,10 @@ def print_AmbFrcmod(*args):
         write_angles_amber(file_out, angle_type_list, k_angle_list, angle_length_list)
         write_torsions_amber(file_out, torsion_type_list, phase_list, v1_list, v2_list, v3_list, hybrid_list)
 
+        file_out.write('\n')
+        file_out.write('NONBON\n')
+
+
 
 # def write_bonds_amber(file, bond_type_list, k_bond_list, bond_length_list):
 #     file.write('BOND\n')
