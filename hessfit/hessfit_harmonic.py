@@ -153,6 +153,7 @@ def main():
                     VDW_list, formal_chg, multi)
     
 
+     
     top.print_AmbFrcmod(ele_list, atype_list, \
                  bonds_unique, k_bonds_unique, bond_arr, \
                  angles_unique, k_angles_unique, angle_arr, \
@@ -167,7 +168,8 @@ def main():
    # 2. GAFF typing
     # print(bond_list)
     bond_list = g2a.build_bonds(ele_list, qm_XYZ)
-    aromatic_atoms = g2a.detect_aromatic_atoms(ele_list, bond_list)
+    aromatic_atoms = g2a.detect_aromatic_atoms_2(ele_list, bond_list)
+    # aromatic_atoms = g2a.detect_aromatic_atoms(ele_list, bond_list)
 
     
     top.write_mol2(

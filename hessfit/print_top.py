@@ -92,7 +92,6 @@ def write_torsions(file, torsion_type_list, phase_list, v1_list, v2_list, v3_lis
 
     
 
-
 def print_AmbFrcmod(*args):
     ele_list, type_list, bond_type_list, k_bond_list, bond_length_list, \
     angle_type_list, k_angle_list, angle_length_list, torsion_type_list, \
@@ -116,6 +115,7 @@ def print_AmbFrcmod(*args):
 
     filename = 'hessfit_frcmod.txt'
     with open(filename, 'w') as file_out:
+        file_out.write('FRCMOD created by Hessfit\n')
         file_out.write('MASS\n')
         seen = set()
         for ele, type_entry in zip(element_mass, type_list):
@@ -126,34 +126,36 @@ def print_AmbFrcmod(*args):
 
         write_bonds_amber(file_out, bond_type_list, k_bond_list, bond_length_list)
         write_angles_amber(file_out, angle_type_list, k_angle_list, angle_length_list)
-        write_torsions_amber(file_out, torsion_type_list, phase_list, v1_list, v2_list, v3_list, hybrid_list)
-
-        file_out.write('\n')
+        # write_torsions_amber(file_out, torsion_type_list, phase_list, v1_list, v2_list, v3_list, hybrid_list)
+        write_torsions_amber_2(file_out, torsion_type_list, v1_list, v2_list, v3_list, phase_list, hybrid_list)
         file_out.write('NONBON\n')
 
 
-
-# def write_bonds_amber(file, bond_type_list, k_bond_list, bond_length_list):
-#     file.write('BOND\n')
-#     for bond_type, k_bond, bond_length in zip(bond_type_list, k_bond_list, bond_length_list):
-#         file.write(f'{bond_type} {k_bond:.3f} {bond_length:.3f}\n')
-#     file.write('\n')
-    
+        
 def write_bonds_amber(file, bond_type_list, k_bond_list, bond_length_list):
-    file.write('BOND\n')
-    for bond_type, k_bond, bond_length in zip(bond_type_list, k_bond_list, bond_length_list):
-        bond_type_formatted = '- '.join(bond_type.split())
-        file.write(f'{bond_type_formatted} {k_bond:.3f} {bond_length:.3f}\n')
-    file.write('\n')
+    file.write("BOND\n")
+    for bond_type, k_bond, bond_length in zip(
+        bond_type_list, k_bond_list, bond_length_list
+    ):
+        # Ensure AMBER bond syntax: A-B
+        bond_type_formatted = "-".join(bond_type.split())
+        file.write(
+            f"{bond_type_formatted:<8s} {k_bond:8.3f} {bond_length:8.3f}\n"
+        )
+    file.write("\n")
 
 
 def write_angles_amber(file, angle_type_list, k_angle_list, angle_length_list):
-    file.write('ANGLE\n')
-    for angle_type, k_angle, angle_length in zip(angle_type_list, k_angle_list, angle_length_list):
-        angle_type_formatted = '- '.join(angle_type.split())
-        file.write(f'{angle_type_formatted} {k_angle:.3f} {angle_length:.3f}\n')
-    file.write('\n')
-        
+    file.write("ANGLE\n")
+    for angle_type, k_angle, angle_length in zip(
+        angle_type_list, k_angle_list, angle_length_list
+    ):
+        # Ensure AMBER angle syntax: A-B-C
+        angle_type_formatted = "-".join(angle_type.split())
+        file.write(
+            f"{angle_type_formatted:<12s} {k_angle:8.3f} {angle_length:8.3f}\n"
+        )
+    file.write("\n")
 
 
 def write_torsions_amber(file, torsion_type_list, phase_list, v1_list, v2_list, v3_list, hybrid_list):
@@ -163,8 +165,39 @@ def write_torsions_amber(file, torsion_type_list, phase_list, v1_list, v2_list, 
         torsion_type_formatted = '- '.join(torsion_type.split())
         file.write(f'{torsion_type_formatted} {formatted_phase} {v1:.2f} {v2:.2f} {v3:.2f} 0. {hybrid}\n')
     file.write('\n')
-    
 
+
+def write_torsions_amber_2(file, tors_type_list, v1, v2, v3, phase, periodic_list):
+    file.write('DIHE\n')
+    for i in range(len(tors_type_list)):
+        types = tors_type_list[i].split()
+        dt_label = f"{types[0]:<2}-{types[1]:<2}-{types[2]:<2}-{types[3]:<2}"
+        
+        # Magnitudes for n=1, 2, 3, 4 (v4 is 0.0)
+        mags = [v1[i], v2[i], v3[i], 0.0]
+        # phase[i] is expected to be a list [PO1, PO2, PO3, PO4]
+        phases = phase[i]
+        idiv = periodic_list[i]
+        
+        # Identify non-zero terms to write
+        active_indices = [j for j, val in enumerate(mags) if abs(val) > 1e-6]
+        
+        # Default to a zero-term if nothing is active
+        if not active_indices:
+            active_indices = [0]
+
+        for idx, j in enumerate(active_indices):
+            mag = mags[j]
+            p_offset = phases[j]
+            pn = float(j + 1)
+            
+            # Rule: Negative PN if more terms follow for this atom set
+            if idx < len(active_indices) - 1:
+                pn = -pn
+            
+            # AMBER Standard Column Format: A11, I4, F15.3, F15.3, F15.3
+            file.write(f"{dt_label:11} {int(idiv):3} {mag:14.3f} {p_offset:14.3f} {pn:14.3f}\n")
+    file.write('\n')
 
 def print_mol2(ele_list, type_list, coord, charges, bonds_list):
     """

@@ -174,7 +174,7 @@ def main():
         atype_list = g2a.assign_gaff_atom_types(ele_list, qm_XYZ)
 
     print("The following atom types have been assigned:")
-    [print(f"{el}-{at}") for el, at in zip(ele_list, atype_list)]
+    print(' '.join(f"{el}-{at} ; " for el, at in zip(ele_list, atype_list)))
 
 
     # ele_list, type_list = pgau.read_NamesTypes(text_qm_log, N_atoms)

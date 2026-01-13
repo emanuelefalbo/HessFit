@@ -24,22 +24,64 @@ def build_bonds(elements, coords, scale=1.2):
                 bonds[j].append(i)
     return bonds
 
-def infer_hybridization(atom, bonds, elements):
-    nb = len(bonds[atom])
 
-    if elements[atom] == "C":
+def infer_hybridization(i, elements, bonds, rings=None):
+    elem = elements[i]
+    nb = len(bonds[i])
+
+    if elem == "C":
+        if rings and any(i in r for r in rings):
+            # ring carbons with 3 connections → sp2
+            if nb in (2, 3):
+                return "sp2"
         if nb == 4:
             return "sp3"
-        elif nb == 3:
+        if nb == 3:
             return "sp2"
-        elif nb == 2:
+        if nb == 2:
             return "sp"
-    if elements[atom] == "N":
+    if elem == "N":
         if nb == 3:
             return "sp3"
-        elif nb == 2:
+        if nb == 2:
             return "sp2"
+    if elem == "O":
+        if nb == 2:
+            return "sp3"
+        if nb == 1:
+            return "sp2"
+
     return "unknown"
+
+def infer_hybridization_2(i, elements, bonds, aromatic_atoms=None):
+    elem = elements[i]
+    nb = len(bonds[i])
+
+    if aromatic_atoms and i in aromatic_atoms:
+        return "sp2"
+
+    if elem == "C":
+        if nb == 4:
+            return "sp3"
+        if nb == 3:
+            return "sp2"
+        if nb == 2:
+            return "sp"
+
+    if elem == "N":
+        if nb == 3:
+            return "sp3"
+        if nb == 2:
+            return "sp2"
+
+    if elem in ("O", "S"):
+        if nb == 2:
+            return "sp3"
+        if nb == 1:
+            return "sp2"
+
+    return "unknown"
+
 
 def is_aromatic(atom, bonds, elements):
     if elements[atom] not in ("C", "N"):
@@ -47,6 +89,25 @@ def is_aromatic(atom, bonds, elements):
     if len(bonds[atom]) != 3:
         return False
     return True  # crude but effective for benzene-like rings
+
+def classify_heteroaromatic(i, elements, bonds):
+    elem = elements[i]
+    nb = len(bonds[i])
+    neigh_elems = [elements[j] for j in bonds[i]]
+
+    # ---- NITROGEN ----
+    if elem == "N":
+        if nb == 2:
+            return "pyridine"   # lone pair outside aromatic sextet
+        if nb == 3 and "H" in neigh_elems:
+            return "pyrrole"    # lone pair in aromatic sextet
+
+    # ---- OXYGEN / SULFUR ----
+    if elem in ("O", "S"):
+        if nb == 2:
+            return "hetero"
+
+    return None
 
 def assign_amber_type(i, elements, bonds):
     elem = elements[i]
@@ -164,8 +225,31 @@ def find_rings(bonds, max_len=7):
     return [list(r) for r in rings]
 
 
-def detect_aromatic_atoms(elements, bonds):
+# def detect_aromatic_atoms(elements, bonds):
+#     rings = find_rings(bonds)
+
+#     aromatic = set()
+
+#     for ring in rings:
+#         if len(ring) not in (5, 6):
+#             continue
+
+#         ok = True
+#         for i in ring:
+#             hyb = infer_hybridization(i, elements, bonds, rings)
+#             if hyb != "sp2":
+#                 ok = False
+#                 break
+
+#         if ok:
+#             aromatic.update(ring)
+
+#     return aromatic
+
+def detect_aromatic_atoms_2(elements, bonds):
     rings = find_rings(bonds)
+    print("Detected rings:", rings)
+
     aromatic = set()
 
     for ring in rings:
@@ -174,8 +258,26 @@ def detect_aromatic_atoms(elements, bonds):
 
         ok = True
         for i in ring:
-            hyb = infer_hybridization(i, elements, bonds)
-            if hyb != "sp2":
+            elem = elements[i]
+            nb = len(bonds[i])
+
+            if elem == "C":
+                if nb not in (2, 3):
+                    ok = False
+                    break
+
+            elif elem == "N":
+                kind = classify_heteroaromatic(i, elements, bonds)
+                if kind not in ("pyridine", "pyrrole"):
+                    ok = False
+                    break
+
+            elif elem in ("O", "S"):
+                if nb != 2:
+                    ok = False
+                    break
+
+            else:
                 ok = False
                 break
 
@@ -195,7 +297,7 @@ def assign_amber_atom_types(elements, coords):
 
 def assign_gaff_atom_types(elements, coords):
     bonds = build_bonds(elements, coords)
-    aromatic_atoms = detect_aromatic_atoms(elements, bonds)
+    aromatic_atoms = detect_aromatic_atoms_2(elements, bonds)
 
     types = []
     for i in range(len(elements)):
