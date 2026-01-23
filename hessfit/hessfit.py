@@ -24,7 +24,7 @@ def main():
     print_init()
     parser = rdin.commandline_parser3()
     parser.add_argument('--version', choices=['g09', 'g16'], default='g09', help='Select Gaussian version (g09 or g16)')
-    parser.add_argument('--at', choices=["gaff", "amber"], default="gaff",
+    parser.add_argument('--at', choices=["gaff", "amber", "scratch"], default="gaff",
                         help='Select force field for VDW parameters (gaff or amber); default = gaff')
     parser.add_argument('--test', default=False, help='Test HessFit FF with Gaussian internal routines')
     opts = parser.parse_args()

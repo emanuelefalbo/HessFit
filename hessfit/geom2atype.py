@@ -182,7 +182,7 @@ def assign_gaff_type(i, elements, bonds, aromatic_atoms):
         parent_hyb = infer_hybridization(parent, elements, bonds)
         if parent_hyb == "sp3":
             return "h3"
-        if parent_hyb == "sp2":
+        if parent_hyb == "sp2":  
             return "h2"
         return "h1"
 

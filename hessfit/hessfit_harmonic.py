@@ -57,7 +57,7 @@ def fit_hessian(qm_hessian, md_hessian):
 
 def main():
     parser = rdin.commandline_parser1()
-    parser.add_argument('--at', choices=["gaff", "amber"], default="gaff", help='Select force field for VDW parameters (gaff or amber); default = gaff')
+    parser.add_argument('--at', choices=["gaff", "amber", "scratch"], default="gaff", help='Select force field for VDW parameters (gaff or amber); default = gaff')
     parser.add_argument('--version', choices=['g09', 'g16'], default='g09', help='Select Gaussian version (g09 or g16)')
     opts = parser.parse_args()
     json_opts = rdin.read_optfile(opts.optfile)
@@ -91,6 +91,11 @@ def main():
         atype_list = g2a.assign_amber_atom_types(ele_list, qm_XYZ) # overwriting existing atype from json
     elif opts.at == "gaff":
         atype_list = g2a.assign_gaff_atom_types(ele_list, qm_XYZ)
+    elif opts.at == "scratch":
+        atype_list = []                                      # build atom types if none provided
+        for i, var in enumerate(ele_list):
+            atype_list.append(''.join(f'{var}{i}'))
+        atype_list = pgau.flat_list(atype_list)        
 
     ric_list, force_1D = pgau.read_RicDim_Grad(text_qm_fchk)
     No_ric = ric_list[0]

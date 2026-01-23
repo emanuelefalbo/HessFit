@@ -32,4 +32,5 @@ hessfit/parser_gau.py
 hessfit/print_top.py
 hessfit/readin_opts.py
 hessfit/seminario_module.py
+hessfit/temp-atpye.py
 hessfit/vdwparms.py
