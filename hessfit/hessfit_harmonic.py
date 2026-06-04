@@ -14,6 +14,7 @@ import geom2atype as g2a
 from scipy.sparse import rand
 from scipy.optimize import lsq_linear
 import build_4_hessfit as build4hessfit
+from scipy.optimize import nnls
 
 
 def get_DiagMatrix(AM):
@@ -128,11 +129,20 @@ def main():
 
         diag_QM = np.diagonal(hess_eff)                       # Take diagonal items of H_QM
         MM_diag = get_DiagMatrix(hessRIC_mm)                  # Make sure H_MM is diagonal
-        coeffs = np.linalg.solve(MM_diag, diag_QM)            # Solve Linear System for Bond and Angles only H_MM*K = H_QM ; ignoring Torsion 
+        coeffs = np.linalg.solve(MM_diag, diag_QM) 
+        
+        coeffs, residual = nnls(
+        MM_diag,
+        diag_QM
+        )     
+        
+                   # Solve Linear System for Bond and Angles only H_MM*K = H_QM ; ignoring Torsion 
         k_bonds = coeffs[0 : No_bonds]                        #  * ((627.509391)/(0.529117*0.529117))                       
         k_angles = coeffs[No_bonds : No_bonds + No_angles ]   #* (627.509391)
-        k_tors = coeffs[No_ric - No_dihes : No_ric]           #* 627.509391  # Torsional Gradient; kcal/mol rad
+        k_tors = coeffs[No_ric - No_dihes : ]           #* 627.509391  # Torsional Gradient; kcal/mol rad
+        # k_tors = coeffs[No_ric - No_dihes : No_ric]           #* 627.509391  # Torsional Gradient; kcal/mol rad
     
+
     # If opt == sem
     mdin = json_opts['opt']
     mode = json_opts['mode']

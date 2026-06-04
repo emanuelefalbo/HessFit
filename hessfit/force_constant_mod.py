@@ -89,8 +89,16 @@ def set_angles(coords, hess, type_list,
         theta = np.arccos(cos_theta)
         theta = 180 - theta * 180 / np.pi
         angle_length_list.append(theta)
-        angle_type_list.append(type_list[i] + ' ' + type_list[j] +  \
-                               ' ' + type_list[k]) 
+        # angle_type_list.append(type_list[i] + ' ' + type_list[j] +  \
+        #                        ' ' + type_list[k]) 
+        
+        a = type_list[i]
+        b = type_list[j]
+        c = type_list[k]
+        ends = sorted([a,c])
+        angle_type_list.append(
+            f"{ends[0]} {b} {ends[1]}"
+        )
         if mdin == 'modsem':            # Triggers on ModSeminario 
            k_angles[m] = sem_mod.get_ModSem_FcAngles(i, j, k, r_AB, r_BC, \
                                                      u_AB, u_BC, hess)
@@ -108,6 +116,7 @@ def set_angles(coords, hess, type_list,
 
         k_angles_2d = np.reshape(k_angles, ((k_angles.shape[0], 1)) )
         _, out_2 = avg_dups(angle_type_list, k_angles_2d)
+
         k_bonds_mean = np.reshape(out_2, (out_2.shape[0]))
 
         return angle_type_unique, angle_length_mean, k_bonds_mean

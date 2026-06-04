@@ -27,10 +27,12 @@ def oplsa_matrix(xval_deg):
         np.ones_like(xrad),                      # constant term
         1 + np.cos(xrad),                        # V1
         1 - np.cos(2 * xrad),                    # V2
-        1 + np.cos(3 * xrad),                    # V3
+        1 + np.cos(3 * xrad),                     # V3
         1 - np.cos(4 * xrad)                     # V4
     ])
     return A
+
+
 
 def boltzmann_weights(E_qm, T):
     kB_kcal = 1.9872036e-3  # kcal/mol·K
@@ -91,11 +93,15 @@ if __name__ == "__main__":
     fname = args.file
     data = pd.read_csv(fname, delim_whitespace=True, header=None)
     angles = data.iloc[:, 0].to_numpy()
+    # angles = angles % 360
+    angles = angles - angles[0]  # Shift so first angle is 0° for better fitting
+    # angles = angles % 360
+    print(angles)
     E_qm_raw = data.iloc[:, 1].to_numpy()
     E_mm_raw = data.iloc[:, 2].to_numpy()
     
     # Convert to relative energies in kcal/mol
-    E_qm = (E_qm_raw - np.min(E_qm_raw)) * 627.503
+    E_qm = (E_qm_raw - np.min(E_qm_raw)) #* 627.503
     E_mm = (E_mm_raw - np.min(E_mm_raw)) #* 627.503
     
     # Build OPLS design matrix
@@ -105,6 +111,7 @@ if __name__ == "__main__":
     for T in [0, 500, 1000, 2000]:
         result = minimize(
             weighted_error,
+            # x0=np.zeros(4),        # 5 OPLS-AA parameters
             x0=np.zeros(5),        # 5 OPLS-AA parameters
             args=(A, E_qm, T),
             method='BFGS'

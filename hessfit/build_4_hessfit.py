@@ -199,9 +199,13 @@ def main():
     
     mdin = json_opts['opt']
     mode = json_opts['mode']
-    bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, None, atype_list, \
+    print("MODE IS:", json_opts['opt'])
+
+    fchk = pgau.read_fchk(f_qm_fchk)
+    H_cart = fchk["H_cart"]
+    bond_type_list, bond_arr, k_bond_arr = fc.set_bonds(qm_XYZ, H_cart, atype_list, \
                       bond_list, k_bonds, mdin, mode)
-    angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, None, atype_list, \
+    angle_type_list, angle_arr, k_angle_arr = fc.set_angles(qm_XYZ, H_cart, atype_list, \
                       angle_list, k_angles, mdin, mode)
     tors_type_list, v1, _, _, _, _, periodic_list = fc.set_torsion(qm_XYZ, atype_list, tors_list, k_tors, force_1D, mode)
     
@@ -222,7 +226,7 @@ def main():
     
     print_GauNonBon(ele_list, atype_list, qm_XYZ, \
                  bond_reduced, bond_arr, \
-                 angle_reduced, k_angle_arr, \
+                 angle_reduced, angle_arr, \
                  tors_reduced, hybrid_unique, \
                  chg, VDW_list, formal_chg, multi)
 

@@ -41,7 +41,7 @@ if __name__ == '__main__':
                        res.append(line[11:28]) 
                  elif OPTS.t == 'qm':
                      if line[:10] == match_qm:
-                       res.append(line[23:40]) 
+                       res.append(line[23:44]) 
     df =pd.DataFrame(res)
     fout = OPTS.o
     df.to_csv(fout, header=None)
