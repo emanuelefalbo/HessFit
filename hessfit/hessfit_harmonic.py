@@ -17,6 +17,35 @@ import build_4_hessfit as build4hessfit
 from scipy.optimize import nnls
 
 
+def reconstruct_ric_hessian(hess_mm_unit, coeffs):
+    """
+    Reconstruct the RIC Hessian from the unit-force-constant
+    MM Hessian and fitted force constants.
+
+    Each column of hess_mm_unit represents the Hessian
+    contribution of one internal coordinate with unit
+    force constant.
+
+    Parameters
+    ----------
+    hess_mm_unit : ndarray
+        Full RIC Hessian, shape (Nric, Nric).
+
+    coeffs : ndarray
+        Fitted force constants, one per RIC.
+
+    Returns
+    -------
+    hess_reconstructed : ndarray
+        Reconstructed RIC Hessian.
+    """
+
+    hess_reconstructed = (
+        hess_mm_unit * coeffs[np.newaxis, :]
+    )
+
+    return hess_reconstructed
+
 def get_DiagMatrix(AM):
     for i in range(len(AM)):
         for j in range(len(AM)):
@@ -135,6 +164,10 @@ def main():
         MM_diag,
         diag_QM
         )     
+
+        reconstructed_hess = reconstruct_ric_hessian(hessRIC_mm, coeffs)
+        print("Reconstructed Hessian:")
+        print(np.array2string(reconstructed_hess, precision=6, suppress_small=True))
         
                    # Solve Linear System for Bond and Angles only H_MM*K = H_QM ; ignoring Torsion 
         k_bonds = coeffs[0 : No_bonds]                        #  * ((627.509391)/(0.529117*0.529117))                       

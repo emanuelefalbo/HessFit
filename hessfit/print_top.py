@@ -39,7 +39,7 @@ def print_GauInp(*args):
     header_gjf = """%mem=1GB
 %nprocshared=1
 %chk=hessfit4gau.chk
-#p Amber=(SoftFirst,Print) nosymm geom=nocrowd opt(MaxMicroiterations=2000) Freq
+#p Amber=(SoftFirst,Print) nosymm geom=nocrowd opt(MaxMicroiterations=2000) Freq=intmodes
 
 Title
 

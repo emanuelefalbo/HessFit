@@ -1,0 +1,4 @@
+source leaprc.gaff
+loadamberparams hessfit_frcmod.txt
+mol = loadmol2 hessfit.mol2
+check mol

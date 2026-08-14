@@ -1,0 +1,20 @@
+[
+  {
+    "rank": 1,
+    "conformer": "conf_000",
+    "cluster": 1,
+    "energy_hartree": -13.66512775326,
+    "relative_energy_kcal_mol": 0.0,
+    "rmsd_to_cluster_representative": 0.0,
+    "optimized_xyz": "xtb_screening/conf_000/xtbopt.xyz"
+  },
+  {
+    "rank": 2,
+    "conformer": "conf_010",
+    "cluster": 2,
+    "energy_hartree": -13.664177370796,
+    "relative_energy_kcal_mol": 0.5963740000832056,
+    "rmsd_to_cluster_representative": 0.0,
+    "optimized_xyz": "xtb_screening/conf_010/xtbopt.xyz"
+  }
+]
