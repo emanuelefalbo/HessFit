@@ -1,0 +1,3 @@
+rank,conformer,qm_energy,delta_energy,hessian_error,rmsd,frequency_error,hessian_normalized,rmsd_normalized,frequency_normalized,merit,n_ric,n_modes,n_imag_qm,n_imag_mm
+1,01_conf_000,-158.418725045,0.0,0.14710923374771195,0.04125742932593024,0.07294253759498077,0.0,0.0,0.0,0.0,64,36,0,0
+2,02_conf_010,-158.417763504,0.6033760871453621,0.1534900811876926,0.09749433823442878,0.08828383222869364,1.0,1.0,1.0,1.0,64,36,0,0

@@ -31,14 +31,14 @@ def build_dihe_folder(fname, type_list, charges):
     
 
 def print_GauInp(*args):
-    ele_list, type_list, coord, bond_type_list, \
+    filename, ele_list, type_list, coord, bond_type_list, \
     k_bond_list, bond_length_list, angle_type_list, k_angle_list, \
     angle_length_list, torsion_type_list, v1_list, v2_list, \
     v3_list, phase_list, hybrid_list, charges, vdw_params, formal_chg, multi = args
 
     header_gjf = """%mem=1GB
 %nprocshared=1
-%chk=hessfit4gau.chk
+%chk={chk}
 #p Amber=(SoftFirst,Print) nosymm geom=nocrowd opt(MaxMicroiterations=2000) Freq=intmodes
 
 Title
@@ -50,9 +50,10 @@ Title
 !Master function
 NonBon 3 1 0 0 0.000 0.000 0.500 0.000 0.000 -1.2
 """
-    filename = 'hessfit4gau.gjf'
+    # filename = 'hessfit4gau.gjf'
+    chk_name = f"{os.path.splitext(filename)[0]}.chk"
     with open(filename, 'w') as file_out:
-        file_out.write(header_gjf.format(f_chg = formal_chg, mult=multi))
+        file_out.write(header_gjf.format(f_chg=formal_chg, mult=multi, chk=chk_name))
         for element, type, coordinates, charge in zip(ele_list, type_list, coord, charges):
             formatted_coords = '  '.join(f'{x:.6f}' for x in coordinates)
             file_out.write(f'{element}-{type}-{charge}  {formatted_coords}\n')

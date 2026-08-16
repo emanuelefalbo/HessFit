@@ -165,9 +165,9 @@ def main():
         diag_QM
         )     
 
-        reconstructed_hess = reconstruct_ric_hessian(hessRIC_mm, coeffs)
-        print("Reconstructed Hessian:")
-        print(np.array2string(reconstructed_hess, precision=6, suppress_small=True))
+        # reconstructed_hess = reconstruct_ric_hessian(hessRIC_mm, coeffs)
+        # print("Reconstructed Hessian:")
+        # print(np.array2string(reconstructed_hess, precision=6, suppress_small=True))
         
                    # Solve Linear System for Bond and Angles only H_MM*K = H_QM ; ignoring Torsion 
         k_bonds = coeffs[0 : No_bonds]                        #  * ((627.509391)/(0.529117*0.529117))                       
@@ -194,7 +194,9 @@ def main():
     VDW_list = pgau.read_AmberParm(GPATH, atype_list)
 
     # Print all into Gaussian Input
-    top.print_GauInp(ele_list, atype_list, qm_XYZ, \
+    fname = f"{os.path.splitext(json_opts['files']['log_qm_file'])[0]}_hessfit.gjf"
+    # 'hessfit4gau.gjf'
+    top.print_GauInp(fname, ele_list, atype_list, qm_XYZ, \
                  bonds_unique, k_bonds_unique, bond_arr, \
                  angles_unique, k_angles_unique, angle_arr, \
                  tors_unique, v1, v2, v3, phase, periodic_list, charge, \
@@ -210,7 +212,7 @@ def main():
        
     
    # Make dihedral directory for subsquent torsion fitting
-    fname = 'hessfit4gau.gjf'
+    # fname = 'hessfit4gau.gjf'
     top.build_dihe_folder(fname, atype_list, charge)
     
    # 2. GAFF typing

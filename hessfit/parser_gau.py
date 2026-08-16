@@ -167,6 +167,99 @@ def read_HessRIC(all_lines, ric_list):
 
     return hess_arr
 
+import numpy as np
+import math
+
+
+def read_HessRIC_2(all_lines, ric_list=None):
+    """
+    Read the Internal Force Constants Hessian from a Gaussian .fchk file.
+
+    Gaussian stores the symmetric Hessian as the lower triangular
+    part, including the diagonal.
+
+    Parameters
+    ----------
+    all_lines : list of str
+        Lines read from the fchk file.
+    ric_list : optional
+        Kept for compatibility with the previous implementation.
+
+    Returns
+    -------
+    hess_arr : np.ndarray
+        Full symmetric Hessian, shape (N, N).
+    """
+
+    N_hess = None
+    hess_flat = []
+
+    # ------------------------------------------------------------
+    # Find "Internal Force Constants"
+    # ------------------------------------------------------------
+    for s, line in enumerate(all_lines):
+
+        if "Internal Force Constants" in line:
+
+            # Extract number after N=
+            # Example:
+            # Internal Force Constants                   R   N=        2080
+            N_hess = int(line.split("N=")[1].strip())
+
+            # Number of lines containing 5 numbers each
+            nlines = math.ceil(N_hess / 5)
+
+            # Read exactly the required number of values
+            for e in range(s + 1, s + 1 + nlines):
+                hess_flat.extend(all_lines[e].split())
+
+            break
+
+    if N_hess is None:
+        raise ValueError(
+            "Could not find 'Internal Force Constants' in fchk file."
+        )
+
+    # ------------------------------------------------------------
+    # Convert triangular element count to Hessian dimension
+    # N_hess = N * (N + 1) / 2
+    # ------------------------------------------------------------
+    discriminant = 1 + 8 * N_hess
+    n_dim = int((-1 + math.sqrt(discriminant)) / 2)
+
+    # Check that N_hess corresponds exactly to a triangular matrix
+    if n_dim * (n_dim + 1) // 2 != N_hess:
+        raise ValueError(
+            f"Invalid number of Hessian elements: {N_hess}. "
+            f"Cannot construct a symmetric square Hessian."
+        )
+
+    # ------------------------------------------------------------
+    # Convert values to numpy array
+    # ------------------------------------------------------------
+    hess_1D = np.asarray(hess_flat[:N_hess], dtype=float)
+
+    if len(hess_1D) != N_hess:
+        raise ValueError(
+            f"Expected {N_hess} Hessian elements, "
+            f"but found only {len(hess_1D)}."
+        )
+
+    # ------------------------------------------------------------
+    # Construct full symmetric Hessian
+    # ------------------------------------------------------------
+    hess_arr = np.zeros((n_dim, n_dim), dtype=float)
+
+    k = 0
+
+    for i in range(n_dim):
+        for j in range(i + 1):
+            hess_arr[i, j] = hess_1D[k]
+            hess_arr[j, i] = hess_1D[k]
+            k += 1
+
+    return hess_arr
+
 def read_HessXYZ(all_lines, N_atom):
     """ 
     Reading XYZ Hessian from fchk file:

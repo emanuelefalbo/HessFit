@@ -58,6 +58,10 @@ def main():
     SM = "hessfit_harmonic.py"
     BS = "build_4_hessfit.py"
     JSON = opts.optfile
+    json_opts = rdin.read_optfile(opts.optfile)  #extract json file content
+    FNAME = f"{os.path.splitext(json_opts['files']['log_qm_file'])[0]}_hessfit.gjf"
+    FNAME_CHK = f"{os.path.splitext(json_opts['files']['log_qm_file'])[0]}_hessfit.chk"
+    # print(f'{FNAME} and {FNAME_CHK} will be generated in the current directory.')
 
 
     print(f"Executing Building .gjf files: {BS}")
@@ -76,9 +80,9 @@ def main():
     subprocess.run([SM, JSON, "--version", opts.version, "--at", opts.at], check=True)
 
     if opts.test:
-        print(f"Executing Gaussian on hessfit4gau.gjf")
-        subprocess.run([f"{GPATH}/{gaussian_exe}", "hessfit4gau.gjf"], check=True)
-        subprocess.run([f"{GPATH}/formchk", "-3", "hessfit4gau.chk", "hessfit4gau.fchk"], check=True)
+        print(f"Executing Gaussian on HessFit Gaussian Input file")
+        subprocess.run([f"{GPATH}/{gaussian_exe}", FNAME], check=True)
+        subprocess.run([f"{GPATH}/formchk", "-3", FNAME_CHK, f"{os.path.splitext(FNAME_CHK)[0]}.fchk"], check=True)
 
 if __name__ == "__main__":
     main()
