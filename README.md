@@ -217,7 +217,7 @@ For each conformer, perform an xTB optimization. This stage is intended to remov
 A test calculation can be run with:
 
 ```bash
-python3 small_xtb_test.py
+screen_xtb_conformers.py
 ```
 
 Successful calculations produce optimized structures such as:
