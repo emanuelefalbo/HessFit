@@ -261,7 +261,9 @@ The selected structures should represent both energetic and structural diversity
 # 5. Prepare Gaussian Opt+Freq calculations
 
 For each selected conformer, create a Gaussian input and perform geometry optimization followed by a frequency calculation.
-
+```
+$ ./generate_gaussian_optfreq.py
+```
 Use the same method, basis set, charge, multiplicity, and solvent model for all conformers.
 
 For example:
