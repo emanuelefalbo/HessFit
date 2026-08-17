@@ -547,8 +547,8 @@ Once the QM and HessFit files have been generated:
 ```bash
 ./evaluate_hessfit_confromers.py \
     --conformers 01_conf_000 02_conf_010 \
-    --qm-dir ../examples/conformers/qm_confs/ \
-    --hessfit-dir ../examples/conformers/confs_runs/ \
+    --qm-dir path/to/QM-optimized/conformers/ \
+    --hessfit-dir path/to/MM-HessFit-optimized/conformers/ \
     --weights 0.50 0.25 0.25
 ```
 
