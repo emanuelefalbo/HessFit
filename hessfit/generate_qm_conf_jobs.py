@@ -19,11 +19,34 @@ candidate conformer.
 import os
 import glob
 import re
+import argparse
 
 
-TEMPLATE = "../examples/but_qm.gjf"
-CONFORMER_DIR = "conformers"
-OUTDIR = "qm_conformers"
+def parse_arguments():
+    parser = argparse.ArgumentParser(
+        description="Generate Gaussian QM optimization/frequency jobs for HessFit conformers."
+    )
+    parser.add_argument(
+        "--template",
+        default="../examples/but_qm.gjf",
+        help="Path to Gaussian template file (default: %(default)s)"
+    )
+    parser.add_argument(
+        "--conformer-dir",
+        default="conformers",
+        help="Directory containing conformer XYZ files (default: %(default)s)"
+    )
+    # parser.add_argument(
+    #     "--output-dir",
+    #     default="gaussian_qm_conformers",
+    #     help="Output directory for Gaussian input files (default: %(default)s)"
+    # )
+    return parser.parse_args()
+
+
+# TEMPLATE = "../examples/but_qm.gjf"
+# CONFORMER_DIR = "conformers"
+# OUTDIR = "gaussian_qm_conformers"
 
 
 def read_xyz(filename):
@@ -182,6 +205,12 @@ def create_input(
 
 
 def main():
+
+    args = parse_arguments()
+
+    OUTDIR = "gaussian_qm_conformers"
+    CONFORMER_DIR = args.conformer_dir
+    TEMPLATE = args.template
 
     os.makedirs(
         OUTDIR,

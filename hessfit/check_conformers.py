@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import argparse
 import glob
 import numpy as np
 
@@ -12,8 +13,23 @@ from conformer_generation import read_xyz
 from ric_geometry import evaluate_ric
 
 
-LOG = "but_qm.log"
-FCHK = "but_qm.fchk"
+parser = argparse.ArgumentParser(
+    description="Check conformers against a canonical RIC reference."
+)
+parser.add_argument(
+    "--log",
+    default="template.log",
+    help="Quantum chemistry log file to read (default: %(default)s)",
+)
+parser.add_argument(
+    "--fchk",
+    default="template.fchk",
+    help="Formatted checkpoint file to read (default: %(default)s)",
+)
+args = parser.parse_args()
+
+LOG = args.log
+FCHK = args.fchk
 
 
 ric = build_canonical_ric(

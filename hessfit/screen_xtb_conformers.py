@@ -3,11 +3,11 @@
 import os
 import glob
 import json
+import argparse
 
 from xtb_screening import run_xtb
 
 
-INPUT_DIR = "conformers"
 OUTPUT_DIR = "xtb_screening"
 
 CHARGE = 0
@@ -15,6 +15,11 @@ UHF = 0
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--input-dir", default="conformers", help="Directory with conformer XYZ files (default: conformers)")
+    args = parser.parse_args()
+    
+    INPUT_DIR = args.input_dir
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 

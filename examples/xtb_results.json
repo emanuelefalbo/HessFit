@@ -1,0 +1,162 @@
+[
+  {
+    "conformer": "conf_000",
+    "input_xyz": "conformers/conf_000.xyz",
+    "optimized_xyz": "xtb_screening/conf_000/xtbopt.xyz",
+    "energy_hartree": -13.66512775326,
+    "success": true,
+    "directory": "xtb_screening/conf_000"
+  },
+  {
+    "conformer": "conf_001",
+    "input_xyz": "conformers/conf_001.xyz",
+    "optimized_xyz": "xtb_screening/conf_001/xtbopt.xyz",
+    "energy_hartree": -13.664175451406,
+    "success": true,
+    "directory": "xtb_screening/conf_001"
+  },
+  {
+    "conformer": "conf_002",
+    "input_xyz": "conformers/conf_002.xyz",
+    "optimized_xyz": "xtb_screening/conf_002/xtbopt.xyz",
+    "energy_hartree": -13.664176237139,
+    "success": true,
+    "directory": "xtb_screening/conf_002"
+  },
+  {
+    "conformer": "conf_003",
+    "input_xyz": "conformers/conf_003.xyz",
+    "optimized_xyz": "xtb_screening/conf_003/xtbopt.xyz",
+    "energy_hartree": -13.665125926015,
+    "success": true,
+    "directory": "xtb_screening/conf_003"
+  },
+  {
+    "conformer": "conf_004",
+    "input_xyz": "conformers/conf_004.xyz",
+    "optimized_xyz": "xtb_screening/conf_004/xtbopt.xyz",
+    "energy_hartree": -13.665127439513,
+    "success": true,
+    "directory": "xtb_screening/conf_004"
+  },
+  {
+    "conformer": "conf_005",
+    "input_xyz": "conformers/conf_005.xyz",
+    "optimized_xyz": "xtb_screening/conf_005/xtbopt.xyz",
+    "energy_hartree": -13.665127250848,
+    "success": true,
+    "directory": "xtb_screening/conf_005"
+  },
+  {
+    "conformer": "conf_006",
+    "input_xyz": "conformers/conf_006.xyz",
+    "optimized_xyz": "xtb_screening/conf_006/xtbopt.xyz",
+    "energy_hartree": -13.665126782691,
+    "success": true,
+    "directory": "xtb_screening/conf_006"
+  },
+  {
+    "conformer": "conf_007",
+    "input_xyz": "conformers/conf_007.xyz",
+    "optimized_xyz": "xtb_screening/conf_007/xtbopt.xyz",
+    "energy_hartree": -13.66417728317,
+    "success": true,
+    "directory": "xtb_screening/conf_007"
+  },
+  {
+    "conformer": "conf_008",
+    "input_xyz": "conformers/conf_008.xyz",
+    "optimized_xyz": "xtb_screening/conf_008/xtbopt.xyz",
+    "energy_hartree": -13.664174920627,
+    "success": true,
+    "directory": "xtb_screening/conf_008"
+  },
+  {
+    "conformer": "conf_009",
+    "input_xyz": "conformers/conf_009.xyz",
+    "optimized_xyz": "xtb_screening/conf_009/xtbopt.xyz",
+    "energy_hartree": -13.665126236687,
+    "success": true,
+    "directory": "xtb_screening/conf_009"
+  },
+  {
+    "conformer": "conf_010",
+    "input_xyz": "conformers/conf_010.xyz",
+    "optimized_xyz": "xtb_screening/conf_010/xtbopt.xyz",
+    "energy_hartree": -13.664177370794,
+    "success": true,
+    "directory": "xtb_screening/conf_010"
+  },
+  {
+    "conformer": "conf_011",
+    "input_xyz": "conformers/conf_011.xyz",
+    "optimized_xyz": "xtb_screening/conf_011/xtbopt.xyz",
+    "energy_hartree": -13.664176995592,
+    "success": true,
+    "directory": "xtb_screening/conf_011"
+  },
+  {
+    "conformer": "conf_012",
+    "input_xyz": "conformers/conf_012.xyz",
+    "optimized_xyz": "xtb_screening/conf_012/xtbopt.xyz",
+    "energy_hartree": -13.664176172431,
+    "success": true,
+    "directory": "xtb_screening/conf_012"
+  },
+  {
+    "conformer": "conf_013",
+    "input_xyz": "conformers/conf_013.xyz",
+    "optimized_xyz": "xtb_screening/conf_013/xtbopt.xyz",
+    "energy_hartree": -13.665125819008,
+    "success": true,
+    "directory": "xtb_screening/conf_013"
+  },
+  {
+    "conformer": "conf_014",
+    "input_xyz": "conformers/conf_014.xyz",
+    "optimized_xyz": "xtb_screening/conf_014/xtbopt.xyz",
+    "energy_hartree": -13.665127270638,
+    "success": true,
+    "directory": "xtb_screening/conf_014"
+  },
+  {
+    "conformer": "conf_015",
+    "input_xyz": "conformers/conf_015.xyz",
+    "optimized_xyz": "xtb_screening/conf_015/xtbopt.xyz",
+    "energy_hartree": -13.665126911466,
+    "success": true,
+    "directory": "xtb_screening/conf_015"
+  },
+  {
+    "conformer": "conf_016",
+    "input_xyz": "conformers/conf_016.xyz",
+    "optimized_xyz": "xtb_screening/conf_016/xtbopt.xyz",
+    "energy_hartree": -13.665127228632,
+    "success": true,
+    "directory": "xtb_screening/conf_016"
+  },
+  {
+    "conformer": "conf_017",
+    "input_xyz": "conformers/conf_017.xyz",
+    "optimized_xyz": "xtb_screening/conf_017/xtbopt.xyz",
+    "energy_hartree": -13.664175041432,
+    "success": true,
+    "directory": "xtb_screening/conf_017"
+  },
+  {
+    "conformer": "conf_018",
+    "input_xyz": "conformers/conf_018.xyz",
+    "optimized_xyz": "xtb_screening/conf_018/xtbopt.xyz",
+    "energy_hartree": -13.665127016687,
+    "success": true,
+    "directory": "xtb_screening/conf_018"
+  },
+  {
+    "conformer": "conf_019",
+    "input_xyz": "conformers/conf_019.xyz",
+    "optimized_xyz": "xtb_screening/conf_019/xtbopt.xyz",
+    "energy_hartree": -13.664175995165,
+    "success": true,
+    "directory": "xtb_screening/conf_019"
+  }
+]

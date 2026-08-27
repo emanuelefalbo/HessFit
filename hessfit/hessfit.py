@@ -58,7 +58,7 @@ def main():
     SM = "hessfit_harmonic.py"
     BS = "build_4_hessfit.py"
     JSON = opts.optfile
-    json_opts = rdin.read_optfile(opts.optfile)  #extract json file content
+    json_opts = rdin.read_optfile_3(opts.optfile)  #extract json file content
     FNAME = f"{os.path.splitext(json_opts['files']['log_qm_file'])[0]}_hessfit.gjf"
     FNAME_CHK = f"{os.path.splitext(json_opts['files']['log_qm_file'])[0]}_hessfit.chk"
     # print(f'{FNAME} and {FNAME_CHK} will be generated in the current directory.')
