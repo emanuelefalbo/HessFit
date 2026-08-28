@@ -371,19 +371,7 @@ The atom ordering must remain consistent between the QM and HessFit structures.
 
 # 9. Compare vibrational frequencies
 
-For a nonlinear molecule with `N` atoms:
-
-\[
-N_{vib}=3N-6
-\]
-
-For 14 atoms:
-
-\[
-N_{vib}=36
-\]
-
-Gaussian logs may contain more than one frequency calculation. The evaluator therefore:
+For a nonlinear molecule with `N` atoms, N_{vib}=3N-6. For example for 14 atoms, Gaussian logs may contain more than one frequency calculation. The evaluator therefore:
 
 1. reads all `Frequencies --` entries;
 2. determines the expected number of modes;
