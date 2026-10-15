@@ -140,6 +140,26 @@ def setup_gaussian_path(opts):
     
     return GPATH
 
+def canonicalize_torsion(torsion_type):
+    """
+    Treat a torsion type and its reverse as equivalent.
+
+    Example:
+        'ca ca na ha' -> 'ca ca na ha'
+        'ha na ca ca' -> 'ca ca na ha'
+    """
+    if isinstance(torsion_type, str):
+        atoms = torsion_type.split()
+    else:
+        atoms = list(torsion_type)
+
+    forward = tuple(atoms)
+    reverse = tuple(reversed(atoms))
+
+    return min(forward, reverse)
+
+
+
 def main():
     parser = rdin.commandline_parser3()
     parser.add_argument('--version', choices=['g09', 'g16'], default='g09', help='Select Gaussian version (g09 or g16)')
@@ -212,7 +232,36 @@ def main():
     # Take out Mirror atom types of bonds & angles
     bond_reduced, _ = aat.make_list_unique(bond_type_list, k_bond_arr)
     angle_reduced, _ = aat.make_list_unique(angle_type_list, k_angle_arr)
-    tors_reduced, hybrid_unique = aat.make_list_unique(tors_type_list, periodic_list)
+    # tors_reduced, hybrid_unique = aat.make_list_unique(tors_type_list, periodic_list)
+    
+    # Remove duplicate torsion types, including reversed atom order.
+    torsion_dict = {}
+    
+    for torsion_type, hybrid in zip(tors_type_list, periodic_list):
+    
+        canonical_type = canonicalize_torsion(torsion_type)
+    
+        if canonical_type not in torsion_dict:
+            torsion_dict[canonical_type] = hybrid
+    
+        else:
+            # The same torsion type was already encountered.
+            # Check whether the associated periodicity is consistent.
+            if torsion_dict[canonical_type] != hybrid:
+                print(
+                    f"WARNING: Conflicting periodicities for torsion "
+                    f"{canonical_type}: "
+                    f"{torsion_dict[canonical_type]} versus {hybrid}"
+                )
+    
+    # Recover the unique torsion types and their periodicities.
+    tors_reduced = [
+        ' '.join(torsion_type)
+        for torsion_type in torsion_dict.keys()
+    ]
+    
+    hybrid_unique = list(torsion_dict.values())
+
     
     # Print all into Gaussian Input
     print_GauHarm(ele_list, atype_list, qm_XYZ, \

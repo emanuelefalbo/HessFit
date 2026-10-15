@@ -97,8 +97,8 @@ def write_gaussian_input(
             f"%nprocshared={nproc}\n"
         )
 
-        # Use the output filename without extension for the checkpoint file
-        chk = os.path.splitext(output_file)[0] + ".chk"
+        # Keep only the filename for the checkpoint file, without the directory
+        chk = os.path.splitext(os.path.basename(output_file))[0] + ".chk"
 
         f.write(
             f"%chk={chk}\n"
@@ -182,7 +182,7 @@ def main():
 
     parser.add_argument(
         "--basis",
-        default="6-31+g(d,p)",
+        default="6-31+g(d)",
         help="Basis set."
     )
 

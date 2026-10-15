@@ -151,8 +151,8 @@ def main():
     xval, qm_abs, mm_abs = load_data(fname)
     # xval = data[:,0] # - 180.0
     # xval = data[:,0] # - 180.0
-    qm_rel = ( qm_abs - min(qm_abs) ) *6.275030E02  # Eh to kcal/mol
-    mm_rel = ( mm_abs - min(mm_abs) ) /6 #*6.275030E02
+    qm_rel = ( qm_abs - min(qm_abs) ) #*6.275030E02  # Eh to kcal/mol
+    mm_rel = ( mm_abs - min(mm_abs) )  #*6.275030E02
     # qm_rel = ( data[:,1] - min(data[:,1]) ) *6.275030E02  # Eh to kcal/mol
     # mm_rel = ( data[:,2] - min(data[:,2]) ) *6.275030E02
     yval =  ( qm_rel - mm_rel ) 

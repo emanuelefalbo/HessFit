@@ -137,6 +137,7 @@ def plot_fit(xval, qm, mm, yfit, T):
 
 
 
+
 # === Load input data ===
 if __name__ == "__main__":
     # Load scan data (angle, EQM, EMM)
@@ -153,7 +154,7 @@ if __name__ == "__main__":
     E_mm_raw = data.iloc[:, 2].to_numpy()
     
     # Convert to relative energies in kcal/mol
-    E_qm = (E_qm_raw - np.min(E_qm_raw)) * 627.503
+    E_qm = (E_qm_raw - np.min(E_qm_raw)) #* 627.503
     E_mm = (E_mm_raw - np.min(E_mm_raw)) #* 627.503
     
     # Build OPLS design matrix
@@ -182,4 +183,6 @@ if __name__ == "__main__":
     
         # Plot results
         plot_fit(angles, E_qm, E_mm, yfit, T)
+
+        pd.DataFrame({'Angle': angles, 'QM': E_qm, 'MM': E_mm, 'Fitted': yfit}).to_csv(f'fit_oplsa_T{T}.csv', index=False)
     
