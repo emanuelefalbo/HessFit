@@ -15,6 +15,7 @@ from scipy.sparse import rand
 from scipy.optimize import lsq_linear
 import build_4_hessfit as build4hessfit
 from scipy.optimize import nnls
+from build_4_hessfit import canonicalize_torsion
 
 
 def reconstruct_ric_hessian(hess_mm_unit, coeffs):
@@ -188,6 +189,35 @@ def main():
     angles_unique, k_angles_unique = aat.make_list_unique(angle_type_list, k_angle_arr)
     # Same for torsion...
     tors_unique, val_unique = aat.make_list_unique(tors_type_list, v1)
+
+    # Remove duplicate torsion types, including reversed atom order.
+    torsion_dict = {}
+    
+    for torsion_type, hybrid in zip(tors_type_list, periodic_list):
+    
+        canonical_type = canonicalize_torsion(torsion_type)
+    
+        if canonical_type not in torsion_dict:
+            torsion_dict[canonical_type] = hybrid
+    
+        else:
+            # The same torsion type was already encountered.
+            # Check whether the associated periodicity is consistent.
+            if torsion_dict[canonical_type] != hybrid:
+                print(
+                    f"WARNING: Conflicting periodicities for torsion "
+                    f"{canonical_type}: "
+                    f"{torsion_dict[canonical_type]} versus {hybrid}"
+                )
+    
+    # Recover the unique torsion types and their periodicities.
+    tors_unique = [
+        ' '.join(torsion_type)
+        for torsion_type in torsion_dict.keys()
+    ]
+    
+    hybrid_unique = list(torsion_dict.values())
+    
 
      # path = os.environ.get("g09root") + "/g09"
     GPATH = build4hessfit.setup_gaussian_path(opts)
